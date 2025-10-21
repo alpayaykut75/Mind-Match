@@ -13,7 +13,6 @@ export default function RootLayout() {
         <Stack.Screen name="game/[id]" />
         <Stack.Screen name="result/[id]" />
         <Stack.Screen name="chat/[username]" />
-        <Stack.Screen name="profile/[username]" />
       </Stack>
     </AuthProvider>
   );
