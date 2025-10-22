@@ -222,10 +222,8 @@ export default function GameScreen() {
             {myLastWord && (
               <View style={styles.wordBubble}>
                 <Text 
-                  style={styles.wordBubbleText}
-                  adjustsFontSizeToFit
+                  style={[styles.wordBubbleText, { fontSize: syncedFontSize }]}
                   numberOfLines={1}
-                  minimumFontScale={0.5}
                 >
                   {myLastWord}
                 </Text>
