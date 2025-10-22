@@ -436,7 +436,6 @@ const styles = StyleSheet.create({
     gap: theme.spacing.sm,
   },
   historyWord: {
-    fontSize: 14,
     color: theme.colors.text,
     fontWeight: '600',
   },
