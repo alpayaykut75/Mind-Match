@@ -436,8 +436,46 @@ const styles = StyleSheet.create({
     backgroundColor: theme.colors.cardBg,
     borderRadius: theme.borderRadius.lg,
     padding: theme.spacing.xl,
-    width: '80%',
+    width: '85%',
     alignItems: 'center',
+  },
+  modalAvatar: {
+    width: 80,
+    height: 80,
+    borderRadius: 40,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: theme.spacing.md,
+  },
+  modalUsername: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: theme.colors.text,
+    marginBottom: theme.spacing.xs,
+  },
+  modalBio: {
+    fontSize: 14,
+    color: theme.colors.textSecondary,
+    textAlign: 'center',
+    marginBottom: theme.spacing.lg,
+  },
+  modalStats: {
+    flexDirection: 'row',
+    gap: theme.spacing.xl,
+    marginBottom: theme.spacing.xl,
+  },
+  modalStat: {
+    alignItems: 'center',
+  },
+  modalStatValue: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: theme.colors.primary,
+  },
+  modalStatLabel: {
+    fontSize: 12,
+    color: theme.colors.textSecondary,
+    marginTop: 4,
   },
   modalTitle: {
     fontSize: 20,
@@ -454,6 +492,9 @@ const styles = StyleSheet.create({
     padding: theme.spacing.md,
     borderRadius: theme.borderRadius.md,
     alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    gap: theme.spacing.sm,
   },
   modalButtonText: {
     color: theme.colors.text,
@@ -462,6 +503,7 @@ const styles = StyleSheet.create({
   },
   modalCancelButton: {
     padding: theme.spacing.md,
+    marginTop: theme.spacing.sm,
   },
   modalCancelText: {
     color: theme.colors.textSecondary,
