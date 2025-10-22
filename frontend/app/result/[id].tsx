@@ -128,13 +128,26 @@ export default function ResultScreen() {
           </View>
 
           <View style={styles.actions}>
+            <TouchableOpacity
+              style={styles.actionButton}
+              onPress={handlePlayAgain}
+            >
+              <LinearGradient
+                colors={[theme.colors.primary, theme.colors.secondary]}
+                style={styles.actionButtonGradient}
+              >
+                <Ionicons name="refresh" size={24} color={theme.colors.text} />
+                <Text style={styles.actionButtonText}>Play Again</Text>
+              </LinearGradient>
+            </TouchableOpacity>
+            
             {canChat && (
               <TouchableOpacity
                 style={styles.actionButton}
                 onPress={() => router.push(`/chat/${opponentName}`)}
               >
                 <LinearGradient
-                  colors={[theme.colors.primary, theme.colors.secondary]}
+                  colors={[theme.colors.secondary, theme.colors.primary]}
                   style={styles.actionButtonGradient}
                 >
                   <Ionicons name="chatbubbles" size={24} color={theme.colors.text} />
@@ -142,6 +155,7 @@ export default function ResultScreen() {
                 </LinearGradient>
               </TouchableOpacity>
             )}
+            
             <TouchableOpacity
               style={styles.actionButton}
               onPress={() => router.push('/(tabs)/home')}
