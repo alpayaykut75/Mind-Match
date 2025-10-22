@@ -244,14 +244,12 @@ const styles = StyleSheet.create({
   gradient: {
     flex: 1,
   },
-  content: {
-    flex: 1,
-    padding: theme.spacing.lg,
-  },
   header: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: theme.spacing.lg,
+    padding: theme.spacing.lg,
+    borderBottomWidth: 1,
+    borderBottomColor: theme.colors.cardBg,
   },
   backButton: {
     marginRight: theme.spacing.md,
@@ -269,6 +267,22 @@ const styles = StyleSheet.create({
     color: theme.colors.textSecondary,
     marginTop: 2,
   },
+  scrollView: {
+    flex: 1,
+  },
+  scrollContent: {
+    padding: theme.spacing.lg,
+  },
+  instructionContainer: {
+    alignItems: 'center',
+    marginBottom: theme.spacing.lg,
+  },
+  instruction: {
+    fontSize: 16,
+    color: theme.colors.text,
+    textAlign: 'center',
+    marginTop: theme.spacing.sm,
+  },
   lastRoundContainer: {
     backgroundColor: theme.colors.cardBg,
     borderRadius: theme.borderRadius.md,
@@ -279,14 +293,15 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: theme.colors.textSecondary,
     marginBottom: theme.spacing.sm,
+    textAlign: 'center',
   },
   lastRoundWords: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
+    gap: theme.spacing.md,
   },
   wordBox: {
-    flex: 1,
     alignItems: 'center',
   },
   wordBoxLabel: {
@@ -295,22 +310,54 @@ const styles = StyleSheet.create({
     marginBottom: 4,
   },
   wordBoxText: {
-    fontSize: 18,
+    fontSize: 22,
+    fontWeight: 'bold',
+    color: theme.colors.primary,
+  },
+  historyContainer: {
+    marginTop: theme.spacing.lg,
+  },
+  historyTitle: {
+    fontSize: 16,
     fontWeight: 'bold',
     color: theme.colors.text,
+    marginBottom: theme.spacing.md,
   },
-  instructionContainer: {
+  historyItem: {
+    backgroundColor: theme.colors.cardBg,
+    borderRadius: theme.borderRadius.sm,
+    padding: theme.spacing.md,
+    marginBottom: theme.spacing.sm,
+  },
+  historyRound: {
+    fontSize: 12,
+    color: theme.colors.textSecondary,
+    marginBottom: 4,
+  },
+  historyWords: {
+    flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: theme.spacing.xl,
+    gap: theme.spacing.sm,
   },
-  instruction: {
-    fontSize: 16,
+  historyWord: {
+    fontSize: 14,
     color: theme.colors.text,
+    fontWeight: 'bold',
+  },
+  historySeparator: {
+    color: theme.colors.primary,
+  },
+  noHistory: {
+    fontSize: 14,
+    color: theme.colors.textSecondary,
     textAlign: 'center',
-    marginTop: theme.spacing.sm,
+    marginTop: theme.spacing.md,
   },
   inputContainer: {
-    marginBottom: theme.spacing.lg,
+    padding: theme.spacing.lg,
+    borderTopWidth: 1,
+    borderTopColor: theme.colors.cardBg,
+    backgroundColor: theme.colors.background,
   },
   input: {
     backgroundColor: theme.colors.cardBg,
@@ -337,44 +384,12 @@ const styles = StyleSheet.create({
   },
   waitingContainer: {
     alignItems: 'center',
-    marginBottom: theme.spacing.lg,
+    paddingHorizontal: theme.spacing.lg,
+    paddingBottom: theme.spacing.md,
   },
   waitingText: {
     fontSize: 16,
     color: theme.colors.textSecondary,
     marginTop: theme.spacing.sm,
-  },
-  historyContainer: {
-    flex: 1,
-  },
-  historyTitle: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    color: theme.colors.text,
-    marginBottom: theme.spacing.md,
-  },
-  historyItem: {
-    backgroundColor: theme.colors.cardBg,
-    borderRadius: theme.borderRadius.sm,
-    padding: theme.spacing.sm,
-    marginBottom: theme.spacing.sm,
-  },
-  historyRound: {
-    fontSize: 12,
-    color: theme.colors.textSecondary,
-    marginBottom: 4,
-  },
-  historyWords: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: theme.spacing.sm,
-  },
-  historyWord: {
-    fontSize: 14,
-    color: theme.colors.text,
-    fontWeight: 'bold',
-  },
-  historySeparator: {
-    color: theme.colors.textSecondary,
   },
 });
