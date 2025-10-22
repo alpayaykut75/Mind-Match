@@ -16,6 +16,8 @@ import { useRouter } from 'expo-router';
 import { theme } from '../../constants/theme';
 import { userAPI } from '../../utils/api';
 import { useAuth } from '../../contexts/AuthContext';
+import AvatarPicker from '../../components/AvatarPicker';
+import Avatar from '../../components/Avatar';
 
 interface Badge {
   type: string;
