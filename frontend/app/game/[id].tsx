@@ -400,7 +400,6 @@ const styles = StyleSheet.create({
     maxWidth: 140,
   },
   wordBubbleText: {
-    fontSize: 18,
     fontWeight: 'bold',
     color: theme.colors.primary,
     textAlign: 'center',
