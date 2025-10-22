@@ -121,9 +121,16 @@ export default function GameScreen() {
   const myCurrentWord = isPlayer1 ? gameStatus.player1_word : gameStatus.player2_word;
   const opponentCurrentWord = isPlayer1 ? gameStatus.player2_word : gameStatus.player1_word;
   
-  // Eğer kelime submit edilmişse göster
-  const myLastWord = submitted ? myCurrentWord : null;
-  const opponentLastWord = opponentCurrentWord;
+  // Eğer şu anki round'da kelime yoksa, son round'dan al
+  let myLastWord = myCurrentWord;
+  let opponentLastWord = opponentCurrentWord;
+  
+  // Eğer mevcut round'da kelime yoksa ve rounds varsa, son round'dan göster
+  if (!myCurrentWord && !opponentCurrentWord && gameStatus.rounds.length > 0) {
+    const lastCompletedRound = gameStatus.rounds[gameStatus.rounds.length - 1];
+    myLastWord = isPlayer1 ? lastCompletedRound.player1_word : lastCompletedRound.player2_word;
+    opponentLastWord = isPlayer1 ? lastCompletedRound.player2_word : lastCompletedRound.player1_word;
+  }
   
   const isInitialRound = gameStatus.status === 'round_1_initial';
 
