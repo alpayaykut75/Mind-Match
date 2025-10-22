@@ -131,29 +131,39 @@ export default function GameScreen() {
         colors={[theme.colors.background, theme.colors.cardBg]}
         style={styles.gradient}
       >
-        <KeyboardAvoidingView
-          behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-          style={styles.content}
+        <View style={styles.header}>
+          <TouchableOpacity onPress={() => router.back()} style={styles.backButton}>
+            <Ionicons name="arrow-back" size={24} color={theme.colors.text} />
+          </TouchableOpacity>
+          <View style={styles.headerInfo}>
+            <Text style={styles.opponent}>vs {opponentName}</Text>
+            <Text style={styles.roundInfo}>Round {gameStatus.current_round}</Text>
+          </View>
+        </View>
+
+        <ScrollView 
+          style={styles.scrollView}
+          contentContainerStyle={styles.scrollContent}
+          keyboardShouldPersistTaps="handled"
         >
-          <View style={styles.header}>
-            <TouchableOpacity onPress={() => router.back()} style={styles.backButton}>
-              <Ionicons name="arrow-back" size={24} color={theme.colors.text} />
-            </TouchableOpacity>
-            <View style={styles.headerInfo}>
-              <Text style={styles.opponent}>vs {opponentName}</Text>
-              <Text style={styles.roundInfo}>Round {gameStatus.current_round}</Text>
-            </View>
+          <View style={styles.instructionContainer}>
+            <Ionicons name="bulb" size={32} color={theme.colors.secondary} />
+            <Text style={styles.instruction}>
+              {isInitialRound
+                ? 'Type your starting word'
+                : 'Find a word that connects both words below'}
+            </Text>
           </View>
 
           {lastRound && bothSubmitted && !isInitialRound && (
             <View style={styles.lastRoundContainer}>
-              <Text style={styles.lastRoundTitle}>Last Round Words:</Text>
+              <Text style={styles.lastRoundTitle}>Previous Round:</Text>
               <View style={styles.lastRoundWords}>
                 <View style={styles.wordBox}>
                   <Text style={styles.wordBoxLabel}>{gameStatus.player1}</Text>
                   <Text style={styles.wordBoxText}>{lastRound.player1_word}</Text>
                 </View>
-                <Ionicons name="link" size={24} color={theme.colors.primary} />
+                <Ionicons name="add" size={24} color={theme.colors.primary} />
                 <View style={styles.wordBox}>
                   <Text style={styles.wordBoxLabel}>{gameStatus.player2}</Text>
                   <Text style={styles.wordBoxText}>{lastRound.player2_word}</Text>
@@ -162,15 +172,29 @@ export default function GameScreen() {
             </View>
           )}
 
-          <View style={styles.instructionContainer}>
-            <Ionicons name="bulb" size={32} color={theme.colors.secondary} />
-            <Text style={styles.instruction}>
-              {isInitialRound
-                ? 'Type your starting word'
-                : 'Type a word that connects both words above'}
-            </Text>
+          <View style={styles.historyContainer}>
+            <Text style={styles.historyTitle}>Round History</Text>
+            {gameStatus.rounds.length > 0 ? (
+              gameStatus.rounds.map((round) => (
+                <View key={round.round} style={styles.historyItem}>
+                  <Text style={styles.historyRound}>Round {round.round}</Text>
+                  <View style={styles.historyWords}>
+                    <Text style={styles.historyWord}>{round.player1_word}</Text>
+                    <Text style={styles.historySeparator}>+</Text>
+                    <Text style={styles.historyWord}>{round.player2_word}</Text>
+                  </View>
+                </View>
+              ))
+            ) : (
+              <Text style={styles.noHistory}>No history yet</Text>
+            )}
           </View>
+        </ScrollView>
 
+        <KeyboardAvoidingView
+          behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+          keyboardVerticalOffset={Platform.OS === 'ios' ? 90 : 0}
+        >
           <View style={styles.inputContainer}>
             <TextInput
               style={styles.input}
@@ -206,20 +230,6 @@ export default function GameScreen() {
               <Text style={styles.waitingText}>Waiting for {opponentName}...</Text>
             </View>
           )}
-
-          <View style={styles.historyContainer}>
-            <Text style={styles.historyTitle}>Round History</Text>
-            {gameStatus.rounds.map((round) => (
-              <View key={round.round} style={styles.historyItem}>
-                <Text style={styles.historyRound}>Round {round.round}</Text>
-                <View style={styles.historyWords}>
-                  <Text style={styles.historyWord}>{round.player1_word}</Text>
-                  <Text style={styles.historySeparator}>•</Text>
-                  <Text style={styles.historyWord}>{round.player2_word}</Text>
-                </View>
-              </View>
-            ))}
-          </View>
         </KeyboardAvoidingView>
       </LinearGradient>
     </SafeAreaView>
