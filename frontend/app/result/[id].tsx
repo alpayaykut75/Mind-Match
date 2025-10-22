@@ -69,7 +69,10 @@ export default function ResultScreen() {
         colors={[theme.colors.background, theme.colors.cardBg]}
         style={styles.gradient}
       >
-        <View style={styles.content}>
+        <ScrollView 
+          contentContainerStyle={styles.content}
+          showsVerticalScrollIndicator={false}
+        >
           <Animated.View
             style={[
               styles.syncContainer,
@@ -140,7 +143,7 @@ export default function ResultScreen() {
               </LinearGradient>
             </TouchableOpacity>
           </View>
-        </View>
+        </ScrollView>
       </LinearGradient>
     </SafeAreaView>
   );
