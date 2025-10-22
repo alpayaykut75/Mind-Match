@@ -572,16 +572,25 @@ async def submit_word(game_id: str, word_data: SubmitWord, current_user: str = D
     if game["mode"] == "ai" and game["player2"] == "AI":
         if game["status"] == "round_1_initial":
             # AI generates initial word
-            ai_word = await get_ai_word("", "", is_initial=True)
+            ai_word = await get_ai_word("", "", is_initial=True, round_num=1)
             await games_collection.update_one(
                 {"_id": game_id},
                 {"$set": {"player2_word": ai_word}}
             )
         else:
-            # AI generates connecting word
-            player1_word = word if current_user == game["player1"] else game.get("player1_word")
-            if player1_word:
-                ai_word = await get_ai_word(player1_word, game["player2_word"] or word, is_initial=False)
+            # AI generates connecting word - use ONLY the revealed words from LAST round
+            # Get the last completed round to see what words were revealed
+            last_round = await rounds_collection.find_one(
+                {"game_id": game_id, "round_number": game["current_round"] - 1}
+            )
+            if last_round:
+                # AI sees the two words from the PREVIOUS round, not current player's word
+                ai_word = await get_ai_word(
+                    last_round["player1_word"], 
+                    last_round["player2_word"],
+                    is_initial=False,
+                    round_num=game["current_round"]
+                )
                 await games_collection.update_one(
                     {"_id": game_id},
                     {"$set": {"player2_word": ai_word}}
