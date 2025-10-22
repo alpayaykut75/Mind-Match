@@ -72,6 +72,16 @@ export default function ProfileScreen() {
     }
   };
 
+  const handleAvatarSelect = async (avatar: string) => {
+    try {
+      await userAPI.updateProfile({ avatar });
+      await loadProfile();
+      Alert.alert('Success', 'Avatar updated successfully!');
+    } catch (error) {
+      Alert.alert('Error', 'Failed to update avatar');
+    }
+  };
+
   const handleLogout = () => {
     Alert.alert('Logout', 'Are you sure you want to logout?', [
       { text: 'Cancel', style: 'cancel' },
