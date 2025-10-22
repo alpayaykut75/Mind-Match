@@ -240,6 +240,7 @@ const styles = StyleSheet.create({
     color: theme.colors.primary,
   },
   roundsHistory: {
+    marginTop: theme.spacing.xl * 2,
     marginBottom: theme.spacing.xl,
   },
   historyTitle: {
@@ -247,6 +248,9 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: theme.colors.text,
     marginBottom: theme.spacing.md,
+  },
+  historyScroll: {
+    maxHeight: 300,
   },
   roundItem: {
     backgroundColor: theme.colors.cardBg,
