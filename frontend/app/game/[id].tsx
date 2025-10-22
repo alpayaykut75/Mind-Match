@@ -116,8 +116,15 @@ export default function GameScreen() {
 
   const isPlayer1 = username === gameStatus.player1;
   const opponentName = isPlayer1 ? gameStatus.player2 : gameStatus.player1;
-  const myLastWord = isPlayer1 ? gameStatus.player1_word : gameStatus.player2_word;
-  const opponentLastWord = isPlayer1 ? gameStatus.player2_word : gameStatus.player1_word;
+  
+  // Şu anki round'ın kelimelerini göster
+  const myCurrentWord = isPlayer1 ? gameStatus.player1_word : gameStatus.player2_word;
+  const opponentCurrentWord = isPlayer1 ? gameStatus.player2_word : gameStatus.player1_word;
+  
+  // Eğer kelime submit edilmişse göster
+  const myLastWord = submitted ? myCurrentWord : null;
+  const opponentLastWord = opponentCurrentWord;
+  
   const isInitialRound = gameStatus.status === 'round_1_initial';
 
   return (
