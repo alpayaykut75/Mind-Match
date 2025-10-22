@@ -1,11 +1,26 @@
 import { Tabs } from 'expo-router';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { LinearGradient } from 'expo-linear-gradient';
 import { theme } from '../../constants/theme';
+import Avatar from '../../components/Avatar';
+import { userAPI } from '../../utils/api';
 
 export default function TabsLayout() {
+  const [userAvatar, setUserAvatar] = useState<string>('');
+
+  useEffect(() => {
+    loadUserAvatar();
+  }, []);
+
+  const loadUserAvatar = async () => {
+    try {
+      const response = await userAPI.getMe();
+      setUserAvatar(response.data.avatar || '');
+    } catch (error) {
+      console.log('Failed to load user avatar for tab');
+    }
+  };
   return (
     <Tabs
       screenOptions={{
