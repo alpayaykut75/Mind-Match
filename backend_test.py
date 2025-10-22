@@ -10,7 +10,7 @@ import time
 from typing import Dict, Any, Optional
 
 # Backend URL from environment
-BACKEND_URL = "https://greet-user-5.preview.emergentagent.com/api"
+BACKEND_URL = "https://syncmates.preview.emergentagent.com/api"
 
 class MindMatchTester:
     def __init__(self):
