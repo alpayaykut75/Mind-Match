@@ -248,12 +248,7 @@ export default function GameScreen() {
 
           {/* Opponent */}
           <View style={styles.playerCard}>
-            <LinearGradient
-              colors={[theme.colors.secondary, theme.colors.primary]}
-              style={styles.playerAvatar}
-            >
-              <Ionicons name="sparkles" size={32} color={theme.colors.text} />
-            </LinearGradient>
+            <Avatar avatar={opponentAvatar} size={70} />
             <Text style={styles.playerName}>{opponentName}</Text>
             {opponentLastWord && (
               <View style={styles.wordBubble}>
