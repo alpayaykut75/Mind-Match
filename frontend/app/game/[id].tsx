@@ -209,7 +209,14 @@ export default function GameScreen() {
             <Text style={styles.playerName}>You</Text>
             {myLastWord && (
               <View style={styles.wordBubble}>
-                <Text style={styles.wordBubbleText}>{myLastWord}</Text>
+                <Text 
+                  style={styles.wordBubbleText}
+                  adjustsFontSizeToFit
+                  numberOfLines={1}
+                  minimumFontScale={0.5}
+                >
+                  {myLastWord}
+                </Text>
               </View>
             )}
           </View>
