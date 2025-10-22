@@ -156,6 +156,13 @@ export default function Signup() {
             </View>
           </ScrollView>
         </KeyboardAvoidingView>
+
+        <AvatarPicker
+          visible={showAvatarPicker}
+          onClose={() => setShowAvatarPicker(false)}
+          onSelectAvatar={setAvatar}
+          currentAvatar={avatar}
+        />
       </LinearGradient>
     </SafeAreaView>
   );
