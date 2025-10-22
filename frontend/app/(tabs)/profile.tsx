@@ -239,6 +239,14 @@ export default function ProfileScreen() {
             </View>
           </View>
         </Modal>
+
+        {/* Avatar Picker Modal */}
+        <AvatarPicker
+          visible={showAvatarPicker}
+          onClose={() => setShowAvatarPicker(false)}
+          onSelectAvatar={handleAvatarSelect}
+          currentAvatar={profile.avatar}
+        />
       </LinearGradient>
     </SafeAreaView>
   );
