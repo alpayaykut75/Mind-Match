@@ -248,10 +248,8 @@ export default function GameScreen() {
             {opponentLastWord && (
               <View style={styles.wordBubble}>
                 <Text 
-                  style={styles.wordBubbleText}
-                  adjustsFontSizeToFit
+                  style={[styles.wordBubbleText, { fontSize: syncedFontSize }]}
                   numberOfLines={1}
-                  minimumFontScale={0.5}
                 >
                   {opponentLastWord}
                 </Text>
