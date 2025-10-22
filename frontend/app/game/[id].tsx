@@ -262,16 +262,29 @@ export default function GameScreen() {
         <ScrollView style={styles.historyScroll} contentContainerStyle={styles.historyContent}>
           <Text style={styles.historyTitle}>Round History</Text>
           {gameStatus.rounds.length > 0 ? (
-            [...gameStatus.rounds].reverse().map((round) => (
-              <View key={round.round} style={styles.historyCard}>
-                <Text style={styles.historyRoundNum}>Round {round.round}</Text>
-                <View style={styles.historyWordsRow}>
-                  <Text style={styles.historyWord}>{round.player1_word}</Text>
-                  <Text style={styles.historySep}>+</Text>
-                  <Text style={styles.historyWord}>{round.player2_word}</Text>
+            [...gameStatus.rounds].reverse().map((round) => {
+              // Her round için o round'un kelimelerine göre font boyutu hesapla
+              const roundMaxLength = Math.max(
+                round.player1_word?.length || 0,
+                round.player2_word?.length || 0
+              );
+              const roundFontSize = calculateFontSize(roundMaxLength);
+              
+              return (
+                <View key={round.round} style={styles.historyCard}>
+                  <Text style={styles.historyRoundNum}>Round {round.round}</Text>
+                  <View style={styles.historyWordsRow}>
+                    <Text style={[styles.historyWord, { fontSize: roundFontSize }]}>
+                      {round.player1_word}
+                    </Text>
+                    <Text style={styles.historySep}>+</Text>
+                    <Text style={[styles.historyWord, { fontSize: roundFontSize }]}>
+                      {round.player2_word}
+                    </Text>
+                  </View>
                 </View>
-              </View>
-            ))
+              );
+            })
           ) : (
             <Text style={styles.noHistory}>No history yet</Text>
           )}
