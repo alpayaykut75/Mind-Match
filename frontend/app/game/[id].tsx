@@ -18,6 +18,7 @@ import { useRouter, useLocalSearchParams } from 'expo-router';
 import { theme } from '../../constants/theme';
 import { gameAPI } from '../../utils/api';
 import { useAuth } from '../../contexts/AuthContext';
+import Avatar from '../../components/Avatar';
 
 interface GameStatus {
   game_id: string;
