@@ -118,15 +118,15 @@ export default function ProfileScreen() {
         <ScrollView contentContainerStyle={styles.scrollContent}>
           {/* Avatar & Basic Info */}
           <View style={styles.header}>
-            <LinearGradient
-              colors={[theme.colors.primary, theme.colors.secondary]}
-              style={styles.avatar}
-            >
-              <Ionicons name="person" size={48} color={theme.colors.text} />
-            </LinearGradient>
-            <TouchableOpacity style={styles.editAvatarButton}>
-              <Ionicons name="camera" size={20} color={theme.colors.text} />
-            </TouchableOpacity>
+            <View style={styles.avatarContainer}>
+              <Avatar avatar={profile.avatar} size={100} />
+              <TouchableOpacity 
+                style={styles.editAvatarButton}
+                onPress={() => setShowAvatarPicker(true)}
+              >
+                <Ionicons name="camera" size={20} color={theme.colors.text} />
+              </TouchableOpacity>
+            </View>
             
             <Text style={styles.username}>{profile.username}</Text>
             
