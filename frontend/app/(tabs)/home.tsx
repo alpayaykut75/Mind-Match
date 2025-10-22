@@ -219,7 +219,27 @@ export default function HomeScreen() {
         >
           <View style={styles.modalOverlay}>
             <View style={styles.modalContent}>
-              <Text style={styles.modalTitle}>Play with {selectedUser?.username}?</Text>
+              <LinearGradient
+                colors={[theme.colors.primary, theme.colors.secondary]}
+                style={styles.modalAvatar}
+              >
+                <Ionicons name="person" size={40} color={theme.colors.text} />
+              </LinearGradient>
+              
+              <Text style={styles.modalUsername}>{selectedUser?.username}</Text>
+              <Text style={styles.modalBio}>{selectedUser?.bio || 'No bio'}</Text>
+              
+              <View style={styles.modalStats}>
+                <View style={styles.modalStat}>
+                  <Text style={styles.modalStatValue}>Lv {selectedUser?.level}</Text>
+                  <Text style={styles.modalStatLabel}>Level</Text>
+                </View>
+                <View style={styles.modalStat}>
+                  <Text style={styles.modalStatValue}>{selectedUser?.connection_score}%</Text>
+                  <Text style={styles.modalStatLabel}>Sync Rate</Text>
+                </View>
+              </View>
+
               <TouchableOpacity
                 style={styles.modalButton}
                 onPress={() => startGame('friend')}
@@ -228,14 +248,31 @@ export default function HomeScreen() {
                   colors={[theme.colors.primary, theme.colors.secondary]}
                   style={styles.modalButtonGradient}
                 >
-                  <Text style={styles.modalButtonText}>Start Game</Text>
+                  <Ionicons name="game-controller" size={20} color={theme.colors.text} />
+                  <Text style={styles.modalButtonText}>Play Game</Text>
                 </LinearGradient>
               </TouchableOpacity>
+
+              {!selectedUser?.is_friend && (
+                <TouchableOpacity
+                  style={styles.modalButton}
+                  onPress={sendFriendRequest}
+                >
+                  <LinearGradient
+                    colors={[theme.colors.secondary, theme.colors.primary]}
+                    style={styles.modalButtonGradient}
+                  >
+                    <Ionicons name="person-add" size={20} color={theme.colors.text} />
+                    <Text style={styles.modalButtonText}>Add Friend</Text>
+                  </LinearGradient>
+                </TouchableOpacity>
+              )}
+
               <TouchableOpacity
                 style={styles.modalCancelButton}
                 onPress={() => setModalVisible(false)}
               >
-                <Text style={styles.modalCancelText}>Cancel</Text>
+                <Text style={styles.modalCancelText}>Close</Text>
               </TouchableOpacity>
             </View>
           </View>
