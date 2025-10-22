@@ -144,6 +144,16 @@ export default function GameScreen() {
   };
   const syncedFontSize = calculateFontSize(maxLength);
   
+  // Debug için
+  console.log('DEBUG FONT:', {
+    myLastWord,
+    opponentLastWord,
+    myLength: myLastWord?.length,
+    oppLength: opponentLastWord?.length,
+    maxLength,
+    syncedFontSize
+  });
+  
   const isInitialRound = gameStatus.status === 'round_1_initial';
 
   return (
