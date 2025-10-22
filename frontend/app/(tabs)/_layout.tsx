@@ -59,7 +59,7 @@ export default function TabsLayout() {
         name="profile"
         options={{
           title: 'Profile',
-          tabBarIcon: ({ color, focused }) => (
+          tabBarIcon: ({ focused }) => (
             <View style={{ 
               width: 28, 
               height: 28, 
@@ -68,12 +68,7 @@ export default function TabsLayout() {
               borderWidth: focused ? 2 : 0,
               borderColor: theme.colors.primary,
             }}>
-              <LinearGradient
-                colors={[theme.colors.primary, theme.colors.secondary]}
-                style={{ width: '100%', height: '100%', justifyContent: 'center', alignItems: 'center' }}
-              >
-                <Ionicons name="person" size={16} color={theme.colors.text} />
-              </LinearGradient>
+              <Avatar avatar={userAvatar} size={28} />
             </View>
           ),
         }}
