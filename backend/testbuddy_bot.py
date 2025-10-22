@@ -37,9 +37,16 @@ def mark_online():
         pass
 
 def check_game_invites():
-    """Oyun davetlerini kontrol et ve kabul et"""
+    """Oyun davetlerini kontrol et ve kelime gönder"""
     try:
-        # Bu özellik ileride eklenebilir
+        # Bekleyen oyunları bul (TestBuddy'nin sırası olan)
+        response = requests.get(f"{API_URL}/api/users/me", headers=HEADERS)
+        if response.status_code != 200:
+            return
+            
+        # Kullanıcının katıldığı tüm oyunları kontrol et (basitleştirilmiş yaklaşım)
+        # Not: Gerçek uygulamada pending games endpoint'i gerekir
+        # Şimdilik bot pasif kalacak - kullanıcı AI mode kullanmalı
         pass
     except:
         pass
