@@ -362,11 +362,13 @@ const styles = StyleSheet.create({
     paddingVertical: theme.spacing.sm,
     borderRadius: theme.borderRadius.md,
     marginTop: theme.spacing.xs,
+    maxWidth: 140,
   },
   wordBubbleText: {
     fontSize: 18,
     fontWeight: 'bold',
     color: theme.colors.primary,
+    textAlign: 'center',
   },
   vsContainer: {
     marginHorizontal: theme.spacing.md,
