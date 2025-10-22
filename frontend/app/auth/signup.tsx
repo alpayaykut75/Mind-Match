@@ -75,7 +75,15 @@ export default function Signup() {
         >
           <ScrollView contentContainerStyle={styles.scrollContent}>
             <View style={styles.header}>
-              <Ionicons name="person-add" size={64} color={theme.colors.primary} />
+              <TouchableOpacity
+                style={styles.avatarContainer}
+                onPress={() => setShowAvatarPicker(true)}
+              >
+                <Avatar avatar={avatar} size={80} />
+                <View style={styles.avatarBadge}>
+                  <Ionicons name="camera" size={16} color={theme.colors.text} />
+                </View>
+              </TouchableOpacity>
               <Text style={styles.title}>Create Account</Text>
               <Text style={styles.subtitle}>Join MindMatch today</Text>
             </View>
