@@ -200,8 +200,27 @@ async def get_ai_word(word1: str, word2: str, is_initial: bool = False, round_nu
             system_message = "You are playing a word association game. Generate a random, common word. Reply with ONLY ONE WORD in uppercase."
             prompt = "Think of ONE random everyday word (object, place, feeling, or activity). Just say the word, nothing else."
         else:
-            system_message = "You are playing a word association game. Two players said different words. Your job is to find a word that connects them. Don't be too obvious - think creatively! Reply with ONLY ONE WORD in uppercase."
-            prompt = f"Two players said: '{word1}' and '{word2}'. Think of ONE word that connects both. Don't just repeat their words. Be creative but logical. Reply with only that word."
+            system_message = """You are playing a word-association game called MindMatch. 
+            
+RULES:
+- Two players each said a different word in the previous round
+- Now you must find ONE connecting word that links BOTH words
+- Choose the MOST OBVIOUS connection that most people would think of
+- Don't overthink it - use common associations
+- Reply with ONLY ONE WORD in uppercase
+
+EXAMPLES:
+- WATER + UMBRELLA → RAIN (because rain involves both water and umbrellas)
+- CAR + HOUSE → GARAGE (because garages connect cars and houses)
+- PHONE + MUSIC → APP (because music apps are on phones)
+- SUN + BEACH → SUMMER (because summer connects sun and beaches)"""
+            
+            prompt = f"""Previous round: Player 1 said '{word1}' and Player 2 said '{word2}'.
+
+What is the MOST OBVIOUS word that connects both '{word1}' and '{word2}'?
+Think like an average person would think. What's the first connection that comes to mind?
+
+Reply with ONLY that ONE connecting word in uppercase. No explanation."""
         
         chat = LlmChat(
             api_key=EMERGENT_LLM_KEY,
