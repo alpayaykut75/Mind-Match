@@ -113,20 +113,6 @@ export default function ResultScreen() {
             </View>
           </View>
 
-          <View style={styles.roundsHistory}>
-            <Text style={styles.historyTitle}>Round History</Text>
-            {gameStatus.rounds.map((round: any) => (
-              <View key={round.round} style={styles.roundItem}>
-                <Text style={styles.roundNumber}>Round {round.round}</Text>
-                <View style={styles.roundWords}>
-                  <Text style={styles.roundWord}>{round.player1_word}</Text>
-                  <Text style={styles.roundSeparator}>+</Text>
-                  <Text style={styles.roundWord}>{round.player2_word}</Text>
-                </View>
-              </View>
-            ))}
-          </View>
-
           <View style={styles.actions}>
             <TouchableOpacity
               style={styles.actionButton}
@@ -168,6 +154,20 @@ export default function ResultScreen() {
                 <Text style={styles.actionButtonText}>Home</Text>
               </LinearGradient>
             </TouchableOpacity>
+          </View>
+
+          <View style={styles.roundsHistory}>
+            <Text style={styles.historyTitle}>Round History</Text>
+            {gameStatus.rounds.map((round: any) => (
+              <View key={round.round} style={styles.roundItem}>
+                <Text style={styles.roundNumber}>Round {round.round}</Text>
+                <View style={styles.roundWords}>
+                  <Text style={styles.roundWord}>{round.player1_word}</Text>
+                  <Text style={styles.roundSeparator}>+</Text>
+                  <Text style={styles.roundWord}>{round.player2_word}</Text>
+                </View>
+              </View>
+            ))}
           </View>
         </ScrollView>
       </LinearGradient>
