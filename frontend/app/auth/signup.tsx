@@ -52,7 +52,7 @@ export default function Signup() {
         bio,
         age: age ? parseInt(age) : null,
         country,
-        avatar: '',
+        avatar,
       });
       await login(response.data.token, response.data.username);
       router.replace('/(tabs)/home');
