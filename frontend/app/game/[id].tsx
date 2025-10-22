@@ -134,7 +134,15 @@ export default function GameScreen() {
   
   // Her iki kelimeyi de aynı font boyutunda göstermek için - uzun olana göre ayarla
   const maxLength = Math.max(myLastWord?.length || 0, opponentLastWord?.length || 0);
-  const fontSize = maxLength > 10 ? 14 : maxLength > 7 ? 16 : 18;
+  const calculateFontSize = (length: number) => {
+    if (length === 0) return 18;
+    if (length > 15) return 12;
+    if (length > 12) return 14;
+    if (length > 10) return 15;
+    if (length > 7) return 16;
+    return 18;
+  };
+  const syncedFontSize = calculateFontSize(maxLength);
   
   const isInitialRound = gameStatus.status === 'round_1_initial';
 
