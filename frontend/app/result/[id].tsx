@@ -273,10 +273,12 @@ const styles = StyleSheet.create({
   },
   actions: {
     flexDirection: 'row',
+    flexWrap: 'wrap',
     gap: theme.spacing.md,
+    justifyContent: 'center',
   },
   actionButton: {
-    flex: 1,
+    minWidth: '45%',
   },
   actionButtonGradient: {
     flexDirection: 'row',
