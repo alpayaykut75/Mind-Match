@@ -699,10 +699,16 @@ async def get_game_status(game_id: str, current_user: str = Depends(get_current_
     # Get all rounds
     rounds_list = await rounds_collection.find({"game_id": game_id}).sort("round_number", 1).to_list(100)
     
+    # Get player avatars
+    player1_user = await users_collection.find_one({"username": game["player1"]})
+    player2_user = await users_collection.find_one({"username": game["player2"]})
+    
     return {
         "game_id": game_id,
         "player1": game["player1"],
         "player2": game["player2"],
+        "player1_avatar": player1_user.get("avatar", "") if player1_user else "",
+        "player2_avatar": player2_user.get("avatar", "") if player2_user else "",
         "mode": game["mode"],
         "status": game["status"],
         "current_round": game["current_round"],
