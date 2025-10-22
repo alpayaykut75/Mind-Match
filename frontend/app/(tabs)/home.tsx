@@ -78,6 +78,19 @@ export default function HomeScreen() {
     }
   };
 
+  const sendFriendRequest = async () => {
+    if (!selectedUser) return;
+    
+    try {
+      await friendAPI.sendRequest(selectedUser.username);
+      Alert.alert('Success', `Friend request sent to ${selectedUser.username}!`);
+      setModalVisible(false);
+      await loadUsers(); // Refresh to update friend status
+    } catch (error: any) {
+      Alert.alert('Error', error.response?.data?.detail || 'Failed to send friend request');
+    }
+  };
+
   const filteredUsers = users.filter((user) =>
     user.username.toLowerCase().includes(searchQuery.toLowerCase())
   );
