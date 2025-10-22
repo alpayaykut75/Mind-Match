@@ -132,6 +132,10 @@ export default function GameScreen() {
     opponentLastWord = isPlayer1 ? lastCompletedRound.player2_word : lastCompletedRound.player1_word;
   }
   
+  // Her iki kelimeyi de aynı font boyutunda göstermek için - uzun olana göre ayarla
+  const maxLength = Math.max(myLastWord?.length || 0, opponentLastWord?.length || 0);
+  const fontSize = maxLength > 10 ? 14 : maxLength > 7 ? 16 : 18;
+  
   const isInitialRound = gameStatus.status === 'round_1_initial';
 
   return (
