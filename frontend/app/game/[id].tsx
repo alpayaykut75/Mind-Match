@@ -237,7 +237,14 @@ export default function GameScreen() {
             <Text style={styles.playerName}>{opponentName}</Text>
             {opponentLastWord && (
               <View style={styles.wordBubble}>
-                <Text style={styles.wordBubbleText}>{opponentLastWord}</Text>
+                <Text 
+                  style={styles.wordBubbleText}
+                  adjustsFontSizeToFit
+                  numberOfLines={1}
+                  minimumFontScale={0.5}
+                >
+                  {opponentLastWord}
+                </Text>
               </View>
             )}
           </View>
