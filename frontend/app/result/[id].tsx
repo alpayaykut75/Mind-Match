@@ -158,9 +158,8 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   content: {
-    flex: 1,
     padding: theme.spacing.lg,
-    justifyContent: 'center',
+    paddingBottom: theme.spacing.xl * 2,
   },
   loading: {
     color: theme.colors.text,
