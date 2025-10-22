@@ -407,7 +407,10 @@ const styles = StyleSheet.create({
     paddingVertical: theme.spacing.sm,
     borderRadius: theme.borderRadius.md,
     marginTop: theme.spacing.xs,
-    maxWidth: 140,
+    width: 140,
+    minHeight: 40,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   wordBubbleText: {
     fontWeight: 'bold',
