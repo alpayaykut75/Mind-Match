@@ -273,17 +273,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: theme.spacing.xl,
   },
-  avatar: {
-    width: 100,
-    height: 100,
-    borderRadius: 50,
-    justifyContent: 'center',
-    alignItems: 'center',
+  avatarContainer: {
+    position: 'relative',
     marginBottom: theme.spacing.md,
   },
   editAvatarButton: {
     position: 'absolute',
-    top: 70,
+    bottom: 0,
+    right: 0,
     backgroundColor: theme.colors.primary,
     width: 36,
     height: 36,
