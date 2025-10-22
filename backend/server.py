@@ -192,30 +192,36 @@ async def update_user_stats(username: str, synced: bool, rounds: int):
         await award_badge(username, "harmony_hunter", "Harmony Hunter")
 
 
-async def get_ai_word(word1: str, word2: str, is_initial: bool = False) -> str:
+async def get_ai_word(word1: str, word2: str, is_initial: bool = False, round_num: int = 1) -> str:
     """Get AI-generated connecting word using Claude"""
     try:
+        # Make AI play more realistically - not too perfect
+        if is_initial:
+            system_message = "You are playing a word association game. Generate a random, common word. Reply with ONLY ONE WORD in uppercase."
+            prompt = "Think of ONE random everyday word (object, place, feeling, or activity). Just say the word, nothing else."
+        else:
+            system_message = "You are playing a word association game. Two players said different words. Your job is to find a word that connects them. Don't be too obvious - think creatively! Reply with ONLY ONE WORD in uppercase."
+            prompt = f"Two players said: '{word1}' and '{word2}'. Think of ONE word that connects both. Don't just repeat their words. Be creative but logical. Reply with only that word."
+        
         chat = LlmChat(
             api_key=EMERGENT_LLM_KEY,
-            session_id=f"ai_game_{datetime.utcnow().timestamp()}",
-            system_message="You are playing a word association game. Given two words, you must find a single word that connects them both. Your response should be ONLY ONE WORD, nothing else."
+            session_id=f"ai_game_{datetime.utcnow().timestamp()}_{round_num}",
+            system_message=system_message
         ).with_model("anthropic", "claude-3-7-sonnet-20250219")
-        
-        if is_initial:
-            prompt = f"Generate ONE random word related to the category: everyday objects, nature, or activities. Reply with ONLY the word."
-        else:
-            prompt = f"Find ONE word that connects both '{word1}' and '{word2}'. Reply with ONLY that connecting word."
         
         user_message = UserMessage(text=prompt)
         response = await chat.send_message(user_message)
         
-        # Extract just the word
-        ai_word = response.strip().split()[0].upper()
+        # Extract just the word and clean it
+        ai_word = response.strip().split('\n')[0].split()[0].upper()
+        # Remove any punctuation
+        ai_word = ''.join(c for c in ai_word if c.isalpha())
+        
         return ai_word
     except Exception as e:
         print(f"AI error: {e}")
-        # Fallback words
-        fallback_words = ["HOME", "TIME", "LIFE", "WATER", "LIGHT", "SOUND"]
+        # Fallback words - more variety
+        fallback_words = ["HOME", "TIME", "LIFE", "WATER", "LIGHT", "SOUND", "TREE", "BOOK", "PHONE", "MUSIC"]
         return random.choice(fallback_words)
 
 
