@@ -119,6 +119,8 @@ export default function GameScreen() {
 
   const isPlayer1 = username === gameStatus.player1;
   const opponentName = isPlayer1 ? gameStatus.player2 : gameStatus.player1;
+  const myAvatar = isPlayer1 ? gameStatus.player1_avatar : gameStatus.player2_avatar;
+  const opponentAvatar = isPlayer1 ? gameStatus.player2_avatar : gameStatus.player1_avatar;
   
   // Şu anki round'ın kelimelerini göster
   const myCurrentWord = isPlayer1 ? gameStatus.player1_word : gameStatus.player2_word;
