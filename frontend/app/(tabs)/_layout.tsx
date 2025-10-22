@@ -1,6 +1,8 @@
 import { Tabs } from 'expo-router';
 import React from 'react';
+import { View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { LinearGradient } from 'expo-linear-gradient';
 import { theme } from '../../constants/theme';
 
 export default function TabsLayout() {
@@ -42,7 +44,23 @@ export default function TabsLayout() {
         name="profile"
         options={{
           title: 'Profile',
-          tabBarIcon: ({ color, size }) => <Ionicons name="person" size={size} color={color} />,
+          tabBarIcon: ({ color, focused }) => (
+            <View style={{ 
+              width: 28, 
+              height: 28, 
+              borderRadius: 14, 
+              overflow: 'hidden',
+              borderWidth: focused ? 2 : 0,
+              borderColor: theme.colors.primary,
+            }}>
+              <LinearGradient
+                colors={[theme.colors.primary, theme.colors.secondary]}
+                style={{ width: '100%', height: '100%', justifyContent: 'center', alignItems: 'center' }}
+              >
+                <Ionicons name="person" size={16} color={theme.colors.text} />
+              </LinearGradient>
+            </View>
+          ),
         }}
       />
     </Tabs>
