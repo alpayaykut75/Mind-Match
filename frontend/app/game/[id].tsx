@@ -227,12 +227,7 @@ export default function GameScreen() {
         <View style={styles.playersContainer}>
           {/* You */}
           <View style={styles.playerCard}>
-            <LinearGradient
-              colors={[theme.colors.primary, theme.colors.secondary]}
-              style={styles.playerAvatar}
-            >
-              <Ionicons name="person" size={32} color={theme.colors.text} />
-            </LinearGradient>
+            <Avatar avatar={myAvatar} size={70} />
             <Text style={styles.playerName}>You</Text>
             {myLastWord && (
               <View style={styles.wordBubble}>
