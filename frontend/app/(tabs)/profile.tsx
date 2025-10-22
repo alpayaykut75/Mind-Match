@@ -42,6 +42,7 @@ interface UserProfile {
 export default function ProfileScreen() {
   const [profile, setProfile] = useState<UserProfile | null>(null);
   const [editModalVisible, setEditModalVisible] = useState(false);
+  const [showAvatarPicker, setShowAvatarPicker] = useState(false);
   const [editBio, setEditBio] = useState('');
   const { logout } = useAuth();
   const router = useRouter();
