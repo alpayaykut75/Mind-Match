@@ -17,6 +17,8 @@ import { theme } from '../../constants/theme';
 import { authAPI } from '../../utils/api';
 import { useAuth } from '../../contexts/AuthContext';
 import { Ionicons } from '@expo/vector-icons';
+import AvatarPicker from '../../components/AvatarPicker';
+import Avatar from '../../components/Avatar';
 
 export default function Signup() {
   const [username, setUsername] = useState('');
@@ -25,6 +27,8 @@ export default function Signup() {
   const [bio, setBio] = useState('');
   const [age, setAge] = useState('');
   const [country, setCountry] = useState('');
+  const [avatar, setAvatar] = useState('');
+  const [showAvatarPicker, setShowAvatarPicker] = useState(false);
   const [loading, setLoading] = useState(false);
   const router = useRouter();
   const { login } = useAuth();
