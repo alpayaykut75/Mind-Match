@@ -24,6 +24,8 @@ interface GameStatus {
   game_id: string;
   player1: string;
   player2: string;
+  player1_avatar?: string;
+  player2_avatar?: string;
   mode: string;
   status: string;
   current_round: number;
