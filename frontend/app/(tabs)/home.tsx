@@ -103,12 +103,7 @@ export default function HomeScreen() {
     >
       <View style={styles.userInfo}>
         <View style={styles.avatarContainer}>
-          <LinearGradient
-            colors={[theme.colors.primary, theme.colors.secondary]}
-            style={styles.avatar}
-          >
-            <Ionicons name="person" size={32} color={theme.colors.text} />
-          </LinearGradient>
+          <Avatar avatar={item.avatar} size={60} />
           {item.online && <View style={styles.onlineIndicator} />}
         </View>
         <View style={styles.userDetails}>
