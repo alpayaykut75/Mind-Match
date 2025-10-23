@@ -5,7 +5,7 @@ TestBuddy Bot - Arkadaşlık isteklerini otomatik kabul eder ve oyun daveti bekl
 import requests
 import time
 
-TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJUZXN0QnVkZHkiLCJleHAiOjE3NjM3MDUxNzJ9.rTzWWp35vX65Q1ORk2Oi1GapOdongsl3SSwHkbQitrU"
+TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJUZXN0QnVkZHkiLCJleHAiOjE3NjM3OTk5ODJ9.mUagRdBYt6Gd08CgF8WRhV4H_5FS4ZAgE-Tu6sfXUrE"
 API_URL = "http://localhost:8001"
 HEADERS = {"Authorization": f"Bearer {TOKEN}"}
 
