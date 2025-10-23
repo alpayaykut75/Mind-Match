@@ -49,9 +49,7 @@ export default function ResultScreen() {
   const handlePlayAgain = async () => {
     try {
       // AI mode ile yeni oyun başlat
-      const response = await gameAPI.createGame({
-        mode: 'ai',
-      });
+      const response = await gameAPI.createGame('ai');
       router.replace(`/game/${response.data.game_id}`);
     } catch (error) {
       console.error('Failed to start new game', error);
