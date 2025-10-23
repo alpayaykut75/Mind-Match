@@ -855,9 +855,10 @@ async def get_conversations(current_user: str = Depends(get_current_user)):
         result.sort(key=lambda x: x.get("last_message_time", ""), reverse=True)
         return result
     except Exception as e:
-        print(f"❌ Error in conversations: {e}")
         import traceback
-        traceback.print_exc()
+        import sys
+        print(f"❌ Error in conversations: {e}", file=sys.stderr)
+        traceback.print_exc(file=sys.stderr)
         return []
 
 
