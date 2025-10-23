@@ -63,12 +63,7 @@ export default function FriendsScreen() {
     <View style={styles.card}>
       <View style={styles.friendInfo}>
         <View style={styles.avatarContainer}>
-          <LinearGradient
-            colors={[theme.colors.primary, theme.colors.secondary]}
-            style={styles.avatar}
-          >
-            <Ionicons name="person" size={24} color={theme.colors.text} />
-          </LinearGradient>
+          <Avatar avatar={item.avatar} size={50} />
           {item.online && <View style={styles.onlineIndicator} />}
         </View>
         <View style={styles.details}>
