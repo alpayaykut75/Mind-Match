@@ -240,6 +240,22 @@ const styles = StyleSheet.create({
     color: theme.colors.primary,
     marginTop: 2,
   },
+  playButton: {
+    marginLeft: theme.spacing.md,
+  },
+  playButtonGradient: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 4,
+    paddingHorizontal: theme.spacing.md,
+    paddingVertical: theme.spacing.sm,
+    borderRadius: theme.borderRadius.sm,
+  },
+  playButtonText: {
+    color: theme.colors.text,
+    fontWeight: 'bold',
+    fontSize: 14,
+  },
   acceptButton: {
     marginLeft: theme.spacing.md,
   },
