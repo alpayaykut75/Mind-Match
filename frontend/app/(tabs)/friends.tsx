@@ -192,6 +192,40 @@ export default function FriendsScreen() {
     </View>
   );
 
+  const renderGameInvite = ({ item }: { item: GameInvite }) => (
+    <View style={styles.card}>
+      <View style={styles.friendInfo}>
+        <Avatar avatar={item.from_user_avatar || '🎮'} size={50} />
+        <View style={styles.details}>
+          <Text style={styles.username}>{item.from_username}</Text>
+          <Text style={styles.inviteText}>wants to play with you!</Text>
+          {item.from_user_level && (
+            <Text style={styles.level}>Level {item.from_user_level}</Text>
+          )}
+        </View>
+      </View>
+      <View style={styles.inviteButtons}>
+        <TouchableOpacity
+          style={styles.declineButton}
+          onPress={() => handleDeclineInvite(item)}
+        >
+          <Ionicons name="close-circle" size={32} color="#ff6b6b" />
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.acceptInviteButton}
+          onPress={() => handleAcceptInvite(item)}
+        >
+          <LinearGradient
+            colors={[theme.colors.primary, theme.colors.secondary]}
+            style={styles.acceptInviteGradient}
+          >
+            <Ionicons name="checkmark-circle" size={32} color={theme.colors.text} />
+          </LinearGradient>
+        </TouchableOpacity>
+      </View>
+    </View>
+  );
+
   return (
     <SafeAreaView style={styles.container}>
       <LinearGradient
