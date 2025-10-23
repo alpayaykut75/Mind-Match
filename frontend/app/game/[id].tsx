@@ -95,6 +95,8 @@ export default function GameScreen() {
         setSubmitted(false);
         await loadGameStatus();
       } else {
+        // Kelime gönderildi, waiting state
+        setWord('');
         setSubmitted(true);
       }
     } catch (error: any) {
