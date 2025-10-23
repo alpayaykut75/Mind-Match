@@ -224,10 +224,11 @@ metadata:
 
 test_plan:
   current_focus:
-    - "All backend endpoints tested and working"
-  stuck_tasks: []
-  test_all: true
-  test_priority: "high_first"
+    - "Chat Conversations Endpoint - ObjectId serialization fix needed"
+  stuck_tasks: 
+    - "Chat Conversations Endpoint"
+  test_all: false
+  test_priority: "stuck_first"
 
 agent_communication:
     - agent: "testing"
