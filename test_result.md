@@ -258,11 +258,12 @@ metadata:
 
 test_plan:
   current_focus:
-    - "Chat Conversations Endpoint - ObjectId serialization fix needed"
+    - "Game Invitation System"
+    - "Game Invitation UI - Friends Screen"
   stuck_tasks: 
     - "Chat Conversations Endpoint"
   test_all: false
-  test_priority: "stuck_first"
+  test_priority: "high_first"
 
 agent_communication:
     - agent: "testing"
@@ -271,3 +272,5 @@ agent_communication:
       message: "CRITICAL ISSUE DISCOVERED: Chat conversations endpoint (GET /api/chat/conversations) failing due to MongoDB ObjectId serialization error. Friendships exist in database but endpoint returns empty array. Root cause: FastAPI cannot serialize MongoDB ObjectIds in response. All other chat endpoints work fine. This is blocking the Chat tab functionality. REQUIRES IMMEDIATE FIX."
     - agent: "testing"
       message: "FRIEND MODE GAME FLOW TESTING COMPLETED: Comprehensive testing of friend mode game flow shows NO ISSUES. Tested complete flow: user creation → friendship → game creation → word submission → round progression → SYNC scenario. All tests passed successfully. The reported issue of games getting stuck in 'waiting' state could NOT be reproduced. Tested with both new test users and original users (aslan/alpay) - all games progress correctly from round to round. Friend mode game mechanics are working as expected."
+    - agent: "main"
+      message: "GAME INVITATION SYSTEM IMPLEMENTED: Complete frontend and backend integration for game invitations. Users can now send game invites to friends from the Friends screen. Invites appear at the top of the Friends screen with Accept/Decline options. Upon acceptance, both players are directed to the same game. Backend endpoints have been enhanced to include user avatar and level data in invite responses. Ready for testing."
