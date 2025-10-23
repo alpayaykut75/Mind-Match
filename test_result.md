@@ -232,3 +232,5 @@ test_plan:
 agent_communication:
     - agent: "testing"
       message: "Comprehensive backend API testing completed successfully. All 12 test cases passed (100% success rate). Tested: health check, auth flow (signup/login), user profile management, online users, AI game creation/management, word submission, game status, and complete friend request system. Backend is fully functional and ready for production use."
+    - agent: "testing"
+      message: "CRITICAL ISSUE DISCOVERED: Chat conversations endpoint (GET /api/chat/conversations) failing due to MongoDB ObjectId serialization error. Friendships exist in database but endpoint returns empty array. Root cause: FastAPI cannot serialize MongoDB ObjectIds in response. All other chat endpoints work fine. This is blocking the Chat tab functionality. REQUIRES IMMEDIATE FIX."
