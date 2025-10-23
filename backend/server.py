@@ -591,7 +591,10 @@ async def get_game_invites(current_user: str = Depends(get_current_user)):
             result.append({
                 "invite_id": invite["_id"],
                 "from_username": from_user["username"],
-                "from_avatar": from_user.get("avatar", ""),
+                "to_username": current_user,
+                "status": "pending",
+                "from_user_avatar": from_user.get("avatar", "🎮"),
+                "from_user_level": from_user.get("level", 1),
                 "created_at": invite["created_at"].isoformat()
             })
     
