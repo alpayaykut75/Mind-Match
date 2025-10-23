@@ -809,6 +809,8 @@ async def get_chat_history(username: str, current_user: str = Depends(get_curren
 @app.get("/api/chat/conversations")
 async def get_conversations(current_user: str = Depends(get_current_user)):
     """Get list of users current user can chat with (all friends)"""
+    print(f"🔍 CONVERSATIONS: Called for user: {current_user}")
+    
     # Basit ve direkt çözüm - tüm arkadaşları getir
     friendships = await friends_collection.find({
         "$or": [
@@ -816,6 +818,8 @@ async def get_conversations(current_user: str = Depends(get_current_user)):
             {"user2": current_user, "status": "accepted"}
         ]
     }).to_list(100)
+    
+    print(f"🔍 CONVERSATIONS: Found {len(friendships)} friendships")
     
     result = []
     for friendship in friendships:
