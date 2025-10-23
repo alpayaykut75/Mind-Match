@@ -151,10 +151,10 @@ export default function FriendsScreen() {
           </LinearGradient>
         </TouchableOpacity>
         
-        {/* Play Button */}
+        {/* Invite to Play Button */}
         <TouchableOpacity
           style={styles.actionButton}
-          onPress={() => handlePlayGame(item)}
+          onPress={() => handleSendGameInvite(item)}
         >
           <LinearGradient
             colors={[theme.colors.primary, theme.colors.secondary]}
