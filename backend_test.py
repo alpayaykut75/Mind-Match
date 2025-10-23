@@ -17,304 +17,408 @@ class GameInviteTestSuite:
     def __init__(self):
         self.user1_token = None
         self.user2_token = None
-        self.user1_username = f"testuser1_{int(time.time())}"
-        self.user2_username = f"testuser2_{int(time.time())}"
+        self.user1_username = "inviter_alice"
+        self.user2_username = "invitee_bob"
+        self.user1_password = "secure123"
+        self.user2_password = "secure456"
+        self.invite_id = None
         self.game_id = None
         
     def log(self, message):
-        print(f"[{datetime.now().strftime('%H:%M:%S')}] {message}")
+        """Log test messages with timestamp"""
+        timestamp = datetime.now().strftime("%H:%M:%S")
+        print(f"[{timestamp}] {message}")
         
-    def test_signup_users(self):
-        """Create two test users"""
-        self.log("🔧 Creating test users...")
-        
-        # User 1
-        user1_data = {
-            "username": self.user1_username,
-            "password": "testpass123",
-            "bio": "Test user 1 for friend game flow",
-            "age": 25,
-            "country": "Test Country"
-        }
-        
-        response = requests.post(f"{BACKEND_URL}/auth/signup", json=user1_data)
-        if response.status_code == 200:
-            self.user1_token = response.json()["token"]
-            self.log(f"✅ User1 created: {self.user1_username}")
-        else:
-            self.log(f"❌ User1 signup failed: {response.status_code} - {response.text}")
-            return False
-            
-        # User 2
-        user2_data = {
-            "username": self.user2_username,
-            "password": "testpass123",
-            "bio": "Test user 2 for friend game flow",
-            "age": 27,
-            "country": "Test Country"
-        }
-        
-        response = requests.post(f"{BACKEND_URL}/auth/signup", json=user2_data)
-        if response.status_code == 200:
-            self.user2_token = response.json()["token"]
-            self.log(f"✅ User2 created: {self.user2_username}")
-            return True
-        else:
-            self.log(f"❌ User2 signup failed: {response.status_code} - {response.text}")
+    def test_health_check(self):
+        """Test health endpoint"""
+        self.log("🔍 Testing health check...")
+        try:
+            response = requests.get(f"{BASE_URL}/health")
+            if response.status_code == 200:
+                self.log("✅ Health check passed")
+                return True
+            else:
+                self.log(f"❌ Health check failed: {response.status_code}")
+                return False
+        except Exception as e:
+            self.log(f"❌ Health check error: {e}")
             return False
     
-    def test_create_friendship(self):
-        """Create friendship between users"""
-        self.log("🤝 Creating friendship...")
+    def setup_test_users(self):
+        """Create and authenticate test users"""
+        self.log("🔍 Setting up test users...")
+        
+        # Create User 1
+        user1_data = {
+            "username": self.user1_username,
+            "password": self.user1_password,
+            "bio": "Game invitation tester - Alice",
+            "age": 25,
+            "country": "TestLand"
+        }
+        
+        # Try signup first, if fails try login
+        response = requests.post(f"{BASE_URL}/auth/signup", json=user1_data, headers=HEADERS)
+        if response.status_code == 200:
+            self.user1_token = response.json()["token"]
+            self.log(f"✅ User1 ({self.user1_username}) created and authenticated")
+        elif response.status_code == 400 and "already exists" in response.json().get("detail", ""):
+            # User exists, try login
+            login_data = {"username": self.user1_username, "password": self.user1_password}
+            response = requests.post(f"{BASE_URL}/auth/login", json=login_data, headers=HEADERS)
+            if response.status_code == 200:
+                self.user1_token = response.json()["token"]
+                self.log(f"✅ User1 ({self.user1_username}) logged in")
+            else:
+                self.log(f"❌ User1 login failed: {response.status_code} - {response.text}")
+                return False
+        else:
+            self.log(f"❌ User1 creation failed: {response.status_code} - {response.text}")
+            return False
+        
+        # Create User 2
+        user2_data = {
+            "username": self.user2_username,
+            "password": self.user2_password,
+            "bio": "Game invitation tester - Bob",
+            "age": 28,
+            "country": "TestLand"
+        }
+        
+        response = requests.post(f"{BASE_URL}/auth/signup", json=user2_data, headers=HEADERS)
+        if response.status_code == 200:
+            self.user2_token = response.json()["token"]
+            self.log(f"✅ User2 ({self.user2_username}) created and authenticated")
+        elif response.status_code == 400 and "already exists" in response.json().get("detail", ""):
+            # User exists, try login
+            login_data = {"username": self.user2_username, "password": self.user2_password}
+            response = requests.post(f"{BASE_URL}/auth/login", json=login_data, headers=HEADERS)
+            if response.status_code == 200:
+                self.user2_token = response.json()["token"]
+                self.log(f"✅ User2 ({self.user2_username}) logged in")
+            else:
+                self.log(f"❌ User2 login failed: {response.status_code} - {response.text}")
+                return False
+        else:
+            self.log(f"❌ User2 creation failed: {response.status_code} - {response.text}")
+            return False
+        
+        return True
+    
+    def establish_friendship(self):
+        """Make the two users friends"""
+        self.log("🔍 Establishing friendship...")
         
         # User1 sends friend request to User2
-        headers = {"Authorization": f"Bearer {self.user1_token}"}
-        request_data = {"to_username": self.user2_username}
+        headers_user1 = {**HEADERS, "Authorization": f"Bearer {self.user1_token}"}
+        friend_request = {"to_username": self.user2_username}
         
-        response = requests.post(f"{BACKEND_URL}/friends/request", json=request_data, headers=headers)
-        if response.status_code != 200:
+        response = requests.post(f"{BASE_URL}/friends/request", json=friend_request, headers=headers_user1)
+        if response.status_code == 200:
+            self.log("✅ Friend request sent")
+        elif response.status_code == 400 and "already exists" in response.json().get("detail", ""):
+            self.log("ℹ️ Friend request already exists")
+        else:
             self.log(f"❌ Friend request failed: {response.status_code} - {response.text}")
             return False
         
-        self.log(f"✅ Friend request sent from {self.user1_username} to {self.user2_username}")
-        
         # User2 accepts friend request
-        headers = {"Authorization": f"Bearer {self.user2_token}"}
-        response = requests.post(f"{BACKEND_URL}/friends/accept/{self.user1_username}", headers=headers)
-        if response.status_code != 200:
-            self.log(f"❌ Friend accept failed: {response.status_code} - {response.text}")
+        headers_user2 = {**HEADERS, "Authorization": f"Bearer {self.user2_token}"}
+        response = requests.post(f"{BASE_URL}/friends/accept/{self.user1_username}", headers=headers_user2)
+        if response.status_code == 200:
+            self.log("✅ Friend request accepted")
+            return True
+        else:
+            self.log(f"❌ Friend request acceptance failed: {response.status_code} - {response.text}")
             return False
-            
-        self.log(f"✅ Friendship established between {self.user1_username} and {self.user2_username}")
-        return True
     
-    def test_create_friend_game(self):
-        """Create friend mode game"""
-        self.log("🎮 Creating friend mode game...")
+    def test_send_game_invite(self):
+        """Test POST /api/game/invite - Send game invitation"""
+        self.log("🔍 Testing send game invite...")
         
-        headers = {"Authorization": f"Bearer {self.user1_token}"}
-        game_data = {
-            "mode": "friend",
-            "opponent_username": self.user2_username
+        headers_user1 = {**HEADERS, "Authorization": f"Bearer {self.user1_token}"}
+        invite_data = {"to_username": self.user2_username}
+        
+        response = requests.post(f"{BASE_URL}/game/invite", json=invite_data, headers=headers_user1)
+        
+        if response.status_code == 200:
+            result = response.json()
+            self.invite_id = result.get("invite_id")
+            self.log(f"✅ Game invite sent successfully. Invite ID: {self.invite_id}")
+            return True
+        else:
+            self.log(f"❌ Send game invite failed: {response.status_code} - {response.text}")
+            return False
+    
+    def test_send_invite_to_non_friend(self):
+        """Test error when trying to invite non-friend"""
+        self.log("🔍 Testing invite to non-friend (should fail)...")
+        
+        # Create a third user who is not a friend
+        non_friend_data = {
+            "username": "non_friend_charlie",
+            "password": "secure789",
+            "bio": "Not a friend"
         }
         
-        response = requests.post(f"{BACKEND_URL}/game/create", json=game_data, headers=headers)
-        if response.status_code != 200:
-            self.log(f"❌ Game creation failed: {response.status_code} - {response.text}")
+        # Try to create non-friend user
+        response = requests.post(f"{BASE_URL}/auth/signup", json=non_friend_data, headers=HEADERS)
+        if response.status_code != 200 and response.status_code != 400:
+            self.log(f"❌ Could not create non-friend user: {response.status_code}")
             return False
+        
+        # Try to invite non-friend
+        headers_user1 = {**HEADERS, "Authorization": f"Bearer {self.user1_token}"}
+        invite_data = {"to_username": "non_friend_charlie"}
+        
+        response = requests.post(f"{BASE_URL}/game/invite", json=invite_data, headers=headers_user1)
+        
+        if response.status_code == 403:
+            self.log("✅ Correctly rejected invite to non-friend")
+            return True
+        else:
+            self.log(f"❌ Should have rejected non-friend invite: {response.status_code} - {response.text}")
+            return False
+    
+    def test_duplicate_invite(self):
+        """Test error when duplicate invite exists"""
+        self.log("🔍 Testing duplicate invite (should fail)...")
+        
+        headers_user1 = {**HEADERS, "Authorization": f"Bearer {self.user1_token}"}
+        invite_data = {"to_username": self.user2_username}
+        
+        response = requests.post(f"{BASE_URL}/game/invite", json=invite_data, headers=headers_user1)
+        
+        if response.status_code == 400:
+            self.log("✅ Correctly rejected duplicate invite")
+            return True
+        else:
+            self.log(f"❌ Should have rejected duplicate invite: {response.status_code} - {response.text}")
+            return False
+    
+    def test_get_game_invites(self):
+        """Test GET /api/game/invites - Get pending invites"""
+        self.log("🔍 Testing get game invites...")
+        
+        headers_user2 = {**HEADERS, "Authorization": f"Bearer {self.user2_token}"}
+        
+        response = requests.get(f"{BASE_URL}/game/invites", headers=headers_user2)
+        
+        if response.status_code == 200:
+            invites = response.json()
+            self.log(f"✅ Retrieved {len(invites)} pending invites")
             
-        result = response.json()
-        self.game_id = result["game_id"]
-        self.log(f"✅ Friend game created: {self.game_id}")
-        self.log(f"   Player1: {self.user1_username}")
-        self.log(f"   Player2: {self.user2_username}")
+            # Verify invite structure
+            if len(invites) > 0:
+                invite = invites[0]
+                required_fields = ["invite_id", "from_username", "to_username", "status", 
+                                 "from_user_avatar", "from_user_level", "created_at"]
+                
+                missing_fields = [field for field in required_fields if field not in invite]
+                if missing_fields:
+                    self.log(f"❌ Missing fields in invite response: {missing_fields}")
+                    return False
+                
+                # Verify values
+                if invite["from_username"] != self.user1_username:
+                    self.log(f"❌ Wrong from_username: {invite['from_username']}")
+                    return False
+                
+                if invite["to_username"] != self.user2_username:
+                    self.log(f"❌ Wrong to_username: {invite['to_username']}")
+                    return False
+                
+                if invite["status"] != "pending":
+                    self.log(f"❌ Wrong status: {invite['status']}")
+                    return False
+                
+                self.log("✅ Invite structure and values are correct")
+                return True
+            else:
+                self.log("❌ No invites found, but one should exist")
+                return False
+        else:
+            self.log(f"❌ Get invites failed: {response.status_code} - {response.text}")
+            return False
+    
+    def test_accept_game_invite(self):
+        """Test POST /api/game/invite/{invite_id}/accept - Accept invitation"""
+        self.log("🔍 Testing accept game invite...")
+        
+        if not self.invite_id:
+            self.log("❌ No invite_id available for acceptance test")
+            return False
+        
+        headers_user2 = {**HEADERS, "Authorization": f"Bearer {self.user2_token}"}
+        
+        response = requests.post(f"{BASE_URL}/game/invite/{self.invite_id}/accept", headers=headers_user2)
+        
+        if response.status_code == 200:
+            result = response.json()
+            self.game_id = result.get("game_id")
+            opponent = result.get("opponent")
+            
+            if not self.game_id:
+                self.log("❌ No game_id in accept response")
+                return False
+            
+            if opponent != self.user1_username:
+                self.log(f"❌ Wrong opponent: {opponent}")
+                return False
+            
+            self.log(f"✅ Game invite accepted. Game ID: {self.game_id}, Opponent: {opponent}")
+            return True
+        else:
+            self.log(f"❌ Accept invite failed: {response.status_code} - {response.text}")
+            return False
+    
+    def test_accept_nonexistent_invite(self):
+        """Test error when accepting non-existent invite"""
+        self.log("🔍 Testing accept non-existent invite (should fail)...")
+        
+        headers_user2 = {**HEADERS, "Authorization": f"Bearer {self.user2_token}"}
+        fake_invite_id = "nonexistent_invite_id"
+        
+        response = requests.post(f"{BASE_URL}/game/invite/{fake_invite_id}/accept", headers=headers_user2)
+        
+        if response.status_code == 404:
+            self.log("✅ Correctly rejected non-existent invite")
+            return True
+        else:
+            self.log(f"❌ Should have rejected non-existent invite: {response.status_code} - {response.text}")
+            return False
+    
+    def test_accept_already_processed_invite(self):
+        """Test error when accepting already processed invite"""
+        self.log("🔍 Testing accept already processed invite (should fail)...")
+        
+        if not self.invite_id:
+            self.log("❌ No invite_id available for this test")
+            return False
+        
+        headers_user2 = {**HEADERS, "Authorization": f"Bearer {self.user2_token}"}
+        
+        response = requests.post(f"{BASE_URL}/game/invite/{self.invite_id}/accept", headers=headers_user2)
+        
+        if response.status_code == 400:
+            self.log("✅ Correctly rejected already processed invite")
+            return True
+        else:
+            self.log(f"❌ Should have rejected already processed invite: {response.status_code} - {response.text}")
+            return False
+    
+    def test_decline_game_invite(self):
+        """Test POST /api/game/invite/{invite_id}/decline - Decline invitation"""
+        self.log("🔍 Testing decline game invite...")
+        
+        # First, create a new invite to decline
+        headers_user1 = {**HEADERS, "Authorization": f"Bearer {self.user1_token}"}
+        invite_data = {"to_username": self.user2_username}
+        
+        response = requests.post(f"{BASE_URL}/game/invite", json=invite_data, headers=headers_user1)
+        if response.status_code != 200:
+            self.log(f"❌ Could not create invite for decline test: {response.status_code}")
+            return False
+        
+        decline_invite_id = response.json().get("invite_id")
+        
+        # Now decline it
+        headers_user2 = {**HEADERS, "Authorization": f"Bearer {self.user2_token}"}
+        
+        response = requests.post(f"{BASE_URL}/game/invite/{decline_invite_id}/decline", headers=headers_user2)
+        
+        if response.status_code == 200:
+            self.log("✅ Game invite declined successfully")
+            return True
+        else:
+            self.log(f"❌ Decline invite failed: {response.status_code} - {response.text}")
+            return False
+    
+    def test_verify_game_creation(self):
+        """Verify both users can access the created game"""
+        self.log("🔍 Testing game creation verification...")
+        
+        if not self.game_id:
+            self.log("❌ No game_id available for verification")
+            return False
+        
+        # Test User1 can access game
+        headers_user1 = {**HEADERS, "Authorization": f"Bearer {self.user1_token}"}
+        response = requests.get(f"{BASE_URL}/game/{self.game_id}/status", headers=headers_user1)
+        
+        if response.status_code != 200:
+            self.log(f"❌ User1 cannot access game: {response.status_code} - {response.text}")
+            return False
+        
+        game_data = response.json()
+        
+        # Verify game properties
+        if game_data.get("player1") != self.user1_username:
+            self.log(f"❌ Wrong player1: {game_data.get('player1')}")
+            return False
+        
+        if game_data.get("player2") != self.user2_username:
+            self.log(f"❌ Wrong player2: {game_data.get('player2')}")
+            return False
+        
+        if game_data.get("mode") != "friend":
+            self.log(f"❌ Wrong mode: {game_data.get('mode')}")
+            return False
+        
+        # Test User2 can access game
+        headers_user2 = {**HEADERS, "Authorization": f"Bearer {self.user2_token}"}
+        response = requests.get(f"{BASE_URL}/game/{self.game_id}/status", headers=headers_user2)
+        
+        if response.status_code != 200:
+            self.log(f"❌ User2 cannot access game: {response.status_code} - {response.text}")
+            return False
+        
+        self.log("✅ Both users can access the created game with correct properties")
         return True
     
-    def test_game_status(self, expected_round=None):
-        """Check game status"""
-        self.log("📊 Checking game status...")
-        
-        headers = {"Authorization": f"Bearer {self.user1_token}"}
-        response = requests.get(f"{BACKEND_URL}/game/{self.game_id}/status", headers=headers)
-        
-        if response.status_code != 200:
-            self.log(f"❌ Game status failed: {response.status_code} - {response.text}")
-            return None
-            
-        status = response.json()
-        self.log(f"   Game ID: {status['game_id']}")
-        self.log(f"   Status: {status['status']}")
-        self.log(f"   Current Round: {status['current_round']}")
-        self.log(f"   Player1 Word: {status.get('player1_word', 'None')}")
-        self.log(f"   Player2 Word: {status.get('player2_word', 'None')}")
-        self.log(f"   Synced: {status.get('synced', False)}")
-        
-        if expected_round and status['current_round'] != expected_round:
-            self.log(f"❌ Expected round {expected_round}, got {status['current_round']}")
-            return None
-            
-        return status
-    
-    def test_submit_word(self, user_token, username, word, expected_response_type=None):
-        """Submit word for a user"""
-        self.log(f"📝 {username} submitting word: {word}")
-        
-        headers = {"Authorization": f"Bearer {user_token}"}
-        word_data = {"word": word}
-        
-        response = requests.post(f"{BACKEND_URL}/game/{self.game_id}/submit-word", json=word_data, headers=headers)
-        
-        if response.status_code != 200:
-            self.log(f"❌ Word submission failed for {username}: {response.status_code} - {response.text}")
-            return None
-            
-        result = response.json()
-        self.log(f"   Response: {result}")
-        
-        if expected_response_type:
-            if expected_response_type == "waiting" and "waiting" not in result:
-                self.log(f"❌ Expected 'waiting' response, got: {result}")
-                return None
-            elif expected_response_type == "next_round" and "next_round" not in result:
-                self.log(f"❌ Expected 'next_round' response, got: {result}")
-                return None
-            elif expected_response_type == "synced" and not result.get("synced"):
-                self.log(f"❌ Expected 'synced' response, got: {result}")
-                return None
-        
-        return result
-    
-    def test_round_1_flow(self):
-        """Test Round 1: Both users submit different words"""
-        self.log("🎯 Testing Round 1 Flow...")
-        
-        # Check initial game status
-        status = self.test_game_status(expected_round=1)
-        if not status:
-            return False
-            
-        # User1 submits first word
-        result1 = self.test_submit_word(self.user1_token, self.user1_username, "WATER", "waiting")
-        if not result1 or "waiting" not in result1:
-            self.log("❌ User1 should get 'waiting' response")
-            return False
-            
-        # Check game status after first word
-        status = self.test_game_status()
-        if not status:
-            return False
-            
-        # User2 submits second word
-        result2 = self.test_submit_word(self.user2_token, self.user2_username, "OCEAN", "next_round")
-        if not result2:
-            return False
-            
-        # Check if we got next_round response
-        if "next_round" in result2:
-            self.log(f"✅ Round 1 completed, moving to round {result2['next_round']}")
-            return True
-        elif result2.get("synced"):
-            self.log(f"✅ Unexpected SYNC in round 1 with words WATER and OCEAN")
-            return True
-        else:
-            self.log(f"❌ Unexpected response after both words submitted: {result2}")
-            return False
-    
-    def test_round_2_flow(self):
-        """Test Round 2: Both users submit different words"""
-        self.log("🎯 Testing Round 2 Flow...")
-        
-        # Check game status should be round 2
-        status = self.test_game_status(expected_round=2)
-        if not status:
-            return False
-            
-        # User1 submits word for round 2
-        result1 = self.test_submit_word(self.user1_token, self.user1_username, "RAIN", "waiting")
-        if not result1 or "waiting" not in result1:
-            self.log("❌ User1 should get 'waiting' response in round 2")
-            return False
-            
-        # User2 submits word for round 2
-        result2 = self.test_submit_word(self.user2_token, self.user2_username, "STORM", "next_round")
-        if not result2:
-            return False
-            
-        # Check response
-        if "next_round" in result2:
-            self.log(f"✅ Round 2 completed, moving to round {result2['next_round']}")
-            return True
-        elif result2.get("synced"):
-            self.log(f"✅ Unexpected SYNC in round 2 with words RAIN and STORM")
-            return True
-        else:
-            self.log(f"❌ Unexpected response in round 2: {result2}")
-            return False
-    
-    def test_sync_scenario(self):
-        """Test SYNC scenario: Both users submit same word"""
-        self.log("🎯 Testing SYNC Scenario...")
-        
-        # Check current round
-        status = self.test_game_status()
-        if not status:
-            return False
-            
-        current_round = status['current_round']
-        self.log(f"Testing SYNC in round {current_round}")
-        
-        # Both users submit same word
-        result1 = self.test_submit_word(self.user1_token, self.user1_username, "WEATHER", "waiting")
-        if not result1 or "waiting" not in result1:
-            self.log("❌ User1 should get 'waiting' response")
-            return False
-            
-        result2 = self.test_submit_word(self.user2_token, self.user2_username, "WEATHER", "synced")
-        if not result2:
-            return False
-            
-        # Check if SYNC achieved
-        if result2.get("synced"):
-            self.log(f"✅ SYNC achieved with word: {result2.get('sync_word')}")
-            self.log(f"   Rounds taken: {result2.get('rounds')}")
-            self.log(f"   Wavelength score: {result2.get('wavelength_score')}")
-            return True
-        else:
-            self.log(f"❌ Expected SYNC but got: {result2}")
-            return False
-    
-    def run_full_test(self):
-        """Run complete friend game flow test"""
-        self.log("🚀 Starting Friend Mode Game Flow Test")
+    def run_all_tests(self):
+        """Run the complete test suite"""
+        self.log("🚀 Starting Game Invitation System Test Suite")
         self.log("=" * 60)
         
-        # Step 1: Create users
-        if not self.test_signup_users():
-            self.log("❌ FAILED: User creation")
-            return False
+        tests = [
+            ("Health Check", self.test_health_check),
+            ("Setup Test Users", self.setup_test_users),
+            ("Establish Friendship", self.establish_friendship),
+            ("Send Game Invite", self.test_send_game_invite),
+            ("Send Invite to Non-Friend", self.test_send_invite_to_non_friend),
+            ("Duplicate Invite", self.test_duplicate_invite),
+            ("Get Game Invites", self.test_get_game_invites),
+            ("Accept Game Invite", self.test_accept_game_invite),
+            ("Accept Non-existent Invite", self.test_accept_nonexistent_invite),
+            ("Accept Already Processed Invite", self.test_accept_already_processed_invite),
+            ("Decline Game Invite", self.test_decline_game_invite),
+            ("Verify Game Creation", self.test_verify_game_creation)
+        ]
+        
+        passed = 0
+        failed = 0
+        
+        for test_name, test_func in tests:
+            self.log(f"\n--- {test_name} ---")
+            try:
+                if test_func():
+                    passed += 1
+                else:
+                    failed += 1
+            except Exception as e:
+                self.log(f"❌ {test_name} crashed: {e}")
+                failed += 1
             
-        # Step 2: Create friendship
-        if not self.test_create_friendship():
-            self.log("❌ FAILED: Friendship creation")
-            return False
-            
-        # Step 3: Create friend game
-        if not self.test_create_friend_game():
-            self.log("❌ FAILED: Game creation")
-            return False
-            
-        # Step 4: Test Round 1
-        if not self.test_round_1_flow():
-            self.log("❌ FAILED: Round 1 flow")
-            return False
-            
-        # Step 5: Test Round 2
-        if not self.test_round_2_flow():
-            self.log("❌ FAILED: Round 2 flow")
-            return False
-            
-        # Step 6: Test SYNC scenario
-        if not self.test_sync_scenario():
-            self.log("❌ FAILED: SYNC scenario")
-            return False
-            
-        self.log("=" * 60)
-        self.log("✅ ALL TESTS PASSED: Friend Mode Game Flow Working Correctly")
-        return True
-
-def main():
-    """Main test function"""
-    tester = FriendGameFlowTester()
-    success = tester.run_full_test()
-    
-    if not success:
-        print("\n❌ FRIEND GAME FLOW TEST FAILED")
-        print("The issue with games getting stuck in 'waiting' state has been identified.")
-        exit(1)
-    else:
-        print("\n✅ FRIEND GAME FLOW TEST PASSED")
-        print("Friend mode games are working correctly.")
-        exit(0)
+            time.sleep(0.5)  # Small delay between tests
+        
+        self.log("\n" + "=" * 60)
+        self.log(f"🏁 Test Suite Complete: {passed} passed, {failed} failed")
+        self.log(f"📊 Success Rate: {(passed/(passed+failed)*100):.1f}%")
+        
+        return failed == 0
 
 if __name__ == "__main__":
-    main()
+    test_suite = GameInviteTestSuite()
+    success = test_suite.run_all_tests()
+    exit(0 if success else 1)
