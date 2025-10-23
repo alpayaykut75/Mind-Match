@@ -565,8 +565,17 @@ async def create_game(game_data: CreateGame, current_user: str = Depends(get_cur
     }
     
     try:
+        print(f"🔍 Inserting to DB: {DB_NAME}, collection: games")
+        print(f"🔍 Game doc: {game_id}, {current_user} vs {opponent}")
         result = await games_collection.insert_one(game_doc)
         print(f"✅ Game inserted: {result.inserted_id}")
+        
+        # Verify
+        verify = await games_collection.find_one({"_id": game_id})
+        if verify:
+            print(f"✅ Verified in DB!")
+        else:
+            print(f"❌ NOT in DB after insert!")
     except Exception as e:
         print(f"❌ Insert error: {e}")
         raise
