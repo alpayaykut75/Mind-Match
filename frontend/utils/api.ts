@@ -49,6 +49,14 @@ export const gameAPI = {
     api.post(`/api/game/${gameId}/submit-word`, { word }),
   getGameStatus: (gameId: string) => 
     api.get(`/api/game/${gameId}/status`),
+  sendGameInvite: (username: string) => 
+    api.post('/api/game/invite', { to_username: username }),
+  getGameInvites: () => 
+    api.get('/api/game/invites'),
+  acceptGameInvite: (inviteId: string) => 
+    api.post(`/api/game/invite/${inviteId}/accept`),
+  declineGameInvite: (inviteId: string) => 
+    api.post(`/api/game/invite/${inviteId}/decline`),
 };
 
 export const chatAPI = {
