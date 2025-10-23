@@ -32,6 +32,9 @@ export default function FriendsScreen() {
 
   useEffect(() => {
     loadData();
+    // Her 5 saniyede bir yenile (friend request kabul edilince hemen görünsün)
+    const interval = setInterval(loadData, 5000);
+    return () => clearInterval(interval);
   }, []);
 
   const loadData = async () => {
