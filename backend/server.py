@@ -45,6 +45,7 @@ games_collection = db["games"]
 rounds_collection = db["rounds"]
 chats_collection = db["chats"]
 badges_collection = db["badges"]
+game_invites_collection = db["game_invites"]
 
 # Emergent LLM Key for AI opponent
 EMERGENT_LLM_KEY = os.getenv("EMERGENT_LLM_KEY")
