@@ -755,16 +755,16 @@ async def get_game_status(game_id: str, current_user: str = Depends(get_current_
 
 @app.post("/api/chat/send")
 async def send_message(msg: SendMessage, current_user: str = Depends(get_current_user)):
-    # Check if users have synced before
-    synced_game = await games_collection.find_one({
+    # Check if users are friends
+    friendship = await friends_collection.find_one({
         "$or": [
-            {"player1": current_user, "player2": msg.to_username, "synced": True},
-            {"player1": msg.to_username, "player2": current_user, "synced": True}
+            {"user1": current_user, "user2": msg.to_username, "status": "accepted"},
+            {"user1": msg.to_username, "user2": current_user, "status": "accepted"}
         ]
     })
     
-    if not synced_game:
-        raise HTTPException(status_code=403, detail="Can only chat after syncing")
+    if not friendship:
+        raise HTTPException(status_code=403, detail="Can only chat with friends")
     
     # Save message
     await chats_collection.insert_one({
