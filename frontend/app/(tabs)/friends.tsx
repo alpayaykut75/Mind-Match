@@ -266,21 +266,20 @@ const styles = StyleSheet.create({
     color: theme.colors.primary,
     marginTop: 2,
   },
-  playButton: {
+  actionButtons: {
+    flexDirection: 'row',
+    gap: theme.spacing.sm,
     marginLeft: theme.spacing.md,
   },
-  playButtonGradient: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 4,
-    paddingHorizontal: theme.spacing.md,
-    paddingVertical: theme.spacing.sm,
-    borderRadius: theme.borderRadius.sm,
+  actionButton: {
+    // Button container
   },
-  playButtonText: {
-    color: theme.colors.text,
-    fontWeight: 'bold',
-    fontSize: 14,
+  actionButtonGradient: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   acceptButton: {
     marginLeft: theme.spacing.md,
