@@ -825,6 +825,8 @@ async def get_conversations(current_user: str = Depends(get_current_user)):
         if partner != "AI":
             chat_partners.add(partner)
     
+    print(f"🔍 Chat partners: {chat_partners}")
+    
     result = []
     for partner_username in chat_partners:
         user = await users_collection.find_one({"username": partner_username})
