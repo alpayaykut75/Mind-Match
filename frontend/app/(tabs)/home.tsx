@@ -163,9 +163,9 @@ export default function HomeScreen() {
     >
       <View style={styles.userInfo}>
         <Avatar avatar={item.opponent_avatar} size={50} />
-        <View style={styles.details}>
-          <Text style={styles.username}>{item.opponent}</Text>
-          <Text style={styles.bio}>Round {item.current_round} • {item.mode}</Text>
+        <View style={styles.gameDetails}>
+          <Text style={styles.gameName}>{item.opponent}</Text>
+          <Text style={styles.gameInfo}>Round {item.current_round} • {item.mode}</Text>
         </View>
       </View>
       <View style={styles.continueButton}>
