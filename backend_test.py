@@ -14,17 +14,15 @@ BACKEND_URL = "https://syncmates.preview.emergentagent.com/api"
 
 class ChatConversationsTest:
     def __init__(self):
-        self.base_url = BACKEND_URL
+        self.token = None
+        self.username = None
         self.session = requests.Session()
-        self.tokens = {}  # Store tokens for different users
-        self.users = {}   # Store user data
-        self.games = {}   # Store game data
         
-    def log(self, message: str, level: str = "INFO"):
-        """Log test messages"""
-        print(f"[{level}] {message}")
+    def log(self, message, level="INFO"):
+        timestamp = datetime.now().strftime("%H:%M:%S")
+        print(f"[{timestamp}] {level}: {message}")
         
-    def test_health_check(self) -> bool:
+    def test_login(self, username="player1", password="test123"):
         """Test GET /api/health endpoint"""
         self.log("Testing Health Check endpoint...")
         try:
