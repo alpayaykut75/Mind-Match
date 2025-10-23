@@ -37,10 +37,13 @@ export default function ChatsScreen() {
 
   const loadConversations = async () => {
     try {
+      console.log('🔍 Loading conversations...');
       const response = await chatAPI.getConversations();
-      setConversations(response.data);
+      console.log('✅ Conversations response:', response.data);
+      console.log('📊 Count:', response.data?.length || 0);
+      setConversations(response.data || []);
     } catch (error) {
-      console.error('Failed to load conversations', error);
+      console.error('❌ Failed to load conversations', error);
     }
   };
 
