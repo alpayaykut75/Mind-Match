@@ -887,11 +887,19 @@ async def debug_friendships(current_user: str = Depends(get_current_user)):
         ]
     }).to_list(100)
     
+    # Convert ObjectIds to strings for JSON serialization
+    serializable_friendships = []
+    for f in friendships:
+        f_copy = dict(f)
+        if "_id" in f_copy:
+            f_copy["_id"] = str(f_copy["_id"])
+        serializable_friendships.append(f_copy)
+    
     return {
         "endpoint": "debug_friendships",
         "user": current_user,
         "count": len(friendships),
-        "data": friendships
+        "data": serializable_friendships
     }
 
 @app.get("/api/health")
