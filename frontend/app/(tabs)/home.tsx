@@ -578,4 +578,43 @@ const styles = StyleSheet.create({
   modalCancelText: {
     color: theme.colors.textSecondary,
   },
+  activeGamesList: {
+    paddingHorizontal: theme.spacing.lg,
+    paddingBottom: theme.spacing.md,
+  },
+  card: {
+    backgroundColor: theme.colors.cardBg,
+    borderRadius: theme.borderRadius.md,
+    padding: theme.spacing.md,
+    marginBottom: theme.spacing.md,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  details: {
+    marginLeft: theme.spacing.md,
+    flex: 1,
+  },
+  username: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: theme.colors.text,
+  },
+  bio: {
+    fontSize: 14,
+    color: theme.colors.textSecondary,
+    marginTop: 2,
+  },
+  continueButton: {
+    marginLeft: theme.spacing.md,
+  },
+  continueButtonGradient: {
+    paddingHorizontal: theme.spacing.lg,
+    paddingVertical: theme.spacing.sm,
+    borderRadius: theme.borderRadius.sm,
+  },
+  continueButtonText: {
+    color: theme.colors.text,
+    fontWeight: 'bold',
+  },
 });
