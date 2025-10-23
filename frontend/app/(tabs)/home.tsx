@@ -591,16 +591,16 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
   },
-  details: {
+  gameDetails: {
     marginLeft: theme.spacing.md,
     flex: 1,
   },
-  username: {
+  gameName: {
     fontSize: 16,
     fontWeight: 'bold',
     color: theme.colors.text,
   },
-  bio: {
+  gameInfo: {
     fontSize: 14,
     color: theme.colors.textSecondary,
     marginTop: 2,
