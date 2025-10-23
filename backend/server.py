@@ -808,22 +808,23 @@ async def get_chat_history(username: str, current_user: str = Depends(get_curren
 
 @app.get("/api/chat/conversations")
 async def get_conversations(current_user: str = Depends(get_current_user)):
-    """Get list of users current user can chat with (those they've synced with)"""
-    # Find all games where user synced
+    """Get list of users current user can chat with (all friends)"""
     print(f"🔍 Getting conversations for: {current_user}")
-    synced_games = await games_collection.find({
+    
+    # Find all friends (accepted friendships)
+    friendships = await friends_collection.find({
         "$or": [
-            {"player1": current_user, "synced": True},
-            {"player2": current_user, "synced": True}
+            {"user1": current_user, "status": "accepted"},
+            {"user2": current_user, "status": "accepted"}
         ]
     }).to_list(100)
-    print(f"🔍 Found {len(synced_games)} synced games")
+    
+    print(f"🔍 Found {len(friendships)} friendships")
     
     chat_partners = set()
-    for game in synced_games:
-        partner = game["player2"] if game["player1"] == current_user else game["player1"]
-        if partner != "AI":
-            chat_partners.add(partner)
+    for friendship in friendships:
+        partner = friendship["user2"] if friendship["user1"] == current_user else friendship["user1"]
+        chat_partners.add(partner)
     
     print(f"🔍 Chat partners: {chat_partners}")
     
