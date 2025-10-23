@@ -39,6 +39,7 @@ def mark_online():
 def check_game_invites():
     """Oyun davetlerini kontrol et ve kelime gönder"""
     try:
+        print("🔍 Oyunlar kontrol ediliyor...")
         # TestBuddy'nin player2 olduğu oyunları bul
         # MongoDB'de TestBuddy'nin oyunlarını bul
         import pymongo
