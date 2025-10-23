@@ -1,18 +1,18 @@
 #!/usr/bin/env python3
 """
-MindMatch Backend API Testing Suite
-Tests all backend endpoints for the MindMatch application
+Backend API Testing for MindMatch Chat Conversations
+Testing the specific issue where chat conversations endpoint returns empty despite friendships existing
 """
 
 import requests
 import json
-import time
-from typing import Dict, Any, Optional
+import sys
+from datetime import datetime
 
-# Backend URL from environment
+# Get backend URL from frontend env
 BACKEND_URL = "https://syncmates.preview.emergentagent.com/api"
 
-class MindMatchTester:
+class ChatConversationsTest:
     def __init__(self):
         self.base_url = BACKEND_URL
         self.session = requests.Session()
