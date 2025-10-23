@@ -843,14 +843,14 @@ async def get_conversations(current_user: str = Depends(get_current_user)):
                 "read": False
             })
             
-            # Ensure all data is JSON serializable
+            # Ensure all data is JSON serializable - convert to simple types
             result.append({
-                "username": str(partner.get("username", "")),
-                "avatar": str(partner.get("avatar", "")),
-                "bio": str(partner.get("bio", "")),
-                "last_message": str(last_msg.get("message", "")) if last_msg else "",
+                "username": partner.get("username", ""),
+                "avatar": partner.get("avatar", ""),
+                "bio": partner.get("bio", ""),
+                "last_message": last_msg.get("message", "") if last_msg else "",
                 "last_message_time": last_msg.get("sent_at").isoformat() if last_msg and last_msg.get("sent_at") else "",
-                "unread_count": int(unread_count)
+                "unread_count": unread_count
             })
         
         return result
