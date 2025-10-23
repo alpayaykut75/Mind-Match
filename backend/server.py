@@ -716,6 +716,35 @@ async def create_game(game_data: CreateGame, current_user: str = Depends(get_cur
     return {"game_id": game_id, "opponent": opponent, "mode": game_data.mode}
 
 
+@app.get("/api/game/active")
+async def get_active_games(current_user: str = Depends(get_current_user)):
+    """Get active games for current user"""
+    games = await games_collection.find({
+        "$or": [
+            {"player1": current_user},
+            {"player2": current_user}
+        ],
+        "status": {"$nin": ["completed", "abandoned"]}
+    }).sort("created_at", -1).to_list(50)
+    
+    result = []
+    for game in games:
+        opponent = game["player2"] if game["player1"] == current_user else game["player1"]
+        opponent_user = await users_collection.find_one({"username": opponent})
+        
+        result.append({
+            "game_id": game["_id"],
+            "opponent": opponent,
+            "opponent_avatar": opponent_user.get("avatar", "🎮") if opponent_user else "🎮",
+            "mode": game["mode"],
+            "status": game["status"],
+            "current_round": game.get("current_round", 1),
+            "created_at": game["created_at"].isoformat()
+        })
+    
+    return result
+
+
 @app.post("/api/game/{game_id}/submit-word")
 async def submit_word(game_id: str, word_data: SubmitWord, current_user: str = Depends(get_current_user)):
     game = await games_collection.find_one({"_id": game_id})
