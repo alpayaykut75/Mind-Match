@@ -49,6 +49,8 @@ export const gameAPI = {
     api.post(`/api/game/${gameId}/submit-word`, { word }),
   getGameStatus: (gameId: string) => 
     api.get(`/api/game/${gameId}/status`),
+  getActiveGames: () => 
+    api.get('/api/game/active'),
   sendGameInvite: (username: string) => 
     api.post('/api/game/invite', { to_username: username }),
   getGameInvites: () => 
