@@ -215,12 +215,7 @@ export default function HomeScreen() {
         >
           <View style={styles.modalOverlay}>
             <View style={styles.modalContent}>
-              <LinearGradient
-                colors={[theme.colors.primary, theme.colors.secondary]}
-                style={styles.modalAvatar}
-              >
-                <Ionicons name="person" size={40} color={theme.colors.text} />
-              </LinearGradient>
+              <Avatar avatar={selectedUser?.avatar} size={80} />
               
               <Text style={styles.modalUsername}>{selectedUser?.username}</Text>
               <Text style={styles.modalBio}>{selectedUser?.bio || 'No bio'}</Text>
