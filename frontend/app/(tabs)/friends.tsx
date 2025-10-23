@@ -59,6 +59,15 @@ export default function FriendsScreen() {
     }
   };
 
+  const handlePlayGame = async (friend: Friend) => {
+    try {
+      const response = await gameAPI.createGame('friend', friend.username);
+      router.push(`/game/${response.data.game_id}`);
+    } catch (error) {
+      Alert.alert('Error', 'Failed to start game');
+    }
+  };
+
   const renderFriend = ({ item }: { item: Friend }) => (
     <View style={styles.card}>
       <View style={styles.friendInfo}>
@@ -74,6 +83,18 @@ export default function FriendsScreen() {
           <Text style={styles.level}>Level {item.level}</Text>
         </View>
       </View>
+      <TouchableOpacity
+        style={styles.playButton}
+        onPress={() => handlePlayGame(item)}
+      >
+        <LinearGradient
+          colors={[theme.colors.primary, theme.colors.secondary]}
+          style={styles.playButtonGradient}
+        >
+          <Ionicons name="game-controller" size={20} color={theme.colors.text} />
+          <Text style={styles.playButtonText}>Play</Text>
+        </LinearGradient>
+      </TouchableOpacity>
     </View>
   );
 
