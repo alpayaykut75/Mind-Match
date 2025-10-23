@@ -495,6 +495,15 @@ const styles = StyleSheet.create({
     marginBottom: theme.spacing.lg,
     textAlign: 'center',
   },
+  modalButtonRow: {
+    flexDirection: 'row',
+    width: '100%',
+    gap: theme.spacing.md,
+    marginBottom: theme.spacing.md,
+  },
+  modalButtonFlex: {
+    flex: 1,
+  },
   modalButton: {
     width: '100%',
     marginBottom: theme.spacing.md,
