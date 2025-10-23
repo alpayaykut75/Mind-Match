@@ -298,6 +298,12 @@ async def login(user: UserLogin):
 
 @app.get("/api/users/me")
 async def get_my_profile(current_user: str = Depends(get_current_user)):
+    # Update last_seen
+    await users_collection.update_one(
+        {"username": current_user},
+        {"$set": {"last_seen": datetime.utcnow()}}
+    )
+    
     user = await users_collection.find_one({"username": current_user})
     if not user:
         raise HTTPException(status_code=404, detail="User not found")
