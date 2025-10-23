@@ -238,7 +238,17 @@ backend:
           comment: "Implemented complete game invitation system with 4 endpoints: POST /api/game/invite (send invite), GET /api/game/invites (get pending invites), POST /api/game/invite/{invite_id}/accept (accept and create game), POST /api/game/invite/{invite_id}/decline (decline invite). Updated response format to include from_user_avatar and from_user_level fields."
 
 frontend:
-  # Frontend testing not performed as per testing agent guidelines
+  - task: "Game Invitation UI - Friends Screen"
+    implemented: true
+    working: "NA"
+    file: "frontend/app/(tabs)/friends.tsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+        - working: "NA"
+          agent: "main"
+          comment: "Implemented game invitation UI in Friends screen. Added: 1) Game Invites section at top showing pending invites with Accept/Decline buttons, 2) Changed Play button to Invite to Play button for each friend, 3) Upon accepting invite, user is redirected to game screen with shared game_id, 4) Added proper error handling and success messages. Frontend uses gameAPI.sendGameInvite, getGameInvites, acceptGameInvite, declineGameInvite functions."
 
 metadata:
   created_by: "testing_agent"
