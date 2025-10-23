@@ -39,17 +39,49 @@ def mark_online():
 def check_game_invites():
     """Oyun davetlerini kontrol et ve kelime gönder"""
     try:
-        # Bekleyen oyunları bul (TestBuddy'nin sırası olan)
-        response = requests.get(f"{API_URL}/api/users/me", headers=HEADERS)
-        if response.status_code != 200:
-            return
+        # TestBuddy'nin player2 olduğu oyunları bul
+        # MongoDB'de TestBuddy'nin oyunlarını bul
+        import pymongo
+        from datetime import datetime, timedelta
+        
+        client = pymongo.MongoClient("mongodb://localhost:27017")
+        db = client["mindmatch_db"]
+        games_collection = db["games"]
+        
+        # TestBuddy'nin sırası olan oyunları bul
+        active_games = games_collection.find({
+            "player2": "TestBuddy",
+            "synced": False,
+            "player1_word": {"$ne": None},  # Player1 kelime göndermiş
+            "player2_word": None  # TestBuddy henüz göndermemiş
+        })
+        
+        for game in active_games:
+            game_id = game["_id"]
+            player1_word = game.get("player1_word", "").upper()
             
-        # Kullanıcının katıldığı tüm oyunları kontrol et (basitleştirilmiş yaklaşım)
-        # Not: Gerçek uygulamada pending games endpoint'i gerekir
-        # Şimdilik bot pasif kalacak - kullanıcı AI mode kullanmalı
-        pass
-    except:
-        pass
+            # Basit kelime seçimi (player1'in kelimesine benzer)
+            simple_words = ["GAME", "PLAY", "FUN", "FRIEND", "CHAT", "WORD", "SYNC", "MIND", "MATCH", "CONNECT"]
+            import random
+            bot_word = random.choice(simple_words)
+            
+            print(f"🎮 Oyun {game_id[:8]}... için kelime gönderiliyor: {bot_word}")
+            
+            # Kelimeyi gönder
+            response = requests.post(
+                f"{API_URL}/api/game/{game_id}/submit-word",
+                headers=HEADERS,
+                json={"word": bot_word}
+            )
+            
+            if response.status_code == 200:
+                result = response.json()
+                if result.get("synced"):
+                    print(f"✨ SYNC oldu! Kelime: {result.get('sync_word')}")
+                else:
+                    print(f"✓ Kelime gönderildi, Round {result.get('current_round', '?')}")
+    except Exception as e:
+        print(f"Oyun kontrol hatası: {e}")
 
 def main():
     print("🤖 TestBuddy Bot başlatıldı!")
