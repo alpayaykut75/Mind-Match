@@ -213,6 +213,18 @@ backend:
           agent: "testing"
           comment: "CRITICAL ISSUE FOUND: GET /api/chat/conversations returns empty array despite friendships existing. Root cause: MongoDB ObjectId serialization error in FastAPI response. Friendships exist in DB (player1 <-> TestBuddy, player1 <-> aykut) but endpoint fails to serialize response due to ObjectId fields. Chat history endpoints work fine. Needs ObjectId handling fix."
 
+  - task: "Friend Mode Game Flow"
+    implemented: true
+    working: true
+    file: "backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+        - working: true
+          agent: "testing"
+          comment: "COMPREHENSIVE TESTING COMPLETED: Friend mode game flow tested extensively with multiple scenarios. Created test users, established friendships, created friend games, tested word submission, round progression, and SYNC scenarios. All tests passed successfully. Also tested with original users (aslan/alpay) mentioned in problem report - games progress correctly from round to round. The reported issue of games getting stuck in 'waiting' state could NOT be reproduced. Friend mode game mechanics are working perfectly."
+
 frontend:
   # Frontend testing not performed as per testing agent guidelines
 
