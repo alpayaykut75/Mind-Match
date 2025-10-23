@@ -1,493 +1,541 @@
-diff --git a/frontend/.metro-cache/cache/31/69752fee4839395eddbfa55a6cc391ddca1493127d1526c7657a02a58cc639f0bd5b4c b/frontend/.metro-cache/cache/31/69752fee4839395eddbfa55a6cc391ddca1493127d1526c7657a02a58cc639f0bd5b4c
-new file mode 100644
-index 0000000..d750382
---- /dev/null
-+++ b/frontend/.metro-cache/cache/31/69752fee4839395eddbfa55a6cc391ddca1493127d1526c7657a02a58cc639f0bd5b4c
-@@ -0,0 +1 @@
-+{"dependencies":[{"name":"/app/frontend/app/(tabs)/_layout.tsx","data":{"asyncType":null,"isESMImport":false,"locs":[{"start":{"line":3,"column":61,"index":173},"end":{"line":3,"column":108,"index":220}}],"key":"zqF8DOv66eWm3DcMNF6xt3w2O+A=","exportNames":["*"],"imports":1}},{"name":"/app/frontend/app/(tabs)/friends.tsx","data":{"asyncType":null,"isESMImport":false,"locs":[{"start":{"line":4,"column":61,"index":288},"end":{"line":4,"column":108,"index":335}}],"key":"GA9ixLa9/1XVvV7MPDBk8U8BDU8=","exportNames":["*"],"imports":1}},{"name":"/app/frontend/app/(tabs)/home.tsx","data":{"asyncType":null,"isESMImport":false,"locs":[{"start":{"line":5,"column":58,"index":400},"end":{"line":5,"column":102,"index":444}}],"key":"szjVaz8jOHbXZwTjQflgafhCQpE=","exportNames":["*"],"imports":1}},{"name":"/app/frontend/app/(tabs)/profile.tsx","data":{"asyncType":null,"isESMImport":false,"locs":[{"start":{"line":6,"column":61,"index":512},"end":{"line":6,"column":108,"index":559}}],"key":"GfGs19Z9hOrdgB+CtFEFxFuw4hE=","exportNames":["*"],"imports":1}},{"name":"/app/frontend/app/_layout.tsx","data":{"asyncType":null,"isESMImport":false,"locs":[{"start":{"line":7,"column":54,"index":620},"end":{"line":7,"column":94,"index":660}}],"key":"7RRIuuoX6Q3sxOlvyygH4M3jHIQ=","exportNames":["*"],"imports":1}},{"name":"/app/frontend/app/auth/login.tsx","data":{"asyncType":null,"isESMImport":false,"locs":[{"start":{"line":8,"column":57,"index":724},"end":{"line":8,"column":100,"index":767}}],"key":"rN7czzedO9Nhqi/P8qf/HbpFxes=","exportNames":["*"],"imports":1}},{"name":"/app/frontend/app/auth/signup.tsx","data":{"asyncType":null,"isESMImport":false,"locs":[{"start":{"line":9,"column":58,"index":832},"end":{"line":9,"column":102,"index":876}}],"key":"atugGvRMvBX+olVUCqLwe1jgBGI=","exportNames":["*"],"imports":1}},{"name":"/app/frontend/app/chat/[username].tsx","data":{"asyncType":null,"isESMImport":false,"locs":[{"start":{"line":10,"column":62,"index":945},"end":{"line":10,"column":110,"index":993}}],"key":"PMjUHuRaxgGLXnjYFfWYTC4S0cY=","exportNames":["*"],"imports":1}},{"name":"/app/frontend/app/game/[id].tsx","data":{"asyncType":null,"isESMImport":false,"locs":[{"start":{"line":11,"column":56,"index":1056},"end":{"line":11,"column":98,"index":1098}}],"key":"Bx7zVDrqJDt56UFxAz5Zfzs0In4=","exportNames":["*"],"imports":1}},{"name":"/app/frontend/app/index.tsx","data":{"asyncType":null,"isESMImport":false,"locs":[{"start":{"line":12,"column":52,"index":1157},"end":{"line":12,"column":90,"index":1195}}],"key":"NwcSa9S4ZGpMcIQJAbapomLGTP4=","exportNames":["*"],"imports":1}},{"name":"/app/frontend/app/logout.tsx","data":{"asyncType":null,"isESMImport":false,"locs":[{"start":{"line":13,"column":53,"index":1255},"end":{"line":13,"column":92,"index":1294}}],"key":"VCBkw9xxyuDglvbzwqYnLbTpodQ=","exportNames":["*"],"imports":1}},{"name":"/app/frontend/app/result/[id].tsx","data":{"asyncType":null,"isESMImport":false,"locs":[{"start":{"line":14,"column":58,"index":1359},"end":{"line":14,"column":102,"index":1403}}],"key":"vmycwSJoDyViIbwWf7GLZJ0PB7E=","exportNames":["*"],"imports":1}}],"output":[{"data":{"code":"__d(function (global, require, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {\n  // All of the requested modules are loaded behind enumerable getters.\n  const map = Object.defineProperties({}, {\n    \"./(tabs)/_layout.tsx\": {\n      enumerable: true,\n      get() {\n        return require(_dependencyMap[0], \"/app/frontend/app/(tabs)/_layout.tsx\");\n      }\n    },\n    \"./(tabs)/friends.tsx\": {\n      enumerable: true,\n      get() {\n        return require(_dependencyMap[1], \"/app/frontend/app/(tabs)/friends.tsx\");\n      }\n    },\n    \"./(tabs)/home.tsx\": {\n      enumerable: true,\n      get() {\n        return require(_dependencyMap[2], \"/app/frontend/app/(tabs)/home.tsx\");\n      }\n    },\n    \"./(tabs)/profile.tsx\": {\n      enumerable: true,\n      get() {\n        return require(_dependencyMap[3], \"/app/frontend/app/(tabs)/profile.tsx\");\n      }\n    },\n    \"./_layout.tsx\": {\n      enumerable: true,\n      get() {\n        return require(_dependencyMap[4], \"/app/frontend/app/_layout.tsx\");\n      }\n    },\n    \"./auth/login.tsx\": {\n      enumerable: true,\n      get() {\n        return require(_dependencyMap[5], \"/app/frontend/app/auth/login.tsx\");\n      }\n    },\n    \"./auth/signup.tsx\": {\n      enumerable: true,\n      get() {\n        return require(_dependencyMap[6], \"/app/frontend/app/auth/signup.tsx\");\n      }\n    },\n    \"./chat/[username].tsx\": {\n      enumerable: true,\n      get() {\n        return require(_dependencyMap[7], \"/app/frontend/app/chat/[username].tsx\");\n      }\n    },\n    \"./game/[id].tsx\": {\n      enumerable: true,\n      get() {\n        return require(_dependencyMap[8], \"/app/frontend/app/game/[id].tsx\");\n      }\n    },\n    \"./index.tsx\": {\n      enumerable: true,\n      get() {\n        return require(_dependencyMap[9], \"/app/frontend/app/index.tsx\");\n      }\n    },\n    \"./logout.tsx\": {\n      enumerable: true,\n      get() {\n        return require(_dependencyMap[10], \"/app/frontend/app/logout.tsx\");\n      }\n    },\n    \"./result/[id].tsx\": {\n      enumerable: true,\n      get() {\n        return require(_dependencyMap[11], \"/app/frontend/app/result/[id].tsx\");\n      }\n    }\n  });\n  function metroContext(request) {\n    return map[request];\n  }\n\n  // Return the keys that can be resolved.\n  metroContext.keys = function metroContextKeys() {\n    return Object.keys(map);\n  };\n\n  // Return the module identifier for a user request.\n  metroContext.resolve = function metroContextResolve(request) {\n    throw new Error('Unimplemented Metro module context functionality');\n  };\n  module.exports = metroContext;\n});","lineCount":91,"map":[[2,2,1,0],[3,2,2,0],[3,8,2,6,"map"],[3,11,2,9],[3,14,2,12,"Object"],[3,20,2,18],[3,21,2,19,"defineProperties"],[3,37,2,35],[3,38,2,36],[3,39,2,37],[3,40,2,38],[3,42,2,40],[4,4,3,2],[4,26,3,24],[4,28,3,26],[5,6,3,28,"enumerable"],[5,16,3,38],[5,18,3,40],[5,22,3,44],[6,6,3,46,"get"],[6,9,3,49,"get"],[6,10,3,49],[6,12,3,52],[7,8,3,54],[7,15,3,61,"require"],[7,22,3,68],[7,23,3,68,"_dependencyMap"],[7,37,3,68],[7,80,3,107],[7,81,3,108],[8,6,3,110],[9,4,3,112],[9,5,3,113],[10,4,4,2],[10,26,4,24],[10,28,4,26],[11,6,4,28,"enumerable"],[11,16,4,38],[11,18,4,40],[11,22,4,44],[12,6,4,46,"get"],[12,9,4,49,"get"],[12,10,4,49],[12,12,4,52],[13,8,4,54],[13,15,4,61,"require"],[13,22,4,68],[13,23,4,68,"_dependencyMap"],[13,37,4,68],[13,80,4,107],[13,81,4,108],[14,6,4,110],[15,4,4,112],[15,5,4,113],[16,4,5,2],[16,23,5,21],[16,25,5,23],[17,6,5,25,"enumerable"],[17,16,5,35],[17,18,5,37],[17,22,5,41],[18,6,5,43,"get"],[18,9,5,46,"get"],[18,10,5,46],[18,12,5,49],[19,8,5,51],[19,15,5,58,"require"],[19,22,5,65],[19,23,5,65,"_dependencyMap"],[19,37,5,65],[19,77,5,101],[19,78,5,102],[20,6,5,104],[21,4,5,106],[21,5,5,107],[22,4,6,2],[22,26,6,24],[22,28,6,26],[23,6,6,28,"enumerable"],[23,16,6,38],[23,18,6,40],[23,22,6,44],[24,6,6,46,"get"],[24,9,6,49,"get"],[24,10,6,49],[24,12,6,52],[25,8,6,54],[25,15,6,61,"require"],[25,22,6,68],[25,23,6,68,"_dependencyMap"],[25,37,6,68],[25,80,6,107],[25,81,6,108],[26,6,6,110],[27,4,6,112],[27,5,6,113],[28,4,7,2],[28,19,7,17],[28,21,7,19],[29,6,7,21,"enumerable"],[29,16,7,31],[29,18,7,33],[29,22,7,37],[30,6,7,39,"get"],[30,9,7,42,"get"],[30,10,7,42],[30,12,7,45],[31,8,7,47],[31,15,7,54,"require"],[31,22,7,61],[31,23,7,61,"_dependencyMap"],[31,37,7,61],[31,73,7,93],[31,74,7,94],[32,6,7,96],[33,4,7,98],[33,5,7,99],[34,4,8,2],[34,22,8,20],[34,24,8,22],[35,6,8,24,"enumerable"],[35,16,8,34],[35,18,8,36],[35,22,8,40],[36,6,8,42,"get"],[36,9,8,45,"get"],[36,10,8,45],[36,12,8,48],[37,8,8,50],[37,15,8,57,"require"],[37,22,8,64],[37,23,8,64,"_dependencyMap"],[37,37,8,64],[37,76,8,99],[37,77,8,100],[38,6,8,102],[39,4,8,104],[39,5,8,105],[40,4,9,2],[40,23,9,21],[40,25,9,23],[41,6,9,25,"enumerable"],[41,16,9,35],[41,18,9,37],[41,22,9,41],[42,6,9,43,"get"],[42,9,9,46,"get"],[42,10,9,46],[42,12,9,49],[43,8,9,51],[43,15,9,58,"require"],[43,22,9,65],[43,23,9,65,"_dependencyMap"],[43,37,9,65],[43,77,9,101],[43,78,9,102],[44,6,9,104],[45,4,9,106],[45,5,9,107],[46,4,10,2],[46,27,10,25],[46,29,10,27],[47,6,10,29,"enumerable"],[47,16,10,39],[47,18,10,41],[47,22,10,45],[48,6,10,47,"get"],[48,9,10,50,"get"],[48,10,10,50],[48,12,10,53],[49,8,10,55],[49,15,10,62,"require"],[49,22,10,69],[49,23,10,69,"_dependencyMap"],[49,37,10,69],[49,81,10,109],[49,82,10,110],[50,6,10,112],[51,4,10,114],[51,5,10,115],[52,4,11,2],[52,21,11,19],[52,23,11,21],[53,6,11,23,"enumerable"],[53,16,11,33],[53,18,11,35],[53,22,11,39],[54,6,11,41,"get"],[54,9,11,44,"get"],[54,10,11,44],[54,12,11,47],[55,8,11,49],[55,15,11,56,"require"],[55,22,11,63],[55,23,11,63,"_dependencyMap"],[55,37,11,63],[55,75,11,97],[55,76,11,98],[56,6,11,100],[57,4,11,102],[57,5,11,103],[58,4,12,2],[58,17,12,15],[58,19,12,17],[59,6,12,19,"enumerable"],[59,16,12,29],[59,18,12,31],[59,22,12,35],[60,6,12,37,"get"],[60,9,12,40,"get"],[60,10,12,40],[60,12,12,43],[61,8,12,45],[61,15,12,52,"require"],[61,22,12,59],[61,23,12,59,"_dependencyMap"],[61,37,12,59],[61,71,12,89],[61,72,12,90],[62,6,12,92],[63,4,12,94],[63,5,12,95],[64,4,13,2],[64,18,13,16],[64,20,13,18],[65,6,13,20,"enumerable"],[65,16,13,30],[65,18,13,32],[65,22,13,36],[66,6,13,38,"get"],[66,9,13,41,"get"],[66,10,13,41],[66,12,13,44],[67,8,13,46],[67,15,13,53,"require"],[67,22,13,60],[67,23,13,60,"_dependencyMap"],[67,37,13,60],[67,73,13,91],[67,74,13,92],[68,6,13,94],[69,4,13,96],[69,5,13,97],[70,4,14,2],[70,23,14,21],[70,25,14,23],[71,6,14,25,"enumerable"],[71,16,14,35],[71,18,14,37],[71,22,14,41],[72,6,14,43,"get"],[72,9,14,46,"get"],[72,10,14,46],[72,12,14,49],[73,8,14,51],[73,15,14,58,"require"],[73,22,14,65],[73,23,14,65,"_dependencyMap"],[73,37,14,65],[73,78,14,101],[73,79,14,102],[74,6,14,104],[75,4,14,106],[76,2,15,0],[76,3,15,1],[76,4,15,2],[77,2,17,0],[77,11,17,9,"metroContext"],[77,23,17,21,"metroContext"],[77,24,17,22,"request"],[77,31,17,29],[77,33,17,31],[78,4,18,4],[78,11,18,11,"map"],[78,14,18,14],[78,15,18,15,"request"],[78,22,18,22],[78,23,18,23],[79,2,19,0],[81,2,21,0],[82,2,22,0,"metroContext"],[82,14,22,12],[82,15,22,13,"keys"],[82,19,22,17],[82,22,22,20],[82,31,22,29,"metroContextKeys"],[82,47,22,45,"metroContextKeys"],[82,48,22,45],[82,50,22,48],[83,4,23,2],[83,11,23,9,"Object"],[83,17,23,15],[83,18,23,16,"keys"],[83,22,23,20],[83,23,23,21,"map"],[83,26,23,24],[83,27,23,25],[84,2,24,0],[84,3,24,1],[86,2,26,0],[87,2,27,0,"metroContext"],[87,14,27,12],[87,15,27,13,"resolve"],[87,22,27,20],[87,25,27,23],[87,34,27,32,"metroContextResolve"],[87,53,27,51,"metroContextResolve"],[87,54,27,52,"request"],[87,61,27,59],[87,63,27,61],[88,4,28,2],[88,10,28,8],[88,14,28,12,"Error"],[88,19,28,17],[88,20,28,18],[88,70,28,68],[88,71,28,69],[89,2,29,0],[89,3,29,1],[90,2,31,0,"module"],[90,8,31,6],[90,9,31,7,"exports"],[90,16,31,14],[90,19,31,17,"metroContext"],[90,31,31,29],[91,0,31,30],[91,3]],"functionMap":{"names":["<global>","Object.defineProperties$argument_1.tabs_layoutTsx.get","Object.defineProperties$argument_1.tabsFriendsTsx.get","Object.defineProperties$argument_1.tabsHomeTsx.get","Object.defineProperties$argument_1.tabsProfileTsx.get","Object.defineProperties$argument_1._layoutTsx.get","Object.defineProperties$argument_1.authLoginTsx.get","Object.defineProperties$argument_1.authSignupTsx.get","Object.defineProperties$argument_1.chatUsernameTsx.get","Object.defineProperties$argument_1.gameIdTsx.get","Object.defineProperties$argument_1.indexTsx.get","Object.defineProperties$argument_1.logoutTsx.get","Object.defineProperties$argument_1.resultIdTsx.get","metroContext","metroContextKeys","metroContextResolve"],"mappings":"AAA;8CCE,iED;8CEC,iEF;2CGC,8DH;8CIC,iEJ;uCKC,0DL;0CMC,6DN;2COC,8DP;+CQC,kER;yCSC,4DT;qCUC,wDV;sCWC,yDX;2CYC,8DZ;AaG;CbE;oBcG;CdE;uBeG;CfE"},"hasCjsExports":true},"type":"js/module"}]}
-\ No newline at end of file
-diff --git a/frontend/.metro-cache/cache/37/2d0a048c282b0b5d389482e25de8dbddca1493127d1526c7657a02a58cc639f0bd5b4c b/frontend/.metro-cache/cache/37/2d0a048c282b0b5d389482e25de8dbddca1493127d1526c7657a02a58cc639f0bd5b4c
-new file mode 100644
-index 0000000..d750382
---- /dev/null
-+++ b/frontend/.metro-cache/cache/37/2d0a048c282b0b5d389482e25de8dbddca1493127d1526c7657a02a58cc639f0bd5b4c
-@@ -0,0 +1 @@
-+{"dependencies":[{"name":"/app/frontend/app/(tabs)/_layout.tsx","data":{"asyncType":null,"isESMImport":false,"locs":[{"start":{"line":3,"column":61,"index":173},"end":{"line":3,"column":108,"index":220}}],"key":"zqF8DOv66eWm3DcMNF6xt3w2O+A=","exportNames":["*"],"imports":1}},{"name":"/app/frontend/app/(tabs)/friends.tsx","data":{"asyncType":null,"isESMImport":false,"locs":[{"start":{"line":4,"column":61,"index":288},"end":{"line":4,"column":108,"index":335}}],"key":"GA9ixLa9/1XVvV7MPDBk8U8BDU8=","exportNames":["*"],"imports":1}},{"name":"/app/frontend/app/(tabs)/home.tsx","data":{"asyncType":null,"isESMImport":false,"locs":[{"start":{"line":5,"column":58,"index":400},"end":{"line":5,"column":102,"index":444}}],"key":"szjVaz8jOHbXZwTjQflgafhCQpE=","exportNames":["*"],"imports":1}},{"name":"/app/frontend/app/(tabs)/profile.tsx","data":{"asyncType":null,"isESMImport":false,"locs":[{"start":{"line":6,"column":61,"index":512},"end":{"line":6,"column":108,"index":559}}],"key":"GfGs19Z9hOrdgB+CtFEFxFuw4hE=","exportNames":["*"],"imports":1}},{"name":"/app/frontend/app/_layout.tsx","data":{"asyncType":null,"isESMImport":false,"locs":[{"start":{"line":7,"column":54,"index":620},"end":{"line":7,"column":94,"index":660}}],"key":"7RRIuuoX6Q3sxOlvyygH4M3jHIQ=","exportNames":["*"],"imports":1}},{"name":"/app/frontend/app/auth/login.tsx","data":{"asyncType":null,"isESMImport":false,"locs":[{"start":{"line":8,"column":57,"index":724},"end":{"line":8,"column":100,"index":767}}],"key":"rN7czzedO9Nhqi/P8qf/HbpFxes=","exportNames":["*"],"imports":1}},{"name":"/app/frontend/app/auth/signup.tsx","data":{"asyncType":null,"isESMImport":false,"locs":[{"start":{"line":9,"column":58,"index":832},"end":{"line":9,"column":102,"index":876}}],"key":"atugGvRMvBX+olVUCqLwe1jgBGI=","exportNames":["*"],"imports":1}},{"name":"/app/frontend/app/chat/[username].tsx","data":{"asyncType":null,"isESMImport":false,"locs":[{"start":{"line":10,"column":62,"index":945},"end":{"line":10,"column":110,"index":993}}],"key":"PMjUHuRaxgGLXnjYFfWYTC4S0cY=","exportNames":["*"],"imports":1}},{"name":"/app/frontend/app/game/[id].tsx","data":{"asyncType":null,"isESMImport":false,"locs":[{"start":{"line":11,"column":56,"index":1056},"end":{"line":11,"column":98,"index":1098}}],"key":"Bx7zVDrqJDt56UFxAz5Zfzs0In4=","exportNames":["*"],"imports":1}},{"name":"/app/frontend/app/index.tsx","data":{"asyncType":null,"isESMImport":false,"locs":[{"start":{"line":12,"column":52,"index":1157},"end":{"line":12,"column":90,"index":1195}}],"key":"NwcSa9S4ZGpMcIQJAbapomLGTP4=","exportNames":["*"],"imports":1}},{"name":"/app/frontend/app/logout.tsx","data":{"asyncType":null,"isESMImport":false,"locs":[{"start":{"line":13,"column":53,"index":1255},"end":{"line":13,"column":92,"index":1294}}],"key":"VCBkw9xxyuDglvbzwqYnLbTpodQ=","exportNames":["*"],"imports":1}},{"name":"/app/frontend/app/result/[id].tsx","data":{"asyncType":null,"isESMImport":false,"locs":[{"start":{"line":14,"column":58,"index":1359},"end":{"line":14,"column":102,"index":1403}}],"key":"vmycwSJoDyViIbwWf7GLZJ0PB7E=","exportNames":["*"],"imports":1}}],"output":[{"data":{"code":"__d(function (global, require, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {\n  // All of the requested modules are loaded behind enumerable getters.\n  const map = Object.defineProperties({}, {\n    \"./(tabs)/_layout.tsx\": {\n      enumerable: true,\n      get() {\n        return require(_dependencyMap[0], \"/app/frontend/app/(tabs)/_layout.tsx\");\n      }\n    },\n    \"./(tabs)/friends.tsx\": {\n      enumerable: true,\n      get() {\n        return require(_dependencyMap[1], \"/app/frontend/app/(tabs)/friends.tsx\");\n      }\n    },\n    \"./(tabs)/home.tsx\": {\n      enumerable: true,\n      get() {\n        return require(_dependencyMap[2], \"/app/frontend/app/(tabs)/home.tsx\");\n      }\n    },\n    \"./(tabs)/profile.tsx\": {\n      enumerable: true,\n      get() {\n        return require(_dependencyMap[3], \"/app/frontend/app/(tabs)/profile.tsx\");\n      }\n    },\n    \"./_layout.tsx\": {\n      enumerable: true,\n      get() {\n        return require(_dependencyMap[4], \"/app/frontend/app/_layout.tsx\");\n      }\n    },\n    \"./auth/login.tsx\": {\n      enumerable: true,\n      get() {\n        return require(_dependencyMap[5], \"/app/frontend/app/auth/login.tsx\");\n      }\n    },\n    \"./auth/signup.tsx\": {\n      enumerable: true,\n      get() {\n        return require(_dependencyMap[6], \"/app/frontend/app/auth/signup.tsx\");\n      }\n    },\n    \"./chat/[username].tsx\": {\n      enumerable: true,\n      get() {\n        return require(_dependencyMap[7], \"/app/frontend/app/chat/[username].tsx\");\n      }\n    },\n    \"./game/[id].tsx\": {\n      enumerable: true,\n      get() {\n        return require(_dependencyMap[8], \"/app/frontend/app/game/[id].tsx\");\n      }\n    },\n    \"./index.tsx\": {\n      enumerable: true,\n      get() {\n        return require(_dependencyMap[9], \"/app/frontend/app/index.tsx\");\n      }\n    },\n    \"./logout.tsx\": {\n      enumerable: true,\n      get() {\n        return require(_dependencyMap[10], \"/app/frontend/app/logout.tsx\");\n      }\n    },\n    \"./result/[id].tsx\": {\n      enumerable: true,\n      get() {\n        return require(_dependencyMap[11], \"/app/frontend/app/result/[id].tsx\");\n      }\n    }\n  });\n  function metroContext(request) {\n    return map[request];\n  }\n\n  // Return the keys that can be resolved.\n  metroContext.keys = function metroContextKeys() {\n    return Object.keys(map);\n  };\n\n  // Return the module identifier for a user request.\n  metroContext.resolve = function metroContextResolve(request) {\n    throw new Error('Unimplemented Metro module context functionality');\n  };\n  module.exports = metroContext;\n});","lineCount":91,"map":[[2,2,1,0],[3,2,2,0],[3,8,2,6,"map"],[3,11,2,9],[3,14,2,12,"Object"],[3,20,2,18],[3,21,2,19,"defineProperties"],[3,37,2,35],[3,38,2,36],[3,39,2,37],[3,40,2,38],[3,42,2,40],[4,4,3,2],[4,26,3,24],[4,28,3,26],[5,6,3,28,"enumerable"],[5,16,3,38],[5,18,3,40],[5,22,3,44],[6,6,3,46,"get"],[6,9,3,49,"get"],[6,10,3,49],[6,12,3,52],[7,8,3,54],[7,15,3,61,"require"],[7,22,3,68],[7,23,3,68,"_dependencyMap"],[7,37,3,68],[7,80,3,107],[7,81,3,108],[8,6,3,110],[9,4,3,112],[9,5,3,113],[10,4,4,2],[10,26,4,24],[10,28,4,26],[11,6,4,28,"enumerable"],[11,16,4,38],[11,18,4,40],[11,22,4,44],[12,6,4,46,"get"],[12,9,4,49,"get"],[12,10,4,49],[12,12,4,52],[13,8,4,54],[13,15,4,61,"require"],[13,22,4,68],[13,23,4,68,"_dependencyMap"],[13,37,4,68],[13,80,4,107],[13,81,4,108],[14,6,4,110],[15,4,4,112],[15,5,4,113],[16,4,5,2],[16,23,5,21],[16,25,5,23],[17,6,5,25,"enumerable"],[17,16,5,35],[17,18,5,37],[17,22,5,41],[18,6,5,43,"get"],[18,9,5,46,"get"],[18,10,5,46],[18,12,5,49],[19,8,5,51],[19,15,5,58,"require"],[19,22,5,65],[19,23,5,65,"_dependencyMap"],[19,37,5,65],[19,77,5,101],[19,78,5,102],[20,6,5,104],[21,4,5,106],[21,5,5,107],[22,4,6,2],[22,26,6,24],[22,28,6,26],[23,6,6,28,"enumerable"],[23,16,6,38],[23,18,6,40],[23,22,6,44],[24,6,6,46,"get"],[24,9,6,49,"get"],[24,10,6,49],[24,12,6,52],[25,8,6,54],[25,15,6,61,"require"],[25,22,6,68],[25,23,6,68,"_dependencyMap"],[25,37,6,68],[25,80,6,107],[25,81,6,108],[26,6,6,110],[27,4,6,112],[27,5,6,113],[28,4,7,2],[28,19,7,17],[28,21,7,19],[29,6,7,21,"enumerable"],[29,16,7,31],[29,18,7,33],[29,22,7,37],[30,6,7,39,"get"],[30,9,7,42,"get"],[30,10,7,42],[30,12,7,45],[31,8,7,47],[31,15,7,54,"require"],[31,22,7,61],[31,23,7,61,"_dependencyMap"],[31,37,7,61],[31,73,7,93],[31,74,7,94],[32,6,7,96],[33,4,7,98],[33,5,7,99],[34,4,8,2],[34,22,8,20],[34,24,8,22],[35,6,8,24,"enumerable"],[35,16,8,34],[35,18,8,36],[35,22,8,40],[36,6,8,42,"get"],[36,9,8,45,"get"],[36,10,8,45],[36,12,8,48],[37,8,8,50],[37,15,8,57,"require"],[37,22,8,64],[37,23,8,64,"_dependencyMap"],[37,37,8,64],[37,76,8,99],[37,77,8,100],[38,6,8,102],[39,4,8,104],[39,5,8,105],[40,4,9,2],[40,23,9,21],[40,25,9,23],[41,6,9,25,"enumerable"],[41,16,9,35],[41,18,9,37],[41,22,9,41],[42,6,9,43,"get"],[42,9,9,46,"get"],[42,10,9,46],[42,12,9,49],[43,8,9,51],[43,15,9,58,"require"],[43,22,9,65],[43,23,9,65,"_dependencyMap"],[43,37,9,65],[43,77,9,101],[43,78,9,102],[44,6,9,104],[45,4,9,106],[45,5,9,107],[46,4,10,2],[46,27,10,25],[46,29,10,27],[47,6,10,29,"enumerable"],[47,16,10,39],[47,18,10,41],[47,22,10,45],[48,6,10,47,"get"],[48,9,10,50,"get"],[48,10,10,50],[48,12,10,53],[49,8,10,55],[49,15,10,62,"require"],[49,22,10,69],[49,23,10,69,"_dependencyMap"],[49,37,10,69],[49,81,10,109],[49,82,10,110],[50,6,10,112],[51,4,10,114],[51,5,10,115],[52,4,11,2],[52,21,11,19],[52,23,11,21],[53,6,11,23,"enumerable"],[53,16,11,33],[53,18,11,35],[53,22,11,39],[54,6,11,41,"get"],[54,9,11,44,"get"],[54,10,11,44],[54,12,11,47],[55,8,11,49],[55,15,11,56,"require"],[55,22,11,63],[55,23,11,63,"_dependencyMap"],[55,37,11,63],[55,75,11,97],[55,76,11,98],[56,6,11,100],[57,4,11,102],[57,5,11,103],[58,4,12,2],[58,17,12,15],[58,19,12,17],[59,6,12,19,"enumerable"],[59,16,12,29],[59,18,12,31],[59,22,12,35],[60,6,12,37,"get"],[60,9,12,40,"get"],[60,10,12,40],[60,12,12,43],[61,8,12,45],[61,15,12,52,"require"],[61,22,12,59],[61,23,12,59,"_dependencyMap"],[61,37,12,59],[61,71,12,89],[61,72,12,90],[62,6,12,92],[63,4,12,94],[63,5,12,95],[64,4,13,2],[64,18,13,16],[64,20,13,18],[65,6,13,20,"enumerable"],[65,16,13,30],[65,18,13,32],[65,22,13,36],[66,6,13,38,"get"],[66,9,13,41,"get"],[66,10,13,41],[66,12,13,44],[67,8,13,46],[67,15,13,53,"require"],[67,22,13,60],[67,23,13,60,"_dependencyMap"],[67,37,13,60],[67,73,13,91],[67,74,13,92],[68,6,13,94],[69,4,13,96],[69,5,13,97],[70,4,14,2],[70,23,14,21],[70,25,14,23],[71,6,14,25,"enumerable"],[71,16,14,35],[71,18,14,37],[71,22,14,41],[72,6,14,43,"get"],[72,9,14,46,"get"],[72,10,14,46],[72,12,14,49],[73,8,14,51],[73,15,14,58,"require"],[73,22,14,65],[73,23,14,65,"_dependencyMap"],[73,37,14,65],[73,78,14,101],[73,79,14,102],[74,6,14,104],[75,4,14,106],[76,2,15,0],[76,3,15,1],[76,4,15,2],[77,2,17,0],[77,11,17,9,"metroContext"],[77,23,17,21,"metroContext"],[77,24,17,22,"request"],[77,31,17,29],[77,33,17,31],[78,4,18,4],[78,11,18,11,"map"],[78,14,18,14],[78,15,18,15,"request"],[78,22,18,22],[78,23,18,23],[79,2,19,0],[81,2,21,0],[82,2,22,0,"metroContext"],[82,14,22,12],[82,15,22,13,"keys"],[82,19,22,17],[82,22,22,20],[82,31,22,29,"metroContextKeys"],[82,47,22,45,"metroContextKeys"],[82,48,22,45],[82,50,22,48],[83,4,23,2],[83,11,23,9,"Object"],[83,17,23,15],[83,18,23,16,"keys"],[83,22,23,20],[83,23,23,21,"map"],[83,26,23,24],[83,27,23,25],[84,2,24,0],[84,3,24,1],[86,2,26,0],[87,2,27,0,"metroContext"],[87,14,27,12],[87,15,27,13,"resolve"],[87,22,27,20],[87,25,27,23],[87,34,27,32,"metroContextResolve"],[87,53,27,51,"metroContextResolve"],[87,54,27,52,"request"],[87,61,27,59],[87,63,27,61],[88,4,28,2],[88,10,28,8],[88,14,28,12,"Error"],[88,19,28,17],[88,20,28,18],[88,70,28,68],[88,71,28,69],[89,2,29,0],[89,3,29,1],[90,2,31,0,"module"],[90,8,31,6],[90,9,31,7,"exports"],[90,16,31,14],[90,19,31,17,"metroContext"],[90,31,31,29],[91,0,31,30],[91,3]],"functionMap":{"names":["<global>","Object.defineProperties$argument_1.tabs_layoutTsx.get","Object.defineProperties$argument_1.tabsFriendsTsx.get","Object.defineProperties$argument_1.tabsHomeTsx.get","Object.defineProperties$argument_1.tabsProfileTsx.get","Object.defineProperties$argument_1._layoutTsx.get","Object.defineProperties$argument_1.authLoginTsx.get","Object.defineProperties$argument_1.authSignupTsx.get","Object.defineProperties$argument_1.chatUsernameTsx.get","Object.defineProperties$argument_1.gameIdTsx.get","Object.defineProperties$argument_1.indexTsx.get","Object.defineProperties$argument_1.logoutTsx.get","Object.defineProperties$argument_1.resultIdTsx.get","metroContext","metroContextKeys","metroContextResolve"],"mappings":"AAA;8CCE,iED;8CEC,iEF;2CGC,8DH;8CIC,iEJ;uCKC,0DL;0CMC,6DN;2COC,8DP;+CQC,kER;yCSC,4DT;qCUC,wDV;sCWC,yDX;2CYC,8DZ;AaG;CbE;oBcG;CdE;uBeG;CfE"},"hasCjsExports":true},"type":"js/module"}]}
-\ No newline at end of file
-diff --git a/frontend/.metro-cache/cache/e2/1e641f39faab5e0cb9fbf5ec36d6f5ddca1493127d1526c7657a02a58cc639f0bd5b4c b/frontend/.metro-cache/cache/e2/1e641f39faab5e0cb9fbf5ec36d6f5ddca1493127d1526c7657a02a58cc639f0bd5b4c
-new file mode 100644
-index 0000000..d750382
---- /dev/null
-+++ b/frontend/.metro-cache/cache/e2/1e641f39faab5e0cb9fbf5ec36d6f5ddca1493127d1526c7657a02a58cc639f0bd5b4c
-@@ -0,0 +1 @@
-+{"dependencies":[{"name":"/app/frontend/app/(tabs)/_layout.tsx","data":{"asyncType":null,"isESMImport":false,"locs":[{"start":{"line":3,"column":61,"index":173},"end":{"line":3,"column":108,"index":220}}],"key":"zqF8DOv66eWm3DcMNF6xt3w2O+A=","exportNames":["*"],"imports":1}},{"name":"/app/frontend/app/(tabs)/friends.tsx","data":{"asyncType":null,"isESMImport":false,"locs":[{"start":{"line":4,"column":61,"index":288},"end":{"line":4,"column":108,"index":335}}],"key":"GA9ixLa9/1XVvV7MPDBk8U8BDU8=","exportNames":["*"],"imports":1}},{"name":"/app/frontend/app/(tabs)/home.tsx","data":{"asyncType":null,"isESMImport":false,"locs":[{"start":{"line":5,"column":58,"index":400},"end":{"line":5,"column":102,"index":444}}],"key":"szjVaz8jOHbXZwTjQflgafhCQpE=","exportNames":["*"],"imports":1}},{"name":"/app/frontend/app/(tabs)/profile.tsx","data":{"asyncType":null,"isESMImport":false,"locs":[{"start":{"line":6,"column":61,"index":512},"end":{"line":6,"column":108,"index":559}}],"key":"GfGs19Z9hOrdgB+CtFEFxFuw4hE=","exportNames":["*"],"imports":1}},{"name":"/app/frontend/app/_layout.tsx","data":{"asyncType":null,"isESMImport":false,"locs":[{"start":{"line":7,"column":54,"index":620},"end":{"line":7,"column":94,"index":660}}],"key":"7RRIuuoX6Q3sxOlvyygH4M3jHIQ=","exportNames":["*"],"imports":1}},{"name":"/app/frontend/app/auth/login.tsx","data":{"asyncType":null,"isESMImport":false,"locs":[{"start":{"line":8,"column":57,"index":724},"end":{"line":8,"column":100,"index":767}}],"key":"rN7czzedO9Nhqi/P8qf/HbpFxes=","exportNames":["*"],"imports":1}},{"name":"/app/frontend/app/auth/signup.tsx","data":{"asyncType":null,"isESMImport":false,"locs":[{"start":{"line":9,"column":58,"index":832},"end":{"line":9,"column":102,"index":876}}],"key":"atugGvRMvBX+olVUCqLwe1jgBGI=","exportNames":["*"],"imports":1}},{"name":"/app/frontend/app/chat/[username].tsx","data":{"asyncType":null,"isESMImport":false,"locs":[{"start":{"line":10,"column":62,"index":945},"end":{"line":10,"column":110,"index":993}}],"key":"PMjUHuRaxgGLXnjYFfWYTC4S0cY=","exportNames":["*"],"imports":1}},{"name":"/app/frontend/app/game/[id].tsx","data":{"asyncType":null,"isESMImport":false,"locs":[{"start":{"line":11,"column":56,"index":1056},"end":{"line":11,"column":98,"index":1098}}],"key":"Bx7zVDrqJDt56UFxAz5Zfzs0In4=","exportNames":["*"],"imports":1}},{"name":"/app/frontend/app/index.tsx","data":{"asyncType":null,"isESMImport":false,"locs":[{"start":{"line":12,"column":52,"index":1157},"end":{"line":12,"column":90,"index":1195}}],"key":"NwcSa9S4ZGpMcIQJAbapomLGTP4=","exportNames":["*"],"imports":1}},{"name":"/app/frontend/app/logout.tsx","data":{"asyncType":null,"isESMImport":false,"locs":[{"start":{"line":13,"column":53,"index":1255},"end":{"line":13,"column":92,"index":1294}}],"key":"VCBkw9xxyuDglvbzwqYnLbTpodQ=","exportNames":["*"],"imports":1}},{"name":"/app/frontend/app/result/[id].tsx","data":{"asyncType":null,"isESMImport":false,"locs":[{"start":{"line":14,"column":58,"index":1359},"end":{"line":14,"column":102,"index":1403}}],"key":"vmycwSJoDyViIbwWf7GLZJ0PB7E=","exportNames":["*"],"imports":1}}],"output":[{"data":{"code":"__d(function (global, require, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {\n  // All of the requested modules are loaded behind enumerable getters.\n  const map = Object.defineProperties({}, {\n    \"./(tabs)/_layout.tsx\": {\n      enumerable: true,\n      get() {\n        return require(_dependencyMap[0], \"/app/frontend/app/(tabs)/_layout.tsx\");\n      }\n    },\n    \"./(tabs)/friends.tsx\": {\n      enumerable: true,\n      get() {\n        return require(_dependencyMap[1], \"/app/frontend/app/(tabs)/friends.tsx\");\n      }\n    },\n    \"./(tabs)/home.tsx\": {\n      enumerable: true,\n      get() {\n        return require(_dependencyMap[2], \"/app/frontend/app/(tabs)/home.tsx\");\n      }\n    },\n    \"./(tabs)/profile.tsx\": {\n      enumerable: true,\n      get() {\n        return require(_dependencyMap[3], \"/app/frontend/app/(tabs)/profile.tsx\");\n      }\n    },\n    \"./_layout.tsx\": {\n      enumerable: true,\n      get() {\n        return require(_dependencyMap[4], \"/app/frontend/app/_layout.tsx\");\n      }\n    },\n    \"./auth/login.tsx\": {\n      enumerable: true,\n      get() {\n        return require(_dependencyMap[5], \"/app/frontend/app/auth/login.tsx\");\n      }\n    },\n    \"./auth/signup.tsx\": {\n      enumerable: true,\n      get() {\n        return require(_dependencyMap[6], \"/app/frontend/app/auth/signup.tsx\");\n      }\n    },\n    \"./chat/[username].tsx\": {\n      enumerable: true,\n      get() {\n        return require(_dependencyMap[7], \"/app/frontend/app/chat/[username].tsx\");\n      }\n    },\n    \"./game/[id].tsx\": {\n      enumerable: true,\n      get() {\n        return require(_dependencyMap[8], \"/app/frontend/app/game/[id].tsx\");\n      }\n    },\n    \"./index.tsx\": {\n      enumerable: true,\n      get() {\n        return require(_dependencyMap[9], \"/app/frontend/app/index.tsx\");\n      }\n    },\n    \"./logout.tsx\": {\n      enumerable: true,\n      get() {\n        return require(_dependencyMap[10], \"/app/frontend/app/logout.tsx\");\n      }\n    },\n    \"./result/[id].tsx\": {\n      enumerable: true,\n      get() {\n        return require(_dependencyMap[11], \"/app/frontend/app/result/[id].tsx\");\n      }\n    }\n  });\n  function metroContext(request) {\n    return map[request];\n  }\n\n  // Return the keys that can be resolved.\n  metroContext.keys = function metroContextKeys() {\n    return Object.keys(map);\n  };\n\n  // Return the module identifier for a user request.\n  metroContext.resolve = function metroContextResolve(request) {\n    throw new Error('Unimplemented Metro module context functionality');\n  };\n  module.exports = metroContext;\n});","lineCount":91,"map":[[2,2,1,0],[3,2,2,0],[3,8,2,6,"map"],[3,11,2,9],[3,14,2,12,"Object"],[3,20,2,18],[3,21,2,19,"defineProperties"],[3,37,2,35],[3,38,2,36],[3,39,2,37],[3,40,2,38],[3,42,2,40],[4,4,3,2],[4,26,3,24],[4,28,3,26],[5,6,3,28,"enumerable"],[5,16,3,38],[5,18,3,40],[5,22,3,44],[6,6,3,46,"get"],[6,9,3,49,"get"],[6,10,3,49],[6,12,3,52],[7,8,3,54],[7,15,3,61,"require"],[7,22,3,68],[7,23,3,68,"_dependencyMap"],[7,37,3,68],[7,80,3,107],[7,81,3,108],[8,6,3,110],[9,4,3,112],[9,5,3,113],[10,4,4,2],[10,26,4,24],[10,28,4,26],[11,6,4,28,"enumerable"],[11,16,4,38],[11,18,4,40],[11,22,4,44],[12,6,4,46,"get"],[12,9,4,49,"get"],[12,10,4,49],[12,12,4,52],[13,8,4,54],[13,15,4,61,"require"],[13,22,4,68],[13,23,4,68,"_dependencyMap"],[13,37,4,68],[13,80,4,107],[13,81,4,108],[14,6,4,110],[15,4,4,112],[15,5,4,113],[16,4,5,2],[16,23,5,21],[16,25,5,23],[17,6,5,25,"enumerable"],[17,16,5,35],[17,18,5,37],[17,22,5,41],[18,6,5,43,"get"],[18,9,5,46,"get"],[18,10,5,46],[18,12,5,49],[19,8,5,51],[19,15,5,58,"require"],[19,22,5,65],[19,23,5,65,"_dependencyMap"],[19,37,5,65],[19,77,5,101],[19,78,5,102],[20,6,5,104],[21,4,5,106],[21,5,5,107],[22,4,6,2],[22,26,6,24],[22,28,6,26],[23,6,6,28,"enumerable"],[23,16,6,38],[23,18,6,40],[23,22,6,44],[24,6,6,46,"get"],[24,9,6,49,"get"],[24,10,6,49],[24,12,6,52],[25,8,6,54],[25,15,6,61,"require"],[25,22,6,68],[25,23,6,68,"_dependencyMap"],[25,37,6,68],[25,80,6,107],[25,81,6,108],[26,6,6,110],[27,4,6,112],[27,5,6,113],[28,4,7,2],[28,19,7,17],[28,21,7,19],[29,6,7,21,"enumerable"],[29,16,7,31],[29,18,7,33],[29,22,7,37],[30,6,7,39,"get"],[30,9,7,42,"get"],[30,10,7,42],[30,12,7,45],[31,8,7,47],[31,15,7,54,"require"],[31,22,7,61],[31,23,7,61,"_dependencyMap"],[31,37,7,61],[31,73,7,93],[31,74,7,94],[32,6,7,96],[33,4,7,98],[33,5,7,99],[34,4,8,2],[34,22,8,20],[34,24,8,22],[35,6,8,24,"enumerable"],[35,16,8,34],[35,18,8,36],[35,22,8,40],[36,6,8,42,"get"],[36,9,8,45,"get"],[36,10,8,45],[36,12,8,48],[37,8,8,50],[37,15,8,57,"require"],[37,22,8,64],[37,23,8,64,"_dependencyMap"],[37,37,8,64],[37,76,8,99],[37,77,8,100],[38,6,8,102],[39,4,8,104],[39,5,8,105],[40,4,9,2],[40,23,9,21],[40,25,9,23],[41,6,9,25,"enumerable"],[41,16,9,35],[41,18,9,37],[41,22,9,41],[42,6,9,43,"get"],[42,9,9,46,"get"],[42,10,9,46],[42,12,9,49],[43,8,9,51],[43,15,9,58,"require"],[43,22,9,65],[43,23,9,65,"_dependencyMap"],[43,37,9,65],[43,77,9,101],[43,78,9,102],[44,6,9,104],[45,4,9,106],[45,5,9,107],[46,4,10,2],[46,27,10,25],[46,29,10,27],[47,6,10,29,"enumerable"],[47,16,10,39],[47,18,10,41],[47,22,10,45],[48,6,10,47,"get"],[48,9,10,50,"get"],[48,10,10,50],[48,12,10,53],[49,8,10,55],[49,15,10,62,"require"],[49,22,10,69],[49,23,10,69,"_dependencyMap"],[49,37,10,69],[49,81,10,109],[49,82,10,110],[50,6,10,112],[51,4,10,114],[51,5,10,115],[52,4,11,2],[52,21,11,19],[52,23,11,21],[53,6,11,23,"enumerable"],[53,16,11,33],[53,18,11,35],[53,22,11,39],[54,6,11,41,"get"],[54,9,11,44,"get"],[54,10,11,44],[54,12,11,47],[55,8,11,49],[55,15,11,56,"require"],[55,22,11,63],[55,23,11,63,"_dependencyMap"],[55,37,11,63],[55,75,11,97],[55,76,11,98],[56,6,11,100],[57,4,11,102],[57,5,11,103],[58,4,12,2],[58,17,12,15],[58,19,12,17],[59,6,12,19,"enumerable"],[59,16,12,29],[59,18,12,31],[59,22,12,35],[60,6,12,37,"get"],[60,9,12,40,"get"],[60,10,12,40],[60,12,12,43],[61,8,12,45],[61,15,12,52,"require"],[61,22,12,59],[61,23,12,59,"_dependencyMap"],[61,37,12,59],[61,71,12,89],[61,72,12,90],[62,6,12,92],[63,4,12,94],[63,5,12,95],[64,4,13,2],[64,18,13,16],[64,20,13,18],[65,6,13,20,"enumerable"],[65,16,13,30],[65,18,13,32],[65,22,13,36],[66,6,13,38,"get"],[66,9,13,41,"get"],[66,10,13,41],[66,12,13,44],[67,8,13,46],[67,15,13,53,"require"],[67,22,13,60],[67,23,13,60,"_dependencyMap"],[67,37,13,60],[67,73,13,91],[67,74,13,92],[68,6,13,94],[69,4,13,96],[69,5,13,97],[70,4,14,2],[70,23,14,21],[70,25,14,23],[71,6,14,25,"enumerable"],[71,16,14,35],[71,18,14,37],[71,22,14,41],[72,6,14,43,"get"],[72,9,14,46,"get"],[72,10,14,46],[72,12,14,49],[73,8,14,51],[73,15,14,58,"require"],[73,22,14,65],[73,23,14,65,"_dependencyMap"],[73,37,14,65],[73,78,14,101],[73,79,14,102],[74,6,14,104],[75,4,14,106],[76,2,15,0],[76,3,15,1],[76,4,15,2],[77,2,17,0],[77,11,17,9,"metroContext"],[77,23,17,21,"metroContext"],[77,24,17,22,"request"],[77,31,17,29],[77,33,17,31],[78,4,18,4],[78,11,18,11,"map"],[78,14,18,14],[78,15,18,15,"request"],[78,22,18,22],[78,23,18,23],[79,2,19,0],[81,2,21,0],[82,2,22,0,"metroContext"],[82,14,22,12],[82,15,22,13,"keys"],[82,19,22,17],[82,22,22,20],[82,31,22,29,"metroContextKeys"],[82,47,22,45,"metroContextKeys"],[82,48,22,45],[82,50,22,48],[83,4,23,2],[83,11,23,9,"Object"],[83,17,23,15],[83,18,23,16,"keys"],[83,22,23,20],[83,23,23,21,"map"],[83,26,23,24],[83,27,23,25],[84,2,24,0],[84,3,24,1],[86,2,26,0],[87,2,27,0,"metroContext"],[87,14,27,12],[87,15,27,13,"resolve"],[87,22,27,20],[87,25,27,23],[87,34,27,32,"metroContextResolve"],[87,53,27,51,"metroContextResolve"],[87,54,27,52,"request"],[87,61,27,59],[87,63,27,61],[88,4,28,2],[88,10,28,8],[88,14,28,12,"Error"],[88,19,28,17],[88,20,28,18],[88,70,28,68],[88,71,28,69],[89,2,29,0],[89,3,29,1],[90,2,31,0,"module"],[90,8,31,6],[90,9,31,7,"exports"],[90,16,31,14],[90,19,31,17,"metroContext"],[90,31,31,29],[91,0,31,30],[91,3]],"functionMap":{"names":["<global>","Object.defineProperties$argument_1.tabs_layoutTsx.get","Object.defineProperties$argument_1.tabsFriendsTsx.get","Object.defineProperties$argument_1.tabsHomeTsx.get","Object.defineProperties$argument_1.tabsProfileTsx.get","Object.defineProperties$argument_1._layoutTsx.get","Object.defineProperties$argument_1.authLoginTsx.get","Object.defineProperties$argument_1.authSignupTsx.get","Object.defineProperties$argument_1.chatUsernameTsx.get","Object.defineProperties$argument_1.gameIdTsx.get","Object.defineProperties$argument_1.indexTsx.get","Object.defineProperties$argument_1.logoutTsx.get","Object.defineProperties$argument_1.resultIdTsx.get","metroContext","metroContextKeys","metroContextResolve"],"mappings":"AAA;8CCE,iED;8CEC,iEF;2CGC,8DH;8CIC,iEJ;uCKC,0DL;0CMC,6DN;2COC,8DP;+CQC,kER;yCSC,4DT;qCUC,wDV;sCWC,yDX;2CYC,8DZ;AaG;CbE;oBcG;CdE;uBeG;CfE"},"hasCjsExports":true},"type":"js/module"}]}
-\ No newline at end of file
 diff --git a/model.patch b/model.patch
-index f99c67b..6025f9a 100644
+index fc63ca1..e69de29 100644
 --- a/model.patch
 +++ b/model.patch
-@@ -1,431 +0,0 @@
--diff --git a/frontend/app/(tabs)/_layout.tsx b/frontend/app/(tabs)/_layout.tsx
--index 18bc2e4..b1966f8 100644
----- a/frontend/app/(tabs)/_layout.tsx
--+++ b/frontend/app/(tabs)/_layout.tsx
--@@ -48,13 +48,6 @@ export default function TabsLayout() {
--           tabBarIcon: ({ color, size }) => <Ionicons name="people" size={size} color={color} />,
--         }}
--       />
---      <Tabs.Screen
---        name="chats"
---        options={{
---          title: 'Chats',
---          tabBarIcon: ({ color, size }) => <Ionicons name="chatbubbles" size={size} color={color} />,
---        }}
---      />
--       <Tabs.Screen
--         name="profile"
--         options={{
+@@ -1,493 +0,0 @@
+-diff --git a/frontend/.metro-cache/cache/31/69752fee4839395eddbfa55a6cc391ddca1493127d1526c7657a02a58cc639f0bd5b4c b/frontend/.metro-cache/cache/31/69752fee4839395eddbfa55a6cc391ddca1493127d1526c7657a02a58cc639f0bd5b4c
+-new file mode 100644
+-index 0000000..d750382
+---- /dev/null
+-+++ b/frontend/.metro-cache/cache/31/69752fee4839395eddbfa55a6cc391ddca1493127d1526c7657a02a58cc639f0bd5b4c
+-@@ -0,0 +1 @@
+-+{"dependencies":[{"name":"/app/frontend/app/(tabs)/_layout.tsx","data":{"asyncType":null,"isESMImport":false,"locs":[{"start":{"line":3,"column":61,"index":173},"end":{"line":3,"column":108,"index":220}}],"key":"zqF8DOv66eWm3DcMNF6xt3w2O+A=","exportNames":["*"],"imports":1}},{"name":"/app/frontend/app/(tabs)/friends.tsx","data":{"asyncType":null,"isESMImport":false,"locs":[{"start":{"line":4,"column":61,"index":288},"end":{"line":4,"column":108,"index":335}}],"key":"GA9ixLa9/1XVvV7MPDBk8U8BDU8=","exportNames":["*"],"imports":1}},{"name":"/app/frontend/app/(tabs)/home.tsx","data":{"asyncType":null,"isESMImport":false,"locs":[{"start":{"line":5,"column":58,"index":400},"end":{"line":5,"column":102,"index":444}}],"key":"szjVaz8jOHbXZwTjQflgafhCQpE=","exportNames":["*"],"imports":1}},{"name":"/app/frontend/app/(tabs)/profile.tsx","data":{"asyncType":null,"isESMImport":false,"locs":[{"start":{"line":6,"column":61,"index":512},"end":{"line":6,"column":108,"index":559}}],"key":"GfGs19Z9hOrdgB+CtFEFxFuw4hE=","exportNames":["*"],"imports":1}},{"name":"/app/frontend/app/_layout.tsx","data":{"asyncType":null,"isESMImport":false,"locs":[{"start":{"line":7,"column":54,"index":620},"end":{"line":7,"column":94,"index":660}}],"key":"7RRIuuoX6Q3sxOlvyygH4M3jHIQ=","exportNames":["*"],"imports":1}},{"name":"/app/frontend/app/auth/login.tsx","data":{"asyncType":null,"isESMImport":false,"locs":[{"start":{"line":8,"column":57,"index":724},"end":{"line":8,"column":100,"index":767}}],"key":"rN7czzedO9Nhqi/P8qf/HbpFxes=","exportNames":["*"],"imports":1}},{"name":"/app/frontend/app/auth/signup.tsx","data":{"asyncType":null,"isESMImport":false,"locs":[{"start":{"line":9,"column":58,"index":832},"end":{"line":9,"column":102,"index":876}}],"key":"atugGvRMvBX+olVUCqLwe1jgBGI=","exportNames":["*"],"imports":1}},{"name":"/app/frontend/app/chat/[username].tsx","data":{"asyncType":null,"isESMImport":false,"locs":[{"start":{"line":10,"column":62,"index":945},"end":{"line":10,"column":110,"index":993}}],"key":"PMjUHuRaxgGLXnjYFfWYTC4S0cY=","exportNames":["*"],"imports":1}},{"name":"/app/frontend/app/game/[id].tsx","data":{"asyncType":null,"isESMImport":false,"locs":[{"start":{"line":11,"column":56,"index":1056},"end":{"line":11,"column":98,"index":1098}}],"key":"Bx7zVDrqJDt56UFxAz5Zfzs0In4=","exportNames":["*"],"imports":1}},{"name":"/app/frontend/app/index.tsx","data":{"asyncType":null,"isESMImport":false,"locs":[{"start":{"line":12,"column":52,"index":1157},"end":{"line":12,"column":90,"index":1195}}],"key":"NwcSa9S4ZGpMcIQJAbapomLGTP4=","exportNames":["*"],"imports":1}},{"name":"/app/frontend/app/logout.tsx","data":{"asyncType":null,"isESMImport":false,"locs":[{"start":{"line":13,"column":53,"index":1255},"end":{"line":13,"column":92,"index":1294}}],"key":"VCBkw9xxyuDglvbzwqYnLbTpodQ=","exportNames":["*"],"imports":1}},{"name":"/app/frontend/app/result/[id].tsx","data":{"asyncType":null,"isESMImport":false,"locs":[{"start":{"line":14,"column":58,"index":1359},"end":{"line":14,"column":102,"index":1403}}],"key":"vmycwSJoDyViIbwWf7GLZJ0PB7E=","exportNames":["*"],"imports":1}}],"output":[{"data":{"code":"__d(function (global, require, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {\n  // All of the requested modules are loaded behind enumerable getters.\n  const map = Object.defineProperties({}, {\n    \"./(tabs)/_layout.tsx\": {\n      enumerable: true,\n      get() {\n        return require(_dependencyMap[0], \"/app/frontend/app/(tabs)/_layout.tsx\");\n      }\n    },\n    \"./(tabs)/friends.tsx\": {\n      enumerable: true,\n      get() {\n        return require(_dependencyMap[1], \"/app/frontend/app/(tabs)/friends.tsx\");\n      }\n    },\n    \"./(tabs)/home.tsx\": {\n      enumerable: true,\n      get() {\n        return require(_dependencyMap[2], \"/app/frontend/app/(tabs)/home.tsx\");\n      }\n    },\n    \"./(tabs)/profile.tsx\": {\n      enumerable: true,\n      get() {\n        return require(_dependencyMap[3], \"/app/frontend/app/(tabs)/profile.tsx\");\n      }\n    },\n    \"./_layout.tsx\": {\n      enumerable: true,\n      get() {\n        return require(_dependencyMap[4], \"/app/frontend/app/_layout.tsx\");\n      }\n    },\n    \"./auth/login.tsx\": {\n      enumerable: true,\n      get() {\n        return require(_dependencyMap[5], \"/app/frontend/app/auth/login.tsx\");\n      }\n    },\n    \"./auth/signup.tsx\": {\n      enumerable: true,\n      get() {\n        return require(_dependencyMap[6], \"/app/frontend/app/auth/signup.tsx\");\n      }\n    },\n    \"./chat/[username].tsx\": {\n      enumerable: true,\n      get() {\n        return require(_dependencyMap[7], \"/app/frontend/app/chat/[username].tsx\");\n      }\n    },\n    \"./game/[id].tsx\": {\n      enumerable: true,\n      get() {\n        return require(_dependencyMap[8], \"/app/frontend/app/game/[id].tsx\");\n      }\n    },\n    \"./index.tsx\": {\n      enumerable: true,\n      get() {\n        return require(_dependencyMap[9], \"/app/frontend/app/index.tsx\");\n      }\n    },\n    \"./logout.tsx\": {\n      enumerable: true,\n      get() {\n        return require(_dependencyMap[10], \"/app/frontend/app/logout.tsx\");\n      }\n    },\n    \"./result/[id].tsx\": {\n      enumerable: true,\n      get() {\n        return require(_dependencyMap[11], \"/app/frontend/app/result/[id].tsx\");\n      }\n    }\n  });\n  function metroContext(request) {\n    return map[request];\n  }\n\n  // Return the keys that can be resolved.\n  metroContext.keys = function metroContextKeys() {\n    return Object.keys(map);\n  };\n\n  // Return the module identifier for a user request.\n  metroContext.resolve = function metroContextResolve(request) {\n    throw new Error('Unimplemented Metro module context functionality');\n  };\n  module.exports = metroContext;\n});","lineCount":91,"map":[[2,2,1,0],[3,2,2,0],[3,8,2,6,"map"],[3,11,2,9],[3,14,2,12,"Object"],[3,20,2,18],[3,21,2,19,"defineProperties"],[3,37,2,35],[3,38,2,36],[3,39,2,37],[3,40,2,38],[3,42,2,40],[4,4,3,2],[4,26,3,24],[4,28,3,26],[5,6,3,28,"enumerable"],[5,16,3,38],[5,18,3,40],[5,22,3,44],[6,6,3,46,"get"],[6,9,3,49,"get"],[6,10,3,49],[6,12,3,52],[7,8,3,54],[7,15,3,61,"require"],[7,22,3,68],[7,23,3,68,"_dependencyMap"],[7,37,3,68],[7,80,3,107],[7,81,3,108],[8,6,3,110],[9,4,3,112],[9,5,3,113],[10,4,4,2],[10,26,4,24],[10,28,4,26],[11,6,4,28,"enumerable"],[11,16,4,38],[11,18,4,40],[11,22,4,44],[12,6,4,46,"get"],[12,9,4,49,"get"],[12,10,4,49],[12,12,4,52],[13,8,4,54],[13,15,4,61,"require"],[13,22,4,68],[13,23,4,68,"_dependencyMap"],[13,37,4,68],[13,80,4,107],[13,81,4,108],[14,6,4,110],[15,4,4,112],[15,5,4,113],[16,4,5,2],[16,23,5,21],[16,25,5,23],[17,6,5,25,"enumerable"],[17,16,5,35],[17,18,5,37],[17,22,5,41],[18,6,5,43,"get"],[18,9,5,46,"get"],[18,10,5,46],[18,12,5,49],[19,8,5,51],[19,15,5,58,"require"],[19,22,5,65],[19,23,5,65,"_dependencyMap"],[19,37,5,65],[19,77,5,101],[19,78,5,102],[20,6,5,104],[21,4,5,106],[21,5,5,107],[22,4,6,2],[22,26,6,24],[22,28,6,26],[23,6,6,28,"enumerable"],[23,16,6,38],[23,18,6,40],[23,22,6,44],[24,6,6,46,"get"],[24,9,6,49,"get"],[24,10,6,49],[24,12,6,52],[25,8,6,54],[25,15,6,61,"require"],[25,22,6,68],[25,23,6,68,"_dependencyMap"],[25,37,6,68],[25,80,6,107],[25,81,6,108],[26,6,6,110],[27,4,6,112],[27,5,6,113],[28,4,7,2],[28,19,7,17],[28,21,7,19],[29,6,7,21,"enumerable"],[29,16,7,31],[29,18,7,33],[29,22,7,37],[30,6,7,39,"get"],[30,9,7,42,"get"],[30,10,7,42],[30,12,7,45],[31,8,7,47],[31,15,7,54,"require"],[31,22,7,61],[31,23,7,61,"_dependencyMap"],[31,37,7,61],[31,73,7,93],[31,74,7,94],[32,6,7,96],[33,4,7,98],[33,5,7,99],[34,4,8,2],[34,22,8,20],[34,24,8,22],[35,6,8,24,"enumerable"],[35,16,8,34],[35,18,8,36],[35,22,8,40],[36,6,8,42,"get"],[36,9,8,45,"get"],[36,10,8,45],[36,12,8,48],[37,8,8,50],[37,15,8,57,"require"],[37,22,8,64],[37,23,8,64,"_dependencyMap"],[37,37,8,64],[37,76,8,99],[37,77,8,100],[38,6,8,102],[39,4,8,104],[39,5,8,105],[40,4,9,2],[40,23,9,21],[40,25,9,23],[41,6,9,25,"enumerable"],[41,16,9,35],[41,18,9,37],[41,22,9,41],[42,6,9,43,"get"],[42,9,9,46,"get"],[42,10,9,46],[42,12,9,49],[43,8,9,51],[43,15,9,58,"require"],[43,22,9,65],[43,23,9,65,"_dependencyMap"],[43,37,9,65],[43,77,9,101],[43,78,9,102],[44,6,9,104],[45,4,9,106],[45,5,9,107],[46,4,10,2],[46,27,10,25],[46,29,10,27],[47,6,10,29,"enumerable"],[47,16,10,39],[47,18,10,41],[47,22,10,45],[48,6,10,47,"get"],[48,9,10,50,"get"],[48,10,10,50],[48,12,10,53],[49,8,10,55],[49,15,10,62,"require"],[49,22,10,69],[49,23,10,69,"_dependencyMap"],[49,37,10,69],[49,81,10,109],[49,82,10,110],[50,6,10,112],[51,4,10,114],[51,5,10,115],[52,4,11,2],[52,21,11,19],[52,23,11,21],[53,6,11,23,"enumerable"],[53,16,11,33],[53,18,11,35],[53,22,11,39],[54,6,11,41,"get"],[54,9,11,44,"get"],[54,10,11,44],[54,12,11,47],[55,8,11,49],[55,15,11,56,"require"],[55,22,11,63],[55,23,11,63,"_dependencyMap"],[55,37,11,63],[55,75,11,97],[55,76,11,98],[56,6,11,100],[57,4,11,102],[57,5,11,103],[58,4,12,2],[58,17,12,15],[58,19,12,17],[59,6,12,19,"enumerable"],[59,16,12,29],[59,18,12,31],[59,22,12,35],[60,6,12,37,"get"],[60,9,12,40,"get"],[60,10,12,40],[60,12,12,43],[61,8,12,45],[61,15,12,52,"require"],[61,22,12,59],[61,23,12,59,"_dependencyMap"],[61,37,12,59],[61,71,12,89],[61,72,12,90],[62,6,12,92],[63,4,12,94],[63,5,12,95],[64,4,13,2],[64,18,13,16],[64,20,13,18],[65,6,13,20,"enumerable"],[65,16,13,30],[65,18,13,32],[65,22,13,36],[66,6,13,38,"get"],[66,9,13,41,"get"],[66,10,13,41],[66,12,13,44],[67,8,13,46],[67,15,13,53,"require"],[67,22,13,60],[67,23,13,60,"_dependencyMap"],[67,37,13,60],[67,73,13,91],[67,74,13,92],[68,6,13,94],[69,4,13,96],[69,5,13,97],[70,4,14,2],[70,23,14,21],[70,25,14,23],[71,6,14,25,"enumerable"],[71,16,14,35],[71,18,14,37],[71,22,14,41],[72,6,14,43,"get"],[72,9,14,46,"get"],[72,10,14,46],[72,12,14,49],[73,8,14,51],[73,15,14,58,"require"],[73,22,14,65],[73,23,14,65,"_dependencyMap"],[73,37,14,65],[73,78,14,101],[73,79,14,102],[74,6,14,104],[75,4,14,106],[76,2,15,0],[76,3,15,1],[76,4,15,2],[77,2,17,0],[77,11,17,9,"metroContext"],[77,23,17,21,"metroContext"],[77,24,17,22,"request"],[77,31,17,29],[77,33,17,31],[78,4,18,4],[78,11,18,11,"map"],[78,14,18,14],[78,15,18,15,"request"],[78,22,18,22],[78,23,18,23],[79,2,19,0],[81,2,21,0],[82,2,22,0,"metroContext"],[82,14,22,12],[82,15,22,13,"keys"],[82,19,22,17],[82,22,22,20],[82,31,22,29,"metroContextKeys"],[82,47,22,45,"metroContextKeys"],[82,48,22,45],[82,50,22,48],[83,4,23,2],[83,11,23,9,"Object"],[83,17,23,15],[83,18,23,16,"keys"],[83,22,23,20],[83,23,23,21,"map"],[83,26,23,24],[83,27,23,25],[84,2,24,0],[84,3,24,1],[86,2,26,0],[87,2,27,0,"metroContext"],[87,14,27,12],[87,15,27,13,"resolve"],[87,22,27,20],[87,25,27,23],[87,34,27,32,"metroContextResolve"],[87,53,27,51,"metroContextResolve"],[87,54,27,52,"request"],[87,61,27,59],[87,63,27,61],[88,4,28,2],[88,10,28,8],[88,14,28,12,"Error"],[88,19,28,17],[88,20,28,18],[88,70,28,68],[88,71,28,69],[89,2,29,0],[89,3,29,1],[90,2,31,0,"module"],[90,8,31,6],[90,9,31,7,"exports"],[90,16,31,14],[90,19,31,17,"metroContext"],[90,31,31,29],[91,0,31,30],[91,3]],"functionMap":{"names":["<global>","Object.defineProperties$argument_1.tabs_layoutTsx.get","Object.defineProperties$argument_1.tabsFriendsTsx.get","Object.defineProperties$argument_1.tabsHomeTsx.get","Object.defineProperties$argument_1.tabsProfileTsx.get","Object.defineProperties$argument_1._layoutTsx.get","Object.defineProperties$argument_1.authLoginTsx.get","Object.defineProperties$argument_1.authSignupTsx.get","Object.defineProperties$argument_1.chatUsernameTsx.get","Object.defineProperties$argument_1.gameIdTsx.get","Object.defineProperties$argument_1.indexTsx.get","Object.defineProperties$argument_1.logoutTsx.get","Object.defineProperties$argument_1.resultIdTsx.get","metroContext","metroContextKeys","metroContextResolve"],"mappings":"AAA;8CCE,iED;8CEC,iEF;2CGC,8DH;8CIC,iEJ;uCKC,0DL;0CMC,6DN;2COC,8DP;+CQC,kER;yCSC,4DT;qCUC,wDV;sCWC,yDX;2CYC,8DZ;AaG;CbE;oBcG;CdE;uBeG;CfE"},"hasCjsExports":true},"type":"js/module"}]}
+-\ No newline at end of file
+-diff --git a/frontend/.metro-cache/cache/37/2d0a048c282b0b5d389482e25de8dbddca1493127d1526c7657a02a58cc639f0bd5b4c b/frontend/.metro-cache/cache/37/2d0a048c282b0b5d389482e25de8dbddca1493127d1526c7657a02a58cc639f0bd5b4c
+-new file mode 100644
+-index 0000000..d750382
+---- /dev/null
+-+++ b/frontend/.metro-cache/cache/37/2d0a048c282b0b5d389482e25de8dbddca1493127d1526c7657a02a58cc639f0bd5b4c
+-@@ -0,0 +1 @@
+-+{"dependencies":[{"name":"/app/frontend/app/(tabs)/_layout.tsx","data":{"asyncType":null,"isESMImport":false,"locs":[{"start":{"line":3,"column":61,"index":173},"end":{"line":3,"column":108,"index":220}}],"key":"zqF8DOv66eWm3DcMNF6xt3w2O+A=","exportNames":["*"],"imports":1}},{"name":"/app/frontend/app/(tabs)/friends.tsx","data":{"asyncType":null,"isESMImport":false,"locs":[{"start":{"line":4,"column":61,"index":288},"end":{"line":4,"column":108,"index":335}}],"key":"GA9ixLa9/1XVvV7MPDBk8U8BDU8=","exportNames":["*"],"imports":1}},{"name":"/app/frontend/app/(tabs)/home.tsx","data":{"asyncType":null,"isESMImport":false,"locs":[{"start":{"line":5,"column":58,"index":400},"end":{"line":5,"column":102,"index":444}}],"key":"szjVaz8jOHbXZwTjQflgafhCQpE=","exportNames":["*"],"imports":1}},{"name":"/app/frontend/app/(tabs)/profile.tsx","data":{"asyncType":null,"isESMImport":false,"locs":[{"start":{"line":6,"column":61,"index":512},"end":{"line":6,"column":108,"index":559}}],"key":"GfGs19Z9hOrdgB+CtFEFxFuw4hE=","exportNames":["*"],"imports":1}},{"name":"/app/frontend/app/_layout.tsx","data":{"asyncType":null,"isESMImport":false,"locs":[{"start":{"line":7,"column":54,"index":620},"end":{"line":7,"column":94,"index":660}}],"key":"7RRIuuoX6Q3sxOlvyygH4M3jHIQ=","exportNames":["*"],"imports":1}},{"name":"/app/frontend/app/auth/login.tsx","data":{"asyncType":null,"isESMImport":false,"locs":[{"start":{"line":8,"column":57,"index":724},"end":{"line":8,"column":100,"index":767}}],"key":"rN7czzedO9Nhqi/P8qf/HbpFxes=","exportNames":["*"],"imports":1}},{"name":"/app/frontend/app/auth/signup.tsx","data":{"asyncType":null,"isESMImport":false,"locs":[{"start":{"line":9,"column":58,"index":832},"end":{"line":9,"column":102,"index":876}}],"key":"atugGvRMvBX+olVUCqLwe1jgBGI=","exportNames":["*"],"imports":1}},{"name":"/app/frontend/app/chat/[username].tsx","data":{"asyncType":null,"isESMImport":false,"locs":[{"start":{"line":10,"column":62,"index":945},"end":{"line":10,"column":110,"index":993}}],"key":"PMjUHuRaxgGLXnjYFfWYTC4S0cY=","exportNames":["*"],"imports":1}},{"name":"/app/frontend/app/game/[id].tsx","data":{"asyncType":null,"isESMImport":false,"locs":[{"start":{"line":11,"column":56,"index":1056},"end":{"line":11,"column":98,"index":1098}}],"key":"Bx7zVDrqJDt56UFxAz5Zfzs0In4=","exportNames":["*"],"imports":1}},{"name":"/app/frontend/app/index.tsx","data":{"asyncType":null,"isESMImport":false,"locs":[{"start":{"line":12,"column":52,"index":1157},"end":{"line":12,"column":90,"index":1195}}],"key":"NwcSa9S4ZGpMcIQJAbapomLGTP4=","exportNames":["*"],"imports":1}},{"name":"/app/frontend/app/logout.tsx","data":{"asyncType":null,"isESMImport":false,"locs":[{"start":{"line":13,"column":53,"index":1255},"end":{"line":13,"column":92,"index":1294}}],"key":"VCBkw9xxyuDglvbzwqYnLbTpodQ=","exportNames":["*"],"imports":1}},{"name":"/app/frontend/app/result/[id].tsx","data":{"asyncType":null,"isESMImport":false,"locs":[{"start":{"line":14,"column":58,"index":1359},"end":{"line":14,"column":102,"index":1403}}],"key":"vmycwSJoDyViIbwWf7GLZJ0PB7E=","exportNames":["*"],"imports":1}}],"output":[{"data":{"code":"__d(function (global, require, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {\n  // All of the requested modules are loaded behind enumerable getters.\n  const map = Object.defineProperties({}, {\n    \"./(tabs)/_layout.tsx\": {\n      enumerable: true,\n      get() {\n        return require(_dependencyMap[0], \"/app/frontend/app/(tabs)/_layout.tsx\");\n      }\n    },\n    \"./(tabs)/friends.tsx\": {\n      enumerable: true,\n      get() {\n        return require(_dependencyMap[1], \"/app/frontend/app/(tabs)/friends.tsx\");\n      }\n    },\n    \"./(tabs)/home.tsx\": {\n      enumerable: true,\n      get() {\n        return require(_dependencyMap[2], \"/app/frontend/app/(tabs)/home.tsx\");\n      }\n    },\n    \"./(tabs)/profile.tsx\": {\n      enumerable: true,\n      get() {\n        return require(_dependencyMap[3], \"/app/frontend/app/(tabs)/profile.tsx\");\n      }\n    },\n    \"./_layout.tsx\": {\n      enumerable: true,\n      get() {\n        return require(_dependencyMap[4], \"/app/frontend/app/_layout.tsx\");\n      }\n    },\n    \"./auth/login.tsx\": {\n      enumerable: true,\n      get() {\n        return require(_dependencyMap[5], \"/app/frontend/app/auth/login.tsx\");\n      }\n    },\n    \"./auth/signup.tsx\": {\n      enumerable: true,\n      get() {\n        return require(_dependencyMap[6], \"/app/frontend/app/auth/signup.tsx\");\n      }\n    },\n    \"./chat/[username].tsx\": {\n      enumerable: true,\n      get() {\n        return require(_dependencyMap[7], \"/app/frontend/app/chat/[username].tsx\");\n      }\n    },\n    \"./game/[id].tsx\": {\n      enumerable: true,\n      get() {\n        return require(_dependencyMap[8], \"/app/frontend/app/game/[id].tsx\");\n      }\n    },\n    \"./index.tsx\": {\n      enumerable: true,\n      get() {\n        return require(_dependencyMap[9], \"/app/frontend/app/index.tsx\");\n      }\n    },\n    \"./logout.tsx\": {\n      enumerable: true,\n      get() {\n        return require(_dependencyMap[10], \"/app/frontend/app/logout.tsx\");\n      }\n    },\n    \"./result/[id].tsx\": {\n      enumerable: true,\n      get() {\n        return require(_dependencyMap[11], \"/app/frontend/app/result/[id].tsx\");\n      }\n    }\n  });\n  function metroContext(request) {\n    return map[request];\n  }\n\n  // Return the keys that can be resolved.\n  metroContext.keys = function metroContextKeys() {\n    return Object.keys(map);\n  };\n\n  // Return the module identifier for a user request.\n  metroContext.resolve = function metroContextResolve(request) {\n    throw new Error('Unimplemented Metro module context functionality');\n  };\n  module.exports = metroContext;\n});","lineCount":91,"map":[[2,2,1,0],[3,2,2,0],[3,8,2,6,"map"],[3,11,2,9],[3,14,2,12,"Object"],[3,20,2,18],[3,21,2,19,"defineProperties"],[3,37,2,35],[3,38,2,36],[3,39,2,37],[3,40,2,38],[3,42,2,40],[4,4,3,2],[4,26,3,24],[4,28,3,26],[5,6,3,28,"enumerable"],[5,16,3,38],[5,18,3,40],[5,22,3,44],[6,6,3,46,"get"],[6,9,3,49,"get"],[6,10,3,49],[6,12,3,52],[7,8,3,54],[7,15,3,61,"require"],[7,22,3,68],[7,23,3,68,"_dependencyMap"],[7,37,3,68],[7,80,3,107],[7,81,3,108],[8,6,3,110],[9,4,3,112],[9,5,3,113],[10,4,4,2],[10,26,4,24],[10,28,4,26],[11,6,4,28,"enumerable"],[11,16,4,38],[11,18,4,40],[11,22,4,44],[12,6,4,46,"get"],[12,9,4,49,"get"],[12,10,4,49],[12,12,4,52],[13,8,4,54],[13,15,4,61,"require"],[13,22,4,68],[13,23,4,68,"_dependencyMap"],[13,37,4,68],[13,80,4,107],[13,81,4,108],[14,6,4,110],[15,4,4,112],[15,5,4,113],[16,4,5,2],[16,23,5,21],[16,25,5,23],[17,6,5,25,"enumerable"],[17,16,5,35],[17,18,5,37],[17,22,5,41],[18,6,5,43,"get"],[18,9,5,46,"get"],[18,10,5,46],[18,12,5,49],[19,8,5,51],[19,15,5,58,"require"],[19,22,5,65],[19,23,5,65,"_dependencyMap"],[19,37,5,65],[19,77,5,101],[19,78,5,102],[20,6,5,104],[21,4,5,106],[21,5,5,107],[22,4,6,2],[22,26,6,24],[22,28,6,26],[23,6,6,28,"enumerable"],[23,16,6,38],[23,18,6,40],[23,22,6,44],[24,6,6,46,"get"],[24,9,6,49,"get"],[24,10,6,49],[24,12,6,52],[25,8,6,54],[25,15,6,61,"require"],[25,22,6,68],[25,23,6,68,"_dependencyMap"],[25,37,6,68],[25,80,6,107],[25,81,6,108],[26,6,6,110],[27,4,6,112],[27,5,6,113],[28,4,7,2],[28,19,7,17],[28,21,7,19],[29,6,7,21,"enumerable"],[29,16,7,31],[29,18,7,33],[29,22,7,37],[30,6,7,39,"get"],[30,9,7,42,"get"],[30,10,7,42],[30,12,7,45],[31,8,7,47],[31,15,7,54,"require"],[31,22,7,61],[31,23,7,61,"_dependencyMap"],[31,37,7,61],[31,73,7,93],[31,74,7,94],[32,6,7,96],[33,4,7,98],[33,5,7,99],[34,4,8,2],[34,22,8,20],[34,24,8,22],[35,6,8,24,"enumerable"],[35,16,8,34],[35,18,8,36],[35,22,8,40],[36,6,8,42,"get"],[36,9,8,45,"get"],[36,10,8,45],[36,12,8,48],[37,8,8,50],[37,15,8,57,"require"],[37,22,8,64],[37,23,8,64,"_dependencyMap"],[37,37,8,64],[37,76,8,99],[37,77,8,100],[38,6,8,102],[39,4,8,104],[39,5,8,105],[40,4,9,2],[40,23,9,21],[40,25,9,23],[41,6,9,25,"enumerable"],[41,16,9,35],[41,18,9,37],[41,22,9,41],[42,6,9,43,"get"],[42,9,9,46,"get"],[42,10,9,46],[42,12,9,49],[43,8,9,51],[43,15,9,58,"require"],[43,22,9,65],[43,23,9,65,"_dependencyMap"],[43,37,9,65],[43,77,9,101],[43,78,9,102],[44,6,9,104],[45,4,9,106],[45,5,9,107],[46,4,10,2],[46,27,10,25],[46,29,10,27],[47,6,10,29,"enumerable"],[47,16,10,39],[47,18,10,41],[47,22,10,45],[48,6,10,47,"get"],[48,9,10,50,"get"],[48,10,10,50],[48,12,10,53],[49,8,10,55],[49,15,10,62,"require"],[49,22,10,69],[49,23,10,69,"_dependencyMap"],[49,37,10,69],[49,81,10,109],[49,82,10,110],[50,6,10,112],[51,4,10,114],[51,5,10,115],[52,4,11,2],[52,21,11,19],[52,23,11,21],[53,6,11,23,"enumerable"],[53,16,11,33],[53,18,11,35],[53,22,11,39],[54,6,11,41,"get"],[54,9,11,44,"get"],[54,10,11,44],[54,12,11,47],[55,8,11,49],[55,15,11,56,"require"],[55,22,11,63],[55,23,11,63,"_dependencyMap"],[55,37,11,63],[55,75,11,97],[55,76,11,98],[56,6,11,100],[57,4,11,102],[57,5,11,103],[58,4,12,2],[58,17,12,15],[58,19,12,17],[59,6,12,19,"enumerable"],[59,16,12,29],[59,18,12,31],[59,22,12,35],[60,6,12,37,"get"],[60,9,12,40,"get"],[60,10,12,40],[60,12,12,43],[61,8,12,45],[61,15,12,52,"require"],[61,22,12,59],[61,23,12,59,"_dependencyMap"],[61,37,12,59],[61,71,12,89],[61,72,12,90],[62,6,12,92],[63,4,12,94],[63,5,12,95],[64,4,13,2],[64,18,13,16],[64,20,13,18],[65,6,13,20,"enumerable"],[65,16,13,30],[65,18,13,32],[65,22,13,36],[66,6,13,38,"get"],[66,9,13,41,"get"],[66,10,13,41],[66,12,13,44],[67,8,13,46],[67,15,13,53,"require"],[67,22,13,60],[67,23,13,60,"_dependencyMap"],[67,37,13,60],[67,73,13,91],[67,74,13,92],[68,6,13,94],[69,4,13,96],[69,5,13,97],[70,4,14,2],[70,23,14,21],[70,25,14,23],[71,6,14,25,"enumerable"],[71,16,14,35],[71,18,14,37],[71,22,14,41],[72,6,14,43,"get"],[72,9,14,46,"get"],[72,10,14,46],[72,12,14,49],[73,8,14,51],[73,15,14,58,"require"],[73,22,14,65],[73,23,14,65,"_dependencyMap"],[73,37,14,65],[73,78,14,101],[73,79,14,102],[74,6,14,104],[75,4,14,106],[76,2,15,0],[76,3,15,1],[76,4,15,2],[77,2,17,0],[77,11,17,9,"metroContext"],[77,23,17,21,"metroContext"],[77,24,17,22,"request"],[77,31,17,29],[77,33,17,31],[78,4,18,4],[78,11,18,11,"map"],[78,14,18,14],[78,15,18,15,"request"],[78,22,18,22],[78,23,18,23],[79,2,19,0],[81,2,21,0],[82,2,22,0,"metroContext"],[82,14,22,12],[82,15,22,13,"keys"],[82,19,22,17],[82,22,22,20],[82,31,22,29,"metroContextKeys"],[82,47,22,45,"metroContextKeys"],[82,48,22,45],[82,50,22,48],[83,4,23,2],[83,11,23,9,"Object"],[83,17,23,15],[83,18,23,16,"keys"],[83,22,23,20],[83,23,23,21,"map"],[83,26,23,24],[83,27,23,25],[84,2,24,0],[84,3,24,1],[86,2,26,0],[87,2,27,0,"metroContext"],[87,14,27,12],[87,15,27,13,"resolve"],[87,22,27,20],[87,25,27,23],[87,34,27,32,"metroContextResolve"],[87,53,27,51,"metroContextResolve"],[87,54,27,52,"request"],[87,61,27,59],[87,63,27,61],[88,4,28,2],[88,10,28,8],[88,14,28,12,"Error"],[88,19,28,17],[88,20,28,18],[88,70,28,68],[88,71,28,69],[89,2,29,0],[89,3,29,1],[90,2,31,0,"module"],[90,8,31,6],[90,9,31,7,"exports"],[90,16,31,14],[90,19,31,17,"metroContext"],[90,31,31,29],[91,0,31,30],[91,3]],"functionMap":{"names":["<global>","Object.defineProperties$argument_1.tabs_layoutTsx.get","Object.defineProperties$argument_1.tabsFriendsTsx.get","Object.defineProperties$argument_1.tabsHomeTsx.get","Object.defineProperties$argument_1.tabsProfileTsx.get","Object.defineProperties$argument_1._layoutTsx.get","Object.defineProperties$argument_1.authLoginTsx.get","Object.defineProperties$argument_1.authSignupTsx.get","Object.defineProperties$argument_1.chatUsernameTsx.get","Object.defineProperties$argument_1.gameIdTsx.get","Object.defineProperties$argument_1.indexTsx.get","Object.defineProperties$argument_1.logoutTsx.get","Object.defineProperties$argument_1.resultIdTsx.get","metroContext","metroContextKeys","metroContextResolve"],"mappings":"AAA;8CCE,iED;8CEC,iEF;2CGC,8DH;8CIC,iEJ;uCKC,0DL;0CMC,6DN;2COC,8DP;+CQC,kER;yCSC,4DT;qCUC,wDV;sCWC,yDX;2CYC,8DZ;AaG;CbE;oBcG;CdE;uBeG;CfE"},"hasCjsExports":true},"type":"js/module"}]}
+-\ No newline at end of file
+-diff --git a/frontend/.metro-cache/cache/e2/1e641f39faab5e0cb9fbf5ec36d6f5ddca1493127d1526c7657a02a58cc639f0bd5b4c b/frontend/.metro-cache/cache/e2/1e641f39faab5e0cb9fbf5ec36d6f5ddca1493127d1526c7657a02a58cc639f0bd5b4c
+-new file mode 100644
+-index 0000000..d750382
+---- /dev/null
+-+++ b/frontend/.metro-cache/cache/e2/1e641f39faab5e0cb9fbf5ec36d6f5ddca1493127d1526c7657a02a58cc639f0bd5b4c
+-@@ -0,0 +1 @@
+-+{"dependencies":[{"name":"/app/frontend/app/(tabs)/_layout.tsx","data":{"asyncType":null,"isESMImport":false,"locs":[{"start":{"line":3,"column":61,"index":173},"end":{"line":3,"column":108,"index":220}}],"key":"zqF8DOv66eWm3DcMNF6xt3w2O+A=","exportNames":["*"],"imports":1}},{"name":"/app/frontend/app/(tabs)/friends.tsx","data":{"asyncType":null,"isESMImport":false,"locs":[{"start":{"line":4,"column":61,"index":288},"end":{"line":4,"column":108,"index":335}}],"key":"GA9ixLa9/1XVvV7MPDBk8U8BDU8=","exportNames":["*"],"imports":1}},{"name":"/app/frontend/app/(tabs)/home.tsx","data":{"asyncType":null,"isESMImport":false,"locs":[{"start":{"line":5,"column":58,"index":400},"end":{"line":5,"column":102,"index":444}}],"key":"szjVaz8jOHbXZwTjQflgafhCQpE=","exportNames":["*"],"imports":1}},{"name":"/app/frontend/app/(tabs)/profile.tsx","data":{"asyncType":null,"isESMImport":false,"locs":[{"start":{"line":6,"column":61,"index":512},"end":{"line":6,"column":108,"index":559}}],"key":"GfGs19Z9hOrdgB+CtFEFxFuw4hE=","exportNames":["*"],"imports":1}},{"name":"/app/frontend/app/_layout.tsx","data":{"asyncType":null,"isESMImport":false,"locs":[{"start":{"line":7,"column":54,"index":620},"end":{"line":7,"column":94,"index":660}}],"key":"7RRIuuoX6Q3sxOlvyygH4M3jHIQ=","exportNames":["*"],"imports":1}},{"name":"/app/frontend/app/auth/login.tsx","data":{"asyncType":null,"isESMImport":false,"locs":[{"start":{"line":8,"column":57,"index":724},"end":{"line":8,"column":100,"index":767}}],"key":"rN7czzedO9Nhqi/P8qf/HbpFxes=","exportNames":["*"],"imports":1}},{"name":"/app/frontend/app/auth/signup.tsx","data":{"asyncType":null,"isESMImport":false,"locs":[{"start":{"line":9,"column":58,"index":832},"end":{"line":9,"column":102,"index":876}}],"key":"atugGvRMvBX+olVUCqLwe1jgBGI=","exportNames":["*"],"imports":1}},{"name":"/app/frontend/app/chat/[username].tsx","data":{"asyncType":null,"isESMImport":false,"locs":[{"start":{"line":10,"column":62,"index":945},"end":{"line":10,"column":110,"index":993}}],"key":"PMjUHuRaxgGLXnjYFfWYTC4S0cY=","exportNames":["*"],"imports":1}},{"name":"/app/frontend/app/game/[id].tsx","data":{"asyncType":null,"isESMImport":false,"locs":[{"start":{"line":11,"column":56,"index":1056},"end":{"line":11,"column":98,"index":1098}}],"key":"Bx7zVDrqJDt56UFxAz5Zfzs0In4=","exportNames":["*"],"imports":1}},{"name":"/app/frontend/app/index.tsx","data":{"asyncType":null,"isESMImport":false,"locs":[{"start":{"line":12,"column":52,"index":1157},"end":{"line":12,"column":90,"index":1195}}],"key":"NwcSa9S4ZGpMcIQJAbapomLGTP4=","exportNames":["*"],"imports":1}},{"name":"/app/frontend/app/logout.tsx","data":{"asyncType":null,"isESMImport":false,"locs":[{"start":{"line":13,"column":53,"index":1255},"end":{"line":13,"column":92,"index":1294}}],"key":"VCBkw9xxyuDglvbzwqYnLbTpodQ=","exportNames":["*"],"imports":1}},{"name":"/app/frontend/app/result/[id].tsx","data":{"asyncType":null,"isESMImport":false,"locs":[{"start":{"line":14,"column":58,"index":1359},"end":{"line":14,"column":102,"index":1403}}],"key":"vmycwSJoDyViIbwWf7GLZJ0PB7E=","exportNames":["*"],"imports":1}}],"output":[{"data":{"code":"__d(function (global, require, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {\n  // All of the requested modules are loaded behind enumerable getters.\n  const map = Object.defineProperties({}, {\n    \"./(tabs)/_layout.tsx\": {\n      enumerable: true,\n      get() {\n        return require(_dependencyMap[0], \"/app/frontend/app/(tabs)/_layout.tsx\");\n      }\n    },\n    \"./(tabs)/friends.tsx\": {\n      enumerable: true,\n      get() {\n        return require(_dependencyMap[1], \"/app/frontend/app/(tabs)/friends.tsx\");\n      }\n    },\n    \"./(tabs)/home.tsx\": {\n      enumerable: true,\n      get() {\n        return require(_dependencyMap[2], \"/app/frontend/app/(tabs)/home.tsx\");\n      }\n    },\n    \"./(tabs)/profile.tsx\": {\n      enumerable: true,\n      get() {\n        return require(_dependencyMap[3], \"/app/frontend/app/(tabs)/profile.tsx\");\n      }\n    },\n    \"./_layout.tsx\": {\n      enumerable: true,\n      get() {\n        return require(_dependencyMap[4], \"/app/frontend/app/_layout.tsx\");\n      }\n    },\n    \"./auth/login.tsx\": {\n      enumerable: true,\n      get() {\n        return require(_dependencyMap[5], \"/app/frontend/app/auth/login.tsx\");\n      }\n    },\n    \"./auth/signup.tsx\": {\n      enumerable: true,\n      get() {\n        return require(_dependencyMap[6], \"/app/frontend/app/auth/signup.tsx\");\n      }\n    },\n    \"./chat/[username].tsx\": {\n      enumerable: true,\n      get() {\n        return require(_dependencyMap[7], \"/app/frontend/app/chat/[username].tsx\");\n      }\n    },\n    \"./game/[id].tsx\": {\n      enumerable: true,\n      get() {\n        return require(_dependencyMap[8], \"/app/frontend/app/game/[id].tsx\");\n      }\n    },\n    \"./index.tsx\": {\n      enumerable: true,\n      get() {\n        return require(_dependencyMap[9], \"/app/frontend/app/index.tsx\");\n      }\n    },\n    \"./logout.tsx\": {\n      enumerable: true,\n      get() {\n        return require(_dependencyMap[10], \"/app/frontend/app/logout.tsx\");\n      }\n    },\n    \"./result/[id].tsx\": {\n      enumerable: true,\n      get() {\n        return require(_dependencyMap[11], \"/app/frontend/app/result/[id].tsx\");\n      }\n    }\n  });\n  function metroContext(request) {\n    return map[request];\n  }\n\n  // Return the keys that can be resolved.\n  metroContext.keys = function metroContextKeys() {\n    return Object.keys(map);\n  };\n\n  // Return the module identifier for a user request.\n  metroContext.resolve = function metroContextResolve(request) {\n    throw new Error('Unimplemented Metro module context functionality');\n  };\n  module.exports = metroContext;\n});","lineCount":91,"map":[[2,2,1,0],[3,2,2,0],[3,8,2,6,"map"],[3,11,2,9],[3,14,2,12,"Object"],[3,20,2,18],[3,21,2,19,"defineProperties"],[3,37,2,35],[3,38,2,36],[3,39,2,37],[3,40,2,38],[3,42,2,40],[4,4,3,2],[4,26,3,24],[4,28,3,26],[5,6,3,28,"enumerable"],[5,16,3,38],[5,18,3,40],[5,22,3,44],[6,6,3,46,"get"],[6,9,3,49,"get"],[6,10,3,49],[6,12,3,52],[7,8,3,54],[7,15,3,61,"require"],[7,22,3,68],[7,23,3,68,"_dependencyMap"],[7,37,3,68],[7,80,3,107],[7,81,3,108],[8,6,3,110],[9,4,3,112],[9,5,3,113],[10,4,4,2],[10,26,4,24],[10,28,4,26],[11,6,4,28,"enumerable"],[11,16,4,38],[11,18,4,40],[11,22,4,44],[12,6,4,46,"get"],[12,9,4,49,"get"],[12,10,4,49],[12,12,4,52],[13,8,4,54],[13,15,4,61,"require"],[13,22,4,68],[13,23,4,68,"_dependencyMap"],[13,37,4,68],[13,80,4,107],[13,81,4,108],[14,6,4,110],[15,4,4,112],[15,5,4,113],[16,4,5,2],[16,23,5,21],[16,25,5,23],[17,6,5,25,"enumerable"],[17,16,5,35],[17,18,5,37],[17,22,5,41],[18,6,5,43,"get"],[18,9,5,46,"get"],[18,10,5,46],[18,12,5,49],[19,8,5,51],[19,15,5,58,"require"],[19,22,5,65],[19,23,5,65,"_dependencyMap"],[19,37,5,65],[19,77,5,101],[19,78,5,102],[20,6,5,104],[21,4,5,106],[21,5,5,107],[22,4,6,2],[22,26,6,24],[22,28,6,26],[23,6,6,28,"enumerable"],[23,16,6,38],[23,18,6,40],[23,22,6,44],[24,6,6,46,"get"],[24,9,6,49,"get"],[24,10,6,49],[24,12,6,52],[25,8,6,54],[25,15,6,61,"require"],[25,22,6,68],[25,23,6,68,"_dependencyMap"],[25,37,6,68],[25,80,6,107],[25,81,6,108],[26,6,6,110],[27,4,6,112],[27,5,6,113],[28,4,7,2],[28,19,7,17],[28,21,7,19],[29,6,7,21,"enumerable"],[29,16,7,31],[29,18,7,33],[29,22,7,37],[30,6,7,39,"get"],[30,9,7,42,"get"],[30,10,7,42],[30,12,7,45],[31,8,7,47],[31,15,7,54,"require"],[31,22,7,61],[31,23,7,61,"_dependencyMap"],[31,37,7,61],[31,73,7,93],[31,74,7,94],[32,6,7,96],[33,4,7,98],[33,5,7,99],[34,4,8,2],[34,22,8,20],[34,24,8,22],[35,6,8,24,"enumerable"],[35,16,8,34],[35,18,8,36],[35,22,8,40],[36,6,8,42,"get"],[36,9,8,45,"get"],[36,10,8,45],[36,12,8,48],[37,8,8,50],[37,15,8,57,"require"],[37,22,8,64],[37,23,8,64,"_dependencyMap"],[37,37,8,64],[37,76,8,99],[37,77,8,100],[38,6,8,102],[39,4,8,104],[39,5,8,105],[40,4,9,2],[40,23,9,21],[40,25,9,23],[41,6,9,25,"enumerable"],[41,16,9,35],[41,18,9,37],[41,22,9,41],[42,6,9,43,"get"],[42,9,9,46,"get"],[42,10,9,46],[42,12,9,49],[43,8,9,51],[43,15,9,58,"require"],[43,22,9,65],[43,23,9,65,"_dependencyMap"],[43,37,9,65],[43,77,9,101],[43,78,9,102],[44,6,9,104],[45,4,9,106],[45,5,9,107],[46,4,10,2],[46,27,10,25],[46,29,10,27],[47,6,10,29,"enumerable"],[47,16,10,39],[47,18,10,41],[47,22,10,45],[48,6,10,47,"get"],[48,9,10,50,"get"],[48,10,10,50],[48,12,10,53],[49,8,10,55],[49,15,10,62,"require"],[49,22,10,69],[49,23,10,69,"_dependencyMap"],[49,37,10,69],[49,81,10,109],[49,82,10,110],[50,6,10,112],[51,4,10,114],[51,5,10,115],[52,4,11,2],[52,21,11,19],[52,23,11,21],[53,6,11,23,"enumerable"],[53,16,11,33],[53,18,11,35],[53,22,11,39],[54,6,11,41,"get"],[54,9,11,44,"get"],[54,10,11,44],[54,12,11,47],[55,8,11,49],[55,15,11,56,"require"],[55,22,11,63],[55,23,11,63,"_dependencyMap"],[55,37,11,63],[55,75,11,97],[55,76,11,98],[56,6,11,100],[57,4,11,102],[57,5,11,103],[58,4,12,2],[58,17,12,15],[58,19,12,17],[59,6,12,19,"enumerable"],[59,16,12,29],[59,18,12,31],[59,22,12,35],[60,6,12,37,"get"],[60,9,12,40,"get"],[60,10,12,40],[60,12,12,43],[61,8,12,45],[61,15,12,52,"require"],[61,22,12,59],[61,23,12,59,"_dependencyMap"],[61,37,12,59],[61,71,12,89],[61,72,12,90],[62,6,12,92],[63,4,12,94],[63,5,12,95],[64,4,13,2],[64,18,13,16],[64,20,13,18],[65,6,13,20,"enumerable"],[65,16,13,30],[65,18,13,32],[65,22,13,36],[66,6,13,38,"get"],[66,9,13,41,"get"],[66,10,13,41],[66,12,13,44],[67,8,13,46],[67,15,13,53,"require"],[67,22,13,60],[67,23,13,60,"_dependencyMap"],[67,37,13,60],[67,73,13,91],[67,74,13,92],[68,6,13,94],[69,4,13,96],[69,5,13,97],[70,4,14,2],[70,23,14,21],[70,25,14,23],[71,6,14,25,"enumerable"],[71,16,14,35],[71,18,14,37],[71,22,14,41],[72,6,14,43,"get"],[72,9,14,46,"get"],[72,10,14,46],[72,12,14,49],[73,8,14,51],[73,15,14,58,"require"],[73,22,14,65],[73,23,14,65,"_dependencyMap"],[73,37,14,65],[73,78,14,101],[73,79,14,102],[74,6,14,104],[75,4,14,106],[76,2,15,0],[76,3,15,1],[76,4,15,2],[77,2,17,0],[77,11,17,9,"metroContext"],[77,23,17,21,"metroContext"],[77,24,17,22,"request"],[77,31,17,29],[77,33,17,31],[78,4,18,4],[78,11,18,11,"map"],[78,14,18,14],[78,15,18,15,"request"],[78,22,18,22],[78,23,18,23],[79,2,19,0],[81,2,21,0],[82,2,22,0,"metroContext"],[82,14,22,12],[82,15,22,13,"keys"],[82,19,22,17],[82,22,22,20],[82,31,22,29,"metroContextKeys"],[82,47,22,45,"metroContextKeys"],[82,48,22,45],[82,50,22,48],[83,4,23,2],[83,11,23,9,"Object"],[83,17,23,15],[83,18,23,16,"keys"],[83,22,23,20],[83,23,23,21,"map"],[83,26,23,24],[83,27,23,25],[84,2,24,0],[84,3,24,1],[86,2,26,0],[87,2,27,0,"metroContext"],[87,14,27,12],[87,15,27,13,"resolve"],[87,22,27,20],[87,25,27,23],[87,34,27,32,"metroContextResolve"],[87,53,27,51,"metroContextResolve"],[87,54,27,52,"request"],[87,61,27,59],[87,63,27,61],[88,4,28,2],[88,10,28,8],[88,14,28,12,"Error"],[88,19,28,17],[88,20,28,18],[88,70,28,68],[88,71,28,69],[89,2,29,0],[89,3,29,1],[90,2,31,0,"module"],[90,8,31,6],[90,9,31,7,"exports"],[90,16,31,14],[90,19,31,17,"metroContext"],[90,31,31,29],[91,0,31,30],[91,3]],"functionMap":{"names":["<global>","Object.defineProperties$argument_1.tabs_layoutTsx.get","Object.defineProperties$argument_1.tabsFriendsTsx.get","Object.defineProperties$argument_1.tabsHomeTsx.get","Object.defineProperties$argument_1.tabsProfileTsx.get","Object.defineProperties$argument_1._layoutTsx.get","Object.defineProperties$argument_1.authLoginTsx.get","Object.defineProperties$argument_1.authSignupTsx.get","Object.defineProperties$argument_1.chatUsernameTsx.get","Object.defineProperties$argument_1.gameIdTsx.get","Object.defineProperties$argument_1.indexTsx.get","Object.defineProperties$argument_1.logoutTsx.get","Object.defineProperties$argument_1.resultIdTsx.get","metroContext","metroContextKeys","metroContextResolve"],"mappings":"AAA;8CCE,iED;8CEC,iEF;2CGC,8DH;8CIC,iEJ;uCKC,0DL;0CMC,6DN;2COC,8DP;+CQC,kER;yCSC,4DT;qCUC,wDV;sCWC,yDX;2CYC,8DZ;AaG;CbE;oBcG;CdE;uBeG;CfE"},"hasCjsExports":true},"type":"js/module"}]}
+-\ No newline at end of file
 -diff --git a/model.patch b/model.patch
--index 44baf0d..e69de29 100644
+-index f99c67b..6025f9a 100644
 ---- a/model.patch
 -+++ b/model.patch
--@@ -1,408 +0,0 @@
+-@@ -1,431 +0,0 @@
+--diff --git a/frontend/app/(tabs)/_layout.tsx b/frontend/app/(tabs)/_layout.tsx
+--index 18bc2e4..b1966f8 100644
+----- a/frontend/app/(tabs)/_layout.tsx
+--+++ b/frontend/app/(tabs)/_layout.tsx
+--@@ -48,13 +48,6 @@ export default function TabsLayout() {
+--           tabBarIcon: ({ color, size }) => <Ionicons name="people" size={size} color={color} />,
+--         }}
+--       />
+---      <Tabs.Screen
+---        name="chats"
+---        options={{
+---          title: 'Chats',
+---          tabBarIcon: ({ color, size }) => <Ionicons name="chatbubbles" size={size} color={color} />,
+---        }}
+---      />
+--       <Tabs.Screen
+--         name="profile"
+--         options={{
 --diff --git a/model.patch b/model.patch
---index 2ea8299..e69de29 100644
+--index 44baf0d..e69de29 100644
 ----- a/model.patch
 --+++ b/model.patch
---@@ -1,403 +0,0 @@
----diff --git a/backend/server.py b/backend/server.py
----index 4a9f274..158aba8 100644
------- a/backend/server.py
----+++ b/backend/server.py
----@@ -809,49 +809,54 @@ async def get_chat_history(username: str, current_user: str = Depends(get_curren
---- @app.get("/api/chat/conversations")
---- async def get_conversations(current_user: str = Depends(get_current_user)):
----     """Get list of users current user can chat with (all friends)"""
-----    # Basit ve direkt çözüm - tüm arkadaşları getir
-----    friendships = await friends_collection.find({
-----        "$or": [
-----            {"user1": current_user, "status": "accepted"},
-----            {"user2": current_user, "status": "accepted"}
-----        ]
-----    }).to_list(100)
-----    
-----    result = []
-----    for friendship in friendships:
-----        # Partner username bul
-----        partner_username = friendship["user2"] if friendship["user1"] == current_user else friendship["user1"]
-----        
-----        # Partner bilgilerini çek
-----        partner = await users_collection.find_one({"username": partner_username})
-----        if not partner:
-----            continue
-----        
-----        # Son mesajı bul
-----        last_msg = await chats_collection.find_one({
----+    try:
----+        # Basit ve direkt çözüm - tüm arkadaşları getir
----+        friendships = await friends_collection.find({
----             "$or": [
-----                {"from_username": current_user, "to_username": partner_username},
-----                {"from_username": partner_username, "to_username": current_user}
----+                {"user1": current_user, "status": "accepted"},
----+                {"user2": current_user, "status": "accepted"}
----             ]
-----        }, sort=[("sent_at", -1)])
----+        }).to_list(100)
----         
-----        # Okunmamış mesaj sayısı
-----        unread_count = await chats_collection.count_documents({
-----            "from_username": partner_username,
-----            "to_username": current_user,
-----            "read": False
-----        })
----+        result = []
----+        for friendship in friendships:
----+            # Partner username bul
----+            partner_username = friendship["user2"] if friendship["user1"] == current_user else friendship["user1"]
----+            
----+            # Partner bilgilerini çek
----+            partner = await users_collection.find_one({"username": partner_username})
----+            if not partner:
----+                continue
----+            
----+            # Son mesajı bul
----+            last_msg = await chats_collection.find_one({
----+                "$or": [
----+                    {"from_username": current_user, "to_username": partner_username},
----+                    {"from_username": partner_username, "to_username": current_user}
----+                ]
----+            }, sort=[("sent_at", -1)])
----+            
----+            # Okunmamış mesaj sayısı
----+            unread_count = await chats_collection.count_documents({
----+                "from_username": partner_username,
----+                "to_username": current_user,
----+                "read": False
----+            })
----+            
----+            # Ensure all data is JSON serializable
----+            result.append({
----+                "username": str(partner.get("username", "")),
----+                "avatar": str(partner.get("avatar", "")),
----+                "bio": str(partner.get("bio", "")),
----+                "last_message": str(last_msg.get("message", "")) if last_msg else "",
----+                "last_message_time": last_msg.get("sent_at").isoformat() if last_msg and last_msg.get("sent_at") else "",
----+                "unread_count": int(unread_count)
----+            })
----         
-----        result.append({
-----            "username": partner["username"],
-----            "avatar": partner.get("avatar", ""),
-----            "bio": partner.get("bio", ""),
-----            "last_message": last_msg["message"] if last_msg else "",
-----            "last_message_time": last_msg["sent_at"].isoformat() if last_msg else "",
-----            "unread_count": unread_count
-----        })
-----    
-----    return result
----+        return result
----+    except Exception as e:
----+        print(f"❌ CONVERSATIONS ERROR: {str(e)}")
----+        return []
---- 
---- 
---- @app.get("/api/chat/test")
----@@ -864,10 +869,41 @@ async def test_conversations(current_user: str = Depends(get_current_user)):
----         ]
----     }).to_list(100)
----     
----+    # Return detailed debug information
----     return {
----+        "debug": "test_conversations_endpoint",
----         "current_user": current_user,
----         "friendships_count": len(friendships),
-----        "friendships": [{"user1": f["user1"], "user2": f["user2"]} for f in friendships]
----+        "friendships": [{"user1": f["user1"], "user2": f["user2"], "status": f["status"]} for f in friendships],
----+        "raw_friendships": friendships
----+    }
----+
----+@app.get("/api/debug/friendships")
----+async def debug_friendships(current_user: str = Depends(get_current_user)):
----+    """New debug endpoint to test friendships"""
----+    friendships = await friends_collection.find({
----+        "$or": [
----+            {"user1": current_user, "status": "accepted"},
----+            {"user2": current_user, "status": "accepted"}
----+        ]
----+    }).to_list(100)
----+    
----+    # Convert to simple dict without ObjectIds
----+    simple_friendships = []
----+    for f in friendships:
----+        simple_friendships.append({
----+            "user1": f.get("user1"),
----+            "user2": f.get("user2"),
----+            "status": f.get("status"),
----+            "requested_at": f.get("requested_at").isoformat() if f.get("requested_at") else None,
----+            "accepted_at": f.get("accepted_at").isoformat() if f.get("accepted_at") else None
----+        })
----+    
----+    return {
----+        "endpoint": "debug_friendships",
----+        "user": current_user,
----+        "count": len(friendships),
----+        "data": simple_friendships
----     }
---- 
---- @app.get("/api/health")
+--@@ -1,408 +0,0 @@
 ---diff --git a/model.patch b/model.patch
----index c80d2b5..785c49b 100644
+---index 2ea8299..e69de29 100644
 ------ a/model.patch
 ---+++ b/model.patch
----@@ -1,212 +0,0 @@
-----diff --git a/frontend/app/(tabs)/friends.tsx b/frontend/app/(tabs)/friends.tsx
-----index 5cd06e6..826e841 100644
-------- a/frontend/app/(tabs)/friends.tsx
-----+++ b/frontend/app/(tabs)/friends.tsx
-----@@ -6,6 +6,7 @@ import {
-----   FlatList,
-----   TouchableOpacity,
-----   RefreshControl,
-----+  Alert,
----- } from 'react-native';
----- import { SafeAreaView } from 'react-native-safe-area-context';
----- import { LinearGradient } from 'expo-linear-gradient';
-----@@ -27,6 +28,7 @@ export default function FriendsScreen() {
-----   const [friends, setFriends] = useState<Friend[]>([]);
-----   const [requests, setRequests] = useState<any[]>([]);
-----   const [refreshing, setRefreshing] = useState(false);
-----+  const router = useRouter();
+---@@ -1,403 +0,0 @@
+----diff --git a/backend/server.py b/backend/server.py
+----index 4a9f274..158aba8 100644
+------- a/backend/server.py
+----+++ b/backend/server.py
+----@@ -809,49 +809,54 @@ async def get_chat_history(username: str, current_user: str = Depends(get_curren
+---- @app.get("/api/chat/conversations")
+---- async def get_conversations(current_user: str = Depends(get_current_user)):
+----     """Get list of users current user can chat with (all friends)"""
+-----    # Basit ve direkt çözüm - tüm arkadaşları getir
+-----    friendships = await friends_collection.find({
+-----        "$or": [
+-----            {"user1": current_user, "status": "accepted"},
+-----            {"user2": current_user, "status": "accepted"}
+-----        ]
+-----    }).to_list(100)
+-----    
+-----    result = []
+-----    for friendship in friendships:
+-----        # Partner username bul
+-----        partner_username = friendship["user2"] if friendship["user1"] == current_user else friendship["user1"]
+-----        
+-----        # Partner bilgilerini çek
+-----        partner = await users_collection.find_one({"username": partner_username})
+-----        if not partner:
+-----            continue
+-----        
+-----        # Son mesajı bul
+-----        last_msg = await chats_collection.find_one({
+----+    try:
+----+        # Basit ve direkt çözüm - tüm arkadaşları getir
+----+        friendships = await friends_collection.find({
+----             "$or": [
+-----                {"from_username": current_user, "to_username": partner_username},
+-----                {"from_username": partner_username, "to_username": current_user}
+----+                {"user1": current_user, "status": "accepted"},
+----+                {"user2": current_user, "status": "accepted"}
+----             ]
+-----        }, sort=[("sent_at", -1)])
+----+        }).to_list(100)
+----         
+-----        # Okunmamış mesaj sayısı
+-----        unread_count = await chats_collection.count_documents({
+-----            "from_username": partner_username,
+-----            "to_username": current_user,
+-----            "read": False
+-----        })
+----+        result = []
+----+        for friendship in friendships:
+----+            # Partner username bul
+----+            partner_username = friendship["user2"] if friendship["user1"] == current_user else friendship["user1"]
+----+            
+----+            # Partner bilgilerini çek
+----+            partner = await users_collection.find_one({"username": partner_username})
+----+            if not partner:
+----+                continue
+----+            
+----+            # Son mesajı bul
+----+            last_msg = await chats_collection.find_one({
+----+                "$or": [
+----+                    {"from_username": current_user, "to_username": partner_username},
+----+                    {"from_username": partner_username, "to_username": current_user}
+----+                ]
+----+            }, sort=[("sent_at", -1)])
+----+            
+----+            # Okunmamış mesaj sayısı
+----+            unread_count = await chats_collection.count_documents({
+----+                "from_username": partner_username,
+----+                "to_username": current_user,
+----+                "read": False
+----+            })
+----+            
+----+            # Ensure all data is JSON serializable
+----+            result.append({
+----+                "username": str(partner.get("username", "")),
+----+                "avatar": str(partner.get("avatar", "")),
+----+                "bio": str(partner.get("bio", "")),
+----+                "last_message": str(last_msg.get("message", "")) if last_msg else "",
+----+                "last_message_time": last_msg.get("sent_at").isoformat() if last_msg and last_msg.get("sent_at") else "",
+----+                "unread_count": int(unread_count)
+----+            })
+----         
+-----        result.append({
+-----            "username": partner["username"],
+-----            "avatar": partner.get("avatar", ""),
+-----            "bio": partner.get("bio", ""),
+-----            "last_message": last_msg["message"] if last_msg else "",
+-----            "last_message_time": last_msg["sent_at"].isoformat() if last_msg else "",
+-----            "unread_count": unread_count
+-----        })
+-----    
+-----    return result
+----+        return result
+----+    except Exception as e:
+----+        print(f"❌ CONVERSATIONS ERROR: {str(e)}")
+----+        return []
 ---- 
-----   useEffect(() => {
-----     loadData();
+---- 
+---- @app.get("/api/chat/test")
+----@@ -864,10 +869,41 @@ async def test_conversations(current_user: str = Depends(get_current_user)):
+----         ]
+----     }).to_list(100)
+----     
+----+    # Return detailed debug information
+----     return {
+----+        "debug": "test_conversations_endpoint",
+----         "current_user": current_user,
+----         "friendships_count": len(friendships),
+-----        "friendships": [{"user1": f["user1"], "user2": f["user2"]} for f in friendships]
+----+        "friendships": [{"user1": f["user1"], "user2": f["user2"], "status": f["status"]} for f in friendships],
+----+        "raw_friendships": friendships
+----+    }
+----+
+----+@app.get("/api/debug/friendships")
+----+async def debug_friendships(current_user: str = Depends(get_current_user)):
+----+    """New debug endpoint to test friendships"""
+----+    friendships = await friends_collection.find({
+----+        "$or": [
+----+            {"user1": current_user, "status": "accepted"},
+----+            {"user2": current_user, "status": "accepted"}
+----+        ]
+----+    }).to_list(100)
+----+    
+----+    # Convert to simple dict without ObjectIds
+----+    simple_friendships = []
+----+    for f in friendships:
+----+        simple_friendships.append({
+----+            "user1": f.get("user1"),
+----+            "user2": f.get("user2"),
+----+            "status": f.get("status"),
+----+            "requested_at": f.get("requested_at").isoformat() if f.get("requested_at") else None,
+----+            "accepted_at": f.get("accepted_at").isoformat() if f.get("accepted_at") else None
+----+        })
+----+    
+----+    return {
+----+        "endpoint": "debug_friendships",
+----+        "user": current_user,
+----+        "count": len(friendships),
+----+        "data": simple_friendships
+----     }
+---- 
+---- @app.get("/api/health")
 ----diff --git a/model.patch b/model.patch
-----index ad9a15e..e69de29 100644
+----index c80d2b5..785c49b 100644
 ------- a/model.patch
 ----+++ b/model.patch
-----@@ -1,187 +0,0 @@
------diff --git a/backend/testbuddy_bot.py b/backend/testbuddy_bot.py
------index c13c355..69689de 100755
--------- a/backend/testbuddy_bot.py
------+++ b/backend/testbuddy_bot.py
------@@ -4,11 +4,6 @@ TestBuddy Bot - Arkadaşlık isteklerini otomatik kabul eder ve oyun daveti bekl
------ """
------ import requests
------ import time
-------import sys
-------
-------# Hemen print için buffering'i kapat
-------sys.stdout = sys.stdout.detach()
-------sys.stdout = open(sys.stdout.fileno(), 'w', buffering=1)
+----@@ -1,212 +0,0 @@
+-----diff --git a/frontend/app/(tabs)/friends.tsx b/frontend/app/(tabs)/friends.tsx
+-----index 5cd06e6..826e841 100644
+-------- a/frontend/app/(tabs)/friends.tsx
+-----+++ b/frontend/app/(tabs)/friends.tsx
+-----@@ -6,6 +6,7 @@ import {
+-----   FlatList,
+-----   TouchableOpacity,
+-----   RefreshControl,
+-----+  Alert,
+----- } from 'react-native';
+----- import { SafeAreaView } from 'react-native-safe-area-context';
+----- import { LinearGradient } from 'expo-linear-gradient';
+-----@@ -27,6 +28,7 @@ export default function FriendsScreen() {
+-----   const [friends, setFriends] = useState<Friend[]>([]);
+-----   const [requests, setRequests] = useState<any[]>([]);
+-----   const [refreshing, setRefreshing] = useState(false);
+-----+  const router = useRouter();
 ----- 
------ TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJUZXN0QnVkZHkiLCJleHAiOjE3NjM3MDUxNzJ9.rTzWWp35vX65Q1ORk2Oi1GapOdongsl3SSwHkbQitrU"
------ API_URL = "http://localhost:8001"
+-----   useEffect(() => {
+-----     loadData();
 -----diff --git a/model.patch b/model.patch
------index 1aaff7b..e69de29 100644
+-----index ad9a15e..e69de29 100644
 -------- a/model.patch
 -----+++ b/model.patch
------@@ -1,166 +0,0 @@
+-----@@ -1,187 +0,0 @@
 ------diff --git a/backend/testbuddy_bot.py b/backend/testbuddy_bot.py
-------index 5c4aae5..c13c355 100755
+------index c13c355..69689de 100755
 --------- a/backend/testbuddy_bot.py
 ------+++ b/backend/testbuddy_bot.py
-------@@ -6,6 +6,10 @@ import requests
+------@@ -4,11 +4,6 @@ TestBuddy Bot - Arkadaşlık isteklerini otomatik kabul eder ve oyun daveti bekl
+------ """
+------ import requests
 ------ import time
------- import sys
+-------import sys
+-------
+-------# Hemen print için buffering'i kapat
+-------sys.stdout = sys.stdout.detach()
+-------sys.stdout = open(sys.stdout.fileno(), 'w', buffering=1)
 ------ 
-------+# Hemen print için buffering'i kapat
-------+sys.stdout = sys.stdout.detach()
-------+sys.stdout = open(sys.stdout.fileno(), 'w', buffering=1)
-------+
 ------ TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJUZXN0QnVkZHkiLCJleHAiOjE3NjM3MDUxNzJ9.rTzWWp35vX65Q1ORk2Oi1GapOdongsl3SSwHkbQitrU"
 ------ API_URL = "http://localhost:8001"
------- HEADERS = {"Authorization": f"Bearer {TOKEN}"}
 ------diff --git a/model.patch b/model.patch
-------index b1b65df..e69de29 100644
+------index 1aaff7b..e69de29 100644
 --------- a/model.patch
 ------+++ b/model.patch
-------@@ -1,146 +0,0 @@
+------@@ -1,166 +0,0 @@
+-------diff --git a/backend/testbuddy_bot.py b/backend/testbuddy_bot.py
+-------index 5c4aae5..c13c355 100755
+---------- a/backend/testbuddy_bot.py
+-------+++ b/backend/testbuddy_bot.py
+-------@@ -6,6 +6,10 @@ import requests
+------- import time
+------- import sys
+------- 
+-------+# Hemen print için buffering'i kapat
+-------+sys.stdout = sys.stdout.detach()
+-------+sys.stdout = open(sys.stdout.fileno(), 'w', buffering=1)
+-------+
+------- TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJUZXN0QnVkZHkiLCJleHAiOjE3NjM3MDUxNzJ9.rTzWWp35vX65Q1ORk2Oi1GapOdongsl3SSwHkbQitrU"
+------- API_URL = "http://localhost:8001"
+------- HEADERS = {"Authorization": f"Bearer {TOKEN}"}
 -------diff --git a/model.patch b/model.patch
--------index 68a70ab..e69de29 100644
+-------index b1b65df..e69de29 100644
 ---------- a/model.patch
 -------+++ b/model.patch
--------@@ -1,141 +0,0 @@
+-------@@ -1,146 +0,0 @@
 --------diff --git a/model.patch b/model.patch
---------index 437b5ca..e69de29 100644
+--------index 68a70ab..e69de29 100644
 ----------- a/model.patch
 --------+++ b/model.patch
---------@@ -1,136 +0,0 @@
+--------@@ -1,141 +0,0 @@
 ---------diff --git a/model.patch b/model.patch
----------index 4c8ce1d..e69de29 100644
+---------index 437b5ca..e69de29 100644
 ------------ a/model.patch
 ---------+++ b/model.patch
----------@@ -1,131 +0,0 @@
-----------diff --git a/test_result.md b/test_result.md
-----------index 187cba4..6e761e5 100644
-------------- a/test_result.md
-----------+++ b/test_result.md
-----------@@ -100,4 +100,123 @@
----------- 
----------- #====================================================================================================
----------- # Testing Data - Main Agent and testing sub agent both should log testing data below this section
------------#====================================================================================================
-----------\ No newline at end of file
-----------+#====================================================================================================
-----------+
-----------+user_problem_statement: "Test the MindMatch backend API endpoints including health check, auth flow, user endpoints, game flow (AI mode), and friend system"
-----------+
-----------+backend:
-----------+  - task: "Health Check Endpoint"
-----------+    implemented: true
-----------+    working: true
-----------+    file: "backend/server.py"
-----------+    stuck_count: 0
-----------+    priority: "high"
-----------+    needs_retesting: false
-----------+    status_history:
-----------+        - working: true
-----------+          agent: "testing"
-----------+          comment: "GET /api/health endpoint tested successfully - returns {'status': 'healthy'}"
-----------+
-----------+  - task: "User Authentication (Signup/Login)"
-----------+    implemented: true
-----------+    working: true
-----------+    file: "backend/server.py"
-----------+    stuck_count: 0
-----------+    priority: "high"
-----------+    needs_retesting: false
-----------+    status_history:
-----------+        - working: true
-----------+          agent: "testing"
-----------+          comment: "Both signup and login endpoints working correctly. Tested with testuser1/test123 credentials. Returns proper JWT tokens."
-----------+
-----------+  - task: "User Profile Management"
-----------+    implemented: true
-----------+    working: true
-----------+    file: "backend/server.py"
-----------+    stuck_count: 0
-----------+    priority: "high"
-----------+    needs_retesting: false
-----------+    status_history:
-----------+        - working: true
-----------+          agent: "testing"
-----------+          comment: "GET /api/users/me endpoint working correctly. Returns complete user profile with all required fields (username, bio, xp, level, connection_score, total_games, badges)."
-----------+
-----------+  - task: "Online Users Endpoint"
-----------+    implemented: true
-----------+    working: true
-----------+    file: "backend/server.py"
-----------+    stuck_count: 0
-----------+    priority: "medium"
-----------+    needs_retesting: false
-----------+    status_history:
-----------+        - working: true
-----------+          agent: "testing"
-----------+          comment: "GET /api/users/online endpoint working correctly. Returns list of online users (empty list when no other users online)."
-----------+
-----------+  - task: "AI Game Creation and Management"
-----------+    implemented: true
-----------+    working: true
-----------+    file: "backend/server.py"
-----------+    stuck_count: 0
-----------+    priority: "high"
-----------+    needs_retesting: false
-----------+    status_history:
-----------+        - working: true
-----------+          agent: "testing"
-----------+          comment: "AI game creation working correctly. POST /api/game/create with mode='ai' creates game with AI opponent. Word submission and game status endpoints functional."
-----------+
-----------+  - task: "Game Word Submission"
-----------+    implemented: true
-----------+    working: true
-----------+    file: "backend/server.py"
-----------+    stuck_count: 0
-----------+    priority: "high"
-----------+    needs_retesting: false
-----------+    status_history:
-----------+        - working: true
-----------+          agent: "testing"
-----------+          comment: "POST /api/game/{game_id}/submit-word working correctly. Successfully submitted word 'OCEAN' and received proper response indicating move to next round."
-----------+
-----------+  - task: "Game Status Retrieval"
-----------+    implemented: true
-----------+    working: true
-----------+    file: "backend/server.py"
-----------+    stuck_count: 0
-----------+    priority: "high"
-----------+    needs_retesting: false
-----------+    status_history:
-----------+        - working: true
-----------+          agent: "testing"
-----------+          comment: "GET /api/game/{game_id}/status working correctly. Returns complete game state with all required fields (game_id, players, mode, status, current_round)."
-----------+
-----------+  - task: "Friend Request System"
-----------+    implemented: true
-----------+    working: true
-----------+    file: "backend/server.py"
-----------+    stuck_count: 0
-----------+    priority: "high"
-----------+    needs_retesting: false
-----------+    status_history:
-----------+        - working: true
-----------+          agent: "testing"
-----------+          comment: "Complete friend system working: send request (POST /api/friends/request), get requests (GET /api/friends/requests), accept request (POST /api/friends/accept/{username}). Tested full flow from testuser1 to testuser2."
-----------+
-----------+frontend:
-----------+  # Frontend testing not performed as per testing agent guidelines
-----------+
-----------+metadata:
-----------+  created_by: "testing_agent"
-----------+  version: "1.0"
-----------+  test_sequence: 1
-----------+  run_ui: false
-----------+
-----------+test_plan:
-----------+  current_focus:
-----------+    - "All backend endpoints tested and working"
-----------+  stuck_tasks: []
-----------+  test_all: true
-----------+  test_priority: "high_first"
-----------+
-----------+agent_communication:
-----------+    - agent: "testing"
-----------+      message: "Comprehensive backend API testing completed successfully. All 12 test cases passed (100% success rate). Tested: health check, auth flow (signup/login), user profile management, online users, AI game creation/management, word submission, game status, and complete friend request system. Backend is fully functional and ready for production use."
-----------\ No newline at end of file
----diff --git a/test_result.md b/test_result.md
----index 6e761e5..3e12998 100644
------- a/test_result.md
----+++ b/test_result.md
----@@ -201,6 +201,18 @@ backend:
----           agent: "testing"
----           comment: "Complete friend system working: send request (POST /api/friends/request), get requests (GET /api/friends/requests), accept request (POST /api/friends/accept/{username}). Tested full flow from testuser1 to testuser2."
---- 
----+  - task: "Chat Conversations Endpoint"
----+    implemented: true
----+    working: false
----+    file: "backend/server.py"
----+    stuck_count: 1
----+    priority: "high"
----+    needs_retesting: false
----+    status_history:
----+        - working: false
----+          agent: "testing"
----+          comment: "CRITICAL ISSUE FOUND: GET /api/chat/conversations returns empty array despite friendships existing. Root cause: MongoDB ObjectId serialization error in FastAPI response. Friendships exist in DB (player1 <-> TestBuddy, player1 <-> aykut) but endpoint fails to serialize response due to ObjectId fields. Chat history endpoints work fine. Needs ObjectId handling fix."
----+
---- frontend:
----   # Frontend testing not performed as per testing agent guidelines
---- 
----@@ -212,11 +224,14 @@ metadata:
---- 
---- test_plan:
----   current_focus:
-----    - "All backend endpoints tested and working"
-----  stuck_tasks: []
-----  test_all: true
-----  test_priority: "high_first"
----+    - "Chat Conversations Endpoint - ObjectId serialization fix needed"
----+  stuck_tasks: 
----+    - "Chat Conversations Endpoint"
----+  test_all: false
----+  test_priority: "stuck_first"
---- 
---- agent_communication:
----     - agent: "testing"
-----      message: "Comprehensive backend API testing completed successfully. All 12 test cases passed (100% success rate). Tested: health check, auth flow (signup/login), user profile management, online users, AI game creation/management, word submission, game status, and complete friend request system. Backend is fully functional and ready for production use."
----\ No newline at end of file
----+      message: "Comprehensive backend API testing completed successfully. All 12 test cases passed (100% success rate). Tested: health check, auth flow (signup/login), user profile management, online users, AI game creation/management, word submission, game status, and complete friend request system. Backend is fully functional and ready for production use."
----+    - agent: "testing"
----+      message: "CRITICAL ISSUE DISCOVERED: Chat conversations endpoint (GET /api/chat/conversations) failing due to MongoDB ObjectId serialization error. Friendships exist in database but endpoint returns empty array. Root cause: FastAPI cannot serialize MongoDB ObjectIds in response. All other chat endpoints work fine. This is blocking the Chat tab functionality. REQUIRES IMMEDIATE FIX."
----\ No newline at end of file
+---------@@ -1,136 +0,0 @@
+----------diff --git a/model.patch b/model.patch
+----------index 4c8ce1d..e69de29 100644
+------------- a/model.patch
+----------+++ b/model.patch
+----------@@ -1,131 +0,0 @@
+-----------diff --git a/test_result.md b/test_result.md
+-----------index 187cba4..6e761e5 100644
+-------------- a/test_result.md
+-----------+++ b/test_result.md
+-----------@@ -100,4 +100,123 @@
+----------- 
+----------- #====================================================================================================
+----------- # Testing Data - Main Agent and testing sub agent both should log testing data below this section
+------------#====================================================================================================
+-----------\ No newline at end of file
+-----------+#====================================================================================================
+-----------+
+-----------+user_problem_statement: "Test the MindMatch backend API endpoints including health check, auth flow, user endpoints, game flow (AI mode), and friend system"
+-----------+
+-----------+backend:
+-----------+  - task: "Health Check Endpoint"
+-----------+    implemented: true
+-----------+    working: true
+-----------+    file: "backend/server.py"
+-----------+    stuck_count: 0
+-----------+    priority: "high"
+-----------+    needs_retesting: false
+-----------+    status_history:
+-----------+        - working: true
+-----------+          agent: "testing"
+-----------+          comment: "GET /api/health endpoint tested successfully - returns {'status': 'healthy'}"
+-----------+
+-----------+  - task: "User Authentication (Signup/Login)"
+-----------+    implemented: true
+-----------+    working: true
+-----------+    file: "backend/server.py"
+-----------+    stuck_count: 0
+-----------+    priority: "high"
+-----------+    needs_retesting: false
+-----------+    status_history:
+-----------+        - working: true
+-----------+          agent: "testing"
+-----------+          comment: "Both signup and login endpoints working correctly. Tested with testuser1/test123 credentials. Returns proper JWT tokens."
+-----------+
+-----------+  - task: "User Profile Management"
+-----------+    implemented: true
+-----------+    working: true
+-----------+    file: "backend/server.py"
+-----------+    stuck_count: 0
+-----------+    priority: "high"
+-----------+    needs_retesting: false
+-----------+    status_history:
+-----------+        - working: true
+-----------+          agent: "testing"
+-----------+          comment: "GET /api/users/me endpoint working correctly. Returns complete user profile with all required fields (username, bio, xp, level, connection_score, total_games, badges)."
+-----------+
+-----------+  - task: "Online Users Endpoint"
+-----------+    implemented: true
+-----------+    working: true
+-----------+    file: "backend/server.py"
+-----------+    stuck_count: 0
+-----------+    priority: "medium"
+-----------+    needs_retesting: false
+-----------+    status_history:
+-----------+        - working: true
+-----------+          agent: "testing"
+-----------+          comment: "GET /api/users/online endpoint working correctly. Returns list of online users (empty list when no other users online)."
+-----------+
+-----------+  - task: "AI Game Creation and Management"
+-----------+    implemented: true
+-----------+    working: true
+-----------+    file: "backend/server.py"
+-----------+    stuck_count: 0
+-----------+    priority: "high"
+-----------+    needs_retesting: false
+-----------+    status_history:
+-----------+        - working: true
+-----------+          agent: "testing"
+-----------+          comment: "AI game creation working correctly. POST /api/game/create with mode='ai' creates game with AI opponent. Word submission and game status endpoints functional."
+-----------+
+-----------+  - task: "Game Word Submission"
+-----------+    implemented: true
+-----------+    working: true
+-----------+    file: "backend/server.py"
+-----------+    stuck_count: 0
+-----------+    priority: "high"
+-----------+    needs_retesting: false
+-----------+    status_history:
+-----------+        - working: true
+-----------+          agent: "testing"
+-----------+          comment: "POST /api/game/{game_id}/submit-word working correctly. Successfully submitted word 'OCEAN' and received proper response indicating move to next round."
+-----------+
+-----------+  - task: "Game Status Retrieval"
+-----------+    implemented: true
+-----------+    working: true
+-----------+    file: "backend/server.py"
+-----------+    stuck_count: 0
+-----------+    priority: "high"
+-----------+    needs_retesting: false
+-----------+    status_history:
+-----------+        - working: true
+-----------+          agent: "testing"
+-----------+          comment: "GET /api/game/{game_id}/status working correctly. Returns complete game state with all required fields (game_id, players, mode, status, current_round)."
+-----------+
+-----------+  - task: "Friend Request System"
+-----------+    implemented: true
+-----------+    working: true
+-----------+    file: "backend/server.py"
+-----------+    stuck_count: 0
+-----------+    priority: "high"
+-----------+    needs_retesting: false
+-----------+    status_history:
+-----------+        - working: true
+-----------+          agent: "testing"
+-----------+          comment: "Complete friend system working: send request (POST /api/friends/request), get requests (GET /api/friends/requests), accept request (POST /api/friends/accept/{username}). Tested full flow from testuser1 to testuser2."
+-----------+
+-----------+frontend:
+-----------+  # Frontend testing not performed as per testing agent guidelines
+-----------+
+-----------+metadata:
+-----------+  created_by: "testing_agent"
+-----------+  version: "1.0"
+-----------+  test_sequence: 1
+-----------+  run_ui: false
+-----------+
+-----------+test_plan:
+-----------+  current_focus:
+-----------+    - "All backend endpoints tested and working"
+-----------+  stuck_tasks: []
+-----------+  test_all: true
+-----------+  test_priority: "high_first"
+-----------+
+-----------+agent_communication:
+-----------+    - agent: "testing"
+-----------+      message: "Comprehensive backend API testing completed successfully. All 12 test cases passed (100% success rate). Tested: health check, auth flow (signup/login), user profile management, online users, AI game creation/management, word submission, game status, and complete friend request system. Backend is fully functional and ready for production use."
+-----------\ No newline at end of file
+----diff --git a/test_result.md b/test_result.md
+----index 6e761e5..3e12998 100644
+------- a/test_result.md
+----+++ b/test_result.md
+----@@ -201,6 +201,18 @@ backend:
+----           agent: "testing"
+----           comment: "Complete friend system working: send request (POST /api/friends/request), get requests (GET /api/friends/requests), accept request (POST /api/friends/accept/{username}). Tested full flow from testuser1 to testuser2."
+---- 
+----+  - task: "Chat Conversations Endpoint"
+----+    implemented: true
+----+    working: false
+----+    file: "backend/server.py"
+----+    stuck_count: 1
+----+    priority: "high"
+----+    needs_retesting: false
+----+    status_history:
+----+        - working: false
+----+          agent: "testing"
+----+          comment: "CRITICAL ISSUE FOUND: GET /api/chat/conversations returns empty array despite friendships existing. Root cause: MongoDB ObjectId serialization error in FastAPI response. Friendships exist in DB (player1 <-> TestBuddy, player1 <-> aykut) but endpoint fails to serialize response due to ObjectId fields. Chat history endpoints work fine. Needs ObjectId handling fix."
+----+
+---- frontend:
+----   # Frontend testing not performed as per testing agent guidelines
+---- 
+----@@ -212,11 +224,14 @@ metadata:
+---- 
+---- test_plan:
+----   current_focus:
+-----    - "All backend endpoints tested and working"
+-----  stuck_tasks: []
+-----  test_all: true
+-----  test_priority: "high_first"
+----+    - "Chat Conversations Endpoint - ObjectId serialization fix needed"
+----+  stuck_tasks: 
+----+    - "Chat Conversations Endpoint"
+----+  test_all: false
+----+  test_priority: "stuck_first"
+---- 
+---- agent_communication:
+----     - agent: "testing"
+-----      message: "Comprehensive backend API testing completed successfully. All 12 test cases passed (100% success rate). Tested: health check, auth flow (signup/login), user profile management, online users, AI game creation/management, word submission, game status, and complete friend request system. Backend is fully functional and ready for production use."
+----\ No newline at end of file
+----+      message: "Comprehensive backend API testing completed successfully. All 12 test cases passed (100% success rate). Tested: health check, auth flow (signup/login), user profile management, online users, AI game creation/management, word submission, game status, and complete friend request system. Backend is fully functional and ready for production use."
+----+    - agent: "testing"
+----+      message: "CRITICAL ISSUE DISCOVERED: Chat conversations endpoint (GET /api/chat/conversations) failing due to MongoDB ObjectId serialization error. Friendships exist in database but endpoint returns empty array. Root cause: FastAPI cannot serialize MongoDB ObjectIds in response. All other chat endpoints work fine. This is blocking the Chat tab functionality. REQUIRES IMMEDIATE FIX."
+----\ No newline at end of file
+-diff --git a/test_result.md b/test_result.md
+-index 3e12998..4991ff9 100644
+---- a/test_result.md
+-+++ b/test_result.md
+-@@ -213,6 +213,18 @@ backend:
+-           agent: "testing"
+-           comment: "CRITICAL ISSUE FOUND: GET /api/chat/conversations returns empty array despite friendships existing. Root cause: MongoDB ObjectId serialization error in FastAPI response. Friendships exist in DB (player1 <-> TestBuddy, player1 <-> aykut) but endpoint fails to serialize response due to ObjectId fields. Chat history endpoints work fine. Needs ObjectId handling fix."
+- 
+-+  - task: "Friend Mode Game Flow"
+-+    implemented: true
+-+    working: true
+-+    file: "backend/server.py"
+-+    stuck_count: 0
+-+    priority: "high"
+-+    needs_retesting: false
+-+    status_history:
+-+        - working: true
+-+          agent: "testing"
+-+          comment: "COMPREHENSIVE TESTING COMPLETED: Friend mode game flow tested extensively with multiple scenarios. Created test users, established friendships, created friend games, tested word submission, round progression, and SYNC scenarios. All tests passed successfully. Also tested with original users (aslan/alpay) mentioned in problem report - games progress correctly from round to round. The reported issue of games getting stuck in 'waiting' state could NOT be reproduced. Friend mode game mechanics are working perfectly."
+-+
+- frontend:
+-   # Frontend testing not performed as per testing agent guidelines
+- 
+-@@ -234,4 +246,6 @@ agent_communication:
+-     - agent: "testing"
+-       message: "Comprehensive backend API testing completed successfully. All 12 test cases passed (100% success rate). Tested: health check, auth flow (signup/login), user profile management, online users, AI game creation/management, word submission, game status, and complete friend request system. Backend is fully functional and ready for production use."
+-     - agent: "testing"
+--      message: "CRITICAL ISSUE DISCOVERED: Chat conversations endpoint (GET /api/chat/conversations) failing due to MongoDB ObjectId serialization error. Friendships exist in database but endpoint returns empty array. Root cause: FastAPI cannot serialize MongoDB ObjectIds in response. All other chat endpoints work fine. This is blocking the Chat tab functionality. REQUIRES IMMEDIATE FIX."
+-\ No newline at end of file
+-+      message: "CRITICAL ISSUE DISCOVERED: Chat conversations endpoint (GET /api/chat/conversations) failing due to MongoDB ObjectId serialization error. Friendships exist in database but endpoint returns empty array. Root cause: FastAPI cannot serialize MongoDB ObjectIds in response. All other chat endpoints work fine. This is blocking the Chat tab functionality. REQUIRES IMMEDIATE FIX."
+-+    - agent: "testing"
+-+      message: "FRIEND MODE GAME FLOW TESTING COMPLETED: Comprehensive testing of friend mode game flow shows NO ISSUES. Tested complete flow: user creation → friendship → game creation → word submission → round progression → SYNC scenario. All tests passed successfully. The reported issue of games getting stuck in 'waiting' state could NOT be reproduced. Tested with both new test users and original users (aslan/alpay) - all games progress correctly from round to round. Friend mode game mechanics are working as expected."
+-\ No newline at end of file
 diff --git a/test_result.md b/test_result.md
-index 3e12998..4991ff9 100644
+index 68eaaab..ac13f2e 100644
 --- a/test_result.md
 +++ b/test_result.md
-@@ -213,6 +213,18 @@ backend:
-           agent: "testing"
-           comment: "CRITICAL ISSUE FOUND: GET /api/chat/conversations returns empty array despite friendships existing. Root cause: MongoDB ObjectId serialization error in FastAPI response. Friendships exist in DB (player1 <-> TestBuddy, player1 <-> aykut) but endpoint fails to serialize response due to ObjectId fields. Chat history endpoints work fine. Needs ObjectId handling fix."
+@@ -227,15 +227,18 @@ backend:
  
-+  - task: "Friend Mode Game Flow"
-+    implemented: true
+   - task: "Game Invitation System"
+     implemented: true
+-    working: "NA"
 +    working: true
-+    file: "backend/server.py"
-+    stuck_count: 0
-+    priority: "high"
+     file: "backend/server.py"
+     stuck_count: 0
+     priority: "high"
+-    needs_retesting: true
 +    needs_retesting: false
-+    status_history:
+     status_history:
+         - working: "NA"
+           agent: "main"
+           comment: "Implemented complete game invitation system with 4 endpoints: POST /api/game/invite (send invite), GET /api/game/invites (get pending invites), POST /api/game/invite/{invite_id}/accept (accept and create game), POST /api/game/invite/{invite_id}/decline (decline invite). Updated response format to include from_user_avatar and from_user_level fields."
 +        - working: true
 +          agent: "testing"
-+          comment: "COMPREHENSIVE TESTING COMPLETED: Friend mode game flow tested extensively with multiple scenarios. Created test users, established friendships, created friend games, tested word submission, round progression, and SYNC scenarios. All tests passed successfully. Also tested with original users (aslan/alpay) mentioned in problem report - games progress correctly from round to round. The reported issue of games getting stuck in 'waiting' state could NOT be reproduced. Friend mode game mechanics are working perfectly."
-+
- frontend:
-   # Frontend testing not performed as per testing agent guidelines
++          comment: "COMPREHENSIVE TESTING COMPLETED: All 12 test cases passed (100% success rate). Tested complete game invitation flow: 1) POST /api/game/invite - Successfully sends invites to friends, correctly rejects non-friends and duplicates, 2) GET /api/game/invites - Returns proper invite structure with all required fields (invite_id, from_username, to_username, status, from_user_avatar, from_user_level, created_at), 3) POST /api/game/invite/{invite_id}/accept - Creates friend mode game correctly, handles non-existent and already processed invites properly, 4) POST /api/game/invite/{invite_id}/decline - Successfully declines invites. Game creation verified: both users can access created game with correct player1, player2, mode='friend'. All error scenarios tested and working correctly."
  
-@@ -234,4 +246,6 @@ agent_communication:
+ frontend:
+   - task: "Game Invitation UI - Friends Screen"
+@@ -258,7 +261,6 @@ metadata:
+ 
+ test_plan:
+   current_focus:
+-    - "Game Invitation System"
+     - "Game Invitation UI - Friends Screen"
+   stuck_tasks: 
+     - "Chat Conversations Endpoint"
+@@ -273,4 +275,6 @@ agent_communication:
      - agent: "testing"
-       message: "Comprehensive backend API testing completed successfully. All 12 test cases passed (100% success rate). Tested: health check, auth flow (signup/login), user profile management, online users, AI game creation/management, word submission, game status, and complete friend request system. Backend is fully functional and ready for production use."
-     - agent: "testing"
--      message: "CRITICAL ISSUE DISCOVERED: Chat conversations endpoint (GET /api/chat/conversations) failing due to MongoDB ObjectId serialization error. Friendships exist in database but endpoint returns empty array. Root cause: FastAPI cannot serialize MongoDB ObjectIds in response. All other chat endpoints work fine. This is blocking the Chat tab functionality. REQUIRES IMMEDIATE FIX."
+       message: "FRIEND MODE GAME FLOW TESTING COMPLETED: Comprehensive testing of friend mode game flow shows NO ISSUES. Tested complete flow: user creation → friendship → game creation → word submission → round progression → SYNC scenario. All tests passed successfully. The reported issue of games getting stuck in 'waiting' state could NOT be reproduced. Tested with both new test users and original users (aslan/alpay) - all games progress correctly from round to round. Friend mode game mechanics are working as expected."
+     - agent: "main"
+-      message: "GAME INVITATION SYSTEM IMPLEMENTED: Complete frontend and backend integration for game invitations. Users can now send game invites to friends from the Friends screen. Invites appear at the top of the Friends screen with Accept/Decline options. Upon acceptance, both players are directed to the same game. Backend endpoints have been enhanced to include user avatar and level data in invite responses. Ready for testing."
 \ No newline at end of file
-+      message: "CRITICAL ISSUE DISCOVERED: Chat conversations endpoint (GET /api/chat/conversations) failing due to MongoDB ObjectId serialization error. Friendships exist in database but endpoint returns empty array. Root cause: FastAPI cannot serialize MongoDB ObjectIds in response. All other chat endpoints work fine. This is blocking the Chat tab functionality. REQUIRES IMMEDIATE FIX."
++      message: "GAME INVITATION SYSTEM IMPLEMENTED: Complete frontend and backend integration for game invitations. Users can now send game invites to friends from the Friends screen. Invites appear at the top of the Friends screen with Accept/Decline options. Upon acceptance, both players are directed to the same game. Backend endpoints have been enhanced to include user avatar and level data in invite responses. Ready for testing."
 +    - agent: "testing"
-+      message: "FRIEND MODE GAME FLOW TESTING COMPLETED: Comprehensive testing of friend mode game flow shows NO ISSUES. Tested complete flow: user creation → friendship → game creation → word submission → round progression → SYNC scenario. All tests passed successfully. The reported issue of games getting stuck in 'waiting' state could NOT be reproduced. Tested with both new test users and original users (aslan/alpay) - all games progress correctly from round to round. Friend mode game mechanics are working as expected."
++      message: "GAME INVITATION SYSTEM TESTING COMPLETED: Comprehensive testing of all 4 game invitation endpoints shows 100% success rate (12/12 tests passed). All endpoints working correctly: POST /api/game/invite (sends invites to friends, rejects non-friends and duplicates), GET /api/game/invites (returns proper structure with all required fields), POST /api/game/invite/{invite_id}/accept (creates friend games correctly, handles errors properly), POST /api/game/invite/{invite_id}/decline (successfully declines invites). Complete flow tested: user creation → friendship → invite sending → invite retrieval → invite acceptance → game creation verification. Both users can access created games with correct properties (player1, player2, mode='friend'). All error scenarios tested and working as expected. Game invitation system is fully functional and ready for production use."
 \ No newline at end of file
