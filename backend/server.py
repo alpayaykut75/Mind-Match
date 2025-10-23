@@ -880,6 +880,22 @@ async def get_game_status(game_id: str, current_user: str = Depends(get_current_
     player1_user = await users_collection.find_one({"username": game["player1"]})
     player2_user = await users_collection.find_one({"username": game["player2"]})
     
+    # Determine if both players have submitted their words for current round
+    # Only show words if BOTH players have submitted
+    player1_word = game.get("player1_word")
+    player2_word = game.get("player2_word")
+    
+    # Hide words if not both submitted (unless game is completed/abandoned)
+    both_submitted = player1_word is not None and player2_word is not None
+    status = game["status"]
+    
+    if not both_submitted and status not in ["completed", "abandoned"]:
+        # Hide the opponent's word
+        if current_user == game["player1"]:
+            player2_word = None  # Hide opponent's word
+        else:
+            player1_word = None  # Hide opponent's word
+    
     return {
         "game_id": game_id,
         "player1": game["player1"],
@@ -887,10 +903,10 @@ async def get_game_status(game_id: str, current_user: str = Depends(get_current_
         "player1_avatar": player1_user.get("avatar", "") if player1_user else "",
         "player2_avatar": player2_user.get("avatar", "") if player2_user else "",
         "mode": game["mode"],
-        "status": game["status"],
+        "status": status,
         "current_round": game["current_round"],
-        "player1_word": game.get("player1_word"),
-        "player2_word": game.get("player2_word"),
+        "player1_word": player1_word,
+        "player2_word": player2_word,
         "synced": game.get("synced", False),
         "sync_word": game.get("sync_word"),
         "total_rounds": game.get("total_rounds", game["current_round"]),
