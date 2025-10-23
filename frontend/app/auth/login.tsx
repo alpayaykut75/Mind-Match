@@ -25,17 +25,25 @@ export default function Login() {
   const { login } = useAuth();
 
   const handleLogin = async () => {
+    console.log('🔵 Login button clicked!', { username, password: '***' });
+    
     if (!username || !password) {
+      console.log('❌ Empty fields');
       Alert.alert('Error', 'Please fill all fields');
       return;
     }
 
     setLoading(true);
+    console.log('🔄 Calling API...');
     try {
       const response = await authAPI.login({ username, password });
+      console.log('✅ API success:', response.data);
       await login(response.data.token, response.data.username);
+      console.log('✅ Auth context updated');
       router.replace('/(tabs)/home');
+      console.log('✅ Navigating to home');
     } catch (error: any) {
+      console.error('❌ Login error:', error);
       Alert.alert('Error', error.response?.data?.detail || 'Login failed');
     } finally {
       setLoading(false);
