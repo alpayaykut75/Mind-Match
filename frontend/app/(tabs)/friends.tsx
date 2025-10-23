@@ -78,6 +78,36 @@ export default function FriendsScreen() {
     }
   };
 
+  const handleSendGameInvite = async (friend: Friend) => {
+    try {
+      await gameAPI.sendGameInvite(friend.username);
+      Alert.alert('Success', `Game invite sent to ${friend.username}`);
+      await loadData();
+    } catch (error: any) {
+      Alert.alert('Error', error.response?.data?.detail || 'Failed to send game invite');
+    }
+  };
+
+  const handleAcceptInvite = async (invite: GameInvite) => {
+    try {
+      const response = await gameAPI.acceptGameInvite(invite.invite_id);
+      Alert.alert('Success', 'Game invite accepted!');
+      router.push(`/game/${response.data.game_id}`);
+    } catch (error: any) {
+      Alert.alert('Error', error.response?.data?.detail || 'Failed to accept invite');
+      await loadData();
+    }
+  };
+
+  const handleDeclineInvite = async (invite: GameInvite) => {
+    try {
+      await gameAPI.declineGameInvite(invite.invite_id);
+      await loadData();
+    } catch (error) {
+      Alert.alert('Error', 'Failed to decline invite');
+    }
+  };
+
   const handlePlayGame = async (friend: Friend) => {
     try {
       const response = await gameAPI.createGame('friend', friend.username);
