@@ -1,166 +1,187 @@
 diff --git a/backend/testbuddy_bot.py b/backend/testbuddy_bot.py
-index 5c4aae5..c13c355 100755
+index c13c355..69689de 100755
 --- a/backend/testbuddy_bot.py
 +++ b/backend/testbuddy_bot.py
-@@ -6,6 +6,10 @@ import requests
+@@ -4,11 +4,6 @@ TestBuddy Bot - Arkadaşlık isteklerini otomatik kabul eder ve oyun daveti bekl
+ """
+ import requests
  import time
- import sys
+-import sys
+-
+-# Hemen print için buffering'i kapat
+-sys.stdout = sys.stdout.detach()
+-sys.stdout = open(sys.stdout.fileno(), 'w', buffering=1)
  
-+# Hemen print için buffering'i kapat
-+sys.stdout = sys.stdout.detach()
-+sys.stdout = open(sys.stdout.fileno(), 'w', buffering=1)
-+
  TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJUZXN0QnVkZHkiLCJleHAiOjE3NjM3MDUxNzJ9.rTzWWp35vX65Q1ORk2Oi1GapOdongsl3SSwHkbQitrU"
  API_URL = "http://localhost:8001"
- HEADERS = {"Authorization": f"Bearer {TOKEN}"}
 diff --git a/model.patch b/model.patch
-index b1b65df..e69de29 100644
+index 1aaff7b..e69de29 100644
 --- a/model.patch
 +++ b/model.patch
-@@ -1,146 +0,0 @@
+@@ -1,166 +0,0 @@
+-diff --git a/backend/testbuddy_bot.py b/backend/testbuddy_bot.py
+-index 5c4aae5..c13c355 100755
+---- a/backend/testbuddy_bot.py
+-+++ b/backend/testbuddy_bot.py
+-@@ -6,6 +6,10 @@ import requests
+- import time
+- import sys
+- 
+-+# Hemen print için buffering'i kapat
+-+sys.stdout = sys.stdout.detach()
+-+sys.stdout = open(sys.stdout.fileno(), 'w', buffering=1)
+-+
+- TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJUZXN0QnVkZHkiLCJleHAiOjE3NjM3MDUxNzJ9.rTzWWp35vX65Q1ORk2Oi1GapOdongsl3SSwHkbQitrU"
+- API_URL = "http://localhost:8001"
+- HEADERS = {"Authorization": f"Bearer {TOKEN}"}
 -diff --git a/model.patch b/model.patch
--index 68a70ab..e69de29 100644
+-index b1b65df..e69de29 100644
 ---- a/model.patch
 -+++ b/model.patch
--@@ -1,141 +0,0 @@
+-@@ -1,146 +0,0 @@
 --diff --git a/model.patch b/model.patch
---index 437b5ca..e69de29 100644
+--index 68a70ab..e69de29 100644
 ----- a/model.patch
 --+++ b/model.patch
---@@ -1,136 +0,0 @@
+--@@ -1,141 +0,0 @@
 ---diff --git a/model.patch b/model.patch
----index 4c8ce1d..e69de29 100644
+---index 437b5ca..e69de29 100644
 ------ a/model.patch
 ---+++ b/model.patch
----@@ -1,131 +0,0 @@
-----diff --git a/test_result.md b/test_result.md
-----index 187cba4..6e761e5 100644
-------- a/test_result.md
-----+++ b/test_result.md
-----@@ -100,4 +100,123 @@
----- 
----- #====================================================================================================
----- # Testing Data - Main Agent and testing sub agent both should log testing data below this section
------#====================================================================================================
-----\ No newline at end of file
-----+#====================================================================================================
-----+
-----+user_problem_statement: "Test the MindMatch backend API endpoints including health check, auth flow, user endpoints, game flow (AI mode), and friend system"
-----+
-----+backend:
-----+  - task: "Health Check Endpoint"
-----+    implemented: true
-----+    working: true
-----+    file: "backend/server.py"
-----+    stuck_count: 0
-----+    priority: "high"
-----+    needs_retesting: false
-----+    status_history:
-----+        - working: true
-----+          agent: "testing"
-----+          comment: "GET /api/health endpoint tested successfully - returns {'status': 'healthy'}"
-----+
-----+  - task: "User Authentication (Signup/Login)"
-----+    implemented: true
-----+    working: true
-----+    file: "backend/server.py"
-----+    stuck_count: 0
-----+    priority: "high"
-----+    needs_retesting: false
-----+    status_history:
-----+        - working: true
-----+          agent: "testing"
-----+          comment: "Both signup and login endpoints working correctly. Tested with testuser1/test123 credentials. Returns proper JWT tokens."
-----+
-----+  - task: "User Profile Management"
-----+    implemented: true
-----+    working: true
-----+    file: "backend/server.py"
-----+    stuck_count: 0
-----+    priority: "high"
-----+    needs_retesting: false
-----+    status_history:
-----+        - working: true
-----+          agent: "testing"
-----+          comment: "GET /api/users/me endpoint working correctly. Returns complete user profile with all required fields (username, bio, xp, level, connection_score, total_games, badges)."
-----+
-----+  - task: "Online Users Endpoint"
-----+    implemented: true
-----+    working: true
-----+    file: "backend/server.py"
-----+    stuck_count: 0
-----+    priority: "medium"
-----+    needs_retesting: false
-----+    status_history:
-----+        - working: true
-----+          agent: "testing"
-----+          comment: "GET /api/users/online endpoint working correctly. Returns list of online users (empty list when no other users online)."
-----+
-----+  - task: "AI Game Creation and Management"
-----+    implemented: true
-----+    working: true
-----+    file: "backend/server.py"
-----+    stuck_count: 0
-----+    priority: "high"
-----+    needs_retesting: false
-----+    status_history:
-----+        - working: true
-----+          agent: "testing"
-----+          comment: "AI game creation working correctly. POST /api/game/create with mode='ai' creates game with AI opponent. Word submission and game status endpoints functional."
-----+
-----+  - task: "Game Word Submission"
-----+    implemented: true
-----+    working: true
-----+    file: "backend/server.py"
-----+    stuck_count: 0
-----+    priority: "high"
-----+    needs_retesting: false
-----+    status_history:
-----+        - working: true
-----+          agent: "testing"
-----+          comment: "POST /api/game/{game_id}/submit-word working correctly. Successfully submitted word 'OCEAN' and received proper response indicating move to next round."
-----+
-----+  - task: "Game Status Retrieval"
-----+    implemented: true
-----+    working: true
-----+    file: "backend/server.py"
-----+    stuck_count: 0
-----+    priority: "high"
-----+    needs_retesting: false
-----+    status_history:
-----+        - working: true
-----+          agent: "testing"
-----+          comment: "GET /api/game/{game_id}/status working correctly. Returns complete game state with all required fields (game_id, players, mode, status, current_round)."
-----+
-----+  - task: "Friend Request System"
-----+    implemented: true
-----+    working: true
-----+    file: "backend/server.py"
-----+    stuck_count: 0
-----+    priority: "high"
-----+    needs_retesting: false
-----+    status_history:
-----+        - working: true
-----+          agent: "testing"
-----+          comment: "Complete friend system working: send request (POST /api/friends/request), get requests (GET /api/friends/requests), accept request (POST /api/friends/accept/{username}). Tested full flow from testuser1 to testuser2."
-----+
-----+frontend:
-----+  # Frontend testing not performed as per testing agent guidelines
-----+
-----+metadata:
-----+  created_by: "testing_agent"
-----+  version: "1.0"
-----+  test_sequence: 1
-----+  run_ui: false
-----+
-----+test_plan:
-----+  current_focus:
-----+    - "All backend endpoints tested and working"
-----+  stuck_tasks: []
-----+  test_all: true
-----+  test_priority: "high_first"
-----+
-----+agent_communication:
-----+    - agent: "testing"
-----+      message: "Comprehensive backend API testing completed successfully. All 12 test cases passed (100% success rate). Tested: health check, auth flow (signup/login), user profile management, online users, AI game creation/management, word submission, game status, and complete friend request system. Backend is fully functional and ready for production use."
-----\ No newline at end of file
+---@@ -1,136 +0,0 @@
+----diff --git a/model.patch b/model.patch
+----index 4c8ce1d..e69de29 100644
+------- a/model.patch
+----+++ b/model.patch
+----@@ -1,131 +0,0 @@
+-----diff --git a/test_result.md b/test_result.md
+-----index 187cba4..6e761e5 100644
+-------- a/test_result.md
+-----+++ b/test_result.md
+-----@@ -100,4 +100,123 @@
+----- 
+----- #====================================================================================================
+----- # Testing Data - Main Agent and testing sub agent both should log testing data below this section
+------#====================================================================================================
+-----\ No newline at end of file
+-----+#====================================================================================================
+-----+
+-----+user_problem_statement: "Test the MindMatch backend API endpoints including health check, auth flow, user endpoints, game flow (AI mode), and friend system"
+-----+
+-----+backend:
+-----+  - task: "Health Check Endpoint"
+-----+    implemented: true
+-----+    working: true
+-----+    file: "backend/server.py"
+-----+    stuck_count: 0
+-----+    priority: "high"
+-----+    needs_retesting: false
+-----+    status_history:
+-----+        - working: true
+-----+          agent: "testing"
+-----+          comment: "GET /api/health endpoint tested successfully - returns {'status': 'healthy'}"
+-----+
+-----+  - task: "User Authentication (Signup/Login)"
+-----+    implemented: true
+-----+    working: true
+-----+    file: "backend/server.py"
+-----+    stuck_count: 0
+-----+    priority: "high"
+-----+    needs_retesting: false
+-----+    status_history:
+-----+        - working: true
+-----+          agent: "testing"
+-----+          comment: "Both signup and login endpoints working correctly. Tested with testuser1/test123 credentials. Returns proper JWT tokens."
+-----+
+-----+  - task: "User Profile Management"
+-----+    implemented: true
+-----+    working: true
+-----+    file: "backend/server.py"
+-----+    stuck_count: 0
+-----+    priority: "high"
+-----+    needs_retesting: false
+-----+    status_history:
+-----+        - working: true
+-----+          agent: "testing"
+-----+          comment: "GET /api/users/me endpoint working correctly. Returns complete user profile with all required fields (username, bio, xp, level, connection_score, total_games, badges)."
+-----+
+-----+  - task: "Online Users Endpoint"
+-----+    implemented: true
+-----+    working: true
+-----+    file: "backend/server.py"
+-----+    stuck_count: 0
+-----+    priority: "medium"
+-----+    needs_retesting: false
+-----+    status_history:
+-----+        - working: true
+-----+          agent: "testing"
+-----+          comment: "GET /api/users/online endpoint working correctly. Returns list of online users (empty list when no other users online)."
+-----+
+-----+  - task: "AI Game Creation and Management"
+-----+    implemented: true
+-----+    working: true
+-----+    file: "backend/server.py"
+-----+    stuck_count: 0
+-----+    priority: "high"
+-----+    needs_retesting: false
+-----+    status_history:
+-----+        - working: true
+-----+          agent: "testing"
+-----+          comment: "AI game creation working correctly. POST /api/game/create with mode='ai' creates game with AI opponent. Word submission and game status endpoints functional."
+-----+
+-----+  - task: "Game Word Submission"
+-----+    implemented: true
+-----+    working: true
+-----+    file: "backend/server.py"
+-----+    stuck_count: 0
+-----+    priority: "high"
+-----+    needs_retesting: false
+-----+    status_history:
+-----+        - working: true
+-----+          agent: "testing"
+-----+          comment: "POST /api/game/{game_id}/submit-word working correctly. Successfully submitted word 'OCEAN' and received proper response indicating move to next round."
+-----+
+-----+  - task: "Game Status Retrieval"
+-----+    implemented: true
+-----+    working: true
+-----+    file: "backend/server.py"
+-----+    stuck_count: 0
+-----+    priority: "high"
+-----+    needs_retesting: false
+-----+    status_history:
+-----+        - working: true
+-----+          agent: "testing"
+-----+          comment: "GET /api/game/{game_id}/status working correctly. Returns complete game state with all required fields (game_id, players, mode, status, current_round)."
+-----+
+-----+  - task: "Friend Request System"
+-----+    implemented: true
+-----+    working: true
+-----+    file: "backend/server.py"
+-----+    stuck_count: 0
+-----+    priority: "high"
+-----+    needs_retesting: false
+-----+    status_history:
+-----+        - working: true
+-----+          agent: "testing"
+-----+          comment: "Complete friend system working: send request (POST /api/friends/request), get requests (GET /api/friends/requests), accept request (POST /api/friends/accept/{username}). Tested full flow from testuser1 to testuser2."
+-----+
+-----+frontend:
+-----+  # Frontend testing not performed as per testing agent guidelines
+-----+
+-----+metadata:
+-----+  created_by: "testing_agent"
+-----+  version: "1.0"
+-----+  test_sequence: 1
+-----+  run_ui: false
+-----+
+-----+test_plan:
+-----+  current_focus:
+-----+    - "All backend endpoints tested and working"
+-----+  stuck_tasks: []
+-----+  test_all: true
+-----+  test_priority: "high_first"
+-----+
+-----+agent_communication:
+-----+    - agent: "testing"
+-----+      message: "Comprehensive backend API testing completed successfully. All 12 test cases passed (100% success rate). Tested: health check, auth flow (signup/login), user profile management, online users, AI game creation/management, word submission, game status, and complete friend request system. Backend is fully functional and ready for production use."
+-----\ No newline at end of file
