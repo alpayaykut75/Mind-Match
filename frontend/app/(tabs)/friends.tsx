@@ -37,6 +37,7 @@ interface GameInvite {
 export default function FriendsScreen() {
   const [friends, setFriends] = useState<Friend[]>([]);
   const [requests, setRequests] = useState<any[]>([]);
+  const [gameInvites, setGameInvites] = useState<GameInvite[]>([]);
   const [refreshing, setRefreshing] = useState(false);
   const router = useRouter();
 
