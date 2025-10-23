@@ -84,6 +84,10 @@ class SendMessage(BaseModel):
     message: str
 
 
+class GameInvite(BaseModel):
+    to_username: str
+
+
 class UpdateProfile(BaseModel):
     bio: Optional[str] = None
     age: Optional[int] = None
