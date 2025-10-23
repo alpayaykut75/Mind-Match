@@ -24,6 +24,16 @@ interface Friend {
   online: boolean;
 }
 
+interface GameInvite {
+  invite_id: string;
+  from_username: string;
+  to_username: string;
+  status: string;
+  created_at: string;
+  from_user_avatar?: string;
+  from_user_level?: number;
+}
+
 export default function FriendsScreen() {
   const [friends, setFriends] = useState<Friend[]>([]);
   const [requests, setRequests] = useState<any[]>([]);
