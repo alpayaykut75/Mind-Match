@@ -809,24 +809,19 @@ async def get_chat_history(username: str, current_user: str = Depends(get_curren
 @app.get("/api/chat/conversations")
 async def get_conversations(current_user: str = Depends(get_current_user)):
     """Get list of users current user can chat with (all friends)"""
-    print(f"🔍 Getting conversations for: {current_user}")
-    
-    # Find all friends (accepted friendships)
-    friendships = await friends_collection.find({
-        "$or": [
-            {"user1": current_user, "status": "accepted"},
-            {"user2": current_user, "status": "accepted"}
-        ]
-    }).to_list(100)
-    
-    print(f"🔍 Found {len(friendships)} friendships")
-    
-    chat_partners = set()
-    for friendship in friendships:
-        partner = friendship["user2"] if friendship["user1"] == current_user else friendship["user1"]
-        chat_partners.add(partner)
-    
-    print(f"🔍 Chat partners: {chat_partners}")
+    try:
+        # Find all friends (accepted friendships)
+        friendships = await friends_collection.find({
+            "$or": [
+                {"user1": current_user, "status": "accepted"},
+                {"user2": current_user, "status": "accepted"}
+            ]
+        }).to_list(100)
+        
+        chat_partners = set()
+        for friendship in friendships:
+            partner = friendship["user2"] if friendship["user1"] == current_user else friendship["user1"]
+            chat_partners.add(partner)
     
     result = []
     for partner_username in chat_partners:
