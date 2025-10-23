@@ -17,6 +17,7 @@ import { useRouter } from 'expo-router';
 import { theme } from '../../constants/theme';
 import { userAPI, gameAPI, friendAPI } from '../../utils/api';
 import { useAuth } from '../../contexts/AuthContext';
+import Avatar from '../../components/Avatar';
 
 interface User {
   username: string;
