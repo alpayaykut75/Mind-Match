@@ -818,6 +818,13 @@ async def get_conversations(current_user: str = Depends(get_current_user)):
             ]
         }).to_list(100)
         
+        # Debug: Check if we found friendships
+        if len(friendships) == 0:
+            print(f"⚠️ No friendships found for {current_user}")
+            return []
+        
+        print(f"✅ Found {len(friendships)} friendships for {current_user}")
+        
         result = []
         for friendship in friendships:
             # Partner username bul
