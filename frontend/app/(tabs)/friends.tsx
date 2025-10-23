@@ -12,6 +12,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { Ionicons } from '@expo/vector-icons';
 import { theme } from '../../constants/theme';
 import { friendAPI } from '../../utils/api';
+import Avatar from '../../components/Avatar';
 
 interface Friend {
   username: string;
