@@ -822,7 +822,7 @@ async def get_conversations(current_user: str = Depends(get_current_user)):
         for friendship in friendships:
             partner = friendship["user2"] if friendship["user1"] == current_user else friendship["user1"]
             chat_partners.add(partner)
-    
+        
         result = []
         for partner_username in chat_partners:
             user = await users_collection.find_one({"username": partner_username})
