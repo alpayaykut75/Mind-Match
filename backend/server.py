@@ -823,37 +823,42 @@ async def get_conversations(current_user: str = Depends(get_current_user)):
             partner = friendship["user2"] if friendship["user1"] == current_user else friendship["user1"]
             chat_partners.add(partner)
     
-    result = []
-    for partner_username in chat_partners:
-        user = await users_collection.find_one({"username": partner_username})
-        if user:
-            # Get last message
-            last_msg = await chats_collection.find_one({
-                "$or": [
-                    {"from_username": current_user, "to_username": partner_username},
-                    {"from_username": partner_username, "to_username": current_user}
-                ]
-            }, sort=[("sent_at", -1)])
-            
-            # Count unread
-            unread_count = await chats_collection.count_documents({
-                "from_username": partner_username,
-                "to_username": current_user,
-                "read": False
-            })
-            
-            result.append({
-                "username": user["username"],
-                "avatar": user.get("avatar", ""),
-                "bio": user.get("bio", ""),
-                "last_message": last_msg["message"] if last_msg else "",
-                "last_message_time": last_msg["sent_at"].isoformat() if last_msg else "",
-                "unread_count": unread_count
-            })
-    
-    # Sort by last message time
-    result.sort(key=lambda x: x.get("last_message_time", ""), reverse=True)
-    return result
+        result = []
+        for partner_username in chat_partners:
+            user = await users_collection.find_one({"username": partner_username})
+            if user:
+                # Get last message
+                last_msg = await chats_collection.find_one({
+                    "$or": [
+                        {"from_username": current_user, "to_username": partner_username},
+                        {"from_username": partner_username, "to_username": current_user}
+                    ]
+                }, sort=[("sent_at", -1)])
+                
+                # Count unread
+                unread_count = await chats_collection.count_documents({
+                    "from_username": partner_username,
+                    "to_username": current_user,
+                    "read": False
+                })
+                
+                result.append({
+                    "username": user["username"],
+                    "avatar": user.get("avatar", ""),
+                    "bio": user.get("bio", ""),
+                    "last_message": last_msg["message"] if last_msg else "",
+                    "last_message_time": last_msg["sent_at"].isoformat() if last_msg else "",
+                    "unread_count": unread_count
+                })
+        
+        # Sort by last message time
+        result.sort(key=lambda x: x.get("last_message_time", ""), reverse=True)
+        return result
+    except Exception as e:
+        print(f"❌ Error in conversations: {e}")
+        import traceback
+        traceback.print_exc()
+        return []
 
 
 @app.get("/api/health")
