@@ -31,11 +31,13 @@ def check_and_accept_friend_requests():
         print(f"Hata: {e}")
 
 def mark_online():
-    """Online olarak işaretle"""
+    """Online olarak işaretle - /api/users/me çağrısı last_seen günceller"""
     try:
-        requests.get(f"{API_URL}/api/users/online", headers=HEADERS)
-    except:
-        pass
+        response = requests.get(f"{API_URL}/api/users/me", headers=HEADERS)
+        if response.status_code == 200:
+            print("✓ TestBuddy online")
+    except Exception as e:
+        print(f"Mark online error: {e}")
 
 def check_game_invites():
     """Oyun davetlerini kontrol et ve kelime gönder"""
