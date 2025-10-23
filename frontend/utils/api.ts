@@ -43,9 +43,12 @@ export const friendAPI = {
 };
 
 export const gameAPI = {
-  createGame: (data: any) => api.post('/api/game/create', data),
-  submitWord: (gameId: string, word: string) => api.post(`/api/game/${gameId}/submit-word`, { word }),
-  getGameStatus: (gameId: string) => api.get(`/api/game/${gameId}/status`),
+  createGame: (mode: string, opponentUsername?: string) => 
+    api.post('/api/game/create', { mode, opponent_username: opponentUsername }),
+  submitWord: (gameId: string, word: string) => 
+    api.post(`/api/game/${gameId}/submit-word`, { word }),
+  getGameStatus: (gameId: string) => 
+    api.get(`/api/game/${gameId}/status`),
 };
 
 export const chatAPI = {
