@@ -225,6 +225,18 @@ backend:
           agent: "testing"
           comment: "COMPREHENSIVE TESTING COMPLETED: Friend mode game flow tested extensively with multiple scenarios. Created test users, established friendships, created friend games, tested word submission, round progression, and SYNC scenarios. All tests passed successfully. Also tested with original users (aslan/alpay) mentioned in problem report - games progress correctly from round to round. The reported issue of games getting stuck in 'waiting' state could NOT be reproduced. Friend mode game mechanics are working perfectly."
 
+  - task: "Game Invitation System"
+    implemented: true
+    working: "NA"
+    file: "backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+        - working: "NA"
+          agent: "main"
+          comment: "Implemented complete game invitation system with 4 endpoints: POST /api/game/invite (send invite), GET /api/game/invites (get pending invites), POST /api/game/invite/{invite_id}/accept (accept and create game), POST /api/game/invite/{invite_id}/decline (decline invite). Updated response format to include from_user_avatar and from_user_level fields."
+
 frontend:
   # Frontend testing not performed as per testing agent guidelines
 
