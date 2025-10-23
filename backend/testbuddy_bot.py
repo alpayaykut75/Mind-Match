@@ -153,6 +153,7 @@ def main():
             mark_online()
             check_and_accept_friend_requests()
             check_game_invites()
+            check_and_reply_chats()
             time.sleep(5)  # 5 saniyede bir kontrol et
         except KeyboardInterrupt:
             print("\n👋 TestBuddy Bot durduruluyor...")
