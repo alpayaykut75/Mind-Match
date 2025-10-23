@@ -74,6 +74,10 @@ export default function FriendsScreen() {
     }
   };
 
+  const handleChat = (friend: Friend) => {
+    router.push(`/chat/${friend.username}`);
+  };
+
   const renderFriend = ({ item }: { item: Friend }) => (
     <View style={styles.card}>
       <View style={styles.friendInfo}>
@@ -89,18 +93,34 @@ export default function FriendsScreen() {
           <Text style={styles.level}>Level {item.level}</Text>
         </View>
       </View>
-      <TouchableOpacity
-        style={styles.playButton}
-        onPress={() => handlePlayGame(item)}
-      >
-        <LinearGradient
-          colors={[theme.colors.primary, theme.colors.secondary]}
-          style={styles.playButtonGradient}
+      
+      <View style={styles.actionButtons}>
+        {/* Chat Button */}
+        <TouchableOpacity
+          style={styles.actionButton}
+          onPress={() => handleChat(item)}
         >
-          <Ionicons name="game-controller" size={20} color={theme.colors.text} />
-          <Text style={styles.playButtonText}>Play</Text>
-        </LinearGradient>
-      </TouchableOpacity>
+          <LinearGradient
+            colors={[theme.colors.primary, theme.colors.secondary]}
+            style={styles.actionButtonGradient}
+          >
+            <Ionicons name="chatbubble" size={18} color={theme.colors.text} />
+          </LinearGradient>
+        </TouchableOpacity>
+        
+        {/* Play Button */}
+        <TouchableOpacity
+          style={styles.actionButton}
+          onPress={() => handlePlayGame(item)}
+        >
+          <LinearGradient
+            colors={[theme.colors.primary, theme.colors.secondary]}
+            style={styles.actionButtonGradient}
+          >
+            <Ionicons name="game-controller" size={18} color={theme.colors.text} />
+          </LinearGradient>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 
