@@ -50,12 +50,14 @@ export default function FriendsScreen() {
 
   const loadData = async () => {
     try {
-      const [friendsRes, requestsRes] = await Promise.all([
+      const [friendsRes, requestsRes, invitesRes] = await Promise.all([
         friendAPI.getFriends(),
         friendAPI.getRequests(),
+        gameAPI.getGameInvites(),
       ]);
       setFriends(friendsRes.data);
       setRequests(requestsRes.data);
+      setGameInvites(invitesRes.data);
     } catch (error) {
       console.error('Failed to load friends', error);
     }
