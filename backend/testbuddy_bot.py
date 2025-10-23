@@ -14,8 +14,10 @@ def check_and_accept_friend_requests():
     """Arkadaşlık isteklerini kontrol et ve kabul et"""
     try:
         response = requests.get(f"{API_URL}/api/friends/requests", headers=HEADERS)
+        print(f"📬 Friend requests API response: {response.status_code}")
         if response.status_code == 200:
             requests_list = response.json()
+            print(f"📬 Bekleyen istek sayısı: {len(requests_list)}")
             for req in requests_list:
                 username = req.get("username")
                 print(f"✓ Arkadaşlık isteği alındı: {username}")
