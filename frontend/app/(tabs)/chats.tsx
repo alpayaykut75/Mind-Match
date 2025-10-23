@@ -13,6 +13,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 import { theme } from '../../constants/theme';
 import { chatAPI } from '../../utils/api';
+import Avatar from '../../components/Avatar';
 
 interface Conversation {
   username: string;
