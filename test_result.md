@@ -201,6 +201,18 @@ backend:
           agent: "testing"
           comment: "Complete friend system working: send request (POST /api/friends/request), get requests (GET /api/friends/requests), accept request (POST /api/friends/accept/{username}). Tested full flow from testuser1 to testuser2."
 
+  - task: "Chat Conversations Endpoint"
+    implemented: true
+    working: false
+    file: "backend/server.py"
+    stuck_count: 1
+    priority: "high"
+    needs_retesting: false
+    status_history:
+        - working: false
+          agent: "testing"
+          comment: "CRITICAL ISSUE FOUND: GET /api/chat/conversations returns empty array despite friendships existing. Root cause: MongoDB ObjectId serialization error in FastAPI response. Friendships exist in DB (player1 <-> TestBuddy, player1 <-> aykut) but endpoint fails to serialize response due to ObjectId fields. Chat history endpoints work fine. Needs ObjectId handling fix."
+
 frontend:
   # Frontend testing not performed as per testing agent guidelines
 
