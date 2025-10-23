@@ -539,6 +539,125 @@ async def get_friends(current_user: str = Depends(get_current_user)):
 
 # ============ GAME ENDPOINTS ============
 
+@app.post("/api/game/invite")
+async def send_game_invite(invite_data: GameInvite, current_user: str = Depends(get_current_user)):
+    """Send a game invitation to a friend"""
+    # Check if they are friends
+    friendship = await friends_collection.find_one({
+        "$or": [
+            {"user1": current_user, "user2": invite_data.to_username, "status": "accepted"},
+            {"user1": invite_data.to_username, "user2": current_user, "status": "accepted"}
+        ]
+    })
+    
+    if not friendship:
+        raise HTTPException(status_code=403, detail="Can only invite friends")
+    
+    # Check if invite already exists
+    existing_invite = await game_invites_collection.find_one({
+        "from_username": current_user,
+        "to_username": invite_data.to_username,
+        "status": "pending"
+    })
+    
+    if existing_invite:
+        raise HTTPException(status_code=400, detail="Invite already sent")
+    
+    # Create invite
+    invite_id = str(ObjectId())
+    await game_invites_collection.insert_one({
+        "_id": invite_id,
+        "from_username": current_user,
+        "to_username": invite_data.to_username,
+        "status": "pending",
+        "created_at": datetime.utcnow()
+    })
+    
+    return {"message": "Game invite sent", "invite_id": invite_id}
+
+
+@app.get("/api/game/invites")
+async def get_game_invites(current_user: str = Depends(get_current_user)):
+    """Get pending game invites for current user"""
+    invites = await game_invites_collection.find({
+        "to_username": current_user,
+        "status": "pending"
+    }).to_list(100)
+    
+    result = []
+    for invite in invites:
+        from_user = await users_collection.find_one({"username": invite["from_username"]})
+        if from_user:
+            result.append({
+                "invite_id": invite["_id"],
+                "from_username": from_user["username"],
+                "from_avatar": from_user.get("avatar", ""),
+                "created_at": invite["created_at"].isoformat()
+            })
+    
+    return result
+
+
+@app.post("/api/game/invite/{invite_id}/accept")
+async def accept_game_invite(invite_id: str, current_user: str = Depends(get_current_user)):
+    """Accept a game invitation and create game"""
+    invite = await game_invites_collection.find_one({"_id": invite_id})
+    
+    if not invite:
+        raise HTTPException(status_code=404, detail="Invite not found")
+    
+    if invite["to_username"] != current_user:
+        raise HTTPException(status_code=403, detail="Not your invite")
+    
+    if invite["status"] != "pending":
+        raise HTTPException(status_code=400, detail="Invite already processed")
+    
+    # Create game
+    game_id = str(ObjectId())
+    await games_collection.insert_one({
+        "_id": game_id,
+        "player1": invite["from_username"],
+        "player2": current_user,
+        "mode": "friend",
+        "status": "round_1_initial",
+        "current_round": 1,
+        "player1_word": None,
+        "player2_word": None,
+        "created_at": datetime.utcnow(),
+        "synced": False,
+        "sync_word": None,
+        "total_rounds": 0
+    })
+    
+    # Mark invite as accepted
+    await game_invites_collection.update_one(
+        {"_id": invite_id},
+        {"$set": {"status": "accepted"}}
+    )
+    
+    return {"game_id": game_id, "opponent": invite["from_username"]}
+
+
+@app.post("/api/game/invite/{invite_id}/decline")
+async def decline_game_invite(invite_id: str, current_user: str = Depends(get_current_user)):
+    """Decline a game invitation"""
+    invite = await game_invites_collection.find_one({"_id": invite_id})
+    
+    if not invite:
+        raise HTTPException(status_code=404, detail="Invite not found")
+    
+    if invite["to_username"] != current_user:
+        raise HTTPException(status_code=403, detail="Not your invite")
+    
+    # Mark invite as declined
+    await game_invites_collection.update_one(
+        {"_id": invite_id},
+        {"$set": {"status": "declined"}}
+    )
+    
+    return {"message": "Invite declined"}
+
+
 @app.post("/api/game/create")
 async def create_game(game_data: CreateGame, current_user: str = Depends(get_current_user)):
     game_id = str(ObjectId())
