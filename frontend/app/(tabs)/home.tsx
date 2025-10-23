@@ -68,10 +68,8 @@ export default function HomeScreen() {
 
   const startGame = async (mode: 'friend' | 'ai' | 'random') => {
     try {
-      const response = await gameAPI.createGame({
-        mode,
-        opponent_username: mode === 'friend' ? selectedUser?.username : undefined,
-      });
+      const opponentUsername = mode === 'friend' ? selectedUser?.username : undefined;
+      const response = await gameAPI.createGame(mode, opponentUsername);
       setModalVisible(false);
       router.push(`/game/${response.data.game_id}`);
     } catch (error: any) {
