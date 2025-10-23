@@ -125,6 +125,15 @@ class ChatConversationsTest:
             if response.status_code == 200:
                 debug_data = response.json()
                 self.log(f"Debug data: {json.dumps(debug_data, indent=2)}")
+                
+                # Additional debugging - check if it's returning the expected structure
+                if isinstance(debug_data, dict):
+                    self.log(f"Current user from debug: {debug_data.get('current_user')}")
+                    self.log(f"Friendships count: {debug_data.get('friendships_count')}")
+                    self.log(f"Friendships: {debug_data.get('friendships')}")
+                else:
+                    self.log(f"❌ Debug endpoint returned unexpected type: {type(debug_data)}", "ERROR")
+                
                 return debug_data
             else:
                 self.log(f"❌ Debug failed: {response.text}", "ERROR")
