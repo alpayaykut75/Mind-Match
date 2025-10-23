@@ -809,49 +809,54 @@ async def get_chat_history(username: str, current_user: str = Depends(get_curren
 @app.get("/api/chat/conversations")
 async def get_conversations(current_user: str = Depends(get_current_user)):
     """Get list of users current user can chat with (all friends)"""
-    # Basit ve direkt çözüm - tüm arkadaşları getir
-    friendships = await friends_collection.find({
-        "$or": [
-            {"user1": current_user, "status": "accepted"},
-            {"user2": current_user, "status": "accepted"}
-        ]
-    }).to_list(100)
-    
-    result = []
-    for friendship in friendships:
-        # Partner username bul
-        partner_username = friendship["user2"] if friendship["user1"] == current_user else friendship["user1"]
-        
-        # Partner bilgilerini çek
-        partner = await users_collection.find_one({"username": partner_username})
-        if not partner:
-            continue
-        
-        # Son mesajı bul
-        last_msg = await chats_collection.find_one({
+    try:
+        # Basit ve direkt çözüm - tüm arkadaşları getir
+        friendships = await friends_collection.find({
             "$or": [
-                {"from_username": current_user, "to_username": partner_username},
-                {"from_username": partner_username, "to_username": current_user}
+                {"user1": current_user, "status": "accepted"},
+                {"user2": current_user, "status": "accepted"}
             ]
-        }, sort=[("sent_at", -1)])
+        }).to_list(100)
         
-        # Okunmamış mesaj sayısı
-        unread_count = await chats_collection.count_documents({
-            "from_username": partner_username,
-            "to_username": current_user,
-            "read": False
-        })
+        result = []
+        for friendship in friendships:
+            # Partner username bul
+            partner_username = friendship["user2"] if friendship["user1"] == current_user else friendship["user1"]
+            
+            # Partner bilgilerini çek
+            partner = await users_collection.find_one({"username": partner_username})
+            if not partner:
+                continue
+            
+            # Son mesajı bul
+            last_msg = await chats_collection.find_one({
+                "$or": [
+                    {"from_username": current_user, "to_username": partner_username},
+                    {"from_username": partner_username, "to_username": current_user}
+                ]
+            }, sort=[("sent_at", -1)])
+            
+            # Okunmamış mesaj sayısı
+            unread_count = await chats_collection.count_documents({
+                "from_username": partner_username,
+                "to_username": current_user,
+                "read": False
+            })
+            
+            # Ensure all data is JSON serializable
+            result.append({
+                "username": str(partner.get("username", "")),
+                "avatar": str(partner.get("avatar", "")),
+                "bio": str(partner.get("bio", "")),
+                "last_message": str(last_msg.get("message", "")) if last_msg else "",
+                "last_message_time": last_msg.get("sent_at").isoformat() if last_msg and last_msg.get("sent_at") else "",
+                "unread_count": int(unread_count)
+            })
         
-        result.append({
-            "username": partner["username"],
-            "avatar": partner.get("avatar", ""),
-            "bio": partner.get("bio", ""),
-            "last_message": last_msg.get("message", "") if last_msg else "",
-            "last_message_time": last_msg.get("sent_at").isoformat() if last_msg and last_msg.get("sent_at") else "",
-            "unread_count": unread_count
-        })
-    
-    return result
+        return result
+    except Exception as e:
+        print(f"❌ CONVERSATIONS ERROR: {str(e)}")
+        return []
 
 
 @app.get("/api/chat/test")
