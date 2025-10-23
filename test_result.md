@@ -261,7 +261,6 @@ metadata:
 
 test_plan:
   current_focus:
-    - "Game Invitation System"
     - "Game Invitation UI - Friends Screen"
   stuck_tasks: 
     - "Chat Conversations Endpoint"
