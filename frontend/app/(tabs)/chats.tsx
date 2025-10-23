@@ -55,12 +55,7 @@ export default function ChatsScreen() {
       style={styles.card}
       onPress={() => router.push(`/chat/${item.username}`)}
     >
-      <LinearGradient
-        colors={[theme.colors.primary, theme.colors.secondary]}
-        style={styles.avatar}
-      >
-        <Ionicons name="person" size={24} color={theme.colors.text} />
-      </LinearGradient>
+      <Avatar avatar={item.avatar} size={50} />
       <View style={styles.details}>
         <View style={styles.header}>
           <Text style={styles.username}>{item.username}</Text>
