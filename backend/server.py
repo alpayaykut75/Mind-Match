@@ -877,6 +877,23 @@ async def test_conversations(current_user: str = Depends(get_current_user)):
         "raw_friendships": friendships
     }
 
+@app.get("/api/debug/friendships")
+async def debug_friendships(current_user: str = Depends(get_current_user)):
+    """New debug endpoint to test friendships"""
+    friendships = await friends_collection.find({
+        "$or": [
+            {"user1": current_user, "status": "accepted"},
+            {"user2": current_user, "status": "accepted"}
+        ]
+    }).to_list(100)
+    
+    return {
+        "endpoint": "debug_friendships",
+        "user": current_user,
+        "count": len(friendships),
+        "data": friendships
+    }
+
 @app.get("/api/health")
 async def health():
     return {"status": "healthy"}
