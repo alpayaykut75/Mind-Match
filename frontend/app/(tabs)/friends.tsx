@@ -382,6 +382,26 @@ const styles = StyleSheet.create({
     color: theme.colors.text,
     fontWeight: 'bold',
   },
+  inviteText: {
+    fontSize: 14,
+    color: theme.colors.textSecondary,
+    marginTop: 2,
+  },
+  inviteButtons: {
+    flexDirection: 'row',
+    gap: theme.spacing.sm,
+    marginLeft: theme.spacing.md,
+    alignItems: 'center',
+  },
+  declineButton: {
+    // Button container for decline
+  },
+  acceptInviteButton: {
+    // Button container for accept
+  },
+  acceptInviteGradient: {
+    borderRadius: 16,
+  },
   emptyText: {
     color: theme.colors.textSecondary,
     textAlign: 'center',
