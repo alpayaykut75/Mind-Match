@@ -564,7 +564,13 @@ async def create_game(game_data: CreateGame, current_user: str = Depends(get_cur
         "total_rounds": 0
     }
     
-    await games_collection.insert_one(game_doc)
+    try:
+        result = await games_collection.insert_one(game_doc)
+        print(f"✅ Game inserted: {result.inserted_id}")
+    except Exception as e:
+        print(f"❌ Insert error: {e}")
+        raise
+    
     return {"game_id": game_id, "opponent": opponent, "mode": game_data.mode}
 
 
