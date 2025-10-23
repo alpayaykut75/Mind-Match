@@ -10,7 +10,7 @@ import time
 from datetime import datetime
 
 # Backend URL from frontend/.env
-BACKEND_URL = "https://syncmates.preview.emergentagent.com/api"
+BACKEND_URL = "https://mindlink-social.preview.emergentagent.com/api"
 
 class FriendGameFlowTester:
     def __init__(self):
