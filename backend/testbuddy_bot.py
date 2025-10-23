@@ -39,6 +39,61 @@ def mark_online():
     except Exception as e:
         print(f"Mark online error: {e}")
 
+def check_and_reply_chats():
+    """Gelen mesajları kontrol et ve cevap ver"""
+    try:
+        import pymongo
+        from datetime import datetime, timedelta
+        
+        client = pymongo.MongoClient("mongodb://localhost:27017")
+        db = client["mindmatch_db"]
+        chats_collection = db["chats"]
+        
+        # TestBuddy'ye gönderilen okunmamış mesajları bul
+        unread_messages = chats_collection.find({
+            "to_username": "TestBuddy",
+            "read": False
+        })
+        
+        for msg in unread_messages:
+            from_user = msg["from_username"]
+            message_text = msg["message"]
+            
+            print(f"💬 {from_user}: {message_text}")
+            
+            # Basit cevaplar
+            responses = [
+                "Nice! 🎮",
+                "Great game! 🔥",
+                "Let's play again! 🚀",
+                "You're good! 😎",
+                "That was fun! ⚡",
+                "Amazing! 🌟",
+                "GG! 💜",
+                "Cool! 🎯"
+            ]
+            
+            import random
+            bot_reply = random.choice(responses)
+            
+            # Cevap gönder
+            response = requests.post(
+                f"{API_URL}/api/chat/send",
+                headers=HEADERS,
+                json={"to_username": from_user, "message": bot_reply}
+            )
+            
+            if response.status_code == 200:
+                print(f"✓ TestBuddy cevap verdi: {bot_reply}")
+                
+                # Mesajı okundu olarak işaretle
+                chats_collection.update_one(
+                    {"_id": msg["_id"]},
+                    {"$set": {"read": True}}
+                )
+    except Exception as e:
+        print(f"Chat kontrol hatası: {e}")
+
 def check_game_invites():
     """Oyun davetlerini kontrol et ve kelime gönder"""
     try:
