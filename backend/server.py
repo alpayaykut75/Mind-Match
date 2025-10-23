@@ -810,12 +810,14 @@ async def get_chat_history(username: str, current_user: str = Depends(get_curren
 async def get_conversations(current_user: str = Depends(get_current_user)):
     """Get list of users current user can chat with (those they've synced with)"""
     # Find all games where user synced
+    print(f"🔍 Getting conversations for: {current_user}")
     synced_games = await games_collection.find({
         "$or": [
             {"player1": current_user, "synced": True},
             {"player2": current_user, "synced": True}
         ]
     }).to_list(100)
+    print(f"🔍 Found {len(synced_games)} synced games")
     
     chat_partners = set()
     for game in synced_games:
