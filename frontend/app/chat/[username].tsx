@@ -16,6 +16,7 @@ import { useRouter, useLocalSearchParams } from 'expo-router';
 import { theme } from '../../constants/theme';
 import { chatAPI } from '../../utils/api';
 import { useAuth } from '../../contexts/AuthContext';
+import Avatar from '../../components/Avatar';
 import { format } from 'date-fns';
 
 interface Message {
