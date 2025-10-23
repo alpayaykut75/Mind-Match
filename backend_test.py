@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-Friend Mode Game Flow Testing
-Testing the specific issue where two users play friend mode but game gets stuck in "waiting" state
+Backend API Testing for MindMatch Game Invitation System
+Tests the complete game invitation flow including error scenarios
 """
 
 import requests
@@ -9,10 +9,11 @@ import json
 import time
 from datetime import datetime
 
-# Backend URL from frontend/.env
-BACKEND_URL = "https://mindlink-social.preview.emergentagent.com/api"
+# Configuration
+BASE_URL = "https://mindlink-social.preview.emergentagent.com/api"
+HEADERS = {"Content-Type": "application/json"}
 
-class FriendGameFlowTester:
+class GameInviteTestSuite:
     def __init__(self):
         self.user1_token = None
         self.user2_token = None
