@@ -80,12 +80,7 @@ export default function FriendsScreen() {
   const renderRequest = ({ item }: { item: any }) => (
     <View style={styles.card}>
       <View style={styles.friendInfo}>
-        <LinearGradient
-          colors={[theme.colors.primary, theme.colors.secondary]}
-          style={styles.avatar}
-        >
-          <Ionicons name="person" size={24} color={theme.colors.text} />
-        </LinearGradient>
+        <Avatar avatar={item.avatar} size={50} />
         <View style={styles.details}>
           <Text style={styles.username}>{item.username}</Text>
           <Text style={styles.bio} numberOfLines={1}>
