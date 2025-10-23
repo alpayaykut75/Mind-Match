@@ -6,6 +6,10 @@ import requests
 import time
 import sys
 
+# Hemen print için buffering'i kapat
+sys.stdout = sys.stdout.detach()
+sys.stdout = open(sys.stdout.fileno(), 'w', buffering=1)
+
 TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJUZXN0QnVkZHkiLCJleHAiOjE3NjM3MDUxNzJ9.rTzWWp35vX65Q1ORk2Oi1GapOdongsl3SSwHkbQitrU"
 API_URL = "http://localhost:8001"
 HEADERS = {"Authorization": f"Bearer {TOKEN}"}
