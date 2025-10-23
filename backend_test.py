@@ -23,360 +23,190 @@ class ChatConversationsTest:
         print(f"[{timestamp}] {level}: {message}")
         
     def test_login(self, username="player1", password="test123"):
-        """Test GET /api/health endpoint"""
-        self.log("Testing Health Check endpoint...")
+        """Test login and get token"""
+        self.log(f"Testing login for {username}")
+        
+        url = f"{BACKEND_URL}/auth/login"
+        data = {"username": username, "password": password}
+        
         try:
-            response = self.session.get(f"{self.base_url}/health")
-            if response.status_code == 200:
-                data = response.json()
-                if data.get("status") == "healthy":
-                    self.log("✅ Health check passed")
-                    return True
-                else:
-                    self.log(f"❌ Health check failed - unexpected response: {data}", "ERROR")
-                    return False
-            else:
-                self.log(f"❌ Health check failed - status code: {response.status_code}", "ERROR")
-                return False
-        except Exception as e:
-            self.log(f"❌ Health check failed - exception: {str(e)}", "ERROR")
-            return False
-    
-    def test_user_signup(self, username: str, password: str) -> bool:
-        """Test user signup"""
-        self.log(f"Testing user signup for {username}...")
-        try:
-            payload = {
-                "username": username,
-                "password": password,
-                "bio": f"Test user {username}",
-                "age": 25,
-                "country": "TestLand"
-            }
-            
-            response = self.session.post(f"{self.base_url}/auth/signup", json=payload)
+            response = self.session.post(url, json=data)
+            self.log(f"Login response status: {response.status_code}")
             
             if response.status_code == 200:
-                data = response.json()
-                if "token" in data and "username" in data:
-                    self.tokens[username] = data["token"]
-                    self.users[username] = data
-                    self.log(f"✅ Signup successful for {username}")
-                    return True
-                else:
-                    self.log(f"❌ Signup failed - missing token or username in response: {data}", "ERROR")
-                    return False
-            else:
-                self.log(f"❌ Signup failed - status code: {response.status_code}, response: {response.text}", "ERROR")
-                return False
-        except Exception as e:
-            self.log(f"❌ Signup failed - exception: {str(e)}", "ERROR")
-            return False
-    
-    def test_user_login(self, username: str, password: str) -> bool:
-        """Test user login"""
-        self.log(f"Testing user login for {username}...")
-        try:
-            payload = {
-                "username": username,
-                "password": password
-            }
-            
-            response = self.session.post(f"{self.base_url}/auth/login", json=payload)
-            
-            if response.status_code == 200:
-                data = response.json()
-                if "token" in data and "username" in data:
-                    self.tokens[username] = data["token"]
-                    self.log(f"✅ Login successful for {username}")
-                    return True
-                else:
-                    self.log(f"❌ Login failed - missing token or username in response: {data}", "ERROR")
-                    return False
-            else:
-                self.log(f"❌ Login failed - status code: {response.status_code}, response: {response.text}", "ERROR")
-                return False
-        except Exception as e:
-            self.log(f"❌ Login failed - exception: {str(e)}", "ERROR")
-            return False
-    
-    def test_get_user_profile(self, username: str) -> bool:
-        """Test getting user profile"""
-        self.log(f"Testing get user profile for {username}...")
-        try:
-            if username not in self.tokens:
-                self.log(f"❌ No token available for {username}", "ERROR")
-                return False
-                
-            headers = {"Authorization": f"Bearer {self.tokens[username]}"}
-            response = self.session.get(f"{self.base_url}/users/me", headers=headers)
-            
-            if response.status_code == 200:
-                data = response.json()
-                required_fields = ["username", "bio", "xp", "level", "connection_score", "total_games"]
-                if all(field in data for field in required_fields):
-                    self.log(f"✅ Get user profile successful for {username}")
-                    return True
-                else:
-                    self.log(f"❌ Get user profile failed - missing required fields: {data}", "ERROR")
-                    return False
-            else:
-                self.log(f"❌ Get user profile failed - status code: {response.status_code}, response: {response.text}", "ERROR")
-                return False
-        except Exception as e:
-            self.log(f"❌ Get user profile failed - exception: {str(e)}", "ERROR")
-            return False
-    
-    def test_get_online_users(self, username: str) -> bool:
-        """Test getting online users"""
-        self.log(f"Testing get online users for {username}...")
-        try:
-            if username not in self.tokens:
-                self.log(f"❌ No token available for {username}", "ERROR")
-                return False
-                
-            headers = {"Authorization": f"Bearer {self.tokens[username]}"}
-            response = self.session.get(f"{self.base_url}/users/online", headers=headers)
-            
-            if response.status_code == 200:
-                data = response.json()
-                if isinstance(data, list):
-                    self.log(f"✅ Get online users successful for {username} - found {len(data)} users")
-                    return True
-                else:
-                    self.log(f"❌ Get online users failed - expected list, got: {type(data)}", "ERROR")
-                    return False
-            else:
-                self.log(f"❌ Get online users failed - status code: {response.status_code}, response: {response.text}", "ERROR")
-                return False
-        except Exception as e:
-            self.log(f"❌ Get online users failed - exception: {str(e)}", "ERROR")
-            return False
-    
-    def test_create_ai_game(self, username: str) -> Optional[str]:
-        """Test creating a game in AI mode"""
-        self.log(f"Testing create AI game for {username}...")
-        try:
-            if username not in self.tokens:
-                self.log(f"❌ No token available for {username}", "ERROR")
-                return None
-                
-            headers = {"Authorization": f"Bearer {self.tokens[username]}"}
-            payload = {"mode": "ai"}
-            
-            response = self.session.post(f"{self.base_url}/game/create", json=payload, headers=headers)
-            
-            if response.status_code == 200:
-                data = response.json()
-                if "game_id" in data and "opponent" in data and data["opponent"] == "AI":
-                    game_id = data["game_id"]
-                    self.games[game_id] = data
-                    self.log(f"✅ Create AI game successful for {username} - game_id: {game_id}")
-                    return game_id
-                else:
-                    self.log(f"❌ Create AI game failed - missing game_id or opponent: {data}", "ERROR")
-                    return None
-            else:
-                self.log(f"❌ Create AI game failed - status code: {response.status_code}, response: {response.text}", "ERROR")
-                return None
-        except Exception as e:
-            self.log(f"❌ Create AI game failed - exception: {str(e)}", "ERROR")
-            return None
-    
-    def test_submit_word(self, username: str, game_id: str, word: str) -> bool:
-        """Test submitting a word in a game"""
-        self.log(f"Testing submit word '{word}' for {username} in game {game_id}...")
-        try:
-            if username not in self.tokens:
-                self.log(f"❌ No token available for {username}", "ERROR")
-                return False
-                
-            headers = {"Authorization": f"Bearer {self.tokens[username]}"}
-            payload = {"word": word}
-            
-            response = self.session.post(f"{self.base_url}/game/{game_id}/submit-word", json=payload, headers=headers)
-            
-            if response.status_code == 200:
-                data = response.json()
-                self.log(f"✅ Submit word successful for {username} - response: {data}")
+                result = response.json()
+                self.token = result.get("token")
+                self.username = result.get("username")
+                self.log(f"✅ Login successful for {self.username}")
+                self.log(f"Token: {self.token[:20]}..." if self.token else "No token received")
                 return True
             else:
-                self.log(f"❌ Submit word failed - status code: {response.status_code}, response: {response.text}", "ERROR")
-                return False
-        except Exception as e:
-            self.log(f"❌ Submit word failed - exception: {str(e)}", "ERROR")
-            return False
-    
-    def test_get_game_status(self, username: str, game_id: str) -> bool:
-        """Test getting game status"""
-        self.log(f"Testing get game status for {username} in game {game_id}...")
-        try:
-            if username not in self.tokens:
-                self.log(f"❌ No token available for {username}", "ERROR")
+                self.log(f"❌ Login failed: {response.text}", "ERROR")
                 return False
                 
-            headers = {"Authorization": f"Bearer {self.tokens[username]}"}
-            response = self.session.get(f"{self.base_url}/game/{game_id}/status", headers=headers)
-            
-            if response.status_code == 200:
-                data = response.json()
-                required_fields = ["game_id", "player1", "player2", "mode", "status", "current_round"]
-                if all(field in data for field in required_fields):
-                    self.log(f"✅ Get game status successful for {username}")
-                    return True
-                else:
-                    self.log(f"❌ Get game status failed - missing required fields: {data}", "ERROR")
-                    return False
-            else:
-                self.log(f"❌ Get game status failed - status code: {response.status_code}, response: {response.text}", "ERROR")
-                return False
         except Exception as e:
-            self.log(f"❌ Get game status failed - exception: {str(e)}", "ERROR")
+            self.log(f"❌ Login error: {str(e)}", "ERROR")
             return False
     
-    def test_send_friend_request(self, from_username: str, to_username: str) -> bool:
-        """Test sending friend request"""
-        self.log(f"Testing send friend request from {from_username} to {to_username}...")
+    def get_headers(self):
+        """Get authorization headers"""
+        if not self.token:
+            return {}
+        return {"Authorization": f"Bearer {self.token}"}
+    
+    def test_friends_list(self):
+        """Test friends list to verify friendships exist"""
+        self.log("Testing friends list endpoint")
+        
+        url = f"{BACKEND_URL}/friends/list"
+        headers = self.get_headers()
+        
         try:
-            if from_username not in self.tokens:
-                self.log(f"❌ No token available for {from_username}", "ERROR")
-                return False
-                
-            headers = {"Authorization": f"Bearer {self.tokens[from_username]}"}
-            payload = {"to_username": to_username}
-            
-            response = self.session.post(f"{self.base_url}/friends/request", json=payload, headers=headers)
+            response = self.session.get(url, headers=headers)
+            self.log(f"Friends list response status: {response.status_code}")
             
             if response.status_code == 200:
-                data = response.json()
-                if "message" in data:
-                    self.log(f"✅ Send friend request successful from {from_username} to {to_username}")
-                    return True
-                else:
-                    self.log(f"❌ Send friend request failed - unexpected response: {data}", "ERROR")
-                    return False
+                friends = response.json()
+                self.log(f"✅ Friends list retrieved: {len(friends)} friends")
+                for friend in friends:
+                    self.log(f"  - {friend.get('username')} (online: {friend.get('online', False)})")
+                return friends
             else:
-                self.log(f"❌ Send friend request failed - status code: {response.status_code}, response: {response.text}", "ERROR")
-                return False
+                self.log(f"❌ Friends list failed: {response.text}", "ERROR")
+                return []
+                
         except Exception as e:
-            self.log(f"❌ Send friend request failed - exception: {str(e)}", "ERROR")
+            self.log(f"❌ Friends list error: {str(e)}", "ERROR")
+            return []
+    
+    def test_conversations_endpoint(self):
+        """Test the main conversations endpoint - this is the failing one"""
+        self.log("Testing conversations endpoint (MAIN TEST)")
+        
+        url = f"{BACKEND_URL}/chat/conversations"
+        headers = self.get_headers()
+        
+        try:
+            response = self.session.get(url, headers=headers)
+            self.log(f"Conversations response status: {response.status_code}")
+            self.log(f"Response headers: {dict(response.headers)}")
+            
+            if response.status_code == 200:
+                conversations = response.json()
+                self.log(f"Conversations response: {json.dumps(conversations, indent=2)}")
+                
+                if len(conversations) == 0:
+                    self.log("❌ PROBLEM FOUND: Conversations endpoint returns empty array!", "ERROR")
+                    return False
+                else:
+                    self.log(f"✅ Conversations retrieved: {len(conversations)} conversations")
+                    for conv in conversations:
+                        self.log(f"  - {conv.get('username')} | Last: '{conv.get('last_message', 'No messages')}'")
+                    return True
+            else:
+                self.log(f"❌ Conversations failed: {response.text}", "ERROR")
+                return False
+                
+        except Exception as e:
+            self.log(f"❌ Conversations error: {str(e)}", "ERROR")
             return False
     
-    def test_get_friend_requests(self, username: str) -> bool:
-        """Test getting friend requests"""
-        self.log(f"Testing get friend requests for {username}...")
+    def test_conversations_debug(self):
+        """Test the debug endpoint to see raw friendship data"""
+        self.log("Testing conversations debug endpoint")
+        
+        url = f"{BACKEND_URL}/chat/test"
+        headers = self.get_headers()
+        
         try:
-            if username not in self.tokens:
-                self.log(f"❌ No token available for {username}", "ERROR")
-                return False
-                
-            headers = {"Authorization": f"Bearer {self.tokens[username]}"}
-            response = self.session.get(f"{self.base_url}/friends/requests", headers=headers)
+            response = self.session.get(url, headers=headers)
+            self.log(f"Debug response status: {response.status_code}")
             
             if response.status_code == 200:
-                data = response.json()
-                if isinstance(data, list):
-                    self.log(f"✅ Get friend requests successful for {username} - found {len(data)} requests")
-                    return True
-                else:
-                    self.log(f"❌ Get friend requests failed - expected list, got: {type(data)}", "ERROR")
-                    return False
+                debug_data = response.json()
+                self.log(f"Debug data: {json.dumps(debug_data, indent=2)}")
+                return debug_data
             else:
-                self.log(f"❌ Get friend requests failed - status code: {response.status_code}, response: {response.text}", "ERROR")
-                return False
+                self.log(f"❌ Debug failed: {response.text}", "ERROR")
+                return None
+                
         except Exception as e:
-            self.log(f"❌ Get friend requests failed - exception: {str(e)}", "ERROR")
-            return False
+            self.log(f"❌ Debug error: {str(e)}", "ERROR")
+            return None
     
-    def test_accept_friend_request(self, username: str, from_username: str) -> bool:
-        """Test accepting friend request"""
-        self.log(f"Testing accept friend request for {username} from {from_username}...")
+    def test_chat_with_friend(self, friend_username):
+        """Test chat history with a specific friend"""
+        self.log(f"Testing chat history with {friend_username}")
+        
+        url = f"{BACKEND_URL}/chat/{friend_username}"
+        headers = self.get_headers()
+        
         try:
-            if username not in self.tokens:
-                self.log(f"❌ No token available for {username}", "ERROR")
-                return False
-                
-            headers = {"Authorization": f"Bearer {self.tokens[username]}"}
-            response = self.session.post(f"{self.base_url}/friends/accept/{from_username}", headers=headers)
+            response = self.session.get(url, headers=headers)
+            self.log(f"Chat history response status: {response.status_code}")
             
             if response.status_code == 200:
-                data = response.json()
-                if "message" in data:
-                    self.log(f"✅ Accept friend request successful for {username} from {from_username}")
-                    return True
-                else:
-                    self.log(f"❌ Accept friend request failed - unexpected response: {data}", "ERROR")
-                    return False
+                messages = response.json()
+                self.log(f"✅ Chat history retrieved: {len(messages)} messages")
+                if messages:
+                    self.log(f"Latest message: {messages[-1].get('message', 'No message')}")
+                return messages
             else:
-                self.log(f"❌ Accept friend request failed - status code: {response.status_code}, response: {response.text}", "ERROR")
-                return False
+                self.log(f"❌ Chat history failed: {response.text}", "ERROR")
+                return []
+                
         except Exception as e:
-            self.log(f"❌ Accept friend request failed - exception: {str(e)}", "ERROR")
+            self.log(f"❌ Chat history error: {str(e)}", "ERROR")
+            return []
+    
+    def run_full_test(self):
+        """Run the complete test suite for chat conversations"""
+        self.log("=" * 60)
+        self.log("STARTING CHAT CONVERSATIONS ENDPOINT TESTING")
+        self.log("=" * 60)
+        
+        # Step 1: Login
+        if not self.test_login():
+            self.log("❌ Cannot proceed without login", "ERROR")
             return False
+        
+        # Step 2: Check friends list
+        friends = self.test_friends_list()
+        
+        # Step 3: Test debug endpoint
+        debug_data = self.test_conversations_debug()
+        
+        # Step 4: Test main conversations endpoint
+        conversations_working = self.test_conversations_endpoint()
+        
+        # Step 5: Test chat with each friend if any exist
+        if friends:
+            for friend in friends:
+                self.test_chat_with_friend(friend.get('username'))
+        
+        self.log("=" * 60)
+        if conversations_working:
+            self.log("✅ CONVERSATIONS ENDPOINT WORKING")
+        else:
+            self.log("❌ CONVERSATIONS ENDPOINT FAILING - NEEDS INVESTIGATION")
+        self.log("=" * 60)
+        
+        return conversations_working
 
-def run_comprehensive_tests():
-    """Run all backend tests"""
-    tester = MindMatchTester()
-    results = {}
+def main():
+    """Main test execution"""
+    tester = ChatConversationsTest()
+    success = tester.run_full_test()
     
-    print("=" * 60)
-    print("MINDMATCH BACKEND API TESTING")
-    print("=" * 60)
+    if not success:
+        print("\n🔍 DEBUGGING SUGGESTIONS:")
+        print("1. Check if friendships exist in database")
+        print("2. Verify friendship status is 'accepted'")
+        print("3. Check if users collection has the friend users")
+        print("4. Verify the MongoDB query in conversations endpoint")
+        print("5. Check for any database connection issues")
     
-    # 1. Health Check
-    results["health_check"] = tester.test_health_check()
-    
-    # 2. Auth Flow - Signup and Login
-    results["signup_testuser1"] = tester.test_user_signup("testuser1", "test123")
-    results["login_testuser1"] = tester.test_user_login("testuser1", "test123")
-    
-    # 3. User Endpoints
-    results["get_profile_testuser1"] = tester.test_get_user_profile("testuser1")
-    results["get_online_users"] = tester.test_get_online_users("testuser1")
-    
-    # 4. Game Flow (AI Mode)
-    game_id = tester.test_create_ai_game("testuser1")
-    if game_id:
-        results["create_ai_game"] = True
-        results["submit_word_round1"] = tester.test_submit_word("testuser1", game_id, "OCEAN")
-        results["get_game_status"] = tester.test_get_game_status("testuser1", game_id)
-    else:
-        results["create_ai_game"] = False
-        results["submit_word_round1"] = False
-        results["get_game_status"] = False
-    
-    # 5. Friend System
-    results["signup_testuser2"] = tester.test_user_signup("testuser2", "test123")
-    if results["signup_testuser2"]:
-        results["send_friend_request"] = tester.test_send_friend_request("testuser1", "testuser2")
-        results["get_friend_requests"] = tester.test_get_friend_requests("testuser2")
-        results["accept_friend_request"] = tester.test_accept_friend_request("testuser2", "testuser1")
-    else:
-        results["send_friend_request"] = False
-        results["get_friend_requests"] = False
-        results["accept_friend_request"] = False
-    
-    # Summary
-    print("\n" + "=" * 60)
-    print("TEST RESULTS SUMMARY")
-    print("=" * 60)
-    
-    passed = sum(1 for result in results.values() if result)
-    total = len(results)
-    
-    for test_name, result in results.items():
-        status = "✅ PASS" if result else "❌ FAIL"
-        print(f"{test_name:<25}: {status}")
-    
-    print(f"\nOverall: {passed}/{total} tests passed ({(passed/total)*100:.1f}%)")
-    
-    if passed == total:
-        print("🎉 All tests passed!")
-        return True
-    else:
-        print("⚠️  Some tests failed - check logs above for details")
-        return False
+    sys.exit(0 if success else 1)
 
 if __name__ == "__main__":
-    success = run_comprehensive_tests()
-    exit(0 if success else 1)
+    main()
