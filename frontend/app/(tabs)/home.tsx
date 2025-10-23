@@ -231,18 +231,38 @@ export default function HomeScreen() {
                 </View>
               </View>
 
-              <TouchableOpacity
-                style={styles.modalButton}
-                onPress={() => startGame('friend')}
-              >
-                <LinearGradient
-                  colors={[theme.colors.primary, theme.colors.secondary]}
-                  style={styles.modalButtonGradient}
+              <View style={styles.modalButtonRow}>
+                <TouchableOpacity
+                  style={styles.modalButtonFlex}
+                  onPress={() => startGame('friend')}
                 >
-                  <Ionicons name="game-controller" size={20} color={theme.colors.text} />
-                  <Text style={styles.modalButtonText}>Play Game</Text>
-                </LinearGradient>
-              </TouchableOpacity>
+                  <LinearGradient
+                    colors={[theme.colors.primary, theme.colors.secondary]}
+                    style={styles.modalButtonGradient}
+                  >
+                    <Ionicons name="game-controller" size={20} color={theme.colors.text} />
+                    <Text style={styles.modalButtonText}>Play</Text>
+                  </LinearGradient>
+                </TouchableOpacity>
+
+                {selectedUser?.is_friend && (
+                  <TouchableOpacity
+                    style={styles.modalButtonFlex}
+                    onPress={() => {
+                      setModalVisible(false);
+                      router.push(`/chat/${selectedUser.username}`);
+                    }}
+                  >
+                    <LinearGradient
+                      colors={[theme.colors.secondary, theme.colors.primary]}
+                      style={styles.modalButtonGradient}
+                    >
+                      <Ionicons name="chatbubble" size={20} color={theme.colors.text} />
+                      <Text style={styles.modalButtonText}>Chat</Text>
+                    </LinearGradient>
+                  </TouchableOpacity>
+                )}
+              </View>
 
               {!selectedUser?.is_friend && (
                 <TouchableOpacity
