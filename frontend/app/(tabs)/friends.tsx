@@ -237,14 +237,21 @@ export default function FriendsScreen() {
         </View>
 
         <FlatList
-          data={[...requests, ...friends]}
+          data={[...gameInvites, ...requests, ...friends]}
           renderItem={(props) => {
+            if (gameInvites.includes(props.item)) {
+              return renderGameInvite(props);
+            }
             if (requests.includes(props.item)) {
               return renderRequest(props);
             }
             return renderFriend(props);
           }}
-          keyExtractor={(item, index) => `${item.username}-${index}`}
+          keyExtractor={(item, index) => {
+            if ('invite_id' in item) return `invite-${item.invite_id}`;
+            if ('username' in item) return `${item.username}-${index}`;
+            return `item-${index}`;
+          }}
           contentContainerStyle={styles.list}
           refreshControl={
             <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
@@ -253,9 +260,14 @@ export default function FriendsScreen() {
             <Text style={styles.emptyText}>No friends yet</Text>
           }
           ListHeaderComponent={
-            requests.length > 0 ? (
-              <Text style={styles.sectionTitle}>Friend Requests</Text>
-            ) : null
+            <>
+              {gameInvites.length > 0 && (
+                <Text style={styles.sectionTitle}>🎮 Game Invites</Text>
+              )}
+              {gameInvites.length === 0 && requests.length > 0 && (
+                <Text style={styles.sectionTitle}>Friend Requests</Text>
+              )}
+            </>
           }
         />
       </LinearGradient>
