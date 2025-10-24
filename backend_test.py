@@ -1,19 +1,35 @@
 #!/usr/bin/env python3
 """
-Backend API Testing for MindMatch Game Invitation System
-Tests the complete game invitation flow including error scenarios
+Backend API Testing for MindMatch - Unread Message Endpoints
+Testing the new unread message endpoints and badge system
 """
 
 import requests
 import json
-import time
+import os
 from datetime import datetime
+import asyncio
+import motor.motor_asyncio
+from dotenv import load_dotenv
 
-# Configuration
-BASE_URL = "https://mindlink-social.preview.emergentagent.com/api"
-HEADERS = {"Content-Type": "application/json"}
+# Load environment variables
+load_dotenv('/app/backend/.env')
 
-class GameInviteTestSuite:
+# Get backend URL from frontend env
+with open('/app/frontend/.env', 'r') as f:
+    for line in f:
+        if line.startswith('EXPO_PUBLIC_BACKEND_URL='):
+            BACKEND_URL = line.split('=')[1].strip()
+            break
+
+API_BASE = f"{BACKEND_URL}/api"
+MONGO_URL = os.getenv("MONGO_URL", "mongodb://localhost:27017")
+DB_NAME = os.getenv("DB_NAME", "mindmatch_db")
+
+print(f"🔗 Testing Backend: {API_BASE}")
+print(f"🔗 MongoDB: {MONGO_URL}")
+
+class TestResults:
     def __init__(self):
         self.user1_token = None
         self.user2_token = None
