@@ -849,7 +849,8 @@ async def submit_word(game_id: str, word_data: SubmitWord, current_user: str = D
                         "sync_word": game["player1_word"],
                         "total_rounds": rounds,
                         "wavelength_score": wavelength_score,
-                        "completed_at": datetime.utcnow()
+                        "completed_at": datetime.utcnow(),
+                        "end_time": datetime.utcnow()
                     }
                 }
             )
