@@ -236,27 +236,53 @@ def main():
     
     success, response = test_endpoint("GET", "/chat/unread-by-user", None, aslan_headers)
     if success and isinstance(response, dict):
-        if "alpay_test" in response and response["alpay_test"] > 0:
-            results.add_result("Unread By User Endpoint", True, f"Found {response['alpay_test']} unread messages from alpay_test")
+        if alpay_username in response and response[alpay_username] > 0:
+            results.add_result("Unread By User Endpoint", True, f"Found {response[alpay_username]} unread messages from {alpay_username}")
         else:
-            results.add_result("Unread By User Endpoint", False, f"No unread messages from alpay_test found: {response}")
+            results.add_result("Unread By User Endpoint", False, f"No unread messages from {alpay_username} found: {response}")
     else:
         results.add_result("Unread By User Endpoint", False, f"Failed to get unread by user: {response}")
     
     # 8. TEST 4: Verify MongoDB data
     print("\n🗄️ TEST 4: Verifying MongoDB data...")
     
-    # Run async MongoDB verification
+    # Run async MongoDB verification with dynamic usernames
+    async def verify_mongodb_data_dynamic():
+        try:
+            client = motor.motor_asyncio.AsyncIOMotorClient(MONGO_URL)
+            db = client[DB_NAME]
+            chats_collection = db["chats"]
+            
+            # Check for unread messages from alpay to aslan
+            unread_messages = await chats_collection.find({
+                "from_username": alpay_username,
+                "to_username": aslan_username, 
+                "read": False
+            }).to_list(100)
+            
+            client.close()
+            
+            if len(unread_messages) > 0:
+                results.add_result("MongoDB Verification", True, f"Found {len(unread_messages)} unread messages from {alpay_username} to {aslan_username}")
+                return True
+            else:
+                results.add_result("MongoDB Verification", False, "No unread messages found in MongoDB")
+                return False
+                
+        except Exception as e:
+            results.add_result("MongoDB Verification", False, f"MongoDB error: {str(e)}")
+            return False
+    
     loop = asyncio.new_event_loop()
     asyncio.set_event_loop(loop)
-    loop.run_until_complete(verify_mongodb_data())
+    loop.run_until_complete(verify_mongodb_data_dynamic())
     loop.close()
     
     # 9. Additional test: Send another message and verify counts increase
     print("\n📈 BONUS TEST: Sending second message...")
     
     message_data2 = {
-        "to_username": "aslan_test", 
+        "to_username": aslan_username, 
         "message": "How are you doing?"
     }
     
