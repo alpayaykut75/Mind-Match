@@ -383,6 +383,8 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: theme.colors.text,
     marginBottom: theme.spacing.md,
+    marginTop: theme.spacing.lg,
+    paddingTop: theme.spacing.sm,
   },
   list: {
     paddingHorizontal: theme.spacing.lg,
