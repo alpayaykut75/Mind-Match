@@ -486,6 +486,14 @@ const styles = StyleSheet.create({
     textAlignVertical: 'top',
     marginBottom: theme.spacing.sm,
   },
+  input: {
+    backgroundColor: theme.colors.background,
+    borderRadius: theme.borderRadius.md,
+    padding: theme.spacing.md,
+    color: theme.colors.text,
+    fontSize: 14,
+    marginBottom: theme.spacing.md,
+  },
   charCount: {
     fontSize: 12,
     color: theme.colors.textSecondary,
