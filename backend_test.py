@@ -128,9 +128,14 @@ def main():
     # 2. Create/Login alpay user
     print("\n📝 Setting up alpay user...")
     
-    # Try signup first
+    # Try signup first - use timestamp to ensure unique users
+    import time
+    timestamp = str(int(time.time()))
+    alpay_username = f"alpay_test_{timestamp}"
+    aslan_username = f"aslan_test_{timestamp}"
+    
     alpay_data = {
-        "username": "alpay_test",
+        "username": alpay_username,
         "password": "alpay123",
         "bio": "Test user alpay",
         "age": 25,
