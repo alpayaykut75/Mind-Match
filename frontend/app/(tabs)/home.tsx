@@ -460,23 +460,33 @@ const styles = StyleSheet.create({
     gap: theme.spacing.xs,
   },
   username: {
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: 'bold',
     color: theme.colors.text,
   },
-  bio: {
-    fontSize: 14,
-    color: theme.colors.textSecondary,
-    marginTop: theme.spacing.xs,
-  },
   stats: {
     flexDirection: 'row',
-    marginTop: theme.spacing.xs,
+    marginTop: 2,
     gap: theme.spacing.xs,
   },
   statText: {
     fontSize: 12,
     color: theme.colors.textSecondary,
+  },
+  actionButtons: {
+    flexDirection: 'row',
+    gap: theme.spacing.sm,
+    marginLeft: theme.spacing.md,
+  },
+  actionButton: {
+    // Button container
+  },
+  actionButtonGradient: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   playButton: {
     marginLeft: theme.spacing.md,
