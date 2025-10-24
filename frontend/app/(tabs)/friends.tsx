@@ -158,19 +158,26 @@ export default function FriendsScreen() {
 
   const renderFriend = ({ item }: { item: Friend }) => (
     <View style={styles.card}>
-      <View style={styles.friendInfo}>
-        <View style={styles.avatarContainer}>
-          <Avatar avatar={item.avatar} size={50} />
-          {item.online && <View style={styles.onlineIndicator} />}
+      <TouchableOpacity 
+        style={styles.friendInfoTouchable}
+        onPress={() => {
+          setSelectedFriend(item);
+          setModalVisible(true);
+        }}
+      >
+        <View style={styles.friendInfo}>
+          <View style={styles.avatarContainer}>
+            <Avatar avatar={item.avatar} size={50} />
+            {item.online && <View style={styles.onlineIndicator} />}
+          </View>
+          <View style={styles.details}>
+            <Text style={styles.username}>{item.username}</Text>
+            <Text style={styles.bio} numberOfLines={1}>
+              {item.bio || 'No bio'}
+            </Text>
+          </View>
         </View>
-        <View style={styles.details}>
-          <Text style={styles.username}>{item.username}</Text>
-          <Text style={styles.bio} numberOfLines={1}>
-            {item.bio || 'No bio'}
-          </Text>
-          <Text style={styles.level}>Level {item.level}</Text>
-        </View>
-      </View>
+      </TouchableOpacity>
       
       <View style={styles.actionButtons}>
         {/* Chat Button */}
