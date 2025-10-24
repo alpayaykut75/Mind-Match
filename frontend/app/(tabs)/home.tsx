@@ -271,6 +271,18 @@ export default function HomeScreen() {
               <Text style={styles.modalUsername}>{selectedUser?.username}</Text>
               <Text style={styles.modalBio}>{selectedUser?.bio || 'No bio'}</Text>
               
+              {/* Age & Country */}
+              {(selectedUser?.age || selectedUser?.country) && (
+                <View style={styles.modalMetadata}>
+                  {selectedUser?.country && (
+                    <Text style={styles.modalMetaText}>🌍 {selectedUser.country}</Text>
+                  )}
+                  {selectedUser?.age && (
+                    <Text style={styles.modalMetaText}>🎂 {selectedUser.age} years old</Text>
+                  )}
+                </View>
+              )}
+              
               <View style={styles.modalStats}>
                 <View style={styles.modalStat}>
                   <Text style={styles.modalStatValue}>Lv {selectedUser?.level}</Text>
