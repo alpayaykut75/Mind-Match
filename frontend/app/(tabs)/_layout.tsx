@@ -4,13 +4,19 @@ import { View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { theme } from '../../constants/theme';
 import Avatar from '../../components/Avatar';
-import { userAPI } from '../../utils/api';
+import { userAPI, friendAPI, gameAPI, chatAPI } from '../../utils/api';
 
 export default function TabsLayout() {
   const [userAvatar, setUserAvatar] = useState<string>('');
+  const [hasFriendsBadge, setHasFriendsBadge] = useState(false);
 
   useEffect(() => {
     loadUserAvatar();
+    loadBadgeStatus();
+    
+    // Refresh badge every 5 seconds
+    const interval = setInterval(loadBadgeStatus, 5000);
+    return () => clearInterval(interval);
   }, []);
 
   const loadUserAvatar = async () => {
@@ -19,6 +25,25 @@ export default function TabsLayout() {
       setUserAvatar(response.data.avatar || '');
     } catch (error) {
       console.log('Failed to load user avatar for tab');
+    }
+  };
+
+  const loadBadgeStatus = async () => {
+    try {
+      const [friendRequestsRes, gameInvitesRes, unreadCountRes] = await Promise.all([
+        friendAPI.getRequests(),
+        gameAPI.getGameInvites(),
+        chatAPI.getUnreadCount(),
+      ]);
+
+      const hasBadge = 
+        friendRequestsRes.data.length > 0 || 
+        gameInvitesRes.data.length > 0 || 
+        unreadCountRes.data.unread_count > 0;
+
+      setHasFriendsBadge(hasBadge);
+    } catch (error) {
+      console.log('Failed to load badge status');
     }
   };
   return (
