@@ -231,10 +231,10 @@ def main():
     
     success, response = test_endpoint("GET", "/chat/unread-by-user", None, aslan_headers)
     if success and isinstance(response, dict):
-        if "alpay" in response and response["alpay"] > 0:
-            results.add_result("Unread By User Endpoint", True, f"Found {response['alpay']} unread messages from alpay")
+        if "alpay_test" in response and response["alpay_test"] > 0:
+            results.add_result("Unread By User Endpoint", True, f"Found {response['alpay_test']} unread messages from alpay_test")
         else:
-            results.add_result("Unread By User Endpoint", False, f"No unread messages from alpay found: {response}")
+            results.add_result("Unread By User Endpoint", False, f"No unread messages from alpay_test found: {response}")
     else:
         results.add_result("Unread By User Endpoint", False, f"Failed to get unread by user: {response}")
     
