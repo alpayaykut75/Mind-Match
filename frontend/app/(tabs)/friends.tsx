@@ -632,4 +632,88 @@ const styles = StyleSheet.create({
     color: theme.colors.text,
     fontWeight: 'bold',
   },
+  friendInfoTouchable: {
+    flex: 1,
+  },
+  modalOverlay: {
+    flex: 1,
+    backgroundColor: 'rgba(0, 0, 0, 0.7)',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  modalContent: {
+    backgroundColor: theme.colors.cardBg,
+    borderRadius: theme.borderRadius.lg,
+    padding: theme.spacing.xl,
+    width: '85%',
+    alignItems: 'center',
+  },
+  modalUsername: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: theme.colors.text,
+    marginTop: theme.spacing.md,
+  },
+  modalBio: {
+    fontSize: 14,
+    color: theme.colors.textSecondary,
+    textAlign: 'center',
+    marginTop: theme.spacing.xs,
+  },
+  modalMetadata: {
+    flexDirection: 'row',
+    gap: theme.spacing.md,
+    marginTop: theme.spacing.sm,
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+  },
+  modalMetaText: {
+    fontSize: 13,
+    color: theme.colors.textSecondary,
+  },
+  modalStats: {
+    flexDirection: 'row',
+    gap: theme.spacing.xl,
+    marginTop: theme.spacing.lg,
+  },
+  modalStat: {
+    alignItems: 'center',
+  },
+  modalStatValue: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: theme.colors.text,
+  },
+  modalStatLabel: {
+    fontSize: 12,
+    color: theme.colors.textSecondary,
+  },
+  modalButtonRow: {
+    flexDirection: 'row',
+    gap: theme.spacing.md,
+    marginTop: theme.spacing.lg,
+    width: '100%',
+  },
+  modalButton: {
+    flex: 1,
+  },
+  modalButtonGradient: {
+    flexDirection: 'row',
+    padding: theme.spacing.md,
+    borderRadius: theme.borderRadius.md,
+    justifyContent: 'center',
+    alignItems: 'center',
+    gap: theme.spacing.sm,
+  },
+  modalButtonText: {
+    color: theme.colors.text,
+    fontWeight: 'bold',
+  },
+  modalCloseButton: {
+    padding: theme.spacing.md,
+    marginTop: theme.spacing.sm,
+  },
+  modalCloseText: {
+    color: theme.colors.textSecondary,
+  },
 });
