@@ -137,6 +137,20 @@ export default function FriendsScreen() {
     router.push(`/chat/${friend.username}`);
   };
 
+  const handleContinueGame = (game: ActiveGame) => {
+    router.push(`/game/${game.game_id}`);
+  };
+
+  const handleEndGame = async (game: ActiveGame) => {
+    try {
+      await gameAPI.abandonGame(game.game_id);
+      Alert.alert('Success', 'Game ended');
+      await loadData();
+    } catch (error) {
+      Alert.alert('Error', 'Failed to end game');
+    }
+  };
+
   const renderFriend = ({ item }: { item: Friend }) => (
     <View style={styles.card}>
       <View style={styles.friendInfo}>
