@@ -95,50 +95,94 @@ export default function HomeScreen() {
   );
 
   const renderUserCard = ({ item }: { item: User }) => (
-    <TouchableOpacity
-      style={styles.userCard}
-      onPress={() => handlePlayPress(item)}
-    >
-      <View style={styles.userInfo}>
-        <View style={styles.avatarContainer}>
-          <Avatar avatar={item.avatar} size={60} />
-          {item.online && <View style={styles.onlineIndicator} />}
-        </View>
-        <View style={styles.userDetails}>
-          <View style={styles.userHeader}>
-            <Text style={styles.username}>{item.username}</Text>
-            {item.is_friend && (
-              <Ionicons name="star" size={16} color={theme.colors.secondary} />
-            )}
-          </View>
-          <Text style={styles.bio} numberOfLines={1}>
-            {item.bio || 'No bio yet'}
-          </Text>
-          <View style={styles.stats}>
-            <Text style={styles.statText}>Lv {item.level}</Text>
-            <Text style={styles.statText}>•</Text>
-            <Text style={styles.statText}>{item.connection_score}% sync</Text>
-            {item.country && (
-              <>
-                <Text style={styles.statText}>•</Text>
-                <Text style={styles.statText}>{item.country}</Text>
-              </>
-            )}
-          </View>
-        </View>
-      </View>
-      <TouchableOpacity
-        style={styles.playButton}
-        onPress={() => handlePlayPress(item)}
+    <View style={styles.userCard}>
+      <TouchableOpacity 
+        style={styles.userInfoTouchable}
+        onPress={() => {
+          setSelectedUser(item);
+          setModalVisible(true);
+        }}
       >
-        <LinearGradient
-          colors={[theme.colors.primary, theme.colors.secondary]}
-          style={styles.playButtonGradient}
-        >
-          <Ionicons name="play" size={20} color={theme.colors.text} />
-        </LinearGradient>
+        <View style={styles.userInfo}>
+          <View style={styles.avatarContainer}>
+            <Avatar avatar={item.avatar} size={50} />
+            {item.online && <View style={styles.onlineIndicator} />}
+          </View>
+          <View style={styles.userDetails}>
+            <View style={styles.userHeader}>
+              <Text style={styles.username}>{item.username}</Text>
+              {item.is_friend && (
+                <Ionicons name="star" size={14} color={theme.colors.secondary} />
+              )}
+            </View>
+            <View style={styles.stats}>
+              <Text style={styles.statText}>Lv {item.level}</Text>
+              <Text style={styles.statText}>•</Text>
+              <Text style={styles.statText}>{item.connection_score}% sync</Text>
+            </View>
+          </View>
+        </View>
       </TouchableOpacity>
-    </TouchableOpacity>
+
+      {/* Context-Aware Action Buttons */}
+      <View style={styles.actionButtons}>
+        {!item.is_friend ? (
+          <>
+            {/* Friend Request Button */}
+            <TouchableOpacity
+              style={styles.actionButton}
+              onPress={() => handleSendFriendRequest(item)}
+            >
+              <LinearGradient
+                colors={[theme.colors.primary, theme.colors.secondary]}
+                style={styles.actionButtonGradient}
+              >
+                <Ionicons name="person-add" size={18} color={theme.colors.text} />
+              </LinearGradient>
+            </TouchableOpacity>
+            {/* Play Button */}
+            <TouchableOpacity
+              style={styles.actionButton}
+              onPress={() => startGame('friend', item.username)}
+            >
+              <LinearGradient
+                colors={[theme.colors.primary, theme.colors.secondary]}
+                style={styles.actionButtonGradient}
+              >
+                <Ionicons name="game-controller" size={18} color={theme.colors.text} />
+              </LinearGradient>
+            </TouchableOpacity>
+          </>
+        ) : (
+          <>
+            {/* Chat Button */}
+            <TouchableOpacity
+              style={styles.actionButton}
+              onPress={() => router.push(`/chat/${item.username}`)}
+            >
+              <LinearGradient
+                colors={[theme.colors.primary, theme.colors.secondary]}
+                style={styles.actionButtonGradient}
+              >
+                <Ionicons name="chatbubble" size={18} color={theme.colors.text} />
+              </LinearGradient>
+            </TouchableOpacity>
+            {/* Play Button */}
+            <TouchableOpacity
+              style={styles.actionButton}
+              onPress={() => startGame('friend', item.username)}
+            >
+              <LinearGradient
+                colors={[theme.colors.primary, theme.colors.secondary]}
+                style={styles.actionButtonGradient}
+              >
+                <Ionicons name="game-controller" size={18} color={theme.colors.text} />
+              </LinearGradient>
+            </TouchableOpacity>
+          </>
+        )}
+      </View>
+    </View>
   );
 
   // renderActiveGame function removed
