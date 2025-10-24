@@ -462,6 +462,11 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: theme.colors.text,
   },
+  bio: {
+    fontSize: 13,
+    color: theme.colors.textSecondary,
+    marginTop: 2,
+  },
   stats: {
     flexDirection: 'row',
     marginTop: 2,
