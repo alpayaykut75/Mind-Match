@@ -265,6 +265,37 @@ export default function FriendsScreen() {
     </View>
   );
 
+  const renderActiveGame = ({ item }: { item: ActiveGame }) => (
+    <View style={styles.card}>
+      <View style={styles.friendInfo}>
+        <Avatar avatar={item.opponent_avatar} size={50} />
+        <View style={styles.details}>
+          <Text style={styles.username}>{item.opponent}</Text>
+          <Text style={styles.gameInfo}>Round {item.current_round} • {item.mode}</Text>
+        </View>
+      </View>
+      <View style={styles.gameButtons}>
+        <TouchableOpacity
+          style={styles.endButton}
+          onPress={() => handleEndGame(item)}
+        >
+          <Ionicons name="close-circle" size={28} color="#ff6b6b" />
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.continueButton}
+          onPress={() => handleContinueGame(item)}
+        >
+          <LinearGradient
+            colors={['#4CAF50', '#45A049']}
+            style={styles.continueButtonGradient}
+          >
+            <Text style={styles.continueButtonText}>Continue</Text>
+          </LinearGradient>
+        </TouchableOpacity>
+      </View>
+    </View>
+  );
+
   return (
     <SafeAreaView style={styles.container}>
       <LinearGradient
