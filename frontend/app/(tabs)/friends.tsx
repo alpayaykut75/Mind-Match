@@ -54,6 +54,8 @@ export default function FriendsScreen() {
   const [activeGames, setActiveGames] = useState<ActiveGame[]>([]);
   const [unreadMessages, setUnreadMessages] = useState<Record<string, number>>({});
   const [refreshing, setRefreshing] = useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
+  const [selectedFriend, setSelectedFriend] = useState<Friend | null>(null);
   const router = useRouter();
 
   useEffect(() => {
