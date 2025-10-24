@@ -251,7 +251,7 @@ def main():
     print("\n📈 BONUS TEST: Sending second message...")
     
     message_data2 = {
-        "to_username": "aslan", 
+        "to_username": "aslan_test", 
         "message": "How are you doing?"
     }
     
