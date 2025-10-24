@@ -549,7 +549,18 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: theme.colors.textSecondary,
     textAlign: 'center',
-    marginBottom: theme.spacing.lg,
+    marginBottom: theme.spacing.sm,
+  },
+  modalMetadata: {
+    flexDirection: 'row',
+    gap: theme.spacing.md,
+    marginBottom: theme.spacing.sm,
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+  },
+  modalMetaText: {
+    fontSize: 13,
+    color: theme.colors.textSecondary,
   },
   modalStats: {
     flexDirection: 'row',
