@@ -93,17 +93,17 @@ async def verify_mongodb_data():
         db = client[DB_NAME]
         chats_collection = db["chats"]
         
-        # Check for unread messages from alpay to aslan
+        # Check for unread messages from alpay_test to aslan_test
         unread_messages = await chats_collection.find({
-            "from_username": "alpay",
-            "to_username": "aslan", 
+            "from_username": "alpay_test",
+            "to_username": "aslan_test", 
             "read": False
         }).to_list(100)
         
         client.close()
         
         if len(unread_messages) > 0:
-            results.add_result("MongoDB Verification", True, f"Found {len(unread_messages)} unread messages from alpay to aslan")
+            results.add_result("MongoDB Verification", True, f"Found {len(unread_messages)} unread messages from alpay_test to aslan_test")
             return True
         else:
             results.add_result("MongoDB Verification", False, "No unread messages found in MongoDB")
