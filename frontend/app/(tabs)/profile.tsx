@@ -41,6 +41,7 @@ interface UserProfile {
 
 export default function ProfileScreen() {
   const [profile, setProfile] = useState<UserProfile | null>(null);
+  const [badges, setBadges] = useState<any[]>([]);
   const [editModalVisible, setEditModalVisible] = useState(false);
   const [showAvatarPicker, setShowAvatarPicker] = useState(false);
   const [editBio, setEditBio] = useState('');
@@ -51,6 +52,7 @@ export default function ProfileScreen() {
 
   useEffect(() => {
     loadProfile();
+    loadBadges();
   }, []);
 
   const loadProfile = async () => {
