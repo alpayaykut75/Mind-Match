@@ -164,7 +164,7 @@ def main():
     success, response = test_endpoint("POST", "/auth/signup", aslan_data)
     if not success and "already exists" in str(response):
         # User exists, try login
-        login_data = {"username": "aslan", "password": "aslan123"}
+        login_data = {"username": "aslan_test", "password": "aslan123"}
         success, response = test_endpoint("POST", "/auth/login", login_data)
         
     if success and isinstance(response, dict) and "token" in response:
