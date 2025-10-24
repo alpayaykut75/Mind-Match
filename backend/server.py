@@ -745,6 +745,26 @@ async def get_active_games(current_user: str = Depends(get_current_user)):
     return result
 
 
+@app.post("/api/game/{game_id}/abandon")
+async def abandon_game(game_id: str, current_user: str = Depends(get_current_user)):
+    """Abandon/end an active game"""
+    game = await games_collection.find_one({"_id": game_id})
+    if not game:
+        raise HTTPException(status_code=404, detail="Game not found")
+    
+    # Check if user is in this game
+    if current_user not in [game["player1"], game["player2"]]:
+        raise HTTPException(status_code=403, detail="Not your game")
+    
+    # Update game status to abandoned
+    await games_collection.update_one(
+        {"_id": game_id},
+        {"$set": {"status": "abandoned"}}
+    )
+    
+    return {"message": "Game abandoned successfully"}
+
+
 @app.post("/api/game/{game_id}/submit-word")
 async def submit_word(game_id: str, word_data: SubmitWord, current_user: str = Depends(get_current_user)):
     game = await games_collection.find_one({"_id": game_id})
