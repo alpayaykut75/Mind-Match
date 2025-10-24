@@ -13,7 +13,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 import { theme } from '../../constants/theme';
-import { friendAPI, gameAPI } from '../../utils/api';
+import { friendAPI, gameAPI, chatAPI } from '../../utils/api';
 import Avatar from '../../components/Avatar';
 
 interface Friend {
@@ -38,6 +38,7 @@ export default function FriendsScreen() {
   const [friends, setFriends] = useState<Friend[]>([]);
   const [requests, setRequests] = useState<any[]>([]);
   const [gameInvites, setGameInvites] = useState<GameInvite[]>([]);
+  const [unreadMessages, setUnreadMessages] = useState<Record<string, number>>({});
   const [refreshing, setRefreshing] = useState(false);
   const router = useRouter();
 
@@ -50,14 +51,16 @@ export default function FriendsScreen() {
 
   const loadData = async () => {
     try {
-      const [friendsRes, requestsRes, invitesRes] = await Promise.all([
+      const [friendsRes, requestsRes, invitesRes, unreadRes] = await Promise.all([
         friendAPI.getFriends(),
         friendAPI.getRequests(),
         gameAPI.getGameInvites(),
+        chatAPI.getUnreadByUser(),
       ]);
       setFriends(friendsRes.data);
       setRequests(requestsRes.data);
       setGameInvites(invitesRes.data);
+      setUnreadMessages(unreadRes.data);
     } catch (error) {
       console.error('Failed to load friends', error);
     }
