@@ -186,33 +186,33 @@ def main():
     aslan_headers = {"Authorization": f"Bearer {aslan_token}"}
     
     # Alpay sends friend request to aslan
-    friend_request = {"to_username": "aslan_test"}
+    friend_request = {"to_username": aslan_username}
     success, response = test_endpoint("POST", "/friends/request", friend_request, alpay_headers)
     if not success and "already exists" not in str(response):
         results.add_result("Friend Request", False, f"Failed to send friend request: {response}")
         return
     
     # Aslan accepts friend request from alpay
-    success, response = test_endpoint("POST", "/friends/accept/alpay_test", None, aslan_headers)
+    success, response = test_endpoint("POST", f"/friends/accept/{alpay_username}", None, aslan_headers)
     if success or "already" in str(response).lower():
-        results.add_result("Friendship Established", True, "alpay_test and aslan_test are now friends")
+        results.add_result("Friendship Established", True, f"{alpay_username} and {aslan_username} are now friends")
     else:
         results.add_result("Friendship Established", False, f"Failed to establish friendship: {response}")
         return
     
     # 5. TEST 1: POST /api/chat/send - Alpay sends message to Aslan
-    print("\n💬 TEST 1: Sending message from alpay to aslan...")
+    print(f"\n💬 TEST 1: Sending message from {alpay_username} to {aslan_username}...")
     
     message_data = {
-        "to_username": "aslan_test",
+        "to_username": aslan_username,
         "message": "Hello Aslan!"
     }
     
     success, response = test_endpoint("POST", "/chat/send", message_data, alpay_headers)
     if success:
-        results.add_result("Send Message (alpay_test → aslan_test)", True, "Message sent successfully")
+        results.add_result(f"Send Message ({alpay_username} → {aslan_username})", True, "Message sent successfully")
     else:
-        results.add_result("Send Message (alpay_test → aslan_test)", False, f"Failed to send message: {response}")
+        results.add_result(f"Send Message ({alpay_username} → {aslan_username})", False, f"Failed to send message: {response}")
         return
     
     # 6. TEST 2: GET /api/chat/unread-count - Check Aslan's unread count
