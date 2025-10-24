@@ -978,6 +978,31 @@ async def get_chat_history(username: str, current_user: str = Depends(get_curren
     ]
 
 
+@app.get("/api/chat/unread-count")
+async def get_unread_count(current_user: str = Depends(get_current_user)):
+    """Get total unread message count for current user"""
+    unread_count = await chats_collection.count_documents({
+        "to_username": current_user,
+        "read": False
+    })
+    return {"unread_count": unread_count}
+
+
+@app.get("/api/chat/unread-by-user")
+async def get_unread_by_user(current_user: str = Depends(get_current_user)):
+    """Get unread message count per friend"""
+    pipeline = [
+        {"$match": {"to_username": current_user, "read": False}},
+        {"$group": {"_id": "$from_username", "count": {"$sum": 1}}}
+    ]
+    
+    results = await chats_collection.aggregate(pipeline).to_list(100)
+    
+    # Convert to dict {username: count}
+    unread_dict = {item["_id"]: item["count"] for item in results}
+    return unread_dict
+
+
 @app.get("/api/chat/conversations")
 async def get_conversations(current_user: str = Depends(get_current_user)):
     """Get list of users current user can chat with (all friends)"""
