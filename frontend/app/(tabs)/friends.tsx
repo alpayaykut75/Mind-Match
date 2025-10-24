@@ -22,6 +22,9 @@ interface Friend {
   avatar: string;
   level: number;
   online: boolean;
+  age?: number;
+  country?: string;
+  connection_score?: number;
 }
 
 interface GameInvite {
