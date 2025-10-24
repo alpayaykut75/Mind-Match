@@ -307,8 +307,11 @@ export default function FriendsScreen() {
         </View>
 
         <FlatList
-          data={[...gameInvites, ...requests, ...friends]}
+          data={[...activeGames, ...gameInvites, ...requests, ...friends]}
           renderItem={(props) => {
+            if (activeGames.includes(props.item)) {
+              return renderActiveGame(props);
+            }
             if (gameInvites.includes(props.item)) {
               return renderGameInvite(props);
             }
@@ -318,6 +321,7 @@ export default function FriendsScreen() {
             return renderFriend(props);
           }}
           keyExtractor={(item, index) => {
+            if ('game_id' in item) return `game-${item.game_id}`;
             if ('invite_id' in item) return `invite-${item.invite_id}`;
             if ('username' in item) return `${item.username}-${index}`;
             return `item-${index}`;
@@ -331,11 +335,14 @@ export default function FriendsScreen() {
           }
           ListHeaderComponent={
             <>
-              {gameInvites.length > 0 && (
-                <Text style={styles.sectionTitle}>🎮 Game Invites</Text>
+              {activeGames.length > 0 && (
+                <Text style={styles.sectionTitle}>🎮 Active Games</Text>
               )}
-              {gameInvites.length === 0 && requests.length > 0 && (
-                <Text style={styles.sectionTitle}>Friend Requests</Text>
+              {activeGames.length === 0 && gameInvites.length > 0 && (
+                <Text style={styles.sectionTitle}>📨 Game Invites</Text>
+              )}
+              {activeGames.length === 0 && gameInvites.length === 0 && requests.length > 0 && (
+                <Text style={styles.sectionTitle}>👥 Friend Requests</Text>
               )}
             </>
           }
