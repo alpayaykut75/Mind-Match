@@ -66,14 +66,23 @@ export default function HomeScreen() {
     setModalVisible(true);
   };
 
-  const startGame = async (mode: 'friend' | 'ai' | 'random') => {
+  const startGame = async (mode: 'friend' | 'ai' | 'random', opponentUsername?: string) => {
     try {
-      const opponentUsername = mode === 'friend' ? selectedUser?.username : undefined;
       const response = await gameAPI.createGame(mode, opponentUsername);
       setModalVisible(false);
       router.push(`/game/${response.data.game_id}`);
     } catch (error: any) {
       Alert.alert('Error', error.response?.data?.detail || 'Failed to start game');
+    }
+  };
+
+  const handleSendFriendRequest = async (user: User) => {
+    try {
+      await friendAPI.sendRequest(user.username);
+      Alert.alert('Success', `Friend request sent to ${user.username}!`);
+      await loadUsers(); // Refresh to update friend status
+    } catch (error: any) {
+      Alert.alert('Error', error.response?.data?.detail || 'Failed to send friend request');
     }
   };
 
