@@ -151,28 +151,7 @@ export default function HomeScreen() {
     </TouchableOpacity>
   );
 
-  const renderActiveGame = ({ item }: { item: ActiveGame }) => (
-    <TouchableOpacity
-      style={styles.card}
-      onPress={() => router.push(`/game/${item.game_id}`)}
-    >
-      <View style={styles.userInfo}>
-        <Avatar avatar={item.opponent_avatar} size={50} />
-        <View style={styles.gameDetails}>
-          <Text style={styles.gameName}>{item.opponent}</Text>
-          <Text style={styles.gameInfo}>Round {item.current_round} • {item.mode}</Text>
-        </View>
-      </View>
-      <View style={styles.continueButton}>
-        <LinearGradient
-          colors={['#4CAF50', '#45A049']}
-          style={styles.continueButtonGradient}
-        >
-          <Text style={styles.continueButtonText}>Continue</Text>
-        </LinearGradient>
-      </View>
-    </TouchableOpacity>
-  );
+  // renderActiveGame function removed
 
   return (
     <SafeAreaView style={styles.container}>
