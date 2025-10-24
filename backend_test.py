@@ -181,16 +181,16 @@ def main():
     aslan_headers = {"Authorization": f"Bearer {aslan_token}"}
     
     # Alpay sends friend request to aslan
-    friend_request = {"to_username": "aslan"}
+    friend_request = {"to_username": "aslan_test"}
     success, response = test_endpoint("POST", "/friends/request", friend_request, alpay_headers)
     if not success and "already exists" not in str(response):
         results.add_result("Friend Request", False, f"Failed to send friend request: {response}")
         return
     
     # Aslan accepts friend request from alpay
-    success, response = test_endpoint("POST", "/friends/accept/alpay", None, aslan_headers)
+    success, response = test_endpoint("POST", "/friends/accept/alpay_test", None, aslan_headers)
     if success or "already" in str(response).lower():
-        results.add_result("Friendship Established", True, "alpay and aslan are now friends")
+        results.add_result("Friendship Established", True, "alpay_test and aslan_test are now friends")
     else:
         results.add_result("Friendship Established", False, f"Failed to establish friendship: {response}")
         return
