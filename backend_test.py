@@ -205,9 +205,9 @@ def main():
     
     success, response = test_endpoint("POST", "/chat/send", message_data, alpay_headers)
     if success:
-        results.add_result("Send Message (alpay → aslan)", True, "Message sent successfully")
+        results.add_result("Send Message (alpay_test → aslan_test)", True, "Message sent successfully")
     else:
-        results.add_result("Send Message (alpay → aslan)", False, f"Failed to send message: {response}")
+        results.add_result("Send Message (alpay_test → aslan_test)", False, f"Failed to send message: {response}")
         return
     
     # 6. TEST 2: GET /api/chat/unread-count - Check Aslan's unread count
