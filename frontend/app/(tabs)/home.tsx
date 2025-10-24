@@ -287,7 +287,7 @@ export default function HomeScreen() {
               <View style={styles.modalButtonRow}>
                 <TouchableOpacity
                   style={styles.modalButtonFlex}
-                  onPress={() => startGame('friend')}
+                  onPress={() => startGame('friend', selectedUser?.username)}
                 >
                   <LinearGradient
                     colors={[theme.colors.primary, theme.colors.secondary]}
