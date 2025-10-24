@@ -34,10 +34,21 @@ interface GameInvite {
   from_user_level?: number;
 }
 
+interface ActiveGame {
+  game_id: string;
+  opponent: string;
+  opponent_avatar: string;
+  mode: string;
+  status: string;
+  current_round: number;
+  created_at: string;
+}
+
 export default function FriendsScreen() {
   const [friends, setFriends] = useState<Friend[]>([]);
   const [requests, setRequests] = useState<any[]>([]);
   const [gameInvites, setGameInvites] = useState<GameInvite[]>([]);
+  const [activeGames, setActiveGames] = useState<ActiveGame[]>([]);
   const [unreadMessages, setUnreadMessages] = useState<Record<string, number>>({});
   const [refreshing, setRefreshing] = useState(false);
   const router = useRouter();
