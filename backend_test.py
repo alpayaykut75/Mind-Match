@@ -130,7 +130,7 @@ def main():
     
     # Try signup first
     alpay_data = {
-        "username": "alpay",
+        "username": "alpay_test",
         "password": "alpay123",
         "bio": "Test user alpay",
         "age": 25,
