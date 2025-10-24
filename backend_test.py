@@ -199,7 +199,7 @@ def main():
     print("\n💬 TEST 1: Sending message from alpay to aslan...")
     
     message_data = {
-        "to_username": "aslan",
+        "to_username": "aslan_test",
         "message": "Hello Aslan!"
     }
     
