@@ -877,9 +877,9 @@ async def submit_word(game_id: str, word_data: SubmitWord, current_user: str = D
             )
             
             # Update stats for both players
-            await update_user_stats(game["player1"], True, rounds)
+            await update_user_stats(game["player1"], True, rounds, game["player2"])
             if game["player2"] != "AI":
-                await update_user_stats(game["player2"], True, rounds)
+                await update_user_stats(game["player2"], True, rounds, game["player1"])
             
             return {"synced": True, "sync_word": game["player1_word"], "rounds": rounds, "wavelength_score": wavelength_score}
         else:
