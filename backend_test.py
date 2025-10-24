@@ -273,7 +273,7 @@ def main():
     # 10. Test reading messages (should decrease unread count)
     print("\n📖 BONUS TEST: Reading messages...")
     
-    success, response = test_endpoint("GET", "/chat/alpay", None, aslan_headers)
+    success, response = test_endpoint("GET", "/chat/alpay_test", None, aslan_headers)
     if success:
         # Check unread count after reading
         success2, response2 = test_endpoint("GET", "/chat/unread-count", None, aslan_headers)
