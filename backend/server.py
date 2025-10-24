@@ -159,7 +159,7 @@ async def award_badge(username: str, badge_type: str, badge_name: str):
         })
 
 
-async def update_user_stats(username: str, synced: bool, rounds: int):
+async def update_user_stats(username: str, synced: bool, rounds: int, opponent: str = None):
     """Update user XP, level, and connection score"""
     user = await users_collection.find_one({"username": username})
     if not user:
@@ -168,12 +168,25 @@ async def update_user_stats(username: str, synced: bool, rounds: int):
     # Award XP
     xp_gain = 50 if synced else 20
     new_xp = user.get("xp", 0) + xp_gain
-    new_level = (new_xp // 100) + 1
+    
+    # New level formula: more gradual progression
+    import math
+    new_level = int(math.sqrt(new_xp / 50)) + 1
     
     # Update connection score
     total_games = user.get("total_games", 0) + 1
     successful_syncs = user.get("successful_syncs", 0) + (1 if synced else 0)
     connection_score = int((successful_syncs / total_games) * 100) if total_games > 0 else 0
+    
+    # Track perfect harmony (2nd round syncs)
+    perfect_harmonies = user.get("perfect_harmonies", 0)
+    if rounds == 2 and synced:
+        perfect_harmonies += 1
+    
+    # Track partner syncs for Mind Twin badge
+    partner_syncs = user.get("partner_syncs", {})
+    if synced and opponent and opponent != "AI":
+        partner_syncs[opponent] = partner_syncs.get(opponent, 0) + 1
     
     await users_collection.update_one(
         {"username": username},
@@ -183,18 +196,26 @@ async def update_user_stats(username: str, synced: bool, rounds: int):
                 "level": new_level,
                 "total_games": total_games,
                 "successful_syncs": successful_syncs,
-                "connection_score": connection_score
+                "connection_score": connection_score,
+                "perfect_harmonies": perfect_harmonies,
+                "partner_syncs": partner_syncs
             }
         }
     )
     
     # Check for badge awards
-    if successful_syncs >= 3:
-        await award_badge(username, "mind_reader", "Mind Reader")
-    if total_games >= 50:
-        await award_badge(username, "word_wizard", "Word Wizard")
-    if rounds == 1 and synced:
-        await award_badge(username, "harmony_hunter", "Harmony Hunter")
+    if successful_syncs >= 10:
+        await award_badge(username, "mind_reader", "🧠 Mind Reader")
+    if perfect_harmonies >= 5:
+        await award_badge(username, "perfect_harmony", "⚡ Perfect Harmony")
+    if total_games >= 100:
+        await award_badge(username, "game_master", "🎮 Game Master")
+    
+    # Check for Mind Twin badge (10 syncs with any single person)
+    for partner, sync_count in partner_syncs.items():
+        if sync_count >= 10:
+            await award_badge(username, f"mind_twin_{partner}", f"💫 Mind Twin with {partner}")
+
 
 
 async def get_ai_word(word1: str, word2: str, is_initial: bool = False, round_num: int = 1) -> str:
