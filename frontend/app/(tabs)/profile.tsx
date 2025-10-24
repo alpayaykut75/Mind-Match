@@ -67,12 +67,22 @@ export default function ProfileScreen() {
 
   const handleSaveBio = async () => {
     try {
-      await userAPI.updateProfile({ bio: editBio });
+      const updateData: any = { bio: editBio };
+      
+      if (editAge) {
+        updateData.age = parseInt(editAge);
+      }
+      
+      if (editCountry) {
+        updateData.country = editCountry;
+      }
+      
+      await userAPI.updateProfile(updateData);
       setEditModalVisible(false);
       await loadProfile();
-      Alert.alert('Success', 'Bio updated successfully!');
+      Alert.alert('Success', 'Profile updated successfully!');
     } catch (error) {
-      Alert.alert('Error', 'Failed to update bio');
+      Alert.alert('Error', 'Failed to update profile');
     }
   };
 
