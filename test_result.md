@@ -241,6 +241,19 @@ backend:
           comment: "COMPREHENSIVE TESTING COMPLETED: All 12 test cases passed (100% success rate). Tested complete game invitation flow: 1) POST /api/game/invite - Successfully sends invites to friends, correctly rejects non-friends and duplicates, 2) GET /api/game/invites - Returns proper invite structure with all required fields (invite_id, from_username, to_username, status, from_user_avatar, from_user_level, created_at), 3) POST /api/game/invite/{invite_id}/accept - Creates friend mode game correctly, handles non-existent and already processed invites properly, 4) POST /api/game/invite/{invite_id}/decline - Successfully declines invites. Game creation verified: both users can access created game with correct player1, player2, mode='friend'. All error scenarios tested and working correctly."
 
 frontend:
+  - task: "Unread Message Endpoints"
+    implemented: true
+    working: true
+    file: "backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+        - working: true
+          agent: "testing"
+          comment: "COMPREHENSIVE TESTING COMPLETED: All unread message endpoints working correctly (100% success rate, 10/10 tests passed). Fixed critical route ordering issue where /api/chat/{username} was intercepting specific endpoints. Tested: POST /api/chat/send (message sending), GET /api/chat/unread-count (returns proper JSON with unread_count field), GET /api/chat/unread-by-user (returns dictionary with usernames as keys), MongoDB data verification, multiple message handling, and message reading functionality. All endpoints return correct data formats and accurate counts."
+
+frontend:
   - task: "Game Invitation UI - Friends Screen"
     implemented: true
     working: "NA"
