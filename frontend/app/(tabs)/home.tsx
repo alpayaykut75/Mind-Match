@@ -94,7 +94,7 @@ export default function HomeScreen() {
       await friendAPI.sendRequest(selectedUser.username);
       Alert.alert('Success', `Friend request sent to ${selectedUser.username}!`);
       setModalVisible(false);
-      await loadData(); // Refresh to update friend status
+      await loadUsers(); // Refresh to update friend status
     } catch (error: any) {
       Alert.alert('Error', error.response?.data?.detail || 'Failed to send friend request');
     }
