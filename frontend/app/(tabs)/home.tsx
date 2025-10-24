@@ -31,16 +31,6 @@ interface User {
   online: boolean;
 }
 
-interface ActiveGame {
-  game_id: string;
-  opponent: string;
-  opponent_avatar: string;
-  mode: string;
-  status: string;
-  current_round: number;
-  created_at: string;
-}
-
 export default function HomeScreen() {
   const [users, setUsers] = useState<User[]>([]);
   const [refreshing, setRefreshing] = useState(false);
