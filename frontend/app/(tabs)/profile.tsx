@@ -229,7 +229,8 @@ export default function ProfileScreen() {
         >
           <View style={styles.modalOverlay}>
             <View style={styles.modalContent}>
-              <Text style={styles.modalTitle}>Edit Bio</Text>
+              <Text style={styles.modalTitle}>Edit Profile</Text>
+              
               <TextInput
                 style={styles.bioInput}
                 placeholder="Tell us about yourself..."
@@ -240,6 +241,25 @@ export default function ProfileScreen() {
                 maxLength={150}
               />
               <Text style={styles.charCount}>{editBio.length}/150</Text>
+              
+              <TextInput
+                style={styles.input}
+                placeholder="Age (optional)"
+                placeholderTextColor={theme.colors.textSecondary}
+                value={editAge}
+                onChangeText={setEditAge}
+                keyboardType="number-pad"
+                maxLength={3}
+              />
+              
+              <TextInput
+                style={styles.input}
+                placeholder="Country (optional)"
+                placeholderTextColor={theme.colors.textSecondary}
+                value={editCountry}
+                onChangeText={setEditCountry}
+                maxLength={50}
+              />
               
               <TouchableOpacity onPress={handleSaveBio}>
                 <LinearGradient
