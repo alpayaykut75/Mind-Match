@@ -950,6 +950,38 @@ async def send_message(msg: SendMessage, current_user: str = Depends(get_current
     return {"message": "Message sent"}
 
 
+@app.get("/api/chat/unread-count")
+async def get_unread_count(current_user: str = Depends(get_current_user)):
+    """Get total unread message count for current user"""
+    print(f"🔍 DEBUG: get_unread_count called for user: {current_user}")
+    unread_count = await chats_collection.count_documents({
+        "to_username": current_user,
+        "read": False
+    })
+    print(f"🔍 DEBUG: Found {unread_count} unread messages for {current_user}")
+    result = {"unread_count": unread_count}
+    print(f"🔍 DEBUG: Returning: {result}")
+    return result
+
+
+@app.get("/api/chat/unread-by-user")
+async def get_unread_by_user(current_user: str = Depends(get_current_user)):
+    """Get unread message count per friend"""
+    print(f"🔍 DEBUG: get_unread_by_user called for user: {current_user}")
+    pipeline = [
+        {"$match": {"to_username": current_user, "read": False}},
+        {"$group": {"_id": "$from_username", "count": {"$sum": 1}}}
+    ]
+    
+    results = await chats_collection.aggregate(pipeline).to_list(100)
+    print(f"🔍 DEBUG: Aggregation results: {results}")
+    
+    # Convert to dict {username: count}
+    unread_dict = {item["_id"]: item["count"] for item in results}
+    print(f"🔍 DEBUG: Returning unread_dict: {unread_dict}")
+    return unread_dict
+
+
 @app.get("/api/chat/{username}")
 async def get_chat_history(username: str, current_user: str = Depends(get_current_user)):
     # Get messages between users
@@ -976,35 +1008,6 @@ async def get_chat_history(username: str, current_user: str = Depends(get_curren
         }
         for msg in messages
     ]
-
-
-@app.get("/api/chat/unread-count")
-async def get_unread_count(current_user: str = Depends(get_current_user)):
-    """Get total unread message count for current user"""
-    print(f"🔍 DEBUG: get_unread_count called for user: {current_user}")
-    unread_count = await chats_collection.count_documents({
-        "to_username": current_user,
-        "read": False
-    })
-    print(f"🔍 DEBUG: Found {unread_count} unread messages for {current_user}")
-    result = {"unread_count": unread_count}
-    print(f"🔍 DEBUG: Returning: {result}")
-    return result
-
-
-@app.get("/api/chat/unread-by-user")
-async def get_unread_by_user(current_user: str = Depends(get_current_user)):
-    """Get unread message count per friend"""
-    pipeline = [
-        {"$match": {"to_username": current_user, "read": False}},
-        {"$group": {"_id": "$from_username", "count": {"$sum": 1}}}
-    ]
-    
-    results = await chats_collection.aggregate(pipeline).to_list(100)
-    
-    # Convert to dict {username: count}
-    unread_dict = {item["_id"]: item["count"] for item in results}
-    return unread_dict
 
 
 @app.get("/api/chat/conversations")
