@@ -695,6 +695,8 @@ async def create_game(game_data: CreateGame, current_user: str = Depends(get_cur
         "player1_word": None,
         "player2_word": None,
         "created_at": datetime.utcnow(),
+        "start_time": datetime.utcnow(),
+        "end_time": None,
         "synced": False,
         "sync_word": None,
         "total_rounds": 0
