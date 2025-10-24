@@ -58,6 +58,8 @@ export default function ProfileScreen() {
       const response = await userAPI.getMe();
       setProfile(response.data);
       setEditBio(response.data.bio || '');
+      setEditAge(response.data.age?.toString() || '');
+      setEditCountry(response.data.country || '');
     } catch (error) {
       console.error('Failed to load profile', error);
     }
