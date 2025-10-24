@@ -461,29 +461,91 @@ const styles = StyleSheet.create({
   badgesContainer: {
     marginBottom: theme.spacing.xl,
   },
+  badgesHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: theme.spacing.md,
+  },
+  badgesCount: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: theme.colors.secondary,
+  },
   sectionTitle: {
     fontSize: 18,
     fontWeight: 'bold',
     color: theme.colors.text,
-    marginBottom: theme.spacing.md,
   },
-  badgesList: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    gap: theme.spacing.md,
-  },
-  badge: {
+  badgeCard: {
     backgroundColor: theme.colors.cardBg,
     borderRadius: theme.borderRadius.md,
     padding: theme.spacing.md,
-    alignItems: 'center',
-    minWidth: 100,
+    marginBottom: theme.spacing.md,
+    opacity: 0.6,
+  },
+  badgeCardEarned: {
+    opacity: 1,
+    borderWidth: 2,
+    borderColor: '#4CAF50',
   },
   badgeName: {
-    fontSize: 12,
+    fontSize: 16,
+    fontWeight: 'bold',
     color: theme.colors.text,
-    marginTop: theme.spacing.xs,
-    textAlign: 'center',
+    marginBottom: 4,
+  },
+  badgeDesc: {
+    fontSize: 13,
+    color: theme.colors.textSecondary,
+    marginBottom: theme.spacing.sm,
+  },
+  progressBarContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: theme.spacing.sm,
+  },
+  progressBar: {
+    flex: 1,
+    height: 8,
+    backgroundColor: theme.colors.background,
+    borderRadius: 4,
+    overflow: 'hidden',
+  },
+  progressFill: {
+    height: '100%',
+  },
+  progressText: {
+    fontSize: 12,
+    color: theme.colors.textSecondary,
+    minWidth: 40,
+  },
+  progressHint: {
+    fontSize: 12,
+    color: theme.colors.textSecondary,
+    marginTop: 4,
+  },
+  earnedBadge: {
+    fontSize: 13,
+    color: '#4CAF50',
+    fontWeight: 'bold',
+    marginTop: 4,
+  },
+  leaderboardButton: {
+    marginBottom: theme.spacing.md,
+  },
+  leaderboardGradient: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: theme.spacing.md,
+    borderRadius: theme.borderRadius.md,
+    gap: theme.spacing.sm,
+  },
+  leaderboardText: {
+    color: theme.colors.text,
+    fontSize: 16,
+    fontWeight: 'bold',
   },
   logoutButton: {
     backgroundColor: theme.colors.error,
