@@ -51,6 +51,8 @@ export const gameAPI = {
     api.get(`/api/game/${gameId}/status`),
   getActiveGames: () => 
     api.get('/api/game/active'),
+  abandonGame: (gameId: string) => 
+    api.post(`/api/game/${gameId}/abandon`),
   sendGameInvite: (username: string) => 
     api.post('/api/game/invite', { to_username: username }),
   getGameInvites: () => 
