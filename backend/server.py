@@ -320,6 +320,62 @@ async def login(user: UserLogin):
     return {"token": token, "username": user.username}
 
 
+async def calculate_leaderboard_score(username: str) -> float:
+    """Calculate leaderboard score for a user based on speed, rounds, and win rate"""
+    user = await users_collection.find_one({"username": username})
+    if not user:
+        return 0.0
+    
+    # Get completed games
+    games = await games_collection.find({
+        "$or": [{"player1": username}, {"player2": username}],
+        "status": "completed",
+        "start_time": {"$exists": True},
+        "end_time": {"$exists": True}
+    }).to_list(1000)
+    
+    if not games:
+        return 0.0
+    
+    # Calculate average speed score
+    speed_scores = []
+    for game in games:
+        duration = (game["end_time"] - game["start_time"]).total_seconds()
+        if duration < 30:
+            speed_scores.append(100)
+        elif duration < 60:
+            speed_scores.append(80)
+        elif duration < 120:
+            speed_scores.append(60)
+        else:
+            speed_scores.append(40)
+    
+    avg_speed_score = sum(speed_scores) / len(speed_scores) if speed_scores else 0
+    
+    # Calculate average round score
+    round_scores = []
+    for game in games:
+        rounds = game.get("total_rounds", 1)
+        if rounds == 1:
+            round_scores.append(100)
+        elif rounds == 2:
+            round_scores.append(85)
+        elif rounds == 3:
+            round_scores.append(70)
+        else:
+            round_scores.append(50)
+    
+    avg_round_score = sum(round_scores) / len(round_scores) if round_scores else 0
+    
+    # Win rate (connection score is already SYNC%)
+    win_rate = user.get("connection_score", 0)
+    
+    # Final score: Speed 40% + Rounds 40% + Win Rate 20%
+    leaderboard_score = (avg_speed_score * 0.4) + (avg_round_score * 0.4) + (win_rate * 0.2)
+    
+    return round(leaderboard_score, 2)
+
+
 # ============ USER ENDPOINTS ============
 
 @app.get("/api/users/me")
