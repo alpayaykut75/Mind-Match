@@ -314,6 +314,17 @@ const styles = StyleSheet.create({
     color: theme.colors.textSecondary,
     textAlign: 'center',
   },
+  metadataContainer: {
+    flexDirection: 'row',
+    gap: theme.spacing.md,
+    marginTop: theme.spacing.sm,
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+  },
+  metadataText: {
+    fontSize: 14,
+    color: theme.colors.textSecondary,
+  },
   info: {
     fontSize: 14,
     color: theme.colors.textSecondary,
