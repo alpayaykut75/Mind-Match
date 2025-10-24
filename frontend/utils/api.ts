@@ -28,10 +28,17 @@ export const authAPI = {
 };
 
 export const userAPI = {
+  login: (username: string, password: string) => api.post('/api/auth/login', { username, password }),
+  signup: (username: string, password: string, bio?: string, age?: number, country?: string, avatar?: string) => 
+    api.post('/api/auth/signup', { username, password, bio, age, country, avatar }),
   getMe: () => api.get('/api/users/me'),
+  updateProfile: (data: any) => api.put('/api/users/me', data),
+  updateAvatar: (avatar: string) => api.put('/api/users/me', { avatar }),
+  markOnline: () => api.post('/api/users/online'),
   getOnlineUsers: () => api.get('/api/users/online'),
+  getBadgeProgress: () => api.get('/api/badges/progress'),
+  getLeaderboard: (period: string) => api.get(`/api/leaderboard/${period}`),
   searchUser: (username: string) => api.get(`/api/users/search/${username}`),
-  updateProfile: (data: any) => api.put('/api/users/profile', data),
 };
 
 export const friendAPI = {
