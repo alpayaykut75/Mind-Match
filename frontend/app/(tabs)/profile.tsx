@@ -138,10 +138,16 @@ export default function ProfileScreen() {
               <Ionicons name="pencil" size={16} color={theme.colors.textSecondary} />
             </TouchableOpacity>
 
-            {profile.age && profile.country && (
-              <Text style={styles.info}>
-                {profile.age} • {profile.country}
-              </Text>
+            {/* Age & Country */}
+            {(profile.age || profile.country) && (
+              <View style={styles.metadataContainer}>
+                {profile.country && (
+                  <Text style={styles.metadataText}>🌍 {profile.country}</Text>
+                )}
+                {profile.age && (
+                  <Text style={styles.metadataText}>🎂 {profile.age} years old</Text>
+                )}
+              </View>
             )}
           </View>
 
