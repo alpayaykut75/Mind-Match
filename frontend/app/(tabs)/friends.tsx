@@ -370,6 +370,87 @@ export default function FriendsScreen() {
           }
         />
       </LinearGradient>
+
+      {/* Friend Detail Modal */}
+      <Modal
+        visible={modalVisible}
+        transparent
+        animationType="fade"
+        onRequestClose={() => setModalVisible(false)}
+      >
+        <View style={styles.modalOverlay}>
+          <View style={styles.modalContent}>
+            <Avatar avatar={selectedFriend?.avatar} size={80} />
+            
+            <Text style={styles.modalUsername}>{selectedFriend?.username}</Text>
+            <Text style={styles.modalBio}>{selectedFriend?.bio || 'No bio'}</Text>
+            
+            {/* Age & Country */}
+            {(selectedFriend?.age || selectedFriend?.country) && (
+              <View style={styles.modalMetadata}>
+                {selectedFriend?.country && (
+                  <Text style={styles.modalMetaText}>🌍 {selectedFriend.country}</Text>
+                )}
+                {selectedFriend?.age && (
+                  <Text style={styles.modalMetaText}>🎂 {selectedFriend.age} years old</Text>
+                )}
+              </View>
+            )}
+            
+            <View style={styles.modalStats}>
+              <View style={styles.modalStat}>
+                <Text style={styles.modalStatValue}>Lv {selectedFriend?.level}</Text>
+                <Text style={styles.modalStatLabel}>Level</Text>
+              </View>
+              <View style={styles.modalStat}>
+                <Text style={styles.modalStatValue}>{selectedFriend?.connection_score || 0}%</Text>
+                <Text style={styles.modalStatLabel}>Sync</Text>
+              </View>
+            </View>
+
+            <View style={styles.modalButtonRow}>
+              <TouchableOpacity
+                style={styles.modalButton}
+                onPress={() => {
+                  setModalVisible(false);
+                  if (selectedFriend) handleChat(selectedFriend);
+                }}
+              >
+                <LinearGradient
+                  colors={[theme.colors.primary, theme.colors.secondary]}
+                  style={styles.modalButtonGradient}
+                >
+                  <Ionicons name="chatbubble" size={20} color={theme.colors.text} />
+                  <Text style={styles.modalButtonText}>Chat</Text>
+                </LinearGradient>
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                style={styles.modalButton}
+                onPress={() => {
+                  setModalVisible(false);
+                  if (selectedFriend) handleSendGameInvite(selectedFriend);
+                }}
+              >
+                <LinearGradient
+                  colors={[theme.colors.secondary, theme.colors.primary]}
+                  style={styles.modalButtonGradient}
+                >
+                  <Ionicons name="game-controller" size={20} color={theme.colors.text} />
+                  <Text style={styles.modalButtonText}>Play</Text>
+                </LinearGradient>
+              </TouchableOpacity>
+            </View>
+
+            <TouchableOpacity
+              style={styles.modalCloseButton}
+              onPress={() => setModalVisible(false)}
+            >
+              <Text style={styles.modalCloseText}>Close</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </Modal>
     </SafeAreaView>
   );
 }
