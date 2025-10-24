@@ -154,7 +154,7 @@ def main():
     print("\n📝 Setting up aslan user...")
     
     aslan_data = {
-        "username": "aslan",
+        "username": "aslan_test",
         "password": "aslan123", 
         "bio": "Test user aslan",
         "age": 28,
