@@ -124,11 +124,9 @@ export default function HomeScreen() {
                 <Ionicons name="star" size={14} color={theme.colors.secondary} />
               )}
             </View>
-            <View style={styles.stats}>
-              <Text style={styles.statText}>Lv {item.level}</Text>
-              <Text style={styles.statText}>•</Text>
-              <Text style={styles.statText}>{item.connection_score}% sync</Text>
-            </View>
+            <Text style={styles.bio} numberOfLines={1}>
+              {item.bio || 'No bio'}
+            </Text>
           </View>
         </View>
       </TouchableOpacity>
