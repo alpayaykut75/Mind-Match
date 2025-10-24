@@ -43,7 +43,6 @@ interface ActiveGame {
 
 export default function HomeScreen() {
   const [users, setUsers] = useState<User[]>([]);
-  const [activeGames, setActiveGames] = useState<ActiveGame[]>([]);
   const [refreshing, setRefreshing] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [modalVisible, setModalVisible] = useState(false);
@@ -52,19 +51,15 @@ export default function HomeScreen() {
   const { username } = useAuth();
 
   useEffect(() => {
-    loadData();
-    const interval = setInterval(loadData, 5000);
+    loadUsers();
+    const interval = setInterval(loadUsers, 5000);
     return () => clearInterval(interval);
   }, []);
 
-  const loadData = async () => {
+  const loadUsers = async () => {
     try {
-      const [usersRes, gamesRes] = await Promise.all([
-        userAPI.getOnlineUsers(),
-        gameAPI.getActiveGames(),
-      ]);
-      setUsers(usersRes.data);
-      setActiveGames(gamesRes.data);
+      const response = await userAPI.getOnlineUsers();
+      setUsers(response.data);
     } catch (error) {
       console.error('Failed to load data', error);
     }
@@ -72,7 +67,7 @@ export default function HomeScreen() {
 
   const onRefresh = async () => {
     setRefreshing(true);
-    await loadData();
+    await loadUsers();
     setRefreshing(false);
   };
 
