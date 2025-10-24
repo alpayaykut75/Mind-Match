@@ -70,7 +70,24 @@ export default function TabsLayout() {
         name="friends"
         options={{
           title: 'Friends',
-          tabBarIcon: ({ color, size }) => <Ionicons name="people" size={size} color={color} />,
+          tabBarIcon: ({ color, size }) => (
+            <View style={{ position: 'relative' }}>
+              <Ionicons name="people" size={size} color={color} />
+              {hasFriendsBadge && (
+                <View
+                  style={{
+                    position: 'absolute',
+                    top: -4,
+                    right: -4,
+                    width: 10,
+                    height: 10,
+                    borderRadius: 5,
+                    backgroundColor: '#FF3B30',
+                  }}
+                />
+              )}
+            </View>
+          ),
         }}
       />
       <Tabs.Screen
