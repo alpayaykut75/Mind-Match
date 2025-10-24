@@ -501,4 +501,30 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginTop: theme.spacing.xl,
   },
+  gameInfo: {
+    fontSize: 14,
+    color: theme.colors.textSecondary,
+    marginTop: 2,
+  },
+  gameButtons: {
+    flexDirection: 'row',
+    gap: theme.spacing.sm,
+    marginLeft: theme.spacing.md,
+    alignItems: 'center',
+  },
+  endButton: {
+    // Button container for end game
+  },
+  continueButton: {
+    // Button container for continue
+  },
+  continueButtonGradient: {
+    paddingHorizontal: theme.spacing.lg,
+    paddingVertical: theme.spacing.sm,
+    borderRadius: theme.borderRadius.sm,
+  },
+  continueButtonText: {
+    color: theme.colors.text,
+    fontWeight: 'bold',
+  },
 });
