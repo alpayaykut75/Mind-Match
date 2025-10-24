@@ -161,9 +161,9 @@ def main():
         "country": "Turkey"
     }
     
-    success, response = test_endpoint("POST", "/auth/signup", aslan_data, expected_status=200)
-    if not success:
-        # User might exist, try login
+    success, response = test_endpoint("POST", "/auth/signup", aslan_data)
+    if not success and "already exists" in str(response):
+        # User exists, try login
         login_data = {"username": "aslan", "password": "aslan123"}
         success, response = test_endpoint("POST", "/auth/login", login_data)
         
