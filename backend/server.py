@@ -531,7 +531,10 @@ async def get_friends(current_user: str = Depends(get_current_user)):
                 "bio": user.get("bio", ""),
                 "avatar": user.get("avatar", ""),
                 "level": user.get("level", 1),
-                "online": is_online
+                "online": is_online,
+                "age": user.get("age"),
+                "country": user.get("country", ""),
+                "connection_score": user.get("connection_score", 0),
             })
     
     return friends
