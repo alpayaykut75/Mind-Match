@@ -146,12 +146,21 @@ export default function FriendsScreen() {
           style={styles.actionButton}
           onPress={() => handleChat(item)}
         >
-          <LinearGradient
-            colors={[theme.colors.primary, theme.colors.secondary]}
-            style={styles.actionButtonGradient}
-          >
-            <Ionicons name="chatbubble" size={18} color={theme.colors.text} />
-          </LinearGradient>
+          <View style={{ position: 'relative' }}>
+            <LinearGradient
+              colors={[theme.colors.primary, theme.colors.secondary]}
+              style={styles.actionButtonGradient}
+            >
+              <Ionicons name="chatbubble" size={18} color={theme.colors.text} />
+            </LinearGradient>
+            {unreadMessages[item.username] > 0 && (
+              <View style={styles.chatBadge}>
+                <Text style={styles.chatBadgeText}>
+                  {unreadMessages[item.username]}
+                </Text>
+              </View>
+            )}
+          </View>
         </TouchableOpacity>
         
         {/* Invite to Play Button */}
