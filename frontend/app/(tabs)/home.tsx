@@ -202,20 +202,6 @@ export default function HomeScreen() {
           </TouchableOpacity>
         </View>
 
-        {activeGames.length > 0 && (
-          <>
-            <Text style={styles.sectionTitle}>🎮 Active Games</Text>
-            <FlatList
-              data={activeGames}
-              renderItem={renderActiveGame}
-              keyExtractor={(item) => item.game_id}
-              contentContainerStyle={styles.activeGamesList}
-              horizontal={false}
-              scrollEnabled={false}
-            />
-          </>
-        )}
-
         <Text style={styles.sectionTitle}>Online Players</Text>
 
         <FlatList
