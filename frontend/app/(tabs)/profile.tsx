@@ -44,6 +44,8 @@ export default function ProfileScreen() {
   const [editModalVisible, setEditModalVisible] = useState(false);
   const [showAvatarPicker, setShowAvatarPicker] = useState(false);
   const [editBio, setEditBio] = useState('');
+  const [editAge, setEditAge] = useState('');
+  const [editCountry, setEditCountry] = useState('');
   const { logout } = useAuth();
   const router = useRouter();
 
