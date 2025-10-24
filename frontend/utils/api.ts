@@ -65,4 +65,6 @@ export const chatAPI = {
   sendMessage: (username: string, message: string) => api.post('/api/chat/send', { to_username: username, message }),
   getChatHistory: (username: string) => api.get(`/api/chat/${username}`),
   getConversations: () => api.get('/api/chat/conversations'),
+  getUnreadCount: () => api.get('/api/chat/unread-count'),
+  getUnreadByUser: () => api.get('/api/chat/unread-by-user'),
 };
