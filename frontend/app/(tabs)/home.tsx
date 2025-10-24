@@ -422,16 +422,19 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
   },
+  userInfoTouchable: {
+    flex: 1,
+  },
   userInfo: {
     flexDirection: 'row',
-    flex: 1,
+    alignItems: 'center',
   },
   avatarContainer: {
     position: 'relative',
   },
   avatar: {
-    width: 60,
-    height: 60,
+    width: 50,
+    height: 50,
     borderRadius: theme.borderRadius.full,
     justifyContent: 'center',
     alignItems: 'center',
