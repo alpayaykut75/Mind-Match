@@ -617,6 +617,128 @@ async def get_friends(current_user: str = Depends(get_current_user)):
     return friends
 
 
+# ============ LEADERBOARD ENDPOINTS ============
+
+@app.get("/api/leaderboard/{period}")
+async def get_leaderboard(period: str, current_user: str = Depends(get_current_user)):
+    """Get leaderboard for specified period: daily, weekly, monthly, all_time"""
+    
+    # Define time filters
+    now = datetime.utcnow()
+    time_filter = {}
+    
+    if period == "daily":
+        start_of_day = datetime(now.year, now.month, now.day)
+        time_filter = {"created_at": {"$gte": start_of_day}}
+    elif period == "weekly":
+        start_of_week = now - timedelta(days=now.weekday())
+        start_of_week = datetime(start_of_week.year, start_of_week.month, start_of_week.day)
+        time_filter = {"created_at": {"$gte": start_of_week}}
+    elif period == "monthly":
+        start_of_month = datetime(now.year, now.month, 1)
+        time_filter = {"created_at": {"$gte": start_of_month}}
+    # else: all_time (no filter)
+    
+    # Get all users with games in this period
+    games = await games_collection.find({
+        "status": "completed",
+        **time_filter
+    }).to_list(10000)
+    
+    # Get unique usernames
+    usernames = set()
+    for game in games:
+        if game["player1"] != "AI":
+            usernames.add(game["player1"])
+        if game["player2"] != "AI":
+            usernames.add(game["player2"])
+    
+    # Calculate scores for each user
+    leaderboard = []
+    for username in usernames:
+        score = await calculate_leaderboard_score(username)
+        user = await users_collection.find_one({"username": username})
+        if user:
+            leaderboard.append({
+                "username": username,
+                "avatar": user.get("avatar", ""),
+                "level": user.get("level", 1),
+                "score": score,
+                "connection_score": user.get("connection_score", 0),
+                "total_games": user.get("total_games", 0),
+                "is_current_user": username == current_user
+            })
+    
+    # Sort by score descending
+    leaderboard.sort(key=lambda x: x["score"], reverse=True)
+    
+    # Add rank
+    for i, entry in enumerate(leaderboard):
+        entry["rank"] = i + 1
+    
+    # Return top 100
+    return leaderboard[:100]
+
+
+@app.get("/api/badges/progress")
+async def get_badge_progress(current_user: str = Depends(get_current_user)):
+    """Get badge progress for current user"""
+    user = await users_collection.find_one({"username": current_user})
+    if not user:
+        raise HTTPException(status_code=404, detail="User not found")
+    
+    # Get earned badges
+    earned_badges = await badges_collection.find({"username": current_user}).to_list(100)
+    earned_badge_ids = [b["badge_id"] for b in earned_badges]
+    
+    # Define all badges with progress
+    successful_syncs = user.get("successful_syncs", 0)
+    perfect_harmonies = user.get("perfect_harmonies", 0)
+    total_games = user.get("total_games", 0)
+    partner_syncs = user.get("partner_syncs", {})
+    
+    # Find max partner syncs for Mind Twin
+    max_partner_syncs = max(partner_syncs.values()) if partner_syncs else 0
+    mind_twin_partner = max(partner_syncs, key=partner_syncs.get) if partner_syncs else None
+    
+    badges = [
+        {
+            "id": "mind_reader",
+            "name": "🧠 Mind Reader",
+            "description": "Achieve 10 SYNCs",
+            "progress": successful_syncs,
+            "target": 10,
+            "earned": "mind_reader" in earned_badge_ids
+        },
+        {
+            "id": "perfect_harmony",
+            "name": "⚡ Perfect Harmony",
+            "description": "SYNC on 2nd round 5 times",
+            "progress": perfect_harmonies,
+            "target": 5,
+            "earned": "perfect_harmony" in earned_badge_ids
+        },
+        {
+            "id": "game_master",
+            "name": "🎮 Game Master",
+            "description": "Play 100 games",
+            "progress": total_games,
+            "target": 100,
+            "earned": "game_master" in earned_badge_ids
+        },
+        {
+            "id": "mind_twin",
+            "name": f"💫 Mind Twin{(' with ' + mind_twin_partner) if mind_twin_partner else ''}",
+            "description": "10 SYNCs with one person",
+            "progress": max_partner_syncs,
+            "target": 10,
+            "earned": max_partner_syncs >= 10
+        }
+    ]
+    
+    return badges
+
+
 # ============ GAME ENDPOINTS ============
 
 @app.post("/api/game/invite")
