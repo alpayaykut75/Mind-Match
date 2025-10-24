@@ -309,16 +309,38 @@ export default function FriendsScreen() {
         <FlatList
           data={[...activeGames, ...gameInvites, ...requests, ...friends]}
           renderItem={(props) => {
-            if (activeGames.includes(props.item)) {
-              return renderActiveGame(props);
+            const { item, index } = props;
+            const prevItem = index > 0 ? [...activeGames, ...gameInvites, ...requests, ...friends][index - 1] : null;
+            
+            // Determine if we need to show a section header
+            let sectionHeader = null;
+            
+            // Active Games section
+            if (activeGames.includes(item) && !activeGames.includes(prevItem)) {
+              sectionHeader = <Text style={styles.sectionTitle}>🎮 Active Games</Text>;
             }
-            if (gameInvites.includes(props.item)) {
-              return renderGameInvite(props);
+            // Game Invites section
+            else if (gameInvites.includes(item) && !gameInvites.includes(prevItem)) {
+              sectionHeader = <Text style={styles.sectionTitle}>📨 Game Invites</Text>;
             }
-            if (requests.includes(props.item)) {
-              return renderRequest(props);
+            // Friend Requests section
+            else if (requests.includes(item) && !requests.includes(prevItem)) {
+              sectionHeader = <Text style={styles.sectionTitle}>👥 Friend Requests</Text>;
             }
-            return renderFriend(props);
+            // Friends section
+            else if (friends.includes(item) && !friends.includes(prevItem)) {
+              sectionHeader = <Text style={styles.sectionTitle}>🧑‍🤝‍🧑 Friends</Text>;
+            }
+            
+            return (
+              <>
+                {sectionHeader}
+                {activeGames.includes(item) ? renderActiveGame(props) :
+                 gameInvites.includes(item) ? renderGameInvite(props) :
+                 requests.includes(item) ? renderRequest(props) :
+                 renderFriend(props)}
+              </>
+            );
           }}
           keyExtractor={(item, index) => {
             if ('game_id' in item) return `game-${item.game_id}`;
@@ -332,19 +354,6 @@ export default function FriendsScreen() {
           }
           ListEmptyComponent={
             <Text style={styles.emptyText}>No friends yet</Text>
-          }
-          ListHeaderComponent={
-            <>
-              {activeGames.length > 0 && (
-                <Text style={styles.sectionTitle}>🎮 Active Games</Text>
-              )}
-              {activeGames.length === 0 && gameInvites.length > 0 && (
-                <Text style={styles.sectionTitle}>📨 Game Invites</Text>
-              )}
-              {activeGames.length === 0 && gameInvites.length === 0 && requests.length > 0 && (
-                <Text style={styles.sectionTitle}>👥 Friend Requests</Text>
-              )}
-            </>
           }
         />
       </LinearGradient>
