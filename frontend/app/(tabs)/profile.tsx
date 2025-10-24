@@ -67,6 +67,15 @@ export default function ProfileScreen() {
     }
   };
 
+  const loadBadges = async () => {
+    try {
+      const response = await userAPI.getBadgeProgress();
+      setBadges(response.data);
+    } catch (error) {
+      console.error('Failed to load badges', error);
+    }
+  };
+
   const handleSaveBio = async () => {
     try {
       const updateData: any = { bio: editBio };
