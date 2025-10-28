@@ -55,7 +55,20 @@ export default function StatsScreen() {
             <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
           }
         >
-          <Text style={styles.pageTitle}>📊 Your Stats</Text>
+          <View style={styles.header}>
+            <Text style={styles.pageTitle}>📊 Your Stats</Text>
+            <TouchableOpacity
+              style={styles.leaderboardIconButton}
+              onPress={() => router.push('/leaderboard')}
+            >
+              <LinearGradient
+                colors={[theme.colors.primary, theme.colors.secondary]}
+                style={styles.leaderboardIconGradient}
+              >
+                <Ionicons name="trophy" size={24} color={theme.colors.text} />
+              </LinearGradient>
+            </TouchableOpacity>
+          </View>
 
           {/* Quick Stats */}
           {profile && (
