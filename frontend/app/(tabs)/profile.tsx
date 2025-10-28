@@ -198,13 +198,13 @@ export default function ProfileScreen() {
           </View>
 
           {/* Badges Progress */}
-          {badges.length > 0 && (
+          {profile.badges && profile.badges.length > 0 && (
             <View style={styles.badgesContainer}>
               <View style={styles.badgesHeader}>
                 <Text style={styles.sectionTitle}>🏆 Badges</Text>
-                <Text style={styles.badgesCount}>{badges.filter(b => b.earned).length}/{badges.length}</Text>
+                <Text style={styles.badgesCount}>{profile.badges.filter(b => b.earned).length}/{profile.badges.length}</Text>
               </View>
-              {badges.map((badge) => (
+              {profile.badges.map((badge) => (
                 <View key={badge.id} style={[styles.badgeCard, badge.earned && styles.badgeCardEarned]}>
                   <Text style={styles.badgeName}>{badge.name}</Text>
                   <Text style={styles.badgeDesc}>{badge.description}</Text>
