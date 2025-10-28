@@ -139,11 +139,26 @@ const styles = StyleSheet.create({
   content: {
     padding: theme.spacing.lg,
   },
+  header: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: theme.spacing.lg,
+  },
   pageTitle: {
     fontSize: 28,
     fontWeight: 'bold',
     color: theme.colors.text,
-    marginBottom: theme.spacing.lg,
+  },
+  leaderboardIconButton: {
+    // Trophy icon button
+  },
+  leaderboardIconGradient: {
+    width: 48,
+    height: 48,
+    borderRadius: 24,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   quickStats: {
     flexDirection: 'row',
