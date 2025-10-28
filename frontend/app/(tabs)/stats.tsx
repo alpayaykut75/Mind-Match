@@ -255,20 +255,4 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginTop: 4,
   },
-  leaderboardButton: {
-    marginBottom: theme.spacing.md,
-  },
-  leaderboardGradient: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: theme.spacing.md,
-    borderRadius: theme.borderRadius.md,
-    gap: theme.spacing.sm,
-  },
-  leaderboardText: {
-    color: theme.colors.text,
-    fontSize: 16,
-    fontWeight: 'bold',
-  },
 });
