@@ -122,20 +122,6 @@ export default function StatsScreen() {
             ))}
           </View>
 
-          {/* Leaderboard Button */}
-          <TouchableOpacity
-            style={styles.leaderboardButton}
-            onPress={() => router.push('/leaderboard')}
-          >
-            <LinearGradient
-              colors={[theme.colors.primary, theme.colors.secondary]}
-              style={styles.leaderboardGradient}
-            >
-              <Ionicons name="trophy" size={24} color={theme.colors.text} />
-              <Text style={styles.leaderboardText}>View Leaderboard</Text>
-              <Ionicons name="chevron-forward" size={24} color={theme.colors.text} />
-            </LinearGradient>
-          </TouchableOpacity>
         </ScrollView>
       </LinearGradient>
     </SafeAreaView>
