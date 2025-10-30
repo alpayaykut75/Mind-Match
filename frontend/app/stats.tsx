@@ -11,8 +11,8 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
-import { theme } from '../../constants/theme';
-import { userAPI } from '../../utils/api';
+import { theme } from '../constants/theme';
+import { userAPI } from '../utils/api';
 
 export default function StatsScreen() {
   const [badges, setBadges] = useState<any[]>([]);
