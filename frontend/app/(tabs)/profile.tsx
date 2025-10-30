@@ -197,38 +197,20 @@ export default function ProfileScreen() {
             <Text style={styles.xpNext}>{100 - (profile.xp % 100)} XP to level {profile.level + 1}</Text>
           </View>
 
-          {/* Badges Progress */}
-          {profile.badges && profile.badges.length > 0 && (
-            <View style={styles.badgesContainer}>
-              <View style={styles.badgesHeader}>
-                <Text style={styles.sectionTitle}>🏆 Badges</Text>
-                <Text style={styles.badgesCount}>{profile.badges.filter(b => b.earned).length}/{profile.badges.length}</Text>
-              </View>
-              {profile.badges.map((badge) => (
-                <View key={badge.id} style={[styles.badgeCard, badge.earned && styles.badgeCardEarned]}>
-                  <Text style={styles.badgeName}>{badge.name}</Text>
-                  <Text style={styles.badgeDesc}>{badge.description}</Text>
-                  <View style={styles.progressBarContainer}>
-                    <View style={styles.progressBar}>
-                      <LinearGradient
-                        colors={badge.earned ? ['#4CAF50', '#45A049'] : [theme.colors.primary, theme.colors.secondary]}
-                        start={{ x: 0, y: 0 }}
-                        end={{ x: 1, y: 0 }}
-                        style={[styles.progressFill, { width: `${Math.min((badge.progress / badge.target) * 100, 100)}%` }]}
-                      />
-                    </View>
-                    <Text style={styles.progressText}>{badge.progress}/{badge.target}</Text>
-                  </View>
-                  {!badge.earned && (
-                    <Text style={styles.progressHint}>{badge.target - badge.progress} more to unlock!</Text>
-                  )}
-                  {badge.earned && (
-                    <Text style={styles.earnedBadge}>✅ Unlocked!</Text>
-                  )}
-                </View>
-              ))}
-            </View>
-          )}
+          {/* Stats & Badges Button */}
+          <TouchableOpacity
+            style={styles.statsButton}
+            onPress={() => router.push('/stats')}
+          >
+            <LinearGradient
+              colors={[theme.colors.primary, theme.colors.secondary]}
+              style={styles.statsGradient}
+            >
+              <Ionicons name="stats-chart" size={24} color={theme.colors.text} />
+              <Text style={styles.statsButtonText}>View Stats & Badges</Text>
+              <Ionicons name="chevron-forward" size={24} color={theme.colors.text} />
+            </LinearGradient>
+          </TouchableOpacity>
 
           {/* Leaderboard Button */}
           <TouchableOpacity
