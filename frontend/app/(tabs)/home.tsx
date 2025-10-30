@@ -205,8 +205,8 @@ export default function HomeScreen() {
           <Text style={styles.subtitle}>Find your wavelength</Text>
         </View>
 
-        {/* Header with Trophy Icon */}
-        <View style={styles.header}>
+        {/* Search and Trophy Header */}
+        <View style={styles.searchHeader}>
           <TextInput
             style={styles.searchInput}
             placeholder="Search players..."
