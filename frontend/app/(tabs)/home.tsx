@@ -205,15 +205,26 @@ export default function HomeScreen() {
           <Text style={styles.subtitle}>Find your wavelength</Text>
         </View>
 
-        <View style={styles.searchContainer}>
-          <Ionicons name="search" size={20} color={theme.colors.textSecondary} />
+        {/* Header with Trophy Icon */}
+        <View style={styles.header}>
           <TextInput
             style={styles.searchInput}
-            placeholder="Search users..."
+            placeholder="Search players..."
             placeholderTextColor={theme.colors.textSecondary}
             value={searchQuery}
             onChangeText={setSearchQuery}
           />
+          <TouchableOpacity
+            style={styles.trophyButton}
+            onPress={() => router.push('/leaderboard')}
+          >
+            <LinearGradient
+              colors={[theme.colors.primary, theme.colors.secondary]}
+              style={styles.trophyGradient}
+            >
+              <Ionicons name="trophy" size={24} color={theme.colors.text} />
+            </LinearGradient>
+          </TouchableOpacity>
         </View>
 
         <View style={styles.quickActions}>
