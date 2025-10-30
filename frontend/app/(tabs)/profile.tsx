@@ -504,6 +504,22 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginTop: 4,
   },
+  statsButton: {
+    marginBottom: theme.spacing.md,
+  },
+  statsGradient: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: theme.spacing.md,
+    borderRadius: theme.borderRadius.md,
+    gap: theme.spacing.sm,
+  },
+  statsButtonText: {
+    color: theme.colors.text,
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
   leaderboardButton: {
     marginBottom: theme.spacing.md,
   },
