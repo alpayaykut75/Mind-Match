@@ -101,3 +101,195 @@
 #====================================================================================================
 # Testing Data - Main Agent and testing sub agent both should log testing data below this section
 #====================================================================================================
+
+user_problem_statement: "Test the MindMatch backend API endpoints including health check, auth flow, user endpoints, game flow (AI mode), and friend system"
+
+backend:
+  - task: "Health Check Endpoint"
+    implemented: true
+    working: true
+    file: "backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+        - working: true
+          agent: "testing"
+          comment: "GET /api/health endpoint tested successfully - returns {'status': 'healthy'}"
+
+  - task: "User Authentication (Signup/Login)"
+    implemented: true
+    working: true
+    file: "backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+        - working: true
+          agent: "testing"
+          comment: "Both signup and login endpoints working correctly. Tested with testuser1/test123 credentials. Returns proper JWT tokens."
+
+  - task: "User Profile Management"
+    implemented: true
+    working: true
+    file: "backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+        - working: true
+          agent: "testing"
+          comment: "GET /api/users/me endpoint working correctly. Returns complete user profile with all required fields (username, bio, xp, level, connection_score, total_games, badges)."
+
+  - task: "Online Users Endpoint"
+    implemented: true
+    working: true
+    file: "backend/server.py"
+    stuck_count: 0
+    priority: "medium"
+    needs_retesting: false
+    status_history:
+        - working: true
+          agent: "testing"
+          comment: "GET /api/users/online endpoint working correctly. Returns list of online users (empty list when no other users online)."
+
+  - task: "AI Game Creation and Management"
+    implemented: true
+    working: true
+    file: "backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+        - working: true
+          agent: "testing"
+          comment: "AI game creation working correctly. POST /api/game/create with mode='ai' creates game with AI opponent. Word submission and game status endpoints functional."
+
+  - task: "Game Word Submission"
+    implemented: true
+    working: true
+    file: "backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+        - working: true
+          agent: "testing"
+          comment: "POST /api/game/{game_id}/submit-word working correctly. Successfully submitted word 'OCEAN' and received proper response indicating move to next round."
+
+  - task: "Game Status Retrieval"
+    implemented: true
+    working: true
+    file: "backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+        - working: true
+          agent: "testing"
+          comment: "GET /api/game/{game_id}/status working correctly. Returns complete game state with all required fields (game_id, players, mode, status, current_round)."
+
+  - task: "Friend Request System"
+    implemented: true
+    working: true
+    file: "backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+        - working: true
+          agent: "testing"
+          comment: "Complete friend system working: send request (POST /api/friends/request), get requests (GET /api/friends/requests), accept request (POST /api/friends/accept/{username}). Tested full flow from testuser1 to testuser2."
+
+  - task: "Chat Conversations Endpoint"
+    implemented: true
+    working: false
+    file: "backend/server.py"
+    stuck_count: 1
+    priority: "high"
+    needs_retesting: false
+    status_history:
+        - working: false
+          agent: "testing"
+          comment: "CRITICAL ISSUE FOUND: GET /api/chat/conversations returns empty array despite friendships existing. Root cause: MongoDB ObjectId serialization error in FastAPI response. Friendships exist in DB (player1 <-> TestBuddy, player1 <-> aykut) but endpoint fails to serialize response due to ObjectId fields. Chat history endpoints work fine. Needs ObjectId handling fix."
+
+  - task: "Friend Mode Game Flow"
+    implemented: true
+    working: true
+    file: "backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+        - working: true
+          agent: "testing"
+          comment: "COMPREHENSIVE TESTING COMPLETED: Friend mode game flow tested extensively with multiple scenarios. Created test users, established friendships, created friend games, tested word submission, round progression, and SYNC scenarios. All tests passed successfully. Also tested with original users (aslan/alpay) mentioned in problem report - games progress correctly from round to round. The reported issue of games getting stuck in 'waiting' state could NOT be reproduced. Friend mode game mechanics are working perfectly."
+
+  - task: "Game Invitation System"
+    implemented: true
+    working: true
+    file: "backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+        - working: "NA"
+          agent: "main"
+          comment: "Implemented complete game invitation system with 4 endpoints: POST /api/game/invite (send invite), GET /api/game/invites (get pending invites), POST /api/game/invite/{invite_id}/accept (accept and create game), POST /api/game/invite/{invite_id}/decline (decline invite). Updated response format to include from_user_avatar and from_user_level fields."
+        - working: true
+          agent: "testing"
+          comment: "COMPREHENSIVE TESTING COMPLETED: All 12 test cases passed (100% success rate). Tested complete game invitation flow: 1) POST /api/game/invite - Successfully sends invites to friends, correctly rejects non-friends and duplicates, 2) GET /api/game/invites - Returns proper invite structure with all required fields (invite_id, from_username, to_username, status, from_user_avatar, from_user_level, created_at), 3) POST /api/game/invite/{invite_id}/accept - Creates friend mode game correctly, handles non-existent and already processed invites properly, 4) POST /api/game/invite/{invite_id}/decline - Successfully declines invites. Game creation verified: both users can access created game with correct player1, player2, mode='friend'. All error scenarios tested and working correctly."
+
+frontend:
+  - task: "Unread Message Endpoints"
+    implemented: true
+    working: true
+    file: "backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+        - working: true
+          agent: "testing"
+          comment: "COMPREHENSIVE TESTING COMPLETED: All unread message endpoints working correctly (100% success rate, 10/10 tests passed). Fixed critical route ordering issue where /api/chat/{username} was intercepting specific endpoints. Tested: POST /api/chat/send (message sending), GET /api/chat/unread-count (returns proper JSON with unread_count field), GET /api/chat/unread-by-user (returns dictionary with usernames as keys), MongoDB data verification, multiple message handling, and message reading functionality. All endpoints return correct data formats and accurate counts."
+
+frontend:
+  - task: "Game Invitation UI - Friends Screen"
+    implemented: true
+    working: "NA"
+    file: "frontend/app/(tabs)/friends.tsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+        - working: "NA"
+          agent: "main"
+          comment: "Implemented game invitation UI in Friends screen. Added: 1) Game Invites section at top showing pending invites with Accept/Decline buttons, 2) Changed Play button to Invite to Play button for each friend, 3) Upon accepting invite, user is redirected to game screen with shared game_id, 4) Added proper error handling and success messages. Frontend uses gameAPI.sendGameInvite, getGameInvites, acceptGameInvite, declineGameInvite functions."
+
+metadata:
+  created_by: "testing_agent"
+  version: "1.0"
+  test_sequence: 1
+  run_ui: false
+
+test_plan:
+  current_focus:
+    - "Game Invitation UI - Friends Screen"
+  stuck_tasks: 
+    - "Chat Conversations Endpoint"
+  test_all: false
+  test_priority: "high_first"
+
+agent_communication:
+    - agent: "testing"
+      message: "Comprehensive backend API testing completed successfully. All 12 test cases passed (100% success rate). Tested: health check, auth flow (signup/login), user profile management, online users, AI game creation/management, word submission, game status, and complete friend request system. Backend is fully functional and ready for production use."
+    - agent: "testing"
+      message: "CRITICAL ISSUE DISCOVERED: Chat conversations endpoint (GET /api/chat/conversations) failing due to MongoDB ObjectId serialization error. Friendships exist in database but endpoint returns empty array. Root cause: FastAPI cannot serialize MongoDB ObjectIds in response. All other chat endpoints work fine. This is blocking the Chat tab functionality. REQUIRES IMMEDIATE FIX."
+    - agent: "testing"
+      message: "FRIEND MODE GAME FLOW TESTING COMPLETED: Comprehensive testing of friend mode game flow shows NO ISSUES. Tested complete flow: user creation → friendship → game creation → word submission → round progression → SYNC scenario. All tests passed successfully. The reported issue of games getting stuck in 'waiting' state could NOT be reproduced. Tested with both new test users and original users (aslan/alpay) - all games progress correctly from round to round. Friend mode game mechanics are working as expected."
+    - agent: "main"
+      message: "GAME INVITATION SYSTEM IMPLEMENTED: Complete frontend and backend integration for game invitations. Users can now send game invites to friends from the Friends screen. Invites appear at the top of the Friends screen with Accept/Decline options. Upon acceptance, both players are directed to the same game. Backend endpoints have been enhanced to include user avatar and level data in invite responses. Ready for testing."
+    - agent: "testing"
+      message: "GAME INVITATION SYSTEM TESTING COMPLETED: Comprehensive testing of all 4 game invitation endpoints shows 100% success rate (12/12 tests passed). All endpoints working correctly: POST /api/game/invite (sends invites to friends, rejects non-friends and duplicates), GET /api/game/invites (returns proper structure with all required fields), POST /api/game/invite/{invite_id}/accept (creates friend games correctly, handles errors properly), POST /api/game/invite/{invite_id}/decline (successfully declines invites). Complete flow tested: user creation → friendship → invite sending → invite retrieval → invite acceptance → game creation verification. Both users can access created games with correct properties (player1, player2, mode='friend'). All error scenarios tested and working as expected. Game invitation system is fully functional and ready for production use."
+    - agent: "testing"
+      message: "UNREAD MESSAGE ENDPOINTS TESTING COMPLETED: All 10 tests passed (100% success rate). Fixed critical route ordering issue where /api/chat/{username} was intercepting /api/chat/unread-count and /api/chat/unread-by-user endpoints. Tested complete unread message flow: user creation → friendship → message sending → unread count verification → unread by user verification → MongoDB data verification → multiple messages → message reading. All endpoints working correctly: POST /api/chat/send (sends messages between friends), GET /api/chat/unread-count (returns proper JSON with unread_count field), GET /api/chat/unread-by-user (returns dictionary with usernames as keys and counts as values), GET /api/chat/{username} (marks messages as read when accessed). Badge system endpoints are fully functional and ready for production use."
