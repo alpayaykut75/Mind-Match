@@ -553,9 +553,7 @@ async def get_friend_requests(current_user: str = Depends(get_current_user)):
                 "username": user["username"],
                 "bio": user.get("bio", ""),
                 "avatar": user.get("avatar", ""),
-                "level": user.get("level", 1),
-                "age": user.get("age"),
-                "country": user.get("country", "")
+                "level": user.get("level", 1)
             })
     
     return result
@@ -900,8 +898,7 @@ async def create_game(game_data: CreateGame, current_user: str = Depends(get_cur
         "end_time": None,
         "synced": False,
         "sync_word": None,
-        "total_rounds": 0,
-        "used_words": []  # Track all words used in this game
+        "total_rounds": 0
     }
     
     try:
@@ -1001,20 +998,19 @@ async def submit_word(game_id: str, word_data: SubmitWord, current_user: str = D
                 {"$set": {"player2_word": ai_word}}
             )
         else:
-            # AI generates connecting word - use the CURRENT revealed words
-            # These are the words from the PREVIOUS round that both players can see
-            prev_word1 = game.get("player1_word")
-            prev_word2 = game.get("player2_word")
-            
-            if prev_word1 and prev_word2:
-                print(f"🤖 AI connecting: {prev_word1} + {prev_word2}")
+            # AI generates connecting word - use ONLY the revealed words from LAST round
+            # Get the last completed round to see what words were revealed
+            last_round = await rounds_collection.find_one(
+                {"game_id": game_id, "round_number": game["current_round"] - 1}
+            )
+            if last_round:
+                # AI sees the two words from the PREVIOUS round, not current player's word
                 ai_word = await get_ai_word(
-                    prev_word1, 
-                    prev_word2,
+                    last_round["player1_word"], 
+                    last_round["player2_word"],
                     is_initial=False,
                     round_num=game["current_round"]
                 )
-                print(f"   AI chose: {ai_word}")
                 await games_collection.update_one(
                     {"_id": game_id},
                     {"$set": {"player2_word": ai_word}}
