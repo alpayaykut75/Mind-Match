@@ -1005,18 +1005,22 @@ async def submit_word(game_id: str, word_data: SubmitWord, current_user: str = D
     
     # If AI mode and player submitted, generate AI word
     if game["mode"] == "ai" and game["player2"] == "AI":
+        # Get current used words
+        used_words = game.get("used_words", [])
+        
         if game["status"] == "round_1_initial":
             # AI generates initial word
-            ai_word = await get_ai_word("", "", is_initial=True, round_num=1)
+            ai_word = await get_ai_word("", "", is_initial=True, round_num=1, used_words=used_words)
             await games_collection.update_one(
                 {"_id": game_id},
-                {"$set": {"player2_word": ai_word}}
+                {"$set": {"player2_word": ai_word}, "$push": {"used_words": ai_word}}
             )
         else:
             # Round 2+: AI connects words from PREVIOUS round (saved above)
             if prev_word1 and prev_word2:
                 print(f"🤖 Round {game['current_round']}: AI connecting {prev_word1} + {prev_word2}")
-                ai_word = await get_ai_word(prev_word1, prev_word2, is_initial=False, round_num=game["current_round"])
+                print(f"   Banned words: {used_words}")
+                ai_word = await get_ai_word(prev_word1, prev_word2, is_initial=False, round_num=game["current_round"], used_words=used_words)
                 print(f"   AI chose: {ai_word}")
             else:
                 # Very first time after round 1
@@ -1025,12 +1029,13 @@ async def submit_word(game_id: str, word_data: SubmitWord, current_user: str = D
                     game.get("player1_word", "HOME"), 
                     game.get("player2_word", "LIFE"), 
                     is_initial=False, 
-                    round_num=game["current_round"]
+                    round_num=game["current_round"],
+                    used_words=used_words
                 )
             
             await games_collection.update_one(
                 {"_id": game_id},
-                {"$set": {"player2_word": ai_word}}
+                {"$set": {"player2_word": ai_word}, "$push": {"used_words": ai_word}}
             )
     
     # Refetch game
