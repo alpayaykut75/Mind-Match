@@ -221,37 +221,22 @@ export default function FriendsScreen() {
 
   const renderRequest = ({ item }: { item: any }) => (
     <View style={styles.card}>
-      <View style={styles.requestHeader}>
+      <View style={styles.friendInfo}>
         <Avatar avatar={item.avatar} size={60} />
-        <View style={styles.requestDetails}>
+        <View style={styles.details}>
           <Text style={styles.username}>{item.username}</Text>
-          <Text style={styles.requestLevel}>Level {item.level}</Text>
+          <Text style={styles.levelText}>Level {item.level}</Text>
+          <Text style={styles.bio} numberOfLines={2}>
+            {item.bio || 'No bio'}
+          </Text>
+          {item.age && (
+            <Text style={styles.infoText}>Age: {item.age}</Text>
+          )}
+          {item.country && (
+            <Text style={styles.infoText}>From: {item.country}</Text>
+          )}
         </View>
       </View>
-      
-      <View style={styles.requestInfoSection}>
-        <Text style={styles.requestBio} numberOfLines={2}>
-          {item.bio || 'No bio'}
-        </Text>
-        
-        {(item.age || item.country) && (
-          <View style={styles.requestMetadata}>
-            {item.country && (
-              <View style={styles.metadataItem}>
-                <Ionicons name="location" size={14} color={theme.colors.textSecondary} />
-                <Text style={styles.metadataText}>{item.country}</Text>
-              </View>
-            )}
-            {item.age && (
-              <View style={styles.metadataItem}>
-                <Ionicons name="calendar" size={14} color={theme.colors.textSecondary} />
-                <Text style={styles.metadataText}>{item.age} years</Text>
-              </View>
-            )}
-          </View>
-        )}
-      </View>
-      
       <TouchableOpacity
         style={styles.acceptButton}
         onPress={() => acceptRequest(item.username)}
@@ -260,7 +245,7 @@ export default function FriendsScreen() {
           colors={[theme.colors.primary, theme.colors.secondary]}
           style={styles.acceptButtonGradient}
         >
-          <Text style={styles.acceptButtonText}>Accept Friend Request</Text>
+          <Text style={styles.acceptButtonText}>Accept</Text>
         </LinearGradient>
       </TouchableOpacity>
     </View>
