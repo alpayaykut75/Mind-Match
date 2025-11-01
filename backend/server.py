@@ -985,52 +985,40 @@ async def submit_word(game_id: str, word_data: SubmitWord, current_user: str = D
     word = word_data.word.upper().strip()
     player_field = "player1_word" if current_user == game["player1"] else "player2_word"
     
-    # If AI mode, save the words BEFORE player submits (for AI to see previous round)
-    if game["mode"] == "ai" and game["player2"] == "AI" and game["status"] != "round_1_initial":
-        # Save current words as "previous words" before updating
-        prev_word1 = game.get("player1_word")
-        prev_word2 = game.get("player2_word")
-    
-    # Update player's word AND add to used_words
+    # Update player's word
     await games_collection.update_one(
         {"_id": game_id},
-        {"$set": {player_field: word}, "$push": {"used_words": word}}
+        {"$set": {player_field: word}}
     )
     
     # If AI mode and player submitted, generate AI word
     if game["mode"] == "ai" and game["player2"] == "AI":
-        # Get current used words
-        used_words = game.get("used_words", [])
-        
         if game["status"] == "round_1_initial":
             # AI generates initial word
-            ai_word = await get_ai_word("", "", is_initial=True, round_num=1, used_words=used_words)
+            ai_word = await get_ai_word("", "", is_initial=True, round_num=1)
             await games_collection.update_one(
                 {"_id": game_id},
-                {"$set": {"player2_word": ai_word}, "$push": {"used_words": ai_word}}
+                {"$set": {"player2_word": ai_word}}
             )
         else:
-            # Round 2+: AI connects words from PREVIOUS round (saved above)
-            if prev_word1 and prev_word2:
-                print(f"🤖 Round {game['current_round']}: AI connecting {prev_word1} + {prev_word2}")
-                print(f"   Banned words: {used_words}")
-                ai_word = await get_ai_word(prev_word1, prev_word2, is_initial=False, round_num=game["current_round"], used_words=used_words)
-                print(f"   AI chose: {ai_word}")
-            else:
-                # Very first time after round 1
-                print(f"⚠️ No previous words, using game's current words")
-                ai_word = await get_ai_word(
-                    game.get("player1_word", "HOME"), 
-                    game.get("player2_word", "LIFE"), 
-                    is_initial=False, 
-                    round_num=game["current_round"],
-                    used_words=used_words
-                )
+            # AI generates connecting word - use the CURRENT revealed words
+            # These are the words from the PREVIOUS round that both players can see
+            prev_word1 = game.get("player1_word")
+            prev_word2 = game.get("player2_word")
             
-            await games_collection.update_one(
-                {"_id": game_id},
-                {"$set": {"player2_word": ai_word}, "$push": {"used_words": ai_word}}
-            )
+            if prev_word1 and prev_word2:
+                print(f"🤖 AI connecting: {prev_word1} + {prev_word2}")
+                ai_word = await get_ai_word(
+                    prev_word1, 
+                    prev_word2,
+                    is_initial=False,
+                    round_num=game["current_round"]
+                )
+                print(f"   AI chose: {ai_word}")
+                await games_collection.update_one(
+                    {"_id": game_id},
+                    {"$set": {"player2_word": ai_word}}
+                )
     
     # Refetch game
     game = await games_collection.find_one({"_id": game_id})
