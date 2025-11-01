@@ -222,30 +222,32 @@ export default function FriendsScreen() {
   const renderRequest = ({ item }: { item: any }) => (
     <View style={styles.card}>
       <View style={styles.friendInfo}>
-        <Avatar avatar={item.avatar} size={60} />
+        <Avatar avatar={item.avatar} size={50} />
         <View style={styles.details}>
           <Text style={styles.username}>{item.username}</Text>
-          <Text style={styles.levelText}>Level {item.level}</Text>
+          <Text style={[styles.bio, {fontSize: 12, color: theme.colors.secondary}]}>
+            Level {item.level}
+          </Text>
           <Text style={styles.bio} numberOfLines={2}>
             {item.bio || 'No bio'}
           </Text>
-          {item.age && (
-            <Text style={styles.infoText}>Age: {item.age}</Text>
-          )}
           {item.country && (
-            <Text style={styles.infoText}>From: {item.country}</Text>
+            <Text style={[styles.bio, {fontSize: 11}]}>📍 {item.country}</Text>
+          )}
+          {item.age && (
+            <Text style={[styles.bio, {fontSize: 11}]}>🎂 {item.age} years</Text>
           )}
         </View>
       </View>
       <TouchableOpacity
-        style={styles.acceptButton}
+        style={[styles.acceptButton, {marginLeft: 0, marginTop: theme.spacing.md}]}
         onPress={() => acceptRequest(item.username)}
       >
         <LinearGradient
           colors={[theme.colors.primary, theme.colors.secondary]}
           style={styles.acceptButtonGradient}
         >
-          <Text style={styles.acceptButtonText}>Accept</Text>
+          <Text style={styles.acceptButtonText}>Accept Request</Text>
         </LinearGradient>
       </TouchableOpacity>
     </View>
