@@ -902,7 +902,8 @@ async def create_game(game_data: CreateGame, current_user: str = Depends(get_cur
         "end_time": None,
         "synced": False,
         "sync_word": None,
-        "total_rounds": 0
+        "total_rounds": 0,
+        "used_words": []  # Track all words used in this game
     }
     
     try:
