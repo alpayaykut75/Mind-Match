@@ -592,16 +592,18 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   acceptButton: {
-    marginLeft: theme.spacing.md,
+    marginTop: theme.spacing.md,
   },
   acceptButtonGradient: {
-    paddingHorizontal: theme.spacing.md,
-    paddingVertical: theme.spacing.sm,
-    borderRadius: theme.borderRadius.sm,
+    paddingHorizontal: theme.spacing.lg,
+    paddingVertical: theme.spacing.md,
+    borderRadius: theme.borderRadius.md,
+    alignItems: 'center',
   },
   acceptButtonText: {
     color: theme.colors.text,
     fontWeight: 'bold',
+    fontSize: 15,
   },
   inviteText: {
     fontSize: 14,
