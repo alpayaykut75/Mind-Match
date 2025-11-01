@@ -225,29 +225,20 @@ export default function FriendsScreen() {
         <Avatar avatar={item.avatar} size={50} />
         <View style={styles.details}>
           <Text style={styles.username}>{item.username}</Text>
-          <Text style={[styles.bio, {fontSize: 12, color: theme.colors.secondary}]}>
-            Level {item.level}
-          </Text>
-          <Text style={styles.bio} numberOfLines={2}>
+          <Text style={styles.bio} numberOfLines={1}>
             {item.bio || 'No bio'}
           </Text>
-          {item.country && (
-            <Text style={[styles.bio, {fontSize: 11}]}>📍 {item.country}</Text>
-          )}
-          {item.age && (
-            <Text style={[styles.bio, {fontSize: 11}]}>🎂 {item.age} years</Text>
-          )}
         </View>
       </View>
       <TouchableOpacity
-        style={[styles.acceptButton, {marginLeft: 0, marginTop: theme.spacing.md}]}
+        style={styles.acceptButton}
         onPress={() => acceptRequest(item.username)}
       >
         <LinearGradient
           colors={[theme.colors.primary, theme.colors.secondary]}
           style={styles.acceptButtonGradient}
         >
-          <Text style={styles.acceptButtonText}>Accept Request</Text>
+          <Text style={styles.acceptButtonText}>Accept</Text>
         </LinearGradient>
       </TouchableOpacity>
     </View>
@@ -579,28 +570,16 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   acceptButton: {
-    marginTop: theme.spacing.md,
+    marginLeft: theme.spacing.md,
   },
   acceptButtonGradient: {
-    paddingHorizontal: theme.spacing.lg,
+    paddingHorizontal: theme.spacing.md,
     paddingVertical: theme.spacing.sm,
-    borderRadius: theme.borderRadius.md,
-    alignItems: 'center',
+    borderRadius: theme.borderRadius.sm,
   },
   acceptButtonText: {
     color: theme.colors.text,
     fontWeight: 'bold',
-    fontSize: 14,
-  },
-  levelText: {
-    fontSize: 13,
-    color: theme.colors.secondary,
-    marginTop: 2,
-  },
-  infoText: {
-    fontSize: 12,
-    color: theme.colors.textSecondary,
-    marginTop: 2,
   },
   inviteText: {
     fontSize: 14,
@@ -735,43 +714,6 @@ const styles = StyleSheet.create({
     marginTop: theme.spacing.sm,
   },
   modalCloseText: {
-    color: theme.colors.textSecondary,
-  },
-  requestHeader: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: theme.spacing.md,
-  },
-  requestDetails: {
-    marginLeft: theme.spacing.md,
-    flex: 1,
-  },
-  requestLevel: {
-    fontSize: 13,
-    color: theme.colors.secondary,
-    marginTop: 2,
-  },
-  requestInfoSection: {
-    marginBottom: theme.spacing.md,
-  },
-  requestBio: {
-    fontSize: 14,
-    color: theme.colors.textSecondary,
-    marginBottom: theme.spacing.sm,
-    lineHeight: 20,
-  },
-  requestMetadata: {
-    flexDirection: 'row',
-    gap: theme.spacing.md,
-    marginTop: theme.spacing.sm,
-  },
-  metadataItem: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 4,
-  },
-  metadataText: {
-    fontSize: 13,
     color: theme.colors.textSecondary,
   },
 });
