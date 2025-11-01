@@ -738,4 +738,41 @@ const styles = StyleSheet.create({
   modalCloseText: {
     color: theme.colors.textSecondary,
   },
+  requestHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: theme.spacing.md,
+  },
+  requestDetails: {
+    marginLeft: theme.spacing.md,
+    flex: 1,
+  },
+  requestLevel: {
+    fontSize: 13,
+    color: theme.colors.secondary,
+    marginTop: 2,
+  },
+  requestInfoSection: {
+    marginBottom: theme.spacing.md,
+  },
+  requestBio: {
+    fontSize: 14,
+    color: theme.colors.textSecondary,
+    marginBottom: theme.spacing.sm,
+    lineHeight: 20,
+  },
+  requestMetadata: {
+    flexDirection: 'row',
+    gap: theme.spacing.md,
+    marginTop: theme.spacing.sm,
+  },
+  metadataItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 4,
+  },
+  metadataText: {
+    fontSize: 13,
+    color: theme.colors.textSecondary,
+  },
 });
