@@ -267,8 +267,8 @@ Reply with ONLY that ONE connecting word in uppercase. No explanation."""
         return ai_word
     except Exception as e:
         print(f"AI error: {e}")
-        # Fallback words - common connecting words
-        fallback_words = ["CALL", "TIME", "PLACE", "HOME", "FRIEND", "PARTY", "MUSIC", "GAME", "FOOD", "DRINK", "WORK", "PLAY", "HOUSE", "TALK", "MEET"]
+        # Fallback words - more variety
+        fallback_words = ["HOME", "TIME", "LIFE", "WATER", "LIGHT", "SOUND", "TREE", "BOOK", "PHONE", "MUSIC"]
         return random.choice(fallback_words)
 
 
