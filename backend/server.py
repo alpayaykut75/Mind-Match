@@ -218,7 +218,7 @@ async def update_user_stats(username: str, synced: bool, rounds: int, opponent: 
 
 
 
-async def get_ai_word(word1: str, word2: str, is_initial: bool = False, round_num: int = 1) -> str:
+async def get_ai_word(word1: str, word2: str, is_initial: bool = False, round_num: int = 1, used_words: list = []) -> str:
     """Get AI-generated connecting word using Claude"""
     try:
         # Make AI play more realistically - not too perfect
@@ -226,14 +226,16 @@ async def get_ai_word(word1: str, word2: str, is_initial: bool = False, round_nu
             system_message = "You are playing a word association game. Generate a random, common word. Reply with ONLY ONE WORD in uppercase."
             prompt = "Think of ONE random everyday word (object, place, feeling, or activity). Just say the word, nothing else."
         else:
-            system_message = """You are playing a word-association game called MindMatch. 
-            
+            banned_words = ", ".join(used_words) if used_words else "none"
+            system_message = f"""You are playing a word-association game called MindMatch. 
+
 RULES:
 - Two players each said a different word in the previous round
 - Now you must find ONE connecting word that links BOTH words
 - Choose the MOST OBVIOUS connection that most people would think of
 - Don't overthink it - use common associations
 - Reply with ONLY ONE WORD in uppercase
+- DO NOT REPEAT: These words were already used: {banned_words}
 
 EXAMPLES:
 - WATER + UMBRELLA → RAIN (because rain involves both water and umbrellas)
@@ -247,6 +249,8 @@ EXAMPLES:
 
 What is the MOST OBVIOUS word that connects both '{word1}' and '{word2}'?
 Think like an average person would think. What's the first connection that comes to mind?
+
+IMPORTANT: Do NOT use any of these words: {banned_words}
 
 Reply with ONLY that ONE connecting word in uppercase. No explanation."""
         
