@@ -1002,34 +1002,31 @@ async def submit_word(game_id: str, word_data: SubmitWord, current_user: str = D
                 {"$set": {"player2_word": ai_word}}
             )
         else:
-            # AI generates connecting word - use the words from CURRENT round
-            # Get the last completed round to see what words were revealed
+            # Round 2+: AI should connect the words from PREVIOUS round
+            # Get the last completed round
             last_round = await rounds_collection.find_one(
-                {"game_id": game_id, "round_number": game["current_round"] - 1}
+                {"game_id": game_id, "round_number": game["current_round"] - 1},
+                sort=[("round_number", -1)]
             )
+            
             if last_round:
-                # AI sees the two words from the LAST COMPLETED round
-                print(f"🤖 AI generating word for Round {game['current_round']}")
-                print(f"   Looking at last round: {last_round['player1_word']} + {last_round['player2_word']}")
-                ai_word = await get_ai_word(
-                    last_round["player1_word"], 
-                    last_round["player2_word"],
-                    is_initial=False,
-                    round_num=game["current_round"]
-                )
-                print(f"   AI chose: {ai_word}")
-                await games_collection.update_one(
-                    {"_id": game_id},
-                    {"$set": {"player2_word": ai_word}}
-                )
+                word1 = last_round["player1_word"]
+                word2 = last_round["player2_word"]
+                print(f"🤖 Round {game['current_round']}: AI connecting {word1} + {word2}")
             else:
-                # Fallback: no previous round (shouldn't happen)
-                print(f"⚠️ No previous round found for game {game_id}, round {game['current_round']}")
-                ai_word = await get_ai_word("HOME", "LIFE", is_initial=False, round_num=game["current_round"])
-                await games_collection.update_one(
-                    {"_id": game_id},
-                    {"$set": {"player2_word": ai_word}}
-                )
+                # Fallback: If no previous round in DB, use current game words
+                # This shouldn't happen but let's be safe
+                print(f"⚠️ No previous round found, using fallback")
+                word1 = game.get("player1_word") or "TIME"
+                word2 = game.get("player2_word") or "LIFE"
+            
+            ai_word = await get_ai_word(word1, word2, is_initial=False, round_num=game["current_round"])
+            print(f"   AI chose: {ai_word}")
+            
+            await games_collection.update_one(
+                {"_id": game_id},
+                {"$set": {"player2_word": ai_word}}
+            )
     
     # Refetch game
     game = await games_collection.find_one({"_id": game_id})
