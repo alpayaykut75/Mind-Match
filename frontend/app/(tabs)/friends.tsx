@@ -578,6 +578,7 @@ const styles = StyleSheet.create({
   },
   acceptButton: {
     marginTop: theme.spacing.md,
+    width: '100%',
   },
   acceptButtonGradient: {
     paddingHorizontal: theme.spacing.lg,
@@ -589,6 +590,16 @@ const styles = StyleSheet.create({
     color: theme.colors.text,
     fontWeight: 'bold',
     fontSize: 15,
+  },
+  levelText: {
+    fontSize: 13,
+    color: theme.colors.secondary,
+    marginTop: 2,
+  },
+  infoText: {
+    fontSize: 12,
+    color: theme.colors.textSecondary,
+    marginTop: 2,
   },
   inviteText: {
     fontSize: 14,
