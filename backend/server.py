@@ -1009,18 +1009,22 @@ async def submit_word(game_id: str, word_data: SubmitWord, current_user: str = D
             )
             if last_round:
                 # AI sees the two words from the LAST COMPLETED round
+                print(f"🤖 AI generating word for Round {game['current_round']}")
+                print(f"   Looking at last round: {last_round['player1_word']} + {last_round['player2_word']}")
                 ai_word = await get_ai_word(
                     last_round["player1_word"], 
                     last_round["player2_word"],
                     is_initial=False,
                     round_num=game["current_round"]
                 )
+                print(f"   AI chose: {ai_word}")
                 await games_collection.update_one(
                     {"_id": game_id},
                     {"$set": {"player2_word": ai_word}}
                 )
             else:
                 # Fallback: no previous round (shouldn't happen)
+                print(f"⚠️ No previous round found for game {game_id}, round {game['current_round']}")
                 ai_word = await get_ai_word("HOME", "LIFE", is_initial=False, round_num=game["current_round"])
                 await games_collection.update_one(
                     {"_id": game_id},
