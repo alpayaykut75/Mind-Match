@@ -986,6 +986,12 @@ async def submit_word(game_id: str, word_data: SubmitWord, current_user: str = D
     word = word_data.word.upper().strip()
     player_field = "player1_word" if current_user == game["player1"] else "player2_word"
     
+    # If AI mode, save the words BEFORE player submits (for AI to see previous round)
+    if game["mode"] == "ai" and game["player2"] == "AI" and game["status"] != "round_1_initial":
+        # Save current words as "previous words" before updating
+        prev_word1 = game.get("player1_word")
+        prev_word2 = game.get("player2_word")
+    
     # Update player's word
     await games_collection.update_one(
         {"_id": game_id},
@@ -1002,26 +1008,20 @@ async def submit_word(game_id: str, word_data: SubmitWord, current_user: str = D
                 {"$set": {"player2_word": ai_word}}
             )
         else:
-            # Round 2+: AI should connect the words from PREVIOUS round
-            # Get the last completed round
-            last_round = await rounds_collection.find_one(
-                {"game_id": game_id, "round_number": game["current_round"] - 1},
-                sort=[("round_number", -1)]
-            )
-            
-            if last_round:
-                word1 = last_round["player1_word"]
-                word2 = last_round["player2_word"]
-                print(f"🤖 Round {game['current_round']}: AI connecting {word1} + {word2}")
+            # Round 2+: AI connects words from PREVIOUS round (saved above)
+            if prev_word1 and prev_word2:
+                print(f"🤖 Round {game['current_round']}: AI connecting {prev_word1} + {prev_word2}")
+                ai_word = await get_ai_word(prev_word1, prev_word2, is_initial=False, round_num=game["current_round"])
+                print(f"   AI chose: {ai_word}")
             else:
-                # Fallback: If no previous round in DB, use current game words
-                # This shouldn't happen but let's be safe
-                print(f"⚠️ No previous round found, using fallback")
-                word1 = game.get("player1_word") or "TIME"
-                word2 = game.get("player2_word") or "LIFE"
-            
-            ai_word = await get_ai_word(word1, word2, is_initial=False, round_num=game["current_round"])
-            print(f"   AI chose: {ai_word}")
+                # Very first time after round 1
+                print(f"⚠️ No previous words, using game's current words")
+                ai_word = await get_ai_word(
+                    game.get("player1_word", "HOME"), 
+                    game.get("player2_word", "LIFE"), 
+                    is_initial=False, 
+                    round_num=game["current_round"]
+                )
             
             await games_collection.update_one(
                 {"_id": game_id},
