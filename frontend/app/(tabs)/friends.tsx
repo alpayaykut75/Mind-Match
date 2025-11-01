@@ -580,18 +580,17 @@ const styles = StyleSheet.create({
   },
   acceptButton: {
     marginTop: theme.spacing.md,
-    width: '100%',
   },
   acceptButtonGradient: {
     paddingHorizontal: theme.spacing.lg,
-    paddingVertical: theme.spacing.md,
+    paddingVertical: theme.spacing.sm,
     borderRadius: theme.borderRadius.md,
     alignItems: 'center',
   },
   acceptButtonText: {
     color: theme.colors.text,
     fontWeight: 'bold',
-    fontSize: 15,
+    fontSize: 14,
   },
   levelText: {
     fontSize: 13,
