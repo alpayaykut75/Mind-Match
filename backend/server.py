@@ -997,10 +997,10 @@ async def submit_word(game_id: str, word_data: SubmitWord, current_user: str = D
         prev_word1 = game.get("player1_word")
         prev_word2 = game.get("player2_word")
     
-    # Update player's word
+    # Update player's word AND add to used_words
     await games_collection.update_one(
         {"_id": game_id},
-        {"$set": {player_field: word}}
+        {"$set": {player_field: word}, "$push": {"used_words": word}}
     )
     
     # If AI mode and player submitted, generate AI word
