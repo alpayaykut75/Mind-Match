@@ -226,27 +226,37 @@ async def get_ai_word(word1: str, word2: str, is_initial: bool = False, round_nu
             system_message = "You are playing a word association game. Generate a random, common word. Reply with ONLY ONE WORD in uppercase."
             prompt = "Think of ONE random everyday word (object, place, feeling, or activity). Just say the word, nothing else."
         else:
-            system_message = """You are playing a word-association game called MindMatch. 
+            system_message = """You are playing a word-association game. Find ONE connecting word that links two given words.
+
+KEY RULES:
+- Think of the STRONGEST and MOST OBVIOUS connection
+- Use everyday common words that most people would think of
+- The connecting word should naturally relate to BOTH input words
+- Reply with ONLY ONE WORD in uppercase, nothing else
+
+GOOD EXAMPLES:
+- PARTY + PHONE → CALL (you call people to invite to party, you use phone to call)
+- PARTY + PHONE → MUSIC (parties have music, phones play music)
+- PARTY + PHONE → INVITE (you invite to parties, often by phone)
+- WATER + UMBRELLA → RAIN (rain is water, umbrella protects from rain)
+- CAR + HOUSE → GARAGE (garage stores cars, garage is part of house)
+- PHONE + MUSIC → APP (music apps on phones)
+- BOOK + CHAT → TALK (books are about topics to talk about, chat is talking)
+- FRIEND + WATER → DRINK (drink with friends, drink water)
+- SWIM + TIME → POOL (swim in pool, spend time at pool)
+- POOL + HOME → HOUSE (pool at house, home has house)
+
+Think step by step:
+1. What activities/things involve BOTH words?
+2. What's the most common/obvious link?
+3. Say that ONE word."""
             
-RULES:
-- Two players each said a different word in the previous round
-- Now you must find ONE connecting word that links BOTH words
-- Choose the MOST OBVIOUS connection that most people would think of
-- Don't overthink it - use common associations
-- Reply with ONLY ONE WORD in uppercase
+            prompt = f"""Two words from previous round: '{word1}' and '{word2}'
 
-EXAMPLES:
-- WATER + UMBRELLA → RAIN (because rain involves both water and umbrellas)
-- CAR + HOUSE → GARAGE (because garages connect cars and houses)
-- PHONE + MUSIC → APP (because music apps are on phones)
-- SUN + BEACH → SUMMER (because summer connects sun and beaches)"""
-            
-            prompt = f"""Previous round: Player 1 said '{word1}' and Player 2 said '{word2}'.
+Find the STRONGEST connecting word that naturally links BOTH words.
+Think: What's the most obvious everyday connection between {word1} and {word2}?
 
-What is the MOST OBVIOUS word that connects both '{word1}' and '{word2}'?
-Think like an average person would think. What's the first connection that comes to mind?
-
-Reply with ONLY that ONE connecting word in uppercase. No explanation."""
+Reply with ONLY that ONE connecting word in UPPERCASE."""
         
         chat = LlmChat(
             api_key=EMERGENT_LLM_KEY,
