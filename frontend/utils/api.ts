@@ -32,8 +32,8 @@ export const userAPI = {
   signup: (username: string, password: string, bio?: string, age?: number, country?: string, avatar?: string) => 
     api.post('/api/auth/signup', { username, password, bio, age, country, avatar }),
   getMe: () => api.get('/api/users/me'),
-  updateProfile: (data: any) => api.put('/api/users/me', data),
-  updateAvatar: (avatar: string) => api.put('/api/users/me', { avatar }),
+  updateProfile: (data: any) => api.put('/api/users/profile', data),
+  updateAvatar: (avatar: string) => api.put('/api/users/profile', { avatar }),
   markOnline: () => api.post('/api/users/online'),
   getOnlineUsers: () => api.get('/api/users/online'),
   getBadgeProgress: () => api.get('/api/badges/progress'),
