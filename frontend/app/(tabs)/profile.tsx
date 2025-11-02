@@ -197,35 +197,58 @@ export default function ProfileScreen() {
             <Text style={styles.xpNext}>{100 - (profile.xp % 100)} XP to level {profile.level + 1}</Text>
           </View>
 
-          {/* Stats & Badges Button */}
-          <TouchableOpacity
-            style={styles.statsButton}
-            onPress={() => router.push('/stats')}
-          >
-            <LinearGradient
-              colors={[theme.colors.primary, theme.colors.secondary]}
-              style={styles.statsGradient}
-            >
-              <Ionicons name="stats-chart" size={24} color={theme.colors.text} />
-              <Text style={styles.statsButtonText}>View Stats & Badges</Text>
-              <Ionicons name="chevron-forward" size={24} color={theme.colors.text} />
-            </LinearGradient>
-          </TouchableOpacity>
+          {/* Stats Section */}
+          <View style={styles.sectionContainer}>
+            <Text style={styles.sectionTitle}>Performance Stats</Text>
+            
+            <View style={styles.performanceStats}>
+              <View style={styles.performanceCard}>
+                <View style={styles.performanceIconContainer}>
+                  <Ionicons name="sync" size={24} color={theme.colors.primary} />
+                </View>
+                <Text style={styles.performanceValue}>{profile.connection_score}%</Text>
+                <Text style={styles.performanceLabel}>Connection</Text>
+              </View>
 
-          {/* Leaderboard Button */}
-          <TouchableOpacity
-            style={styles.leaderboardButton}
-            onPress={() => router.push('/leaderboard')}
-          >
-            <LinearGradient
-              colors={[theme.colors.primary, theme.colors.secondary]}
-              style={styles.leaderboardGradient}
-            >
-              <Ionicons name="trophy" size={24} color={theme.colors.text} />
-              <Text style={styles.leaderboardText}>View Leaderboard</Text>
-              <Ionicons name="chevron-forward" size={24} color={theme.colors.text} />
-            </LinearGradient>
-          </TouchableOpacity>
+              <View style={styles.performanceCard}>
+                <View style={styles.performanceIconContainer}>
+                  <Ionicons name="checkmark-circle" size={24} color={theme.colors.secondary} />
+                </View>
+                <Text style={styles.performanceValue}>{profile.successful_syncs}</Text>
+                <Text style={styles.performanceLabel}>Syncs</Text>
+              </View>
+
+              <View style={styles.performanceCard}>
+                <View style={styles.performanceIconContainer}>
+                  <Ionicons name="flame" size={24} color="#FF6B35" />
+                </View>
+                <Text style={styles.performanceValue}>{profile.current_streak}</Text>
+                <Text style={styles.performanceLabel}>Streak</Text>
+              </View>
+            </View>
+          </View>
+
+          {/* Badges Section */}
+          {profile.badges && profile.badges.length > 0 && (
+            <View style={styles.sectionContainer}>
+              <Text style={styles.sectionTitle}>Badges</Text>
+              <View style={styles.badgesContainer}>
+                {profile.badges.map((badge, index) => (
+                  <View key={index} style={styles.badge}>
+                    <Text style={styles.badgeIcon}>
+                      {badge.type === 'first_sync' && '🎯'}
+                      {badge.type === 'streak_3' && '🔥'}
+                      {badge.type === 'streak_7' && '⚡'}
+                      {badge.type === 'games_10' && '🎮'}
+                      {badge.type === 'games_50' && '🏆'}
+                      {badge.type === 'perfect_sync' && '✨'}
+                    </Text>
+                    <Text style={styles.badgeName}>{badge.name}</Text>
+                  </View>
+                ))}
+              </View>
+            </View>
+          )}
 
           {/* Logout Button */}
           <TouchableOpacity style={styles.logoutButton} onPress={handleLogout}>
