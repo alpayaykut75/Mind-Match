@@ -720,6 +720,25 @@ const styles = StyleSheet.create({
     width: '85%',
     alignItems: 'center',
   },
+  modalTitle: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: theme.colors.text,
+    marginTop: theme.spacing.md,
+  },
+  modalSubtitle: {
+    fontSize: 14,
+    color: theme.colors.textSecondary,
+    textAlign: 'center',
+    marginTop: theme.spacing.xs,
+  },
+  modalMeta: {
+    flexDirection: 'row',
+    gap: theme.spacing.md,
+    marginTop: theme.spacing.sm,
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+  },
   modalUsername: {
     fontSize: 24,
     fontWeight: 'bold',
