@@ -57,6 +57,8 @@ export default function FriendsScreen() {
   const [refreshing, setRefreshing] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedFriend, setSelectedFriend] = useState<Friend | null>(null);
+  const [requestModalVisible, setRequestModalVisible] = useState(false);
+  const [selectedRequest, setSelectedRequest] = useState<any>(null);
   const router = useRouter();
 
   useEffect(() => {
