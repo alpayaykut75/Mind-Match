@@ -527,37 +527,69 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginTop: 4,
   },
-  statsButton: {
-    marginBottom: theme.spacing.md,
+  sectionContainer: {
+    marginBottom: theme.spacing.lg,
   },
-  statsGradient: {
+  sectionTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: theme.colors.text,
+    marginBottom: theme.spacing.md,
+    paddingHorizontal: theme.spacing.md,
+  },
+  performanceStats: {
     flexDirection: 'row',
+    gap: theme.spacing.sm,
+    paddingHorizontal: theme.spacing.md,
+  },
+  performanceCard: {
+    flex: 1,
+    backgroundColor: theme.colors.cardBg,
+    borderRadius: theme.borderRadius.md,
+    padding: theme.spacing.md,
+    alignItems: 'center',
+    gap: theme.spacing.xs,
+  },
+  performanceIconContainer: {
+    width: 48,
+    height: 48,
+    borderRadius: 24,
+    backgroundColor: theme.colors.background,
     alignItems: 'center',
     justifyContent: 'center',
-    padding: theme.spacing.md,
-    borderRadius: theme.borderRadius.md,
-    gap: theme.spacing.sm,
+    marginBottom: theme.spacing.xs,
   },
-  statsButtonText: {
-    color: theme.colors.text,
-    fontSize: 16,
+  performanceValue: {
+    fontSize: 20,
     fontWeight: 'bold',
+    color: theme.colors.text,
   },
-  leaderboardButton: {
-    marginBottom: theme.spacing.md,
+  performanceLabel: {
+    fontSize: 12,
+    color: theme.colors.textSecondary,
+    textAlign: 'center',
   },
-  leaderboardGradient: {
+  badgesContainer: {
     flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: theme.spacing.md,
-    borderRadius: theme.borderRadius.md,
+    flexWrap: 'wrap',
     gap: theme.spacing.sm,
+    paddingHorizontal: theme.spacing.md,
   },
-  leaderboardText: {
-    color: theme.colors.text,
-    fontSize: 16,
-    fontWeight: 'bold',
+  badge: {
+    backgroundColor: theme.colors.cardBg,
+    borderRadius: theme.borderRadius.md,
+    padding: theme.spacing.md,
+    alignItems: 'center',
+    minWidth: 80,
+    gap: theme.spacing.xs,
+  },
+  badgeIcon: {
+    fontSize: 32,
+  },
+  badgeName: {
+    fontSize: 11,
+    color: theme.colors.textSecondary,
+    textAlign: 'center',
   },
   logoutButton: {
     backgroundColor: theme.colors.error,
@@ -565,6 +597,8 @@ const styles = StyleSheet.create({
     padding: theme.spacing.md,
     alignItems: 'center',
     marginTop: theme.spacing.md,
+    marginHorizontal: theme.spacing.md,
+    marginBottom: theme.spacing.xl,
   },
   logoutText: {
     color: theme.colors.text,
