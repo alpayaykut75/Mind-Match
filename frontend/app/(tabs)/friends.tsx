@@ -464,7 +464,7 @@ export default function FriendsScreen() {
             <Text style={styles.modalSubtitle}>{selectedRequest?.bio || 'No bio'}</Text>
             
             {(selectedRequest?.country || selectedRequest?.age) && (
-              <View style={styles.modalMeta}>
+              <View style={styles.modalMetadata}>
                 {selectedRequest?.country && (
                   <Text style={styles.modalMetaText}>🌍 {selectedRequest.country}</Text>
                 )}
@@ -476,7 +476,7 @@ export default function FriendsScreen() {
             
             <View style={styles.modalStats}>
               <View style={styles.modalStat}>
-                <Text style={styles.modalStatValue}>Lv {selectedRequest?.level}</Text>
+                <Text style={styles.modalStatValue}>Lv {selectedRequest?.level || 1}</Text>
                 <Text style={styles.modalStatLabel}>Level</Text>
               </View>
             </View>
@@ -487,7 +487,7 @@ export default function FriendsScreen() {
                 onPress={() => setRequestModalVisible(false)}
               >
                 <LinearGradient
-                  colors={[theme.colors.cardBackground, theme.colors.cardBackground]}
+                  colors={['#555', '#555']}
                   style={styles.modalButtonGradient}
                 >
                   <Ionicons name="close-circle" size={20} color={theme.colors.textSecondary} />
