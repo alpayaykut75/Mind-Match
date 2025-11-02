@@ -553,7 +553,9 @@ async def get_friend_requests(current_user: str = Depends(get_current_user)):
                 "username": user["username"],
                 "bio": user.get("bio", ""),
                 "avatar": user.get("avatar", ""),
-                "level": user.get("level", 1)
+                "level": user.get("level", 1),
+                "age": user.get("age"),
+                "country": user.get("country", "")
             })
     
     return result
