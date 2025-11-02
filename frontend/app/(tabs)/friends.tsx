@@ -222,7 +222,13 @@ export default function FriendsScreen() {
   );
 
   const renderRequest = ({ item }: { item: any }) => (
-    <View style={styles.card}>
+    <TouchableOpacity 
+      style={styles.card}
+      onPress={() => {
+        setSelectedRequest(item);
+        setRequestModalVisible(true);
+      }}
+    >
       <View style={styles.friendInfo}>
         <Avatar avatar={item.avatar} size={50} />
         <View style={styles.details}>
@@ -232,18 +238,8 @@ export default function FriendsScreen() {
           </Text>
         </View>
       </View>
-      <TouchableOpacity
-        style={styles.acceptButton}
-        onPress={() => acceptRequest(item.username)}
-      >
-        <LinearGradient
-          colors={[theme.colors.primary, theme.colors.secondary]}
-          style={styles.acceptButtonGradient}
-        >
-          <Text style={styles.acceptButtonText}>Accept</Text>
-        </LinearGradient>
-      </TouchableOpacity>
-    </View>
+      <Ionicons name="chevron-forward" size={24} color={theme.colors.textSecondary} />
+    </TouchableOpacity>
   );
 
   const renderGameInvite = ({ item }: { item: GameInvite }) => (
