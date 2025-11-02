@@ -390,8 +390,8 @@ async def get_my_profile(current_user: str = Depends(get_current_user)):
     if not user:
         raise HTTPException(status_code=404, detail="User not found")
     
-    # Get badges
-    user_badges = await badges_collection.find({"username": current_user}).to_list(100)
+    # Get badges from user document (modern approach)
+    user_badges = user.get("badges", [])
     
     return {
         "username": user["username"],
@@ -405,7 +405,7 @@ async def get_my_profile(current_user: str = Depends(get_current_user)):
         "total_games": user.get("total_games", 0),
         "successful_syncs": user.get("successful_syncs", 0),
         "current_streak": user.get("current_streak", 0),
-        "badges": [{"type": b["badge_type"], "name": b["badge_name"]} for b in user_badges]
+        "badges": user_badges
     }
 
 
