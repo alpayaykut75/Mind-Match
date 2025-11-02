@@ -454,63 +454,72 @@ export default function FriendsScreen() {
       <Modal
         visible={requestModalVisible}
         transparent
-        animationType="slide"
+        animationType="fade"
         onRequestClose={() => setRequestModalVisible(false)}
       >
         <View style={styles.modalOverlay}>
           <View style={styles.modalContent}>
-            {selectedRequest && (
-              <>
-                <View style={styles.modalHeader}>
-                  <Avatar avatar={selectedRequest.avatar} size={80} />
-                  <Text style={styles.modalTitle}>{selectedRequest.username}</Text>
-                  <Text style={styles.modalSubtitle}>Level {selectedRequest.level}</Text>
-                </View>
-
-                <View style={styles.modalBody}>
-                  <Text style={styles.modalSectionTitle}>Bio</Text>
-                  <Text style={styles.modalText}>{selectedRequest.bio || 'No bio'}</Text>
-
-                  {selectedRequest.country && (
-                    <>
-                      <Text style={[styles.modalSectionTitle, {marginTop: theme.spacing.md}]}>Location</Text>
-                      <Text style={styles.modalText}>📍 {selectedRequest.country}</Text>
-                    </>
-                  )}
-
-                  {selectedRequest.age && (
-                    <>
-                      <Text style={[styles.modalSectionTitle, {marginTop: theme.spacing.md}]}>Age</Text>
-                      <Text style={styles.modalText}>🎂 {selectedRequest.age} years old</Text>
-                    </>
-                  )}
-                </View>
-
-                <View style={styles.modalButtonRow}>
-                  <TouchableOpacity
-                    style={[styles.modalButton, styles.modalButtonSecondary]}
-                    onPress={() => setRequestModalVisible(false)}
-                  >
-                    <Text style={styles.modalButtonTextSecondary}>Cancel</Text>
-                  </TouchableOpacity>
-
-                  <TouchableOpacity
-                    style={[styles.modalButton, styles.modalButtonPrimary]}
-                    onPress={async () => {
-                      await acceptRequest(selectedRequest.username);
-                      setRequestModalVisible(false);
-                    }}
-                  >
-                    <LinearGradient
-                      colors={[theme.colors.primary, theme.colors.secondary]}
-                      style={styles.modalButtonGradient}
-                    >
-                      <Text style={styles.modalButtonText}>Accept Request</Text>
-                    </LinearGradient>
-                  </TouchableOpacity>
-                </View>
-              </>
+            <Avatar avatar={selectedRequest?.avatar || ''} size={80} />
+            <Text style={styles.modalTitle}>{selectedRequest?.username}</Text>
+            <Text style={styles.modalSubtitle}>{selectedRequest?.bio || 'No bio'}</Text>
+            
+            {(selectedRequest?.country || selectedRequest?.age) && (
+              <View style={styles.modalMeta}>
+                {selectedRequest?.country && (
+                  <Text style={styles.modalMetaText}>🌍 {selectedRequest.country}</Text>
+                )}
+                {selectedRequest?.age && (
+                  <Text style={styles.modalMetaText}>🎂 {selectedRequest.age} years old</Text>
+                )}
+              </View>
             )}
+            
+            <View style={styles.modalStats}>
+              <View style={styles.modalStat}>
+                <Text style={styles.modalStatValue}>Lv {selectedRequest?.level}</Text>
+                <Text style={styles.modalStatLabel}>Level</Text>
+              </View>
+            </View>
+
+            <View style={styles.modalButtonRow}>
+              <TouchableOpacity
+                style={styles.modalButton}
+                onPress={() => setRequestModalVisible(false)}
+              >
+                <LinearGradient
+                  colors={[theme.colors.cardBackground, theme.colors.cardBackground]}
+                  style={styles.modalButtonGradient}
+                >
+                  <Ionicons name="close-circle" size={20} color={theme.colors.textSecondary} />
+                  <Text style={[styles.modalButtonText, {color: theme.colors.textSecondary}]}>Reject</Text>
+                </LinearGradient>
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                style={styles.modalButton}
+                onPress={async () => {
+                  if (selectedRequest) {
+                    await acceptRequest(selectedRequest.username);
+                    setRequestModalVisible(false);
+                  }
+                }}
+              >
+                <LinearGradient
+                  colors={[theme.colors.primary, theme.colors.secondary]}
+                  style={styles.modalButtonGradient}
+                >
+                  <Ionicons name="checkmark-circle" size={20} color={theme.colors.text} />
+                  <Text style={styles.modalButtonText}>Accept</Text>
+                </LinearGradient>
+              </TouchableOpacity>
+            </View>
+
+            <TouchableOpacity
+              style={styles.modalCloseButton}
+              onPress={() => setRequestModalVisible(false)}
+            >
+              <Text style={styles.modalCloseText}>Close</Text>
+            </TouchableOpacity>
           </View>
         </View>
       </Modal>
