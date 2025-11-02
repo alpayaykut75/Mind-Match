@@ -580,7 +580,9 @@ const styles = StyleSheet.create({
     borderRadius: theme.borderRadius.md,
     padding: theme.spacing.md,
     alignItems: 'center',
-    minWidth: 80,
+    flex: 1,
+    minWidth: 100,
+    maxWidth: '31%',
     gap: theme.spacing.xs,
   },
   badgeIcon: {
