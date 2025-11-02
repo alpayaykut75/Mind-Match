@@ -779,4 +779,26 @@ const styles = StyleSheet.create({
   modalCloseText: {
     color: theme.colors.textSecondary,
   },
+  modalSectionTitle: {
+    fontSize: 14,
+    fontWeight: '600',
+    color: theme.colors.textSecondary,
+    marginBottom: theme.spacing.xs,
+    textTransform: 'uppercase',
+  },
+  modalButtonPrimary: {
+    flex: 1,
+  },
+  modalButtonSecondary: {
+    flex: 1,
+    backgroundColor: theme.colors.cardBackground,
+    borderWidth: 1,
+    borderColor: theme.colors.border,
+  },
+  modalButtonTextSecondary: {
+    color: theme.colors.text,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    paddingVertical: theme.spacing.md,
+  },
 });
