@@ -133,7 +133,18 @@ export default function ProfileScreen() {
           colors={[theme.colors.background, theme.colors.cardBg]}
           style={styles.gradient}
         >
-          <Text style={styles.loading}>Loading...</Text>
+          <View style={styles.loadingContainer}>
+            <Text style={styles.loading}>Loading...</Text>
+            <TouchableOpacity 
+              style={styles.emergencyLogoutButton}
+              onPress={async () => {
+                await logout();
+                router.replace('/auth/login');
+              }}
+            >
+              <Text style={styles.emergencyLogoutText}>Logout</Text>
+            </TouchableOpacity>
+          </View>
         </LinearGradient>
       </SafeAreaView>
     );
