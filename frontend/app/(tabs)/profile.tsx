@@ -62,6 +62,20 @@ export default function ProfileScreen() {
       setEditCountry(response.data.country || '');
     } catch (error) {
       console.error('Failed to load profile', error);
+      // If profile load fails, set a minimal profile to show logout button
+      setProfile({
+        username: 'User',
+        bio: '',
+        country: '',
+        avatar: '',
+        xp: 0,
+        level: 1,
+        connection_score: 0,
+        total_games: 0,
+        successful_syncs: 0,
+        current_streak: 0,
+        badges: []
+      });
     }
   };
 
