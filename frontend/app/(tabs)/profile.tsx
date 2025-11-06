@@ -367,8 +367,25 @@ const styles = StyleSheet.create({
   },
   loading: {
     color: theme.colors.text,
-    textAlign: 'center',
-    marginTop: theme.spacing.xl,
+    fontSize: 18,
+  },
+  loadingContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    gap: theme.spacing.xl,
+  },
+  emergencyLogoutButton: {
+    backgroundColor: theme.colors.error,
+    paddingHorizontal: theme.spacing.xl,
+    paddingVertical: theme.spacing.md,
+    borderRadius: theme.borderRadius.md,
+    marginTop: theme.spacing.lg,
+  },
+  emergencyLogoutText: {
+    color: theme.colors.text,
+    fontSize: 16,
+    fontWeight: 'bold',
   },
   header: {
     alignItems: 'center',
