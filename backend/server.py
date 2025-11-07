@@ -509,11 +509,11 @@ async def change_password(data: ChangePassword, current_user: str = Depends(get_
     if not user:
         raise HTTPException(status_code=404, detail="User not found")
     
-    if not pwd_context.verify(data.current_password, user["password"]):
+    if not verify_password(data.current_password, user["password"]):
         raise HTTPException(status_code=400, detail="Current password is incorrect")
     
     # Hash and update new password
-    hashed_password = pwd_context.hash(data.new_password)
+    hashed_password = hash_password(data.new_password)
     await users_collection.update_one(
         {"username": current_user},
         {"$set": {"password": hashed_password}}
