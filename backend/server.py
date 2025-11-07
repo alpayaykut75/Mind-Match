@@ -95,6 +95,7 @@ class UpdateProfile(BaseModel):
     age: Optional[int] = None
     country: Optional[str] = None
     avatar: Optional[str] = None
+    languages: Optional[List[str]] = None
 
 class ChangeUsername(BaseModel):
     new_username: str
