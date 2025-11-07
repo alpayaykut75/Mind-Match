@@ -39,6 +39,9 @@ export const userAPI = {
   getBadgeProgress: () => api.get('/api/badges/progress'),
   getLeaderboard: (period: string) => api.get(`/api/leaderboard/${period}`),
   searchUser: (username: string) => api.get(`/api/users/search/${username}`),
+  changeUsername: (newUsername: string) => api.put('/api/users/change-username', { new_username: newUsername }),
+  changePassword: (currentPassword: string, newPassword: string) => 
+    api.put('/api/users/change-password', { current_password: currentPassword, new_password: newPassword }),
 };
 
 export const friendAPI = {
