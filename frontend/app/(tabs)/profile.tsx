@@ -355,6 +355,15 @@ export default function ProfileScreen() {
             </View>
           )}
 
+          {/* Settings Button */}
+          <TouchableOpacity 
+            style={styles.settingsButton} 
+            onPress={() => setSettingsModalVisible(true)}
+          >
+            <Ionicons name="settings-outline" size={20} color={theme.colors.text} />
+            <Text style={styles.settingsButtonText}>Account Settings</Text>
+          </TouchableOpacity>
+
           {/* Logout Button */}
           <TouchableOpacity style={styles.logoutButton} onPress={handleLogout}>
             <Text style={styles.logoutText}>Logout</Text>
