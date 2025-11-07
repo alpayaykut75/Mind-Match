@@ -298,7 +298,8 @@ metadata:
 
 test_plan:
   current_focus:
-    - "Game Invitation UI - Friends Screen"
+    - "Username Change Endpoint"
+    - "Password Change Endpoint"
   stuck_tasks: 
     - "Chat Conversations Endpoint"
   test_all: false
