@@ -184,6 +184,39 @@ export default function ProfileScreen() {
     }
   };
 
+  const toggleLanguage = (code: string) => {
+    if (selectedLanguages.includes(code)) {
+      setSelectedLanguages(selectedLanguages.filter((l) => l !== code));
+    } else {
+      setSelectedLanguages([...selectedLanguages, code]);
+    }
+  };
+
+  const handleLanguageUpdate = async () => {
+    if (selectedLanguages.length === 0) {
+      Alert.alert('Error', 'Please select at least one language');
+      return;
+    }
+
+    try {
+      await userAPI.updateProfile({ languages: selectedLanguages });
+      setLanguageModalVisible(false);
+      await loadProfile();
+      Alert.alert('Success', 'Languages updated successfully!');
+    } catch (error: any) {
+      const message = error.response?.data?.detail || 'Failed to update languages';
+      Alert.alert('Error', message);
+    }
+  };
+
+  const getLanguageName = (code: string) => {
+    return LANGUAGES.find((l) => l.code === code)?.name || code;
+  };
+
+  const getLanguageFlag = (code: string) => {
+    return LANGUAGES.find((l) => l.code === code)?.flag || '🌐';
+  };
+
   const handleLogout = () => {
     Alert.alert('Logout', 'Are you sure you want to logout?', [
       { text: 'Cancel', style: 'cancel' },
