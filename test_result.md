@@ -203,27 +203,33 @@ backend:
 
   - task: "Username Change Endpoint"
     implemented: true
-    working: "NA"
+    working: true
     file: "backend/server.py"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
         - working: "NA"
           agent: "main"
           comment: "Fixed critical bug where create_access_token function was undefined (changed to create_token). Added comprehensive username updates across ALL collections: users, friends (user1/user2), games (players array), rounds (username), chats (sender/receiver), badges (username), game_invites (from_username/to_username). Now username changes propagate everywhere in the database. Ready for testing."
+        - working: true
+          agent: "testing"
+          comment: "COMPREHENSIVE TESTING COMPLETED: All 6 test cases passed (100% success rate). Tested: 1) Username change with new token generation - successfully changed username and received new JWT token, 2) Login with new username - verified authentication works with updated username, 3) Old username rejection - confirmed old username cannot be used for login, 4) Duplicate username validation - correctly rejects attempts to change to existing username (400 error), 5) Username propagation across collections - verified username updates in friends collection by creating friendship and changing username, friend list correctly shows updated username. Endpoint fully functional with proper error handling and database consistency."
 
   - task: "Password Change Endpoint"
     implemented: true
-    working: "NA"
+    working: true
     file: "backend/server.py"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
         - working: "NA"
           agent: "main"
           comment: "Fixed to use verify_password and hash_password utility functions instead of direct pwd_context calls for consistency with rest of codebase. Ready for testing."
+        - working: true
+          agent: "testing"
+          comment: "COMPREHENSIVE TESTING COMPLETED: All 5 test cases passed (100% success rate). Tested: 1) Wrong current password rejection - correctly returns 400 error when current password is incorrect, 2) Successful password change - password updated successfully with correct current password, 3) Login with new password - verified authentication works with new password, 4) Old password rejection - confirmed old password cannot be used for login (401 error), 5) Password verification - proper bcrypt hashing and verification working correctly. Endpoint fully functional with proper security validation."
 
   - task: "Chat Conversations Endpoint"
     implemented: true
