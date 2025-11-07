@@ -60,6 +60,7 @@ class UserSignup(BaseModel):
     age: Optional[int] = None
     country: Optional[str] = ""
     avatar: Optional[str] = ""  # base64 image
+    languages: List[str] = []  # Array of language codes
 
 
 class UserLogin(BaseModel):
