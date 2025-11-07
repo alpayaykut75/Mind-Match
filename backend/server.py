@@ -414,6 +414,7 @@ async def get_my_profile(current_user: str = Depends(get_current_user)):
         "age": user.get("age"),
         "country": user.get("country", ""),
         "avatar": user.get("avatar", ""),
+        "languages": user.get("languages", []),
         "xp": user.get("xp", 0),
         "level": user.get("level", 1),
         "connection_score": user.get("connection_score", 0),
