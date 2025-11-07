@@ -1119,28 +1119,29 @@ const styles = StyleSheet.create({
     color: theme.colors.primary,
     fontWeight: 'bold',
   },
-  languagesContainer: {
+  languagesInlineContainer: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    gap: theme.spacing.sm,
+    gap: theme.spacing.xs,
+    marginTop: theme.spacing.sm,
   },
-  languageChip: {
+  languageChipSmall: {
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: theme.colors.cardBg,
-    paddingHorizontal: theme.spacing.md,
-    paddingVertical: theme.spacing.sm,
-    borderRadius: theme.borderRadius.lg,
-    gap: theme.spacing.xs,
+    paddingHorizontal: theme.spacing.sm,
+    paddingVertical: 4,
+    borderRadius: theme.borderRadius.md,
+    gap: 4,
     borderWidth: 1,
-    borderColor: theme.colors.border,
+    borderColor: theme.colors.primary + '40',
   },
-  languageFlag: {
-    fontSize: 18,
-  },
-  languageName: {
-    color: theme.colors.text,
+  languageFlagSmall: {
     fontSize: 14,
+  },
+  languageNameSmall: {
+    color: theme.colors.text,
+    fontSize: 12,
     fontWeight: '500',
   },
   languageModalContent: {
