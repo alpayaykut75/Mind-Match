@@ -46,6 +46,7 @@ export default function ProfileScreen() {
   const [editBio, setEditBio] = useState('');
   const [editAge, setEditAge] = useState('');
   const [editCountry, setEditCountry] = useState('');
+  const [isLoading, setIsLoading] = useState(true);
   const { logout } = useAuth();
   const router = useRouter();
 
@@ -54,6 +55,7 @@ export default function ProfileScreen() {
   }, []);
 
   const loadProfile = async () => {
+    setIsLoading(true);
     try {
       const response = await userAPI.getMe();
       setProfile(response.data);
@@ -76,6 +78,8 @@ export default function ProfileScreen() {
         current_streak: 0,
         badges: []
       });
+    } finally {
+      setIsLoading(false);
     }
   };
 
