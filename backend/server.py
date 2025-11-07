@@ -288,6 +288,10 @@ async def signup(user: UserSignup):
     if existing_user:
         raise HTTPException(status_code=400, detail="Username already exists")
     
+    # Validate languages - at least one language required
+    if not user.languages or len(user.languages) == 0:
+        raise HTTPException(status_code=400, detail="At least one language is required")
+    
     # Create user
     user_doc = {
         "username": user.username,
@@ -296,6 +300,7 @@ async def signup(user: UserSignup):
         "age": user.age,
         "country": user.country,
         "avatar": user.avatar,
+        "languages": user.languages,
         "created_at": datetime.utcnow(),
         "last_seen": datetime.utcnow(),
         "online_status": True,
@@ -305,7 +310,8 @@ async def signup(user: UserSignup):
         "total_games": 0,
         "successful_syncs": 0,
         "current_streak": 0,
-        "last_played": None
+        "last_played": None,
+        "badges": []
     }
     await users_collection.insert_one(user_doc)
     
