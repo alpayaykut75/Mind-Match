@@ -9,6 +9,8 @@ import {
   Platform,
   Alert,
   ScrollView,
+  Modal,
+  FlatList,
 } from 'react-native';
 import { useRouter } from 'expo-router';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -19,6 +21,8 @@ import { useAuth } from '../../contexts/AuthContext';
 import { Ionicons } from '@expo/vector-icons';
 import AvatarPicker from '../../components/AvatarPicker';
 import Avatar from '../../components/Avatar';
+import { COUNTRIES } from '../../constants/countries';
+import { LANGUAGES } from '../../constants/languages';
 
 export default function Signup() {
   const [username, setUsername] = useState('');
@@ -27,11 +31,27 @@ export default function Signup() {
   const [bio, setBio] = useState('');
   const [age, setAge] = useState('');
   const [country, setCountry] = useState('');
+  const [selectedLanguages, setSelectedLanguages] = useState<string[]>([]);
   const [avatar, setAvatar] = useState('');
   const [showAvatarPicker, setShowAvatarPicker] = useState(false);
+  const [showCountryPicker, setShowCountryPicker] = useState(false);
+  const [showLanguagePicker, setShowLanguagePicker] = useState(false);
+  const [countrySearch, setCountrySearch] = useState('');
   const [loading, setLoading] = useState(false);
   const router = useRouter();
   const { login } = useAuth();
+
+  const filteredCountries = COUNTRIES.filter((c) =>
+    c.name.toLowerCase().includes(countrySearch.toLowerCase())
+  );
+
+  const toggleLanguage = (code: string) => {
+    if (selectedLanguages.includes(code)) {
+      setSelectedLanguages(selectedLanguages.filter((l) => l !== code));
+    } else {
+      setSelectedLanguages([...selectedLanguages, code]);
+    }
+  };
 
   const handleSignup = async () => {
     if (!username || !password) {
@@ -44,6 +64,16 @@ export default function Signup() {
       return;
     }
 
+    if (selectedLanguages.length === 0) {
+      Alert.alert('Error', 'Please select at least one language');
+      return;
+    }
+
+    if (age && (parseInt(age) < 6 || parseInt(age) > 99)) {
+      Alert.alert('Error', 'Age must be between 6 and 99');
+      return;
+    }
+
     setLoading(true);
     try {
       const response = await authAPI.signup({
@@ -53,6 +83,7 @@ export default function Signup() {
         age: age ? parseInt(age) : null,
         country,
         avatar,
+        languages: selectedLanguages,
       });
       await login(response.data.token, response.data.username);
       router.replace('/(tabs)/home');
@@ -61,6 +92,10 @@ export default function Signup() {
     } finally {
       setLoading(false);
     }
+  };
+
+  const getLanguageName = (code: string) => {
+    return LANGUAGES.find((l) => l.code === code)?.name || code;
   };
 
   return (
@@ -79,13 +114,19 @@ export default function Signup() {
                 style={styles.avatarContainer}
                 onPress={() => setShowAvatarPicker(true)}
               >
-                <Avatar avatar={avatar} size={80} />
+                {avatar ? (
+                  <Avatar avatar={avatar} size={80} />
+                ) : (
+                  <View style={styles.avatarPlaceholder}>
+                    <Ionicons name="person" size={40} color={theme.colors.textSecondary} />
+                  </View>
+                )}
                 <View style={styles.avatarBadge}>
                   <Ionicons name="camera" size={16} color={theme.colors.text} />
                 </View>
               </TouchableOpacity>
               <Text style={styles.title}>Create Account</Text>
-              <Text style={styles.subtitle}>Join MindMatch today</Text>
+              <Text style={styles.subtitle}>Join the word association game</Text>
             </View>
 
             <View style={styles.form}>
@@ -97,6 +138,7 @@ export default function Signup() {
                 onChangeText={setUsername}
                 autoCapitalize="none"
               />
+
               <TextInput
                 style={styles.input}
                 placeholder="Password"
@@ -105,6 +147,7 @@ export default function Signup() {
                 onChangeText={setPassword}
                 secureTextEntry
               />
+
               <TextInput
                 style={styles.input}
                 placeholder="Confirm Password"
@@ -113,56 +156,200 @@ export default function Signup() {
                 onChangeText={setConfirmPassword}
                 secureTextEntry
               />
+
               <TextInput
-                style={styles.input}
+                style={[styles.input, styles.bioInput]}
                 placeholder="Bio (optional)"
                 placeholderTextColor={theme.colors.textSecondary}
                 value={bio}
                 onChangeText={setBio}
                 multiline
+                maxLength={150}
               />
+
+              {/* Age Input */}
               <TextInput
                 style={styles.input}
-                placeholder="Age (optional)"
+                placeholder="Age (6-99, optional)"
                 placeholderTextColor={theme.colors.textSecondary}
                 value={age}
                 onChangeText={setAge}
-                keyboardType="numeric"
-              />
-              <TextInput
-                style={styles.input}
-                placeholder="Country (optional)"
-                placeholderTextColor={theme.colors.textSecondary}
-                value={country}
-                onChangeText={setCountry}
+                keyboardType="number-pad"
+                maxLength={2}
               />
 
-              <TouchableOpacity onPress={handleSignup} disabled={loading}>
+              {/* Country Picker */}
+              <TouchableOpacity
+                style={styles.pickerButton}
+                onPress={() => setShowCountryPicker(true)}
+              >
+                <Text
+                  style={[
+                    styles.pickerButtonText,
+                    !country && styles.pickerPlaceholder,
+                  ]}
+                >
+                  {country
+                    ? `${COUNTRIES.find((c) => c.name === country)?.flag} ${country}`
+                    : 'Select Country (optional)'}
+                </Text>
+                <Ionicons name="chevron-down" size={20} color={theme.colors.textSecondary} />
+              </TouchableOpacity>
+
+              {/* Languages Picker (Required) */}
+              <TouchableOpacity
+                style={[styles.pickerButton, styles.languageButton]}
+                onPress={() => setShowLanguagePicker(true)}
+              >
+                <View style={styles.languageButtonContent}>
+                  <Text
+                    style={[
+                      styles.pickerButtonText,
+                      selectedLanguages.length === 0 && styles.pickerPlaceholder,
+                    ]}
+                  >
+                    {selectedLanguages.length > 0
+                      ? selectedLanguages.map(getLanguageName).join(', ')
+                      : 'Select Languages (required) *'}
+                  </Text>
+                </View>
+                <Ionicons name="chevron-down" size={20} color={theme.colors.textSecondary} />
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                onPress={handleSignup}
+                disabled={loading}
+              >
                 <LinearGradient
                   colors={[theme.colors.primary, theme.colors.secondary]}
-                  start={{ x: 0, y: 0 }}
-                  end={{ x: 1, y: 0 }}
-                  style={styles.button}
+                  style={styles.signupButton}
                 >
-                  <Text style={styles.buttonText}>
+                  <Text style={styles.signupButtonText}>
                     {loading ? 'Creating Account...' : 'Sign Up'}
                   </Text>
                 </LinearGradient>
               </TouchableOpacity>
 
-              <TouchableOpacity onPress={() => router.back()}>
-                <Text style={styles.linkText}>Already have an account? Log In</Text>
+              <TouchableOpacity
+                style={styles.loginLink}
+                onPress={() => router.back()}
+              >
+                <Text style={styles.loginLinkText}>
+                  Already have an account? <Text style={styles.loginLinkBold}>Log In</Text>
+                </Text>
               </TouchableOpacity>
             </View>
           </ScrollView>
         </KeyboardAvoidingView>
 
+        {/* Avatar Picker Modal */}
         <AvatarPicker
           visible={showAvatarPicker}
           onClose={() => setShowAvatarPicker(false)}
-          onSelectAvatar={setAvatar}
+          onSelectAvatar={(selectedAvatar) => {
+            setAvatar(selectedAvatar);
+            setShowAvatarPicker(false);
+          }}
           currentAvatar={avatar}
         />
+
+        {/* Country Picker Modal */}
+        <Modal
+          visible={showCountryPicker}
+          transparent
+          animationType="slide"
+          onRequestClose={() => setShowCountryPicker(false)}
+        >
+          <View style={styles.modalOverlay}>
+            <View style={styles.modalContent}>
+              <View style={styles.modalHeader}>
+                <Text style={styles.modalTitle}>Select Country</Text>
+                <TouchableOpacity onPress={() => setShowCountryPicker(false)}>
+                  <Ionicons name="close" size={24} color={theme.colors.text} />
+                </TouchableOpacity>
+              </View>
+
+              <TextInput
+                style={styles.searchInput}
+                placeholder="Search countries..."
+                placeholderTextColor={theme.colors.textSecondary}
+                value={countrySearch}
+                onChangeText={setCountrySearch}
+              />
+
+              <FlatList
+                data={filteredCountries}
+                keyExtractor={(item) => item.code}
+                renderItem={({ item }) => (
+                  <TouchableOpacity
+                    style={styles.listItem}
+                    onPress={() => {
+                      setCountry(item.name);
+                      setShowCountryPicker(false);
+                      setCountrySearch('');
+                    }}
+                  >
+                    <Text style={styles.listItemText}>
+                      {item.flag} {item.name}
+                    </Text>
+                  </TouchableOpacity>
+                )}
+                style={styles.list}
+              />
+            </View>
+          </View>
+        </Modal>
+
+        {/* Language Picker Modal */}
+        <Modal
+          visible={showLanguagePicker}
+          transparent
+          animationType="slide"
+          onRequestClose={() => setShowLanguagePicker(false)}
+        >
+          <View style={styles.modalOverlay}>
+            <View style={styles.modalContent}>
+              <View style={styles.modalHeader}>
+                <Text style={styles.modalTitle}>Select Languages *</Text>
+                <TouchableOpacity onPress={() => setShowLanguagePicker(false)}>
+                  <Ionicons name="close" size={24} color={theme.colors.text} />
+                </TouchableOpacity>
+              </View>
+
+              <Text style={styles.modalSubtitle}>
+                Select at least one language you speak
+              </Text>
+
+              <FlatList
+                data={LANGUAGES}
+                keyExtractor={(item) => item.code}
+                renderItem={({ item }) => (
+                  <TouchableOpacity
+                    style={styles.listItem}
+                    onPress={() => toggleLanguage(item.code)}
+                  >
+                    <Text style={styles.listItemText}>
+                      {item.flag} {item.name}
+                    </Text>
+                    {selectedLanguages.includes(item.code) && (
+                      <Ionicons name="checkmark" size={24} color={theme.colors.primary} />
+                    )}
+                  </TouchableOpacity>
+                )}
+                style={styles.list}
+              />
+
+              <TouchableOpacity
+                style={styles.doneButton}
+                onPress={() => setShowLanguagePicker(false)}
+              >
+                <Text style={styles.doneButtonText}>
+                  Done ({selectedLanguages.length} selected)
+                </Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </Modal>
       </LinearGradient>
     </SafeAreaView>
   );
@@ -180,23 +367,48 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   scrollContent: {
-    paddingHorizontal: theme.spacing.lg,
-    paddingVertical: theme.spacing.xl,
+    padding: theme.spacing.lg,
   },
   header: {
     alignItems: 'center',
     marginBottom: theme.spacing.xl,
   },
+  avatarContainer: {
+    position: 'relative',
+    marginBottom: theme.spacing.md,
+  },
+  avatarPlaceholder: {
+    width: 80,
+    height: 80,
+    borderRadius: 40,
+    backgroundColor: theme.colors.cardBg,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderWidth: 2,
+    borderColor: theme.colors.border,
+  },
+  avatarBadge: {
+    position: 'absolute',
+    bottom: 0,
+    right: 0,
+    backgroundColor: theme.colors.primary,
+    width: 28,
+    height: 28,
+    borderRadius: 14,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderWidth: 2,
+    borderColor: theme.colors.background,
+  },
   title: {
-    fontSize: 32,
+    fontSize: 28,
     fontWeight: 'bold',
     color: theme.colors.text,
-    marginTop: theme.spacing.md,
+    marginBottom: theme.spacing.xs,
   },
   subtitle: {
-    fontSize: 16,
+    fontSize: 14,
     color: theme.colors.textSecondary,
-    marginTop: theme.spacing.sm,
   },
   form: {
     gap: theme.spacing.md,
@@ -208,35 +420,121 @@ const styles = StyleSheet.create({
     color: theme.colors.text,
     fontSize: 16,
   },
-  button: {
+  bioInput: {
+    height: 80,
+    textAlignVertical: 'top',
+  },
+  pickerButton: {
+    backgroundColor: theme.colors.cardBg,
+    borderRadius: theme.borderRadius.md,
+    padding: theme.spacing.md,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  languageButton: {
+    borderWidth: 2,
+    borderColor: theme.colors.primary,
+  },
+  languageButtonContent: {
+    flex: 1,
+    marginRight: theme.spacing.sm,
+  },
+  pickerButtonText: {
+    color: theme.colors.text,
+    fontSize: 16,
+  },
+  pickerPlaceholder: {
+    color: theme.colors.textSecondary,
+  },
+  signupButton: {
     borderRadius: theme.borderRadius.md,
     padding: theme.spacing.md,
     alignItems: 'center',
-    marginTop: theme.spacing.sm,
-  },
-  buttonText: {
-    color: theme.colors.text,
-    fontSize: 18,
-    fontWeight: 'bold',
-  },
-  linkText: {
-    color: theme.colors.primary,
-    textAlign: 'center',
     marginTop: theme.spacing.md,
   },
-  avatarContainer: {
-    position: 'relative',
+  signupButtonText: {
+    color: theme.colors.text,
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+  loginLink: {
+    alignItems: 'center',
+    marginTop: theme.spacing.md,
+  },
+  loginLinkText: {
+    color: theme.colors.textSecondary,
+    fontSize: 14,
+  },
+  loginLinkBold: {
+    color: theme.colors.primary,
+    fontWeight: 'bold',
+  },
+  modalOverlay: {
+    flex: 1,
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    justifyContent: 'flex-end',
+  },
+  modalContent: {
+    backgroundColor: theme.colors.background,
+    borderTopLeftRadius: theme.borderRadius.lg,
+    borderTopRightRadius: theme.borderRadius.lg,
+    paddingTop: theme.spacing.lg,
+    maxHeight: '80%',
+  },
+  modalHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingHorizontal: theme.spacing.lg,
     marginBottom: theme.spacing.md,
   },
-  avatarBadge: {
-    position: 'absolute',
-    bottom: 0,
-    right: 0,
-    backgroundColor: theme.colors.primary,
-    borderRadius: 12,
-    width: 24,
-    height: 24,
-    justifyContent: 'center',
+  modalTitle: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: theme.colors.text,
+  },
+  modalSubtitle: {
+    fontSize: 14,
+    color: theme.colors.textSecondary,
+    paddingHorizontal: theme.spacing.lg,
+    marginBottom: theme.spacing.md,
+  },
+  searchInput: {
+    backgroundColor: theme.colors.cardBg,
+    borderRadius: theme.borderRadius.md,
+    padding: theme.spacing.md,
+    marginHorizontal: theme.spacing.lg,
+    marginBottom: theme.spacing.md,
+    color: theme.colors.text,
+    fontSize: 16,
+  },
+  list: {
+    flex: 1,
+  },
+  listItem: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     alignItems: 'center',
+    padding: theme.spacing.md,
+    paddingHorizontal: theme.spacing.lg,
+    borderBottomWidth: 1,
+    borderBottomColor: theme.colors.border,
+  },
+  listItemText: {
+    fontSize: 16,
+    color: theme.colors.text,
+  },
+  doneButton: {
+    backgroundColor: theme.colors.primary,
+    padding: theme.spacing.md,
+    margin: theme.spacing.lg,
+    borderRadius: theme.borderRadius.md,
+    alignItems: 'center',
+  },
+  doneButtonText: {
+    color: theme.colors.text,
+    fontSize: 16,
+    fontWeight: 'bold',
   },
 });
