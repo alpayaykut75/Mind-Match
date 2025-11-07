@@ -313,6 +313,18 @@ export default function ProfileScreen() {
                 )}
               </View>
             )}
+
+            {/* Languages - Inline with metadata */}
+            {profile.languages && profile.languages.length > 0 && (
+              <View style={styles.languagesInlineContainer}>
+                {profile.languages.map((langCode, index) => (
+                  <View key={index} style={styles.languageChipSmall}>
+                    <Text style={styles.languageFlagSmall}>{getLanguageFlag(langCode)}</Text>
+                    <Text style={styles.languageNameSmall}>{getLanguageName(langCode)}</Text>
+                  </View>
+                ))}
+              </View>
+            )}
           </View>
 
           {/* Stats Cards - Level & Games */}
