@@ -71,6 +71,9 @@ export default function ProfileScreen() {
     setIsLoading(true);
     try {
       const response = await userAPI.getMe();
+      console.log('🔍 Profile loaded:', response.data);
+      console.log('🌐 Languages:', response.data.languages);
+      console.log('🏆 Badges:', response.data.badges);
       setProfile(response.data);
       setEditBio(response.data.bio || '');
       setEditAge(response.data.age?.toString() || '');
