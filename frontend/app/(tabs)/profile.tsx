@@ -8,6 +8,7 @@ import {
   Alert,
   TextInput,
   Modal,
+  FlatList,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -19,6 +20,7 @@ import { userAPI } from '../../utils/api';
 import { useAuth } from '../../contexts/AuthContext';
 import AvatarPicker from '../../components/AvatarPicker';
 import Avatar from '../../components/Avatar';
+import { LANGUAGES } from '../../constants/languages';
 
 interface Badge {
   type: string;
