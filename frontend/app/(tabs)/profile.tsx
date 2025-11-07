@@ -75,6 +75,7 @@ export default function ProfileScreen() {
       setEditBio(response.data.bio || '');
       setEditAge(response.data.age?.toString() || '');
       setEditCountry(response.data.country || '');
+      setSelectedLanguages(response.data.languages || []);
     } catch (error) {
       console.error('Failed to load profile', error);
       // If profile load fails, set a minimal profile to show logout button
@@ -89,7 +90,8 @@ export default function ProfileScreen() {
         total_games: 0,
         successful_syncs: 0,
         current_streak: 0,
-        badges: []
+        badges: [],
+        languages: []
       });
     } finally {
       setIsLoading(false);
