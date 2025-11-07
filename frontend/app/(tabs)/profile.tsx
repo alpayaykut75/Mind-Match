@@ -1199,4 +1199,9 @@ const styles = StyleSheet.create({
     margin: theme.spacing.lg,
     alignItems: 'center',
   },
+  emptyText: {
+    color: theme.colors.textSecondary,
+    fontSize: 14,
+    fontStyle: 'italic',
+  },
 });
