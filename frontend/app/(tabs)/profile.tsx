@@ -437,6 +437,163 @@ export default function ProfileScreen() {
           onSelectAvatar={handleAvatarSelect}
           currentAvatar={profile.avatar}
         />
+
+        {/* Settings Modal */}
+        <Modal
+          visible={settingsModalVisible}
+          transparent
+          animationType="fade"
+          onRequestClose={() => setSettingsModalVisible(false)}
+        >
+          <View style={styles.modalOverlay}>
+            <View style={styles.modalContent}>
+              <Text style={styles.modalTitle}>Account Settings</Text>
+              
+              <TouchableOpacity 
+                style={styles.settingsOption}
+                onPress={() => {
+                  setSettingsModalVisible(false);
+                  setUsernameModalVisible(true);
+                }}
+              >
+                <Ionicons name="person-outline" size={24} color={theme.colors.primary} />
+                <Text style={styles.settingsOptionText}>Change Username</Text>
+                <Ionicons name="chevron-forward" size={20} color={theme.colors.textSecondary} />
+              </TouchableOpacity>
+
+              <TouchableOpacity 
+                style={styles.settingsOption}
+                onPress={() => {
+                  setSettingsModalVisible(false);
+                  setPasswordModalVisible(true);
+                }}
+              >
+                <Ionicons name="lock-closed-outline" size={24} color={theme.colors.secondary} />
+                <Text style={styles.settingsOptionText}>Change Password</Text>
+                <Ionicons name="chevron-forward" size={20} color={theme.colors.textSecondary} />
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                style={styles.modalCancelButton}
+                onPress={() => setSettingsModalVisible(false)}
+              >
+                <Text style={styles.modalCancelText}>Close</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </Modal>
+
+        {/* Username Change Modal */}
+        <Modal
+          visible={usernameModalVisible}
+          transparent
+          animationType="fade"
+          onRequestClose={() => setUsernameModalVisible(false)}
+        >
+          <View style={styles.modalOverlay}>
+            <View style={styles.modalContent}>
+              <Text style={styles.modalTitle}>Change Username</Text>
+              
+              <Text style={styles.modalDescription}>
+                Current username: <Text style={styles.currentUsername}>{profile.username}</Text>
+              </Text>
+              
+              <TextInput
+                style={styles.input}
+                placeholder="New username"
+                placeholderTextColor={theme.colors.textSecondary}
+                value={newUsername}
+                onChangeText={setNewUsername}
+                autoCapitalize="none"
+                maxLength={20}
+              />
+              
+              <TouchableOpacity onPress={handleUsernameChange}>
+                <LinearGradient
+                  colors={[theme.colors.primary, theme.colors.secondary]}
+                  style={styles.modalButton}
+                >
+                  <Text style={styles.modalButtonText}>Change Username</Text>
+                </LinearGradient>
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                style={styles.modalCancelButton}
+                onPress={() => {
+                  setUsernameModalVisible(false);
+                  setNewUsername('');
+                }}
+              >
+                <Text style={styles.modalCancelText}>Cancel</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </Modal>
+
+        {/* Password Change Modal */}
+        <Modal
+          visible={passwordModalVisible}
+          transparent
+          animationType="fade"
+          onRequestClose={() => setPasswordModalVisible(false)}
+        >
+          <View style={styles.modalOverlay}>
+            <View style={styles.modalContent}>
+              <Text style={styles.modalTitle}>Change Password</Text>
+              
+              <TextInput
+                style={styles.input}
+                placeholder="Current password"
+                placeholderTextColor={theme.colors.textSecondary}
+                value={currentPassword}
+                onChangeText={setCurrentPassword}
+                secureTextEntry
+                autoCapitalize="none"
+              />
+              
+              <TextInput
+                style={styles.input}
+                placeholder="New password (min 6 characters)"
+                placeholderTextColor={theme.colors.textSecondary}
+                value={newPassword}
+                onChangeText={setNewPassword}
+                secureTextEntry
+                autoCapitalize="none"
+              />
+              
+              <TextInput
+                style={styles.input}
+                placeholder="Confirm new password"
+                placeholderTextColor={theme.colors.textSecondary}
+                value={confirmPassword}
+                onChangeText={setConfirmPassword}
+                secureTextEntry
+                autoCapitalize="none"
+              />
+              
+              <TouchableOpacity onPress={handlePasswordChange}>
+                <LinearGradient
+                  colors={[theme.colors.primary, theme.colors.secondary]}
+                  style={styles.modalButton}
+                >
+                  <Text style={styles.modalButtonText}>Change Password</Text>
+                </LinearGradient>
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                style={styles.modalCancelButton}
+                onPress={() => {
+                  setPasswordModalVisible(false);
+                  setCurrentPassword('');
+                  setNewPassword('');
+                  setConfirmPassword('');
+                }}
+              >
+                <Text style={styles.modalCancelText}>Cancel</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </Modal>
       </LinearGradient>
     </SafeAreaView>
   );
