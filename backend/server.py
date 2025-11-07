@@ -442,13 +442,13 @@ async def change_username(data: ChangeUsername, current_user: str = Depends(get_
     if existing_user:
         raise HTTPException(status_code=400, detail="Username already taken")
     
-    # Update username in all collections
+    # Update username in users collection
     await users_collection.update_one(
         {"username": current_user},
         {"$set": {"username": data.new_username}}
     )
     
-    # Update in friends collection
+    # Update in friends collection (both user1 and user2 fields)
     await friends_collection.update_many(
         {"user1": current_user},
         {"$set": {"user1": data.new_username}}
@@ -458,10 +458,48 @@ async def change_username(data: ChangeUsername, current_user: str = Depends(get_
         {"$set": {"user2": data.new_username}}
     )
     
-    # Generate new token with new username
-    access_token = create_access_token(data={"sub": data.new_username})
+    # Update in games collection (players array)
+    await games_collection.update_many(
+        {"players": current_user},
+        {"$set": {"players.$": data.new_username}}
+    )
     
-    return {"message": "Username updated", "token": access_token, "username": data.new_username}
+    # Update in rounds collection
+    await rounds_collection.update_many(
+        {"username": current_user},
+        {"$set": {"username": data.new_username}}
+    )
+    
+    # Update in chats collection (sender and receiver fields)
+    await chats_collection.update_many(
+        {"sender": current_user},
+        {"$set": {"sender": data.new_username}}
+    )
+    await chats_collection.update_many(
+        {"receiver": current_user},
+        {"$set": {"receiver": data.new_username}}
+    )
+    
+    # Update in badges collection
+    await badges_collection.update_many(
+        {"username": current_user},
+        {"$set": {"username": data.new_username}}
+    )
+    
+    # Update in game_invites collection (from_username and to_username fields)
+    await game_invites_collection.update_many(
+        {"from_username": current_user},
+        {"$set": {"from_username": data.new_username}}
+    )
+    await game_invites_collection.update_many(
+        {"to_username": current_user},
+        {"$set": {"to_username": data.new_username}}
+    )
+    
+    # Generate new token with new username
+    new_token = create_token(data.new_username)
+    
+    return {"message": "Username updated successfully", "token": new_token, "username": data.new_username}
 
 
 @app.put("/api/users/change-password")
