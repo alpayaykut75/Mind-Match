@@ -130,7 +130,7 @@ export default function ProfileScreen() {
     ]);
   };
 
-  if (!profile) {
+  if (isLoading) {
     return (
       <SafeAreaView style={styles.container}>
         <LinearGradient
@@ -139,6 +139,21 @@ export default function ProfileScreen() {
         >
           <View style={styles.loadingContainer}>
             <Text style={styles.loading}>Loading...</Text>
+          </View>
+        </LinearGradient>
+      </SafeAreaView>
+    );
+  }
+
+  if (!profile) {
+    return (
+      <SafeAreaView style={styles.container}>
+        <LinearGradient
+          colors={[theme.colors.background, theme.colors.cardBg]}
+          style={styles.gradient}
+        >
+          <View style={styles.loadingContainer}>
+            <Text style={styles.loading}>Failed to load profile</Text>
             <TouchableOpacity 
               style={styles.emergencyLogoutButton}
               onPress={async () => {
