@@ -201,6 +201,30 @@ backend:
           agent: "testing"
           comment: "Complete friend system working: send request (POST /api/friends/request), get requests (GET /api/friends/requests), accept request (POST /api/friends/accept/{username}). Tested full flow from testuser1 to testuser2."
 
+  - task: "Username Change Endpoint"
+    implemented: true
+    working: "NA"
+    file: "backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+        - working: "NA"
+          agent: "main"
+          comment: "Fixed critical bug where create_access_token function was undefined (changed to create_token). Added comprehensive username updates across ALL collections: users, friends (user1/user2), games (players array), rounds (username), chats (sender/receiver), badges (username), game_invites (from_username/to_username). Now username changes propagate everywhere in the database. Ready for testing."
+
+  - task: "Password Change Endpoint"
+    implemented: true
+    working: "NA"
+    file: "backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+        - working: "NA"
+          agent: "main"
+          comment: "Fixed to use verify_password and hash_password utility functions instead of direct pwd_context calls for consistency with rest of codebase. Ready for testing."
+
   - task: "Chat Conversations Endpoint"
     implemented: true
     working: false
