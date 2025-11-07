@@ -95,6 +95,13 @@ class UpdateProfile(BaseModel):
     country: Optional[str] = None
     avatar: Optional[str] = None
 
+class ChangeUsername(BaseModel):
+    new_username: str
+
+class ChangePassword(BaseModel):
+    current_password: str
+    new_password: str
+
 
 # ============ UTILITIES ============
 
