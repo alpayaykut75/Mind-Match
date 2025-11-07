@@ -661,6 +661,60 @@ export default function ProfileScreen() {
             </View>
           </View>
         </Modal>
+
+        {/* Language Update Modal */}
+        <Modal
+          visible={languageModalVisible}
+          transparent
+          animationType="slide"
+          onRequestClose={() => setLanguageModalVisible(false)}
+        >
+          <View style={styles.modalOverlay}>
+            <View style={styles.languageModalContent}>
+              <View style={styles.modalHeader}>
+                <Text style={styles.modalTitle}>Update Languages</Text>
+                <TouchableOpacity onPress={() => setLanguageModalVisible(false)}>
+                  <Ionicons name="close" size={24} color={theme.colors.text} />
+                </TouchableOpacity>
+              </View>
+
+              <Text style={styles.modalSubtitle}>
+                Select languages you speak (at least one required)
+              </Text>
+
+              <FlatList
+                data={LANGUAGES}
+                keyExtractor={(item) => item.code}
+                renderItem={({ item }) => (
+                  <TouchableOpacity
+                    style={styles.languageListItem}
+                    onPress={() => toggleLanguage(item.code)}
+                  >
+                    <View style={styles.languageInfo}>
+                      <Text style={styles.languageItemFlag}>{item.flag}</Text>
+                      <Text style={styles.languageItemText}>{item.name}</Text>
+                    </View>
+                    {selectedLanguages.includes(item.code) && (
+                      <Ionicons name="checkmark-circle" size={24} color={theme.colors.primary} />
+                    )}
+                  </TouchableOpacity>
+                )}
+                style={styles.languageList}
+              />
+
+              <TouchableOpacity onPress={handleLanguageUpdate}>
+                <LinearGradient
+                  colors={[theme.colors.primary, theme.colors.secondary]}
+                  style={styles.languageUpdateButton}
+                >
+                  <Text style={styles.modalButtonText}>
+                    Update Languages ({selectedLanguages.length} selected)
+                  </Text>
+                </LinearGradient>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </Modal>
       </LinearGradient>
     </SafeAreaView>
   );
