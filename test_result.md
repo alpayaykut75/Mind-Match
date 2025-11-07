@@ -303,9 +303,7 @@ metadata:
   run_ui: false
 
 test_plan:
-  current_focus:
-    - "Username Change Endpoint"
-    - "Password Change Endpoint"
+  current_focus: []
   stuck_tasks: 
     - "Chat Conversations Endpoint"
   test_all: false
