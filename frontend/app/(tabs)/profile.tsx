@@ -38,6 +38,7 @@ interface UserProfile {
   successful_syncs: number;
   current_streak: number;
   badges: Badge[];
+  languages: string[];
 }
 
 export default function ProfileScreen() {
