@@ -388,26 +388,6 @@ export default function ProfileScreen() {
             </View>
           </View>
 
-          {/* Languages Section */}
-          {profile.languages && profile.languages.length > 0 ? (
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Languages</Text>
-              <View style={styles.languagesContainer}>
-                {profile.languages.map((langCode, index) => (
-                  <View key={index} style={styles.languageChip}>
-                    <Text style={styles.languageFlag}>{getLanguageFlag(langCode)}</Text>
-                    <Text style={styles.languageName}>{getLanguageName(langCode)}</Text>
-                  </View>
-                ))}
-              </View>
-            </View>
-          ) : (
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Languages</Text>
-              <Text style={styles.emptyText}>No languages selected yet</Text>
-            </View>
-          )}
-
           {/* Badges Section */}
           {profile.badges && profile.badges.length > 0 && (
             <View style={styles.sectionContainer}>
