@@ -724,6 +724,23 @@ const styles = StyleSheet.create({
     color: theme.colors.textSecondary,
     textAlign: 'center',
   },
+  settingsButton: {
+    backgroundColor: theme.colors.cardBg,
+    borderRadius: theme.borderRadius.md,
+    padding: theme.spacing.md,
+    alignItems: 'center',
+    marginTop: theme.spacing.md,
+    marginHorizontal: theme.spacing.md,
+    marginBottom: theme.spacing.sm,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    gap: theme.spacing.sm,
+  },
+  settingsButtonText: {
+    color: theme.colors.text,
+    fontSize: 16,
+    fontWeight: '600',
+  },
   logoutButton: {
     backgroundColor: theme.colors.error,
     borderRadius: theme.borderRadius.md,
