@@ -528,6 +528,18 @@ export default function ProfileScreen() {
                 <Ionicons name="chevron-forward" size={20} color={theme.colors.textSecondary} />
               </TouchableOpacity>
 
+              <TouchableOpacity 
+                style={styles.settingsOption}
+                onPress={() => {
+                  setSettingsModalVisible(false);
+                  setLanguageModalVisible(true);
+                }}
+              >
+                <Ionicons name="language-outline" size={24} color={theme.colors.accent} />
+                <Text style={styles.settingsOptionText}>Change Languages</Text>
+                <Ionicons name="chevron-forward" size={20} color={theme.colors.textSecondary} />
+              </TouchableOpacity>
+
               <TouchableOpacity
                 style={styles.modalCancelButton}
                 onPress={() => setSettingsModalVisible(false)}
