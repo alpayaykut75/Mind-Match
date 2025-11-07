@@ -435,6 +435,55 @@ async def update_profile(profile: UpdateProfile, current_user: str = Depends(get
     return {"message": "Profile updated"}
 
 
+@app.put("/api/users/change-username")
+async def change_username(data: ChangeUsername, current_user: str = Depends(get_current_user)):
+    # Check if new username already exists
+    existing_user = await users_collection.find_one({"username": data.new_username})
+    if existing_user:
+        raise HTTPException(status_code=400, detail="Username already taken")
+    
+    # Update username in all collections
+    await users_collection.update_one(
+        {"username": current_user},
+        {"$set": {"username": data.new_username}}
+    )
+    
+    # Update in friends collection
+    await friends_collection.update_many(
+        {"user1": current_user},
+        {"$set": {"user1": data.new_username}}
+    )
+    await friends_collection.update_many(
+        {"user2": current_user},
+        {"$set": {"user2": data.new_username}}
+    )
+    
+    # Generate new token with new username
+    access_token = create_access_token(data={"sub": data.new_username})
+    
+    return {"message": "Username updated", "token": access_token, "username": data.new_username}
+
+
+@app.put("/api/users/change-password")
+async def change_password(data: ChangePassword, current_user: str = Depends(get_current_user)):
+    # Verify current password
+    user = await users_collection.find_one({"username": current_user})
+    if not user:
+        raise HTTPException(status_code=404, detail="User not found")
+    
+    if not pwd_context.verify(data.current_password, user["password"]):
+        raise HTTPException(status_code=400, detail="Current password is incorrect")
+    
+    # Hash and update new password
+    hashed_password = pwd_context.hash(data.new_password)
+    await users_collection.update_one(
+        {"username": current_user},
+        {"$set": {"password": hashed_password}}
+    )
+    
+    return {"message": "Password updated successfully"}
+
+
 @app.get("/api/users/online")
 async def get_online_users(current_user: str = Depends(get_current_user)):
     # Update current user's last_seen
