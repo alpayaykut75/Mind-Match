@@ -973,4 +973,29 @@ const styles = StyleSheet.create({
   modalCancelText: {
     color: theme.colors.textSecondary,
   },
+  settingsOption: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: theme.spacing.md,
+    backgroundColor: theme.colors.background,
+    borderRadius: theme.borderRadius.md,
+    marginBottom: theme.spacing.sm,
+    gap: theme.spacing.md,
+  },
+  settingsOptionText: {
+    flex: 1,
+    color: theme.colors.text,
+    fontSize: 16,
+    fontWeight: '500',
+  },
+  modalDescription: {
+    color: theme.colors.textSecondary,
+    fontSize: 14,
+    marginBottom: theme.spacing.md,
+    textAlign: 'center',
+  },
+  currentUsername: {
+    color: theme.colors.primary,
+    fontWeight: 'bold',
+  },
 });
