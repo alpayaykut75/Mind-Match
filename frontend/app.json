@@ -39,7 +39,7 @@
       "typedRoutes": true
     },
     "extra": {
-      "EXPO_PUBLIC_BACKEND_URL": "https://mind-match-v1.preview.emergentagent.com"
+      "EXPO_PUBLIC_BACKEND_URL": "https://friend-sync-1.preview.emergentagent.com"
     }
   }
 }
