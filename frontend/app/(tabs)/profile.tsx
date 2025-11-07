@@ -123,6 +123,59 @@ export default function ProfileScreen() {
     }
   };
 
+  const handleUsernameChange = async () => {
+    if (!newUsername.trim()) {
+      Alert.alert('Error', 'Please enter a new username');
+      return;
+    }
+    
+    try {
+      const response = await userAPI.changeUsername(newUsername.trim());
+      
+      // Update token in AsyncStorage
+      if (response.data.token) {
+        await AsyncStorage.setItem('token', response.data.token);
+      }
+      
+      setUsernameModalVisible(false);
+      setNewUsername('');
+      await loadProfile();
+      Alert.alert('Success', 'Username updated successfully! You can now login with your new username.');
+    } catch (error: any) {
+      const message = error.response?.data?.detail || 'Failed to update username';
+      Alert.alert('Error', message);
+    }
+  };
+
+  const handlePasswordChange = async () => {
+    if (!currentPassword || !newPassword || !confirmPassword) {
+      Alert.alert('Error', 'Please fill in all password fields');
+      return;
+    }
+    
+    if (newPassword !== confirmPassword) {
+      Alert.alert('Error', 'New passwords do not match');
+      return;
+    }
+    
+    if (newPassword.length < 6) {
+      Alert.alert('Error', 'Password must be at least 6 characters');
+      return;
+    }
+    
+    try {
+      await userAPI.changePassword(currentPassword, newPassword);
+      setPasswordModalVisible(false);
+      setCurrentPassword('');
+      setNewPassword('');
+      setConfirmPassword('');
+      Alert.alert('Success', 'Password updated successfully!');
+    } catch (error: any) {
+      const message = error.response?.data?.detail || 'Failed to update password';
+      Alert.alert('Error', message);
+    }
+  };
+
   const handleLogout = () => {
     Alert.alert('Logout', 'Are you sure you want to logout?', [
       { text: 'Cancel', style: 'cancel' },
