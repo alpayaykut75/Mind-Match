@@ -1,3 +1,31 @@
+diff --git a/frontend/app/(tabs)/profile.tsx b/frontend/app/(tabs)/profile.tsx
+index c8039fe..08bb949 100644
+--- a/frontend/app/(tabs)/profile.tsx
++++ b/frontend/app/(tabs)/profile.tsx
+@@ -724,6 +724,23 @@ const styles = StyleSheet.create({
+     color: theme.colors.textSecondary,
+     textAlign: 'center',
+   },
++  settingsButton: {
++    backgroundColor: theme.colors.cardBg,
++    borderRadius: theme.borderRadius.md,
++    padding: theme.spacing.md,
++    alignItems: 'center',
++    marginTop: theme.spacing.md,
++    marginHorizontal: theme.spacing.md,
++    marginBottom: theme.spacing.sm,
++    flexDirection: 'row',
++    justifyContent: 'center',
++    gap: theme.spacing.sm,
++  },
++  settingsButtonText: {
++    color: theme.colors.text,
++    fontSize: 16,
++    fontWeight: '600',
++  },
+   logoutButton: {
+     backgroundColor: theme.colors.error,
+     borderRadius: theme.borderRadius.md,
 diff --git a/mind-match-temp b/mind-match-temp
 --- a/mind-match-temp
 +++ b/mind-match-temp
@@ -5,102 +33,113 @@ diff --git a/mind-match-temp b/mind-match-temp
 -Subproject commit a09d5423852e34d8d6d2594a541535d8c2df2859
 +Subproject commit a09d5423852e34d8d6d2594a541535d8c2df2859-dirty
 diff --git a/model.patch b/model.patch
-index 46e62e4..e69de29 100644
+index fe00045..e69de29 100644
 --- a/model.patch
 +++ b/model.patch
-@@ -1,32 +0,0 @@
--diff --git a/frontend/app/(tabs)/profile.tsx b/frontend/app/(tabs)/profile.tsx
--index 6635540..5ed892c 100644
----- a/frontend/app/(tabs)/profile.tsx
--+++ b/frontend/app/(tabs)/profile.tsx
--@@ -367,8 +367,25 @@ const styles = StyleSheet.create({
--   },
--   loading: {
--     color: theme.colors.text,
---    textAlign: 'center',
---    marginTop: theme.spacing.xl,
--+    fontSize: 18,
--+  },
--+  loadingContainer: {
--+    flex: 1,
--+    justifyContent: 'center',
--+    alignItems: 'center',
--+    gap: theme.spacing.xl,
--+  },
--+  emergencyLogoutButton: {
--+    backgroundColor: theme.colors.error,
--+    paddingHorizontal: theme.spacing.xl,
--+    paddingVertical: theme.spacing.md,
--+    borderRadius: theme.borderRadius.md,
--+    marginTop: theme.spacing.lg,
--+  },
--+  emergencyLogoutText: {
--+    color: theme.colors.text,
--+    fontSize: 16,
--+    fontWeight: 'bold',
--   },
--   header: {
--     alignItems: 'center',
-diff --git a/test_result.md b/test_result.md
-index 9e5000a..1345f73 100644
---- a/test_result.md
-+++ b/test_result.md
-@@ -203,27 +203,33 @@ backend:
- 
-   - task: "Username Change Endpoint"
-     implemented: true
--    working: "NA"
-+    working: true
-     file: "backend/server.py"
-     stuck_count: 0
-     priority: "high"
--    needs_retesting: true
-+    needs_retesting: false
-     status_history:
-         - working: "NA"
-           agent: "main"
-           comment: "Fixed critical bug where create_access_token function was undefined (changed to create_token). Added comprehensive username updates across ALL collections: users, friends (user1/user2), games (players array), rounds (username), chats (sender/receiver), badges (username), game_invites (from_username/to_username). Now username changes propagate everywhere in the database. Ready for testing."
-+        - working: true
-+          agent: "testing"
-+          comment: "COMPREHENSIVE TESTING COMPLETED: All 6 test cases passed (100% success rate). Tested: 1) Username change with new token generation - successfully changed username and received new JWT token, 2) Login with new username - verified authentication works with updated username, 3) Old username rejection - confirmed old username cannot be used for login, 4) Duplicate username validation - correctly rejects attempts to change to existing username (400 error), 5) Username propagation across collections - verified username updates in friends collection by creating friendship and changing username, friend list correctly shows updated username. Endpoint fully functional with proper error handling and database consistency."
- 
-   - task: "Password Change Endpoint"
-     implemented: true
--    working: "NA"
-+    working: true
-     file: "backend/server.py"
-     stuck_count: 0
-     priority: "high"
--    needs_retesting: true
-+    needs_retesting: false
-     status_history:
-         - working: "NA"
-           agent: "main"
-           comment: "Fixed to use verify_password and hash_password utility functions instead of direct pwd_context calls for consistency with rest of codebase. Ready for testing."
-+        - working: true
-+          agent: "testing"
-+          comment: "COMPREHENSIVE TESTING COMPLETED: All 5 test cases passed (100% success rate). Tested: 1) Wrong current password rejection - correctly returns 400 error when current password is incorrect, 2) Successful password change - password updated successfully with correct current password, 3) Login with new password - verified authentication works with new password, 4) Old password rejection - confirmed old password cannot be used for login (401 error), 5) Password verification - proper bcrypt hashing and verification working correctly. Endpoint fully functional with proper security validation."
- 
-   - task: "Chat Conversations Endpoint"
-     implemented: true
-@@ -297,9 +303,7 @@ metadata:
-   run_ui: false
- 
- test_plan:
--  current_focus:
--    - "Username Change Endpoint"
--    - "Password Change Endpoint"
-+  current_focus: []
-   stuck_tasks: 
-     - "Chat Conversations Endpoint"
-   test_all: false
-@@ -319,4 +323,6 @@ agent_communication:
-     - agent: "testing"
-       message: "UNREAD MESSAGE ENDPOINTS TESTING COMPLETED: All 10 tests passed (100% success rate). Fixed critical route ordering issue where /api/chat/{username} was intercepting /api/chat/unread-count and /api/chat/unread-by-user endpoints. Tested complete unread message flow: user creation → friendship → message sending → unread count verification → unread by user verification → MongoDB data verification → multiple messages → message reading. All endpoints working correctly: POST /api/chat/send (sends messages between friends), GET /api/chat/unread-count (returns proper JSON with unread_count field), GET /api/chat/unread-by-user (returns dictionary with usernames as keys and counts as values), GET /api/chat/{username} (marks messages as read when accessed). Badge system endpoints are fully functional and ready for production use."
-     - agent: "main"
--      message: "PROFILE UPDATE ENDPOINTS FIXED: Fixed two critical bugs in username and password change endpoints. 1) Username change: Fixed undefined create_access_token function (changed to create_token), added comprehensive updates across all collections (users, friends, games, rounds, chats, badges, game_invites) to ensure username changes propagate everywhere. 2) Password change: Fixed to use verify_password and hash_password utility functions instead of direct pwd_context calls. Both endpoints now ready for testing."
-\ No newline at end of file
-+      message: "PROFILE UPDATE ENDPOINTS FIXED: Fixed two critical bugs in username and password change endpoints. 1) Username change: Fixed undefined create_access_token function (changed to create_token), added comprehensive updates across all collections (users, friends, games, rounds, chats, badges, game_invites) to ensure username changes propagate everywhere. 2) Password change: Fixed to use verify_password and hash_password utility functions instead of direct pwd_context calls. Both endpoints now ready for testing."
-+    - agent: "testing"
-+      message: "PROFILE UPDATE ENDPOINTS TESTING COMPLETED: All 11 test cases passed (100% success rate). Username Change Endpoint (6/6 tests passed): Successfully changes username with new JWT token generation, login works with new username, old username correctly rejected, duplicate username validation working (400 error), username propagation verified across friends collection. Password Change Endpoint (5/5 tests passed): Wrong current password correctly rejected (400 error), password change successful with correct current password, login works with new password, old password correctly rejected (401 error), bcrypt hashing and verification working properly. Both endpoints fully functional with proper security validation and database consistency. No issues found."
-\ No newline at end of file
+@@ -1,106 +0,0 @@
+-diff --git a/mind-match-temp b/mind-match-temp
+---- a/mind-match-temp
+-+++ b/mind-match-temp
+-@@ -1 +1 @@
+--Subproject commit a09d5423852e34d8d6d2594a541535d8c2df2859
+-+Subproject commit a09d5423852e34d8d6d2594a541535d8c2df2859-dirty
+-diff --git a/model.patch b/model.patch
+-index 46e62e4..e69de29 100644
+---- a/model.patch
+-+++ b/model.patch
+-@@ -1,32 +0,0 @@
+--diff --git a/frontend/app/(tabs)/profile.tsx b/frontend/app/(tabs)/profile.tsx
+--index 6635540..5ed892c 100644
+----- a/frontend/app/(tabs)/profile.tsx
+--+++ b/frontend/app/(tabs)/profile.tsx
+--@@ -367,8 +367,25 @@ const styles = StyleSheet.create({
+--   },
+--   loading: {
+--     color: theme.colors.text,
+---    textAlign: 'center',
+---    marginTop: theme.spacing.xl,
+--+    fontSize: 18,
+--+  },
+--+  loadingContainer: {
+--+    flex: 1,
+--+    justifyContent: 'center',
+--+    alignItems: 'center',
+--+    gap: theme.spacing.xl,
+--+  },
+--+  emergencyLogoutButton: {
+--+    backgroundColor: theme.colors.error,
+--+    paddingHorizontal: theme.spacing.xl,
+--+    paddingVertical: theme.spacing.md,
+--+    borderRadius: theme.borderRadius.md,
+--+    marginTop: theme.spacing.lg,
+--+  },
+--+  emergencyLogoutText: {
+--+    color: theme.colors.text,
+--+    fontSize: 16,
+--+    fontWeight: 'bold',
+--   },
+--   header: {
+--     alignItems: 'center',
+-diff --git a/test_result.md b/test_result.md
+-index 9e5000a..1345f73 100644
+---- a/test_result.md
+-+++ b/test_result.md
+-@@ -203,27 +203,33 @@ backend:
+- 
+-   - task: "Username Change Endpoint"
+-     implemented: true
+--    working: "NA"
+-+    working: true
+-     file: "backend/server.py"
+-     stuck_count: 0
+-     priority: "high"
+--    needs_retesting: true
+-+    needs_retesting: false
+-     status_history:
+-         - working: "NA"
+-           agent: "main"
+-           comment: "Fixed critical bug where create_access_token function was undefined (changed to create_token). Added comprehensive username updates across ALL collections: users, friends (user1/user2), games (players array), rounds (username), chats (sender/receiver), badges (username), game_invites (from_username/to_username). Now username changes propagate everywhere in the database. Ready for testing."
+-+        - working: true
+-+          agent: "testing"
+-+          comment: "COMPREHENSIVE TESTING COMPLETED: All 6 test cases passed (100% success rate). Tested: 1) Username change with new token generation - successfully changed username and received new JWT token, 2) Login with new username - verified authentication works with updated username, 3) Old username rejection - confirmed old username cannot be used for login, 4) Duplicate username validation - correctly rejects attempts to change to existing username (400 error), 5) Username propagation across collections - verified username updates in friends collection by creating friendship and changing username, friend list correctly shows updated username. Endpoint fully functional with proper error handling and database consistency."
+- 
+-   - task: "Password Change Endpoint"
+-     implemented: true
+--    working: "NA"
+-+    working: true
+-     file: "backend/server.py"
+-     stuck_count: 0
+-     priority: "high"
+--    needs_retesting: true
+-+    needs_retesting: false
+-     status_history:
+-         - working: "NA"
+-           agent: "main"
+-           comment: "Fixed to use verify_password and hash_password utility functions instead of direct pwd_context calls for consistency with rest of codebase. Ready for testing."
+-+        - working: true
+-+          agent: "testing"
+-+          comment: "COMPREHENSIVE TESTING COMPLETED: All 5 test cases passed (100% success rate). Tested: 1) Wrong current password rejection - correctly returns 400 error when current password is incorrect, 2) Successful password change - password updated successfully with correct current password, 3) Login with new password - verified authentication works with new password, 4) Old password rejection - confirmed old password cannot be used for login (401 error), 5) Password verification - proper bcrypt hashing and verification working correctly. Endpoint fully functional with proper security validation."
+- 
+-   - task: "Chat Conversations Endpoint"
+-     implemented: true
+-@@ -297,9 +303,7 @@ metadata:
+-   run_ui: false
+- 
+- test_plan:
+--  current_focus:
+--    - "Username Change Endpoint"
+--    - "Password Change Endpoint"
+-+  current_focus: []
+-   stuck_tasks: 
+-     - "Chat Conversations Endpoint"
+-   test_all: false
+-@@ -319,4 +323,6 @@ agent_communication:
+-     - agent: "testing"
+-       message: "UNREAD MESSAGE ENDPOINTS TESTING COMPLETED: All 10 tests passed (100% success rate). Fixed critical route ordering issue where /api/chat/{username} was intercepting /api/chat/unread-count and /api/chat/unread-by-user endpoints. Tested complete unread message flow: user creation → friendship → message sending → unread count verification → unread by user verification → MongoDB data verification → multiple messages → message reading. All endpoints working correctly: POST /api/chat/send (sends messages between friends), GET /api/chat/unread-count (returns proper JSON with unread_count field), GET /api/chat/unread-by-user (returns dictionary with usernames as keys and counts as values), GET /api/chat/{username} (marks messages as read when accessed). Badge system endpoints are fully functional and ready for production use."
+-     - agent: "main"
+--      message: "PROFILE UPDATE ENDPOINTS FIXED: Fixed two critical bugs in username and password change endpoints. 1) Username change: Fixed undefined create_access_token function (changed to create_token), added comprehensive updates across all collections (users, friends, games, rounds, chats, badges, game_invites) to ensure username changes propagate everywhere. 2) Password change: Fixed to use verify_password and hash_password utility functions instead of direct pwd_context calls. Both endpoints now ready for testing."
+-\ No newline at end of file
+-+      message: "PROFILE UPDATE ENDPOINTS FIXED: Fixed two critical bugs in username and password change endpoints. 1) Username change: Fixed undefined create_access_token function (changed to create_token), added comprehensive updates across all collections (users, friends, games, rounds, chats, badges, game_invites) to ensure username changes propagate everywhere. 2) Password change: Fixed to use verify_password and hash_password utility functions instead of direct pwd_context calls. Both endpoints now ready for testing."
+-+    - agent: "testing"
+-+      message: "PROFILE UPDATE ENDPOINTS TESTING COMPLETED: All 11 test cases passed (100% success rate). Username Change Endpoint (6/6 tests passed): Successfully changes username with new JWT token generation, login works with new username, old username correctly rejected, duplicate username validation working (400 error), username propagation verified across friends collection. Password Change Endpoint (5/5 tests passed): Wrong current password correctly rejected (400 error), password change successful with correct current password, login works with new password, old password correctly rejected (401 error), bcrypt hashing and verification working properly. Both endpoints fully functional with proper security validation and database consistency. No issues found."
+-\ No newline at end of file
