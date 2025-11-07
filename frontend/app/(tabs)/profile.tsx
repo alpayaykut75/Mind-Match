@@ -48,9 +48,11 @@ export default function ProfileScreen() {
   const [settingsModalVisible, setSettingsModalVisible] = useState(false);
   const [usernameModalVisible, setUsernameModalVisible] = useState(false);
   const [passwordModalVisible, setPasswordModalVisible] = useState(false);
+  const [languageModalVisible, setLanguageModalVisible] = useState(false);
   const [editBio, setEditBio] = useState('');
   const [editAge, setEditAge] = useState('');
   const [editCountry, setEditCountry] = useState('');
+  const [selectedLanguages, setSelectedLanguages] = useState<string[]>([]);
   const [newUsername, setNewUsername] = useState('');
   const [currentPassword, setCurrentPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
