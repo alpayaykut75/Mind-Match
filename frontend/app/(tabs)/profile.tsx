@@ -374,7 +374,7 @@ export default function ProfileScreen() {
           </View>
 
           {/* Languages Section */}
-          {profile.languages && profile.languages.length > 0 && (
+          {profile.languages && profile.languages.length > 0 ? (
             <View style={styles.sectionContainer}>
               <Text style={styles.sectionTitle}>Languages</Text>
               <View style={styles.languagesContainer}>
@@ -385,6 +385,11 @@ export default function ProfileScreen() {
                   </View>
                 ))}
               </View>
+            </View>
+          ) : (
+            <View style={styles.sectionContainer}>
+              <Text style={styles.sectionTitle}>Languages</Text>
+              <Text style={styles.emptyText}>No languages selected yet</Text>
             </View>
           )}
 
