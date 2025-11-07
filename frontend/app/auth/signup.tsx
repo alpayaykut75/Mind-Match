@@ -480,6 +480,7 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: theme.borderRadius.lg,
     borderTopRightRadius: theme.borderRadius.lg,
     paddingTop: theme.spacing.lg,
+    paddingBottom: theme.spacing.lg,
     height: '80%',
   },
   modalHeader: {
