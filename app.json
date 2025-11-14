@@ -10,9 +10,8 @@
     "newArchEnabled": true,
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.mindmatch.app",
-      "buildNumber": "1",
-      "appleTeamId": "WK9WNNWPNP"
+      "bundleIdentifier": "com.alpayaykut.mindmatch",
+      "buildNumber": "1"
     },
     "android": {
       "adaptiveIcon": {
@@ -31,7 +30,7 @@
       [
         "expo-splash-screen",
         {
-          "image": "./assets/images/splash-icon.png",
+          "image": "./assets/images/splash-image.png",
           "imageWidth": 200,
           "resizeMode": "contain",
           "backgroundColor": "#000"
@@ -42,7 +41,7 @@
       "typedRoutes": true
     },
     "extra": {
-      "EXPO_PUBLIC_BACKEND_URL": "https://emt-deccd5.emergentagent.com"
+      "EXPO_PUBLIC_BACKEND_URL": "https://wordgame-deploy.preview.emergentagent.com"
     }
   }
 }

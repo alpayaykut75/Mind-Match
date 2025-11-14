@@ -23,8 +23,7 @@
   "submit": {
     "production": {
       "ios": {
-        "appleId": "alpay.aykut@gmail.com",
-        "appleTeamId": "WK9WNNWPNP"
+        "appleId": "alpay.aykut@gmail.com"
       }
     }
   }
