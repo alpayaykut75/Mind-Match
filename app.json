@@ -7,7 +7,7 @@
     "icon": "./assets/images/icon.png",
     "scheme": "mindmatch",
     "userInterfaceStyle": "automatic",
-    "newArchEnabled": true,
+    "newArchEnabled": false,
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.alpayaykut.mindmatch",
@@ -34,14 +34,6 @@
           "imageWidth": 200,
           "resizeMode": "contain",
           "backgroundColor": "#000"
-        }
-      ],
-      [
-        "expo-build-properties",
-        {
-          "ios": {
-            "buildReactNativeFromSource": true
-          }
         }
       ]
     ],
