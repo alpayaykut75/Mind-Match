@@ -4,7 +4,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const API_URL = Constants.expoConfig?.extra?.EXPO_PUBLIC_BACKEND_URL 
   || process.env.EXPO_PUBLIC_BACKEND_URL 
-  || 'https://babel-match.preview.emergentagent.com';
+  || 'https://synked-match.preview.emergentagent.com';
 
 console.log('API_URL:', API_URL);
 
