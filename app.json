@@ -1,17 +1,17 @@
 {
   "expo": {
-    "name": "Mind Match",
-    "slug": "mind-match",
-    "version": "1.0.0",
+    "name": "Synked",
+    "slug": "synked",
+    "version": "1.0.1",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "mindmatch",
     "userInterfaceStyle": "automatic",
-    "newArchEnabled": true,
+    "newArchEnabled": false,
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.alpayaykut.mindmatch",
-      "buildNumber": "1"
+      "autoIncrement": true
     },
     "android": {
       "adaptiveIcon": {
