@@ -62,7 +62,7 @@ export default function Login() {
         >
           <View style={styles.header}>
             <Ionicons name="people" size={64} color={theme.colors.primary} />
-            <Text style={styles.title}>MindMatch</Text>
+            <Text style={styles.title}>SYNKED</Text>
             <Text style={styles.subtitle}>Connect through words</Text>
           </View>
 

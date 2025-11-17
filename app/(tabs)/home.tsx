@@ -258,7 +258,7 @@ export default function HomeScreen() {
         style={styles.gradient}
       >
         <View style={styles.header}>
-          <Text style={styles.title}>MindMatch</Text>
+          <Text style={styles.title}>SYNKED</Text>
           <Text style={styles.subtitle}>Find your wavelength</Text>
         </View>
 

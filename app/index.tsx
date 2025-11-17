@@ -25,7 +25,7 @@ export default function Index() {
         colors={[theme.colors.primary, theme.colors.secondary]}
         style={styles.gradient}
       >
-        <Text style={styles.logo}>MindMatch</Text>
+        <Text style={styles.logo}>SYNKED</Text>
         <ActivityIndicator size="large" color={theme.colors.text} style={styles.loader} />
       </LinearGradient>
     </View>
